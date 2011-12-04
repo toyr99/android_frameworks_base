@@ -59,6 +59,12 @@
 
   <!-- HW rotation lock -->
   <java-symbol type="string" name="toast_rotation_unlocked" />
-  <java-symbol type="string" name="toast_rotation_locked" />  
+  <java-symbol type="string" name="toast_rotation_locked" />
+
+
+  <!-- LUN file to be used by legacy USB manager.
+         The existence of this file will be used to determine in the
+         legacy USB manager should be started. -->
+  <java-symbol type="string" name="config_legacyUmsLunFile" />  
 
 </resources>
