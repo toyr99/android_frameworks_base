@@ -26,8 +26,6 @@ import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
 import android.util.Slog;
 
-import com.android.internal.annotations.GuardedBy;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -48,7 +46,7 @@ public class UsbHostManager {
     private final Context mContext;
     private final Object mLock = new Object();
 
-    @GuardedBy("mLock")
+    // @GuardedBy("mLock")
     private UsbSettingsManager mCurrentSettings;
 
     public UsbHostManager(Context context) {
@@ -96,6 +94,7 @@ public class UsbHostManager {
     /* Called from JNI in monitorUsbHostBus() to report new USB devices */
     private void usbDeviceAdded(String deviceName, int vendorID, int productID,
             int deviceClass, int deviceSubclass, int deviceProtocol,
+            String manufacturerName, String productName, String serialNumber,
             /* array of quintuples containing id, class, subclass, protocol
                and number of endpoints for each interface */
             int[] interfaceValues,
@@ -115,7 +114,6 @@ public class UsbHostManager {
             }
 
             int numInterfaces = interfaceValues.length / 5;
-            int numValidInterfaces = numInterfaces;
             Parcelable[] interfaces = new UsbInterface[numInterfaces];
             try {
                 // repackage interfaceValues as an array of UsbInterface
@@ -137,10 +135,9 @@ public class UsbHostManager {
                                 maxPacketSize, interval);
                     }
 
-                    // drop blacklisted interface
+                    // don't allow if any interfaces are blacklisted
                     if (isBlackListed(interfaceClass, interfaceSubclass, interfaceProtocol)) {
-                        numValidInterfaces--;
-                        continue;
+                        return;
                     }
                     interfaces[intf] = new UsbInterface(interfaceId, interfaceClass,
                             interfaceSubclass, interfaceProtocol, endpoints);
@@ -152,22 +149,9 @@ public class UsbHostManager {
                 return;
             }
 
-            if (numValidInterfaces == 0) {
-                // all interfaces are blacklisted
-                return;
-            }
-
-            // pack interfaces array
-            Parcelable[] validInterfaces = new UsbInterface[numValidInterfaces];
-            int vintf = 0;
-            for (int intf = 0; intf < numInterfaces; intf++) {
-                if (interfaces[intf] != null) {
-                    validInterfaces[vintf++] = interfaces[intf];
-                }
-            }
-
             UsbDevice device = new UsbDevice(deviceName, vendorID, productID,
-                    deviceClass, deviceSubclass, deviceProtocol, validInterfaces);
+                    deviceClass, deviceSubclass, deviceProtocol,
+                    manufacturerName, productName, serialNumber, interfaces);
             mDevices.put(deviceName, device);
             getCurrentSettings().deviceAttached(device);
         }
