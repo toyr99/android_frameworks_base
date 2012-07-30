@@ -22,4 +22,6 @@
     <!-- Description of the Random button in a KeyboardView. [CHAR LIMIT=NONE] -->
     <string name="keyboardview_keycode_random">Reload random buttons</string>
 
+    <string name="keyguard_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
 </resources>

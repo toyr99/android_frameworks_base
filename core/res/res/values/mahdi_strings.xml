@@ -112,4 +112,7 @@
         Malicious apps may use this to prevent outgoing SMS messages.</string>
 
     <string name="immersive_mode_confirmation_bottom">Swipe up from the bottom to exit full screen.</string>
+
+    <!-- Lock screen always show battery -->
+    <string name="lockscreen_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
 </resources>
