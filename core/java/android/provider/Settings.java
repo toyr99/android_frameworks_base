@@ -2857,6 +2857,13 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
 
+	/**
+         * Navigation bar customization
+         *
+         * @hide
+         */
+        public static final String NAV_BUTTONS = "nav_buttons";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
