@@ -75,7 +75,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private PopupMenu mPopup;
     private View mRecentsScrim;
     private View mRecentsNoApps;
-    private RecentsScrollView mRecentsContainer;
+    private ViewGroup mRecentsContainer;    
 
     private boolean mShowing;
     private boolean mWaitingToShow;
@@ -92,6 +92,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private boolean mFitThumbnailToXY;
     private int mRecentItemLayoutId;
     private boolean mHighEndGfx;
+    private ImageView mClearRecents;
 
     public static interface RecentsScrollView {
         public int numItemsInOneScreenful();
@@ -273,7 +274,13 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     }
 
     public int numItemsInOneScreenful() {
-        return mRecentsContainer.numItemsInOneScreenful();
+        if (mRecentsContainer instanceof RecentsScrollView){
+            RecentsScrollView scrollView
+                    = (RecentsScrollView) mRecentsContainer;
+            return scrollView.numItemsInOneScreenful();
+        }  else {
+            throw new IllegalArgumentException("missing Recents[Horizontal]ScrollView");
+        }
     }
 
     private boolean pointInside(int x, int y, View v) {
@@ -340,7 +347,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                     && (mRecentTaskDescriptions.size() == 0);
             mRecentsNoApps.setAlpha(1f);
             mRecentsNoApps.setVisibility(noApps ? View.VISIBLE : View.INVISIBLE);
-
+            mClearRecents.setVisibility(noApps ? View.GONE : View.VISIBLE);
             onAnimationEnd(null);
             setFocusable(true);
             setFocusableInTouchMode(true);
@@ -433,19 +440,29 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mRecentsContainer = (RecentsScrollView) findViewById(R.id.recents_container);
-        mRecentsContainer.setOnScrollListener(new Runnable() {
-            public void run() {
-                // need to redraw the faded edges
-                invalidate();
-            }
-        });
+        mRecentsContainer = (ViewGroup) findViewById(R.id.recents_container);        
         mListAdapter = new TaskDescriptionAdapter(mContext);
-        mRecentsContainer.setAdapter(mListAdapter);
-        mRecentsContainer.setCallback(this);
+        if (mRecentsContainer instanceof RecentsScrollView){
+            RecentsScrollView scrollView
+                    = (RecentsScrollView) mRecentsContainer;
+            scrollView.setAdapter(mListAdapter);
+            scrollView.setCallback(this);
+        } else {
+            throw new IllegalArgumentException("missing Recents[Horizontal]ScrollView");
+        }
 
         mRecentsScrim = findViewById(R.id.recents_bg_protect);
         mRecentsNoApps = findViewById(R.id.recents_no_apps);
+
+        mClearRecents = (ImageView) findViewById(R.id.recents_clear);
+        if (mClearRecents != null){
+            mClearRecents.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mRecentsContainer.removeAllViewsInLayout();
+                }
+            });
+        }
 
         if (mRecentsScrim != null) {
             mHighEndGfx = ActivityManager.isHighEndGfx();
@@ -459,7 +476,11 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     }
 
     public void setMinSwipeAlpha(float minAlpha) {
-        mRecentsContainer.setMinSwipeAlpha(minAlpha);
+        if (mRecentsContainer instanceof RecentsScrollView){
+            RecentsScrollView scrollView
+                = (RecentsScrollView) mRecentsContainer;
+            scrollView.setMinSwipeAlpha(minAlpha);
+        }
     }
 
     private void createCustomAnimations(LayoutTransition transitioner) {
@@ -517,7 +538,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     void onTaskThumbnailLoaded(TaskDescription td) {
         synchronized (td) {
             if (mRecentsContainer != null) {
-                ViewGroup container = (ViewGroup) mRecentsContainer;
+                ViewGroup container = mRecentsContainer;
                 if (container instanceof RecentsScrollView) {
                     container = (ViewGroup) container.findViewById(
                             R.id.recents_linear_layout);
@@ -626,7 +647,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         final int items = mRecentTaskDescriptions != null
                 ? mRecentTaskDescriptions.size() : 0;
 
-        ((View) mRecentsContainer).setVisibility(items > 0 ? View.VISIBLE : View.GONE);
+        mRecentsContainer.setVisibility(items > 0 ? View.VISIBLE : View.GONE);
 
         // Set description for accessibility
         int numRecentApps = mRecentTaskDescriptions != null
@@ -643,10 +664,14 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     }
 
     public boolean simulateClick(int persistentTaskId) {
-        View v = mRecentsContainer.findViewForTask(persistentTaskId);
-        if (v != null) {
-            handleOnClick(v);
-            return true;
+        if (mRecentsContainer instanceof RecentsScrollView){
+            RecentsScrollView scrollView
+                = (RecentsScrollView) mRecentsContainer;
+            View v = scrollView.findViewForTask(persistentTaskId);
+            if (v != null) {
+                handleOnClick(v);
+                return true;
+            }
         }
         return false;
     }
@@ -764,7 +789,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.recent_remove_item) {
-                    ((ViewGroup) mRecentsContainer).removeViewInLayout(selectedView);
+                    mRecentsContainer.removeViewInLayout(selectedView);
                 } else if (item.getItemId() == R.id.recent_inspect_item) {
                     ViewHolder viewHolder = (ViewHolder) selectedView.getTag();
                     if (viewHolder != null) {
@@ -807,7 +832,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         if (offsetRequired) {
             right += getRightPaddingOffset();
             bottom += getBottomPaddingOffset();
-        }
-        mRecentsContainer.drawFadedEdges(canvas, left, right, top, bottom);
+        }        
     }
 }
