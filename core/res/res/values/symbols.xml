@@ -1845,4 +1845,6 @@
   <java-symbol type="bool" name="config_samsung_stk" />
   <java-symbol type="integer" name="config_wallpaperMaxWidth" />
 
+  <!-- Wifi -->
+  <java-symbol type="bool" name="config_wifiApStartInterface" />
 </resources>
