@@ -3938,6 +3938,13 @@ public final class Settings {
         public static final String LOCKSCREEN_UNSECURE_USED =
             "lockscreen_unsecure_used";
 
+	/**
+         * Determines the width and height of the LockPatternView widget
+         * @hide
+         */
+        public static final String LOCK_PATTERN_SIZE =
+            "lock_pattern_size";
+
         /**
          * The Logging ID (a unique 64-bit value) as a hex string.
          * Used as a pseudonymous identifier for logging.
