@@ -2742,6 +2742,12 @@ public final class Settings {
          */
         public static final String EXPANDED_VIEW_WIDGET = "expanded_view_widget";
 
+	/**
+        * Custom Network Mode
+        * @hide
+        */
+        public static final String EXPANDED_NETWORK_MODE = "expanded_network_mode";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
