@@ -2980,6 +2980,14 @@ public final class Settings {
          */
         public static final String NAVIGATION_BUTTON_GLOW_COLOR = "navigation_button_glow_color";
 
+	/**
+         * Control the display of the action overflow button within app UI.
+         * 0 = use system default
+         * 1 = force on
+         * @hide
+         */
+        public static final String UI_FORCE_OVERFLOW_BUTTON = "ui_force_overflow_button";
+
 	 /**
          * Whether to enable quiet hours.
          * @hide
