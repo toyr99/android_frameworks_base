@@ -53,6 +53,7 @@ import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.RingerVibrationModeTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
+import com.android.systemui.quicksettings.SyncTile;
 import com.android.systemui.quicksettings.ToggleLockscreenTile;
 import com.android.systemui.quicksettings.UserTile;
 import com.android.systemui.quicksettings.VibrationModeTile;
@@ -146,6 +147,7 @@ public class QuickSettingsController {
     public static final int PROFILE_TILE = 20;
     public static final int MOBILE_DATA_TILE = 21;
     public static final int REBOOT_TILE = 22;
+    public static final int SYNC_TILE = 23;
     public static final int USER_TILE = 99;
     private InputMethodTile IMETile;
 
@@ -196,7 +198,7 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_SOUND)) {
                 mQuickSettings.add(SOUND_VIBRATION_TILE);
             } else if (tile.equals(TILE_SYNC)) {
-                // Not available yet
+                mQuickSettings.add(SYNC_TILE);
             } else if (tile.equals(TILE_WIFIAP)) {
                 if(deviceSupportsTelephony()) {
                     mQuickSettings.add(WIFIAP_TILE);
@@ -445,6 +447,10 @@ public class QuickSettingsController {
 	    case MOBILE_DATA_TILE:
                 qs = new MobileDataTile(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
+                break;
+	    case SYNC_TILE:
+                qs = new SyncTile(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this);
                 break;
             }
             if (qs != null) {
