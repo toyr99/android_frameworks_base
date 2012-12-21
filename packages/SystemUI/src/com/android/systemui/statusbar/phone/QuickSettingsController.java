@@ -55,6 +55,7 @@ import com.android.systemui.quicksettings.RingerVibrationModeTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
 import com.android.systemui.quicksettings.SyncTile;
 import com.android.systemui.quicksettings.ToggleLockscreenTile;
+import com.android.systemui.quicksettings.TorchTile;
 import com.android.systemui.quicksettings.UserTile;
 import com.android.systemui.quicksettings.VibrationModeTile;
 import com.android.systemui.quicksettings.WiFiDisplayTile;
@@ -100,6 +101,7 @@ public class QuickSettingsController {
     public static final String TILE_WIMAX = "toggleWimax";
     public static final String TILE_PROFILE = "toggleProfile";
     public static final String TILE_REBOOT = "toggleReboot";
+    public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
 
     private static final String TILE_DELIMITER = "|";
     private static final String TILES_DEFAULT = TILE_USER
@@ -148,6 +150,7 @@ public class QuickSettingsController {
     public static final int MOBILE_DATA_TILE = 21;
     public static final int REBOOT_TILE = 22;
     public static final int SYNC_TILE = 23;
+    public static final int TORCH_TILE = 24;
     public static final int USER_TILE = 99;
     private InputMethodTile IMETile;
 
@@ -191,6 +194,8 @@ public class QuickSettingsController {
                 }
             } else if (tile.equals(TILE_BRIGHTNESS)) {
                 mQuickSettings.add(BRIGHTNESS_TILE);
+	    } else if (tile.equals(TILE_TORCH)) {
+                mQuickSettings.add(TORCH_TILE);
 	    } else if (tile.equals(TILE_PROFILE)) {
                 if (systemProfilesEnabled(resolver)) {
                     mQuickSettings.add(PROFILE_TILE);
@@ -452,6 +457,10 @@ public class QuickSettingsController {
                 qs = new SyncTile(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this);
                 break;
+	    case TORCH_TILE:
+                qs = new TorchTile(mContext, inflater,
+                         (QuickSettingsContainerView) mContainerView, this, mHandler);
+                 break;
             }
             if (qs != null) {
                 qs.setupQuickSettingsTile();
