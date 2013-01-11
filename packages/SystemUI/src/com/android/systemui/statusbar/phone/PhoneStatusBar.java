@@ -732,7 +732,8 @@ public class PhoneStatusBar extends BaseStatusBar {
     };
 
     private int mShowSearchHoldoff = 0;
-    private Runnable mShowSearchPanel = new Runnable() {
+    private final Runnable mShowSearchPanel = new Runnable() {
+        @Override
         public void run() {
             showSearchPanel();
             awakenDreams();
@@ -2222,7 +2223,8 @@ public class PhoneStatusBar extends BaseStatusBar {
         }
     }
 
-    private View.OnClickListener mClearButtonListener = new View.OnClickListener() {
+    private final View.OnClickListener mClearButtonListener = new View.OnClickListener() {
+        @Override
         public void onClick(View v) {
             synchronized (mNotificationData) {
                 // animate-swipe all dismissable notifications, then animate the shade closed
@@ -2312,7 +2314,8 @@ public class PhoneStatusBar extends BaseStatusBar {
         animateCollapsePanels();
     }
 
-    private View.OnClickListener mSettingsButtonListener = new View.OnClickListener() {
+    private final View.OnClickListener mSettingsButtonListener = new View.OnClickListener() {
+        @Override
         public void onClick(View v) {
             if (mHasSettingsPanel) {
                 animateExpandSettingsPanel();
