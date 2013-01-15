@@ -1841,10 +1841,13 @@
   <java-symbol type="string" name="websearch" />
 
   <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
-  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
-  <java-symbol type="bool" name="config_samsung_stk" />
   <java-symbol type="integer" name="config_wallpaperMaxWidth" />
   <java-symbol type="string" name="config_legacyUmsLunFile" />
+
+  <!-- Telephony -->
+  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
+  <java-symbol type="bool" name="config_samsung_stk" />
+  <java-symbol type="array" name="config_telephony_set_audioparameters" />
 
   <!-- Wifi -->
   <java-symbol type="bool" name="config_wifiApStartInterface" />
