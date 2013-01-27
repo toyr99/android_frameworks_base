@@ -2538,6 +2538,31 @@ public final class Settings {
          */
         public static final String POWER_MENU_SOUND_ENABLED = "power_menu_sound_enabled";
 
+	/**
+         * Is current activity launcher or not
+         * @hide
+         */
+        public static final String IS_HOME = "is_home";
+
+	/**
+         * Sets transparency of statusbar
+         * @hide
+         */
+        public static final String STATUS_BAR_ALPHA = "status_bar_alpha";
+
+        /**
+         * Sets transparency mode of statusbar
+         * 0 = only home, 1 = keyguard and home (default), 2 = always
+         * @hide
+         */
+        public static final String STATUS_BAR_ALPHA_MODE = "status_bar_alpha_mode";
+
+        /**
+         * Sets color of statusbar
+         * @hide
+         */
+        public static final String STATUS_BAR_COLOR = "status_bar_color";
+
         /**
          * Display style of AM/PM next to clock in status bar
          * 0: Normal display (Eclair stock)
@@ -2578,14 +2603,7 @@ public final class Settings {
          * 2: show signal text numbers w/small dBm appended
          * @hide
          */
-        public static final String STATUS_BAR_SIGNAL_TEXT = "status_bar_signal";
-
-         /**
-         * Whether to control brightness from status bar
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+        public static final String STATUS_BAR_SIGNAL_TEXT = "status_bar_signal";         
 
         /**
           * Volume keys control cursor in text fields (default is 0)
@@ -4603,7 +4621,7 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String DIALPAD_AUTOCOMPLETE = "dialpad_autocomplete";
+        public static final String DIALPAD_AUTOCOMPLETE = "dialpad_autocomplete";	
 
         /**
          * This are the settings to be backed up.
