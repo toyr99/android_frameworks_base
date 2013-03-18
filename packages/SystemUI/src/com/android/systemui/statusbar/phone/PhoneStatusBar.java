@@ -2622,8 +2622,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QS_DYNAMIC_WIFI),
-                    false, this);
+                    false, this);	    
         }
     }
-
 }
