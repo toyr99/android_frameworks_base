@@ -176,11 +176,6 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         }
 
         @Override
-        protected void dismissKeyguardOnNextActivity() {
-            getCallback().dismiss(false);
-        }
-
-        @Override
         Context getContext() {
             return mContext;
         }};
@@ -324,6 +319,9 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                     .ic_lockscreen_camera, !mCameraDisabled);
             mGlowPadView.setEnableTarget(com.android.internal.R.drawable
                     .ic_action_assist_generic, !mSearchDisabled);
+
+	    // Enable magnetic targets
+            mGlowPadView.setMagneticTargets(true);
         } else {
             mStoredTargets = storedVal.split("\\|");
             mIsScreenLarge = isScreenLarge();
@@ -334,6 +332,8 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             final boolean isLandscape = mCreationOrientation == Configuration.ORIENTATION_LANDSCAPE;
             final Drawable blankActiveDrawable = res.getDrawable(R.drawable.ic_lockscreen_target_activated);
             final InsetDrawable activeBack = new InsetDrawable(blankActiveDrawable, 0, 0, 0, 0);
+	    // Disable magnetic target
+            mGlowPadView.setMagneticTargets(false);
             // Shift targets for landscape lockscreen on phones
             mTargetOffset = isLandscape && !mIsScreenLarge ? 2 : 0;
             if (mTargetOffset == 2) {
