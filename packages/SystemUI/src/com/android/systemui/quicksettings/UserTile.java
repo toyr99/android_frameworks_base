@@ -75,10 +75,8 @@ public class UserTile extends QuickSettingsTile {
                 if (um.getUsers(true).size() > 1) {
                         Log.d(TAG, "Show user switcher hack");
                 } else {
-                    Intent intent = ContactsContract.QuickContact.composeQuickContactsIntent(
-                            mContext, v, ContactsContract.Profile.CONTENT_URI,
-                            ContactsContract.QuickContact.MODE_LARGE, null);
-                    mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, ContactsContract.Profile.CONTENT_URI);
+                    startSettingsActivity(intent);
                 }
             }
         };
