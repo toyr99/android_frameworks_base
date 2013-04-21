@@ -49,6 +49,8 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 public class UserTile extends QuickSettingsTile {
 
     private static final String TAG = "UserTile";
+    private final boolean DBG = false;
+
     private Drawable userAvatar;
     private AsyncTask<Void, Void, Pair<String, Drawable>> mUserInfoTask;
     public static QuickSettingsTile mInstance;
@@ -71,9 +73,13 @@ public class UserTile extends QuickSettingsTile {
             public void onClick(View v) {
                 mQsc.mBar.collapseAllPanels(true);
                 final UserManager um =
-                        (UserManager) mContext.getSystemService(Context.USER_SERVICE);
+                        (UserManager) mContext.getSystemService(Context.USER_SERVICE);		
                 if (um.getUsers(true).size() > 1) {
-                        Log.d(TAG, "Show user switcher hack");
+		try {
+                        WindowManagerGlobal.getWindowManagerService().lockNow(null);
+                    } catch (RemoteException e) {
+                        if (DBG) Log.e(TAG, "Couldn't show user switcher", e);
+                    }
                 } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, ContactsContract.Profile.CONTENT_URI);
                     startSettingsActivity(intent);
@@ -111,10 +117,10 @@ public class UserTile extends QuickSettingsTile {
             currentUserContext = mContext.createPackageContextAsUser("android", 0,
                     new UserHandle(userInfo.id));
         } catch (NameNotFoundException e) {
-            Log.e(TAG, "Couldn't create user context", e);
+            if (DBG) Log.e(TAG, "Couldn't create user context", e);
             throw new RuntimeException(e);
         } catch (RemoteException e) {
-            Log.e(TAG, "Couldn't get user info", e);
+            if (DBG) Log.e(TAG, "Couldn't get user info", e);
         }
         final int userId = userInfo.id;
         final String userName = userInfo.name;
