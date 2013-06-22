@@ -1895,4 +1895,7 @@
 
   <!-- Notification light -->
   <java-symbol type="array" name="notification_light_package_mapping" />
+
+  <!-- Irda Service -->
+  <java-symbol type="bool" name="config_enableIrdaManagerService" />
 </resources>
