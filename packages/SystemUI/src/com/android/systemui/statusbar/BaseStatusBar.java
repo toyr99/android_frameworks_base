@@ -148,6 +148,10 @@ public abstract class BaseStatusBar extends SystemUI implements
     public static final int HOVER_DISABLED = 0;
     public static final int HOVER_ENABLED = 1;
 
+    private static final boolean CLOSE_PANEL_WHEN_EMPTIED = true;
+    private static final int COLLAPSE_AFTER_DISMISS_DELAY = 200;
+    private static final int COLLAPSE_AFTER_REMOVE_DELAY = 400;
+
     protected CommandQueue mCommandQueue;
     protected INotificationManager mNotificationManager;
     protected IStatusBarService mBarService;
@@ -188,6 +192,14 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     // Peek
     protected Peek mPeek;
+
+    private Runnable mPanelCollapseRunnable = new Runnable() {
+        @Override
+        public void run() {
+            animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
+        }
+    };
+
 
     /**
      * An interface for navigation key bars to allow status bars to signal which keys are
@@ -246,6 +258,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected Display mDisplay;
 
     private boolean mDeviceProvisioned = false;
+    private int mAutoCollapseBehaviour;
 
     private boolean mCustomRecent = false;
 
@@ -294,6 +307,9 @@ public abstract class BaseStatusBar extends SystemUI implements
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_COLLAPSE_ON_DISMISS), false, this);
+
             update();
         }
 
@@ -304,6 +320,9 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         private void update() {
             ContentResolver resolver = mContext.getContentResolver();
+            mAutoCollapseBehaviour = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_COLLAPSE_ON_DISMISS,
+                    Settings.System.STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE, UserHandle.USER_CURRENT);
             mGlobalImmersiveModeStyle = 0;
             if (Settings.System.getIntForUser(resolver,
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE, 0, UserHandle.USER_CURRENT) != 0) {
@@ -383,6 +402,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         mContext.getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.DEVICE_PROVISIONED), true,
                 mProvisioningObserver);
+
+        mSettingsObserver.observe();
 
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
@@ -1294,6 +1315,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         if (rowParent != null) rowParent.removeView(entry.row);
         updateExpansionStates();
         updateNotificationIcons();
+        maybeCollapseAfterNotificationRemoval(entry.row.isUserDismissed());
 
         mPeek.removeNotification(entry.notification);
 
@@ -1302,6 +1324,30 @@ public abstract class BaseStatusBar extends SystemUI implements
         mHover.removeNotification(entry);
 
         return entry.notification;
+    }
+
+    protected void maybeCollapseAfterNotificationRemoval(boolean userDismissed) {
+        if (mAutoCollapseBehaviour == Settings.System.STATUS_BAR_COLLAPSE_NEVER) {
+            return;
+        }
+        if (!isNotificationPanelFullyVisible() || isTrackingNotificationPanel()) {
+            return;
+        }
+
+        boolean collapseDueToEmpty =
+                mAutoCollapseBehaviour == Settings.System.STATUS_BAR_COLLAPSE_IF_EMPTIED
+                && mNotificationData.size() == 0;
+        boolean collapseDueToNoClearable =
+                mAutoCollapseBehaviour == Settings.System.STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE
+                && !mNotificationData.hasClearableItems();
+
+        if (userDismissed && (collapseDueToEmpty || collapseDueToNoClearable)) {
+            mHandler.removeCallbacks(mPanelCollapseRunnable);
+            mHandler.postDelayed(mPanelCollapseRunnable, COLLAPSE_AFTER_DISMISS_DELAY);
+        } else if (mNotificationData.size() == 0) {
+            mHandler.removeCallbacks(mPanelCollapseRunnable);
+            mHandler.postDelayed(mPanelCollapseRunnable, COLLAPSE_AFTER_REMOVE_DELAY);
+        }
     }
 
     protected NotificationData.Entry createNotificationViews(IBinder key,
@@ -1325,8 +1371,8 @@ public abstract class BaseStatusBar extends SystemUI implements
             handleNotificationError(key, notification, "Couldn't create icon: " + ic);
             return null;
         }
-        NotificationData.Entry entry = new NotificationData.Entry(key, notification, iconView);
         // Construct the expanded view.
+        NotificationData.Entry entry = new NotificationData.Entry(key, notification, iconView);
         if (!inflateViews(entry, mPile)) {
             handleNotificationError(key, notification, "Couldn't expand RemoteViews for: "
                     + notification);
@@ -1346,6 +1392,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
         updateExpansionStates();
         updateNotificationIcons();
+        mHandler.removeCallbacks(mPanelCollapseRunnable);
 
         if (!mPowerManager.isScreenOn()) {
             // screen off - check if peek is enabled
@@ -1408,6 +1455,8 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected abstract int getExpandedViewMaxHeight();
     protected abstract boolean shouldDisableNavbarGestures();
     public abstract boolean isExpandedVisible();
+    protected abstract boolean isNotificationPanelFullyVisible();
+    protected abstract boolean isTrackingNotificationPanel();
 
     protected boolean isTopNotification(ViewGroup parent, NotificationData.Entry entry) {
         return parent != null && parent.indexOfChild(entry.row) == 0;
