@@ -532,7 +532,6 @@ class ContextImpl extends Context {
                 return new UserManager(ctx, service);
             }});
 
-
         registerService(APP_OPS_SERVICE, new ServiceFetcher() {
             public Object createService(ContextImpl ctx) {
                 IBinder b = ServiceManager.getService(APP_OPS_SERVICE);
