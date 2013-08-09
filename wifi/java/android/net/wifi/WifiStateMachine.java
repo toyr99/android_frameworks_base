@@ -358,7 +358,7 @@ public class WifiStateMachine extends StateMachine {
   /* Get supported channels */
     public static final int CMD_GET_SUPPORTED_CHANNELS    = BASE + 135;
 
-    public static final int CMD_BOOT_COMPLETED            = BASE + 134;
+    public static final int CMD_BOOT_COMPLETED            = BASE + 136;
 
     public static final int CONNECT_MODE                   = 1;
     public static final int SCAN_ONLY_MODE                 = 2;
