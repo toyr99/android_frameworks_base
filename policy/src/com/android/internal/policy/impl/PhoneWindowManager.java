@@ -2523,6 +2523,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 		// If we have released the home key, and didn't do anything else
             // while it was pressed, then it is time to go home!
             if (!down && mHomePressed) {
+                if (mRecentAppsPreloaded) {
+                    cancelPreloadRecentApps();
+                }
                 mHomePressed = false;
                 if (mHomeConsumed) {
                     mHomeConsumed = false;
@@ -2544,7 +2547,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     ITelephony telephonyService = getTelephonyService();
                     if (telephonyService != null && telephonyService.isRinging()) {
                         if ((mRingHomeBehavior
-                                & Settings.Secure.RING_HOME_BUTTON_BEHAVIOR_ANSWER) != 0) {
+                                     & Settings.Secure.RING_HOME_BUTTON_BEHAVIOR_ANSWER) != 0) {
                             Log.i(TAG, "Answering with HOME button.");
                             telephonyService.answerRingingCall();
                             return -1;
