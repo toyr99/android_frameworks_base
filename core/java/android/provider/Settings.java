@@ -2537,6 +2537,12 @@ public final class Settings {
          */
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
 
+	/**
+        * Expanded Desktop feature.
+        * @hide
+        */
+        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

@@ -535,6 +535,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.Secure.IMMERSIVE_MODE_CONFIRMATIONS), false, this,
                     UserHandle.USER_ALL);
+	    resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STATE), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -2727,7 +2730,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // For purposes of positioning and showing the nav bar, if we have
             // decided that it can't be hidden (because of the screen aspect ratio),
             // then take that into account.
-            navVisible |= !canHideNavigationBar();
+            navVisible |= !mCanHideNavigationBar;
+	        navVisible &= (Settings.System.getInt(mContext.getContentResolver(), Settings.System.EXPANDED_DESKTOP_STATE, 0) == 0);
 
             boolean updateSysUiVisibility = false;
             if (mNavigationBar != null) {
@@ -3483,7 +3487,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     if (mStatusBarController.setBarShowingLw(true)) {
                         changes |= FINISH_LAYOUT_REDO_LAYOUT;
                     }
-                } else if (topIsFullscreen) {
+                } else if (topIsFullscreen || Settings.System.getInt(mContext.getContentResolver(), Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1) {
                     if (DEBUG_LAYOUT) Slog.v(TAG, "** HIDING status bar");
                     if (mStatusBarController.setBarShowingLw(false)) {
                         changes |= FINISH_LAYOUT_REDO_LAYOUT;
