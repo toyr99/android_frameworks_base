@@ -1890,6 +1890,9 @@
   <!-- Developer settings - Kill app back press -->
   <java-symbol type="string" name="app_killed_message" /> 
 
+  <!-- Display Rotation Settings -->
+  <java-symbol type="bool" name="config_hasRotationLockSwitch" />
+
   <!-- Notification light -->
   <java-symbol type="array" name="notification_light_package_mapping" />
 </resources>
