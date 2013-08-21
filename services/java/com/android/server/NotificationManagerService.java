@@ -29,6 +29,8 @@ import android.app.INotificationManager;
 import android.app.ITransientNotification;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.ProfileGroup;
+import android.app.ProfileManager;
 import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -88,11 +90,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -1823,6 +1826,18 @@ public class NotificationManagerService extends INotificationManager.Stub
                         (r.getUserId() == userId && r.getUserId() == currentUser))
                     && canInterrupt
                     && mSystemReady) {
+
+	    try {
+                final ProfileManager profileManager =
+                        (ProfileManager) mContext.getSystemService(Context.PROFILE_SERVICE);
+
+                ProfileGroup group = profileManager.getActiveProfileGroup(pkg);
+                if (group != null) {
+                    notification = group.processNotification(notification);
+                }
+            } catch(Throwable th) {
+                Log.e(TAG, "An error occurred profiling the notification.", th);
+            }
 
                 final AudioManager audioManager = (AudioManager) mContext
                 .getSystemService(Context.AUDIO_SERVICE);

@@ -1871,7 +1871,8 @@
 
   <!-- Power menu -->
   <java-symbol type="string" name="global_action_screenshot" />
-  <java-symbol type="string" name="global_action_reboot" />  
+  <java-symbol type="string" name="global_action_reboot" /> 
+  <java-symbol type="string" name="global_action_choose_profile" /> 
   <java-symbol type="string" name="global_actions" />
   <java-symbol type="string" name="reboot_system" />
   <java-symbol type="string" name="reboot_progress" />
@@ -1883,6 +1884,13 @@
   <java-symbol type="drawable" name="ic_lock_screenshot" />
   <java-symbol type="drawable" name="ic_lock_reboot" /> 
   <java-symbol type="drawable" name="ic_lock_expanded_desktop" />
+  <java-symbol type="drawable" name="ic_lock_profile" />
+
+  <java-symbol type="string" name="wildcardProfile" />
+  <java-symbol type="xml" name="profile_default" />
+  <java-symbol type="string" name="profile_picker_title" />
+  <java-symbol type="string" name="profile_none" />
+
 
   <!-- Config.xml entries -->
   <java-symbol type="integer" name="config_backKillTimeout" />

@@ -2498,6 +2498,18 @@ public final class Settings {
          */
         public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
 
+	/**
+         * Show the pending notification counts as overlays on the status bar
+         * @hide
+         */
+        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
+
+	/**
+         * Whether power menu profiles switcher is enabled
+         * @hide
+         */
+        public static final String POWER_MENU_PROFILES_ENABLED = "power_menu_profiles_enabled";
+
         /**
          * Whether the power menu reboot menu is enabled
          * @hide
@@ -2520,7 +2532,7 @@ public final class Settings {
          * Whether power menu silent mode is enabled
          * @hide
          */
-        public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
+        public static final String POWER_MENU_SOUND_ENABLED = "power_menu_sound_enabled";
 
         /**
          * Display style of AM/PM next to clock in status bar
@@ -2728,10 +2740,12 @@ public final class Settings {
             SIP_RECEIVE_CALLS,
             POINTER_SPEED,
             VIBRATE_WHEN_RINGING,
+	    SYSTEM_PROFILES_ENABLED,
             POWER_MENU_SCREENSHOT_ENABLED,
             POWER_MENU_REBOOT_ENABLED,
             POWER_MENU_AIRPLANE_ENABLED,
-            POWER_MENU_SILENT_ENABLED,
+            POWER_MENU_SOUND_ENABLED,
+	    POWER_MENU_PROFILES_ENABLED,
 
         };
 
