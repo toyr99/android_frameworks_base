@@ -113,6 +113,8 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private boolean mHighEndGfx;
     private ImageView mClearAllRecents;
 
+    private RecentsActivity mRecentsActivity;
+
     private static Set<Integer> sLockedTasks = new HashSet<Integer>();
 
     private LinearColorBar mRamUsageBar;
@@ -319,6 +321,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
 
         mRecentItemLayoutId = a.getResourceId(R.styleable.RecentsPanelView_recentItemLayout, 0);
         mRecentTasksLoader = RecentTasksLoader.getInstance(context);
+        mRecentsActivity = (RecentsActivity) context;
         a.recycle();
     }
 
