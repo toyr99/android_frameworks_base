@@ -2513,7 +2513,7 @@ public final class Settings {
          */
         public static final String EGG_MODE = "egg_mode";
 
-	/*
+	/**
          * Whether the power menu reboot menu is enabled
          * @hide
          */
@@ -2542,6 +2542,12 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
+
+	/**
+         * Whether to include options in power menu for rebooting into recovery or bootloader
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -2613,6 +2619,7 @@ public final class Settings {
             POWER_MENU_PROFILES_ENABLED,
             POWER_MENU_AIRPLANE_ENABLED,
             POWER_MENU_SILENT_ENABLED
+	    ADVANCED_REBOOT
         };
 
         // Settings moved to Settings.Secure
