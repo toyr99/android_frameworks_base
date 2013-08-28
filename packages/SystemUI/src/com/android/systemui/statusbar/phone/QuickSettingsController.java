@@ -49,6 +49,7 @@ import com.android.systemui.quicksettings.MobileNetworkTypeTile;
 import com.android.systemui.quicksettings.PreferencesTile;
 import com.android.systemui.quicksettings.ProfileTile;
 import com.android.systemui.quicksettings.QuickSettingsTile;
+import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.RingerVibrationModeTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
@@ -58,7 +59,6 @@ import com.android.systemui.quicksettings.VibrationModeTile;
 import com.android.systemui.quicksettings.WiFiDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
-import com.android.systemui.statusbar.powerwidget.PowerButton;
 
 public class QuickSettingsController {
     private static String TAG = "QuickSettingsController";
@@ -98,6 +98,7 @@ public class QuickSettingsController {
     public static final String TILE_LTE = "toggleLte";
     public static final String TILE_WIMAX = "toggleWimax";
     public static final String TILE_PROFILE = "toggleProfile";
+    public static final String TILE_REBOOT = "toggleReboot";
 
     private static final String TILE_DELIMITER = "|";
     private static final String TILES_DEFAULT = TILE_USER
@@ -144,6 +145,7 @@ public class QuickSettingsController {
     public static final int WIFIAP_TILE = 19;
     public static final int PROFILE_TILE = 20;
     public static final int MOBILE_DATA_TILE = 21;
+    public static final int REBOOT_TILE = 22;
     public static final int USER_TILE = 99;
     private InputMethodTile IMETile;
 
