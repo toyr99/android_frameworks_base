@@ -66,6 +66,7 @@ public class QuickSettingsController {
     public static final String TILE_BLUETOOTH = "toggleBluetooth";
     public static final String TILE_BRIGHTNESS = "toggleBrightness";
     public static final String TILE_BUGREPORT = "toggleBugreport";
+    public static final String TILE_EXPANDED_DESKTOP = "toggleExpandedDesktop";
     public static final String TILE_FAVCONTACT = "toggleFavoriteContact";
     public static final String TILE_FCHARGE = "toggleFCharge";
     public static final String TILE_GPS = "toggleGPS";
@@ -84,6 +85,7 @@ public class QuickSettingsController {
     public static final String TILE_SYNC = "toggleSync";
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
     public static final String TILE_USER = "toggleUser";
+    public static final String TILE_VOLUME = "toggleVolume";
     public static final String TILE_WIFI = "toggleWifi";
     public static final String TILE_WIFIAP = "toggleWifiAp";
     public static final String TILE_WIFIDISPLAY = "toggleWifiDisplay";
@@ -101,6 +103,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_BLUETOOTH, "com.android.systemui.quicksettings.BluetoothTile");
         TILES_CLASSES.put(TILE_BRIGHTNESS, "com.android.systemui.quicksettings.BrightnessTile");
         TILES_CLASSES.put(TILE_BUGREPORT, "com.android.systemui.quicksettings.BugReportTile");
+	TILES_CLASSES.put(TILE_EXPANDED_DESKTOP, "com.android.systemui.quicksettings.ExpandedDesktopTile");
         TILES_CLASSES.put(TILE_FAVCONTACT, "com.android.systemui.quicksettings.FavoriteContactTile");
         TILES_CLASSES.put(TILE_FCHARGE, "com.android.systemui.quicksettings.FChargeTile");
         TILES_CLASSES.put(TILE_GPS, "com.android.systemui.quicksettings.GPSTile");
@@ -119,6 +122,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_SYNC, "com.android.systemui.quicksettings.SyncTile");
         TILES_CLASSES.put(TILE_TORCH, "com.android.systemui.quicksettings.TorchTile");
         TILES_CLASSES.put(TILE_USER, "com.android.systemui.quicksettings.UserTile");
+	TILES_CLASSES.put(TILE_VOLUME, "com.android.systemui.quicksettings.VolumeTile");
         TILES_CLASSES.put(TILE_WIFI, "com.android.systemui.quicksettings.WiFiTile");
         TILES_CLASSES.put(TILE_WIFIAP, "com.android.systemui.quicksettings.WifiAPTile");
         TILES_CLASSES.put(TILE_WIFIDISPLAY, "com.android.systemui.quicksettings.WiFiDisplayTile");
