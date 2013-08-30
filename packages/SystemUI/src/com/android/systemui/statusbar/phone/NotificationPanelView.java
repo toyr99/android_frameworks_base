@@ -34,8 +34,8 @@ import com.android.systemui.statusbar.GestureRecorder;
 
 public class NotificationPanelView extends PanelView {
     public static final boolean DEBUG_GESTURES = true;
-    private static final float STATUS_BAR_SETTINGS_LEFT_PERCENTAGE = 0.8f;
-    private static final float STATUS_BAR_SETTINGS_RIGHT_PERCENTAGE = 0.2f;
+    private static final float STATUS_BAR_SETTINGS_LEFT_PERCENTAGE = 0.7f;
+    private static final float STATUS_BAR_SETTINGS_RIGHT_PERCENTAGE = 0.3f;
 
     Drawable mHandleBar;
     int mHandleBarHeight;
