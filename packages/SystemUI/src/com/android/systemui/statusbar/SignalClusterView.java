@@ -62,6 +62,8 @@ public class SignalClusterView
 
     Handler mHandler;
 
+    private SettingsObserver mSettingsObserver;
+
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -92,8 +94,7 @@ public class SignalClusterView
 
         mHandler = new Handler();
 
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
+        mSettingsObserver = new SettingsObserver(mHandler);
     }
 
     public void setNetworkController(NetworkController nc) {
@@ -116,6 +117,7 @@ public class SignalClusterView
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mEther          = (ImageView) findViewById(R.id.ethernet);
 
+	mSettingsObserver.observe();
         apply();
     }
 
@@ -131,6 +133,8 @@ public class SignalClusterView
         mSpacer         = null;
         mAirplane       = null;
         mEther          = null;
+
+	mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
 
         super.onDetachedFromWindow();
     }
