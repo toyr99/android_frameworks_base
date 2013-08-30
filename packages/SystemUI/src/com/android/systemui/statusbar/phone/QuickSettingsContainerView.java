@@ -56,7 +56,7 @@ public class QuickSettingsContainerView extends FrameLayout {
         LayoutTransition transitions = getLayoutTransition();
     }
 
-    void updateResources() {
+    public void updateResources() {
         Resources r = getContext().getResources();
         mCellGap = r.getDimension(R.dimen.quick_settings_cell_gap);
         mNumColumns = Settings.System.getInt(mContext.getContentResolver(), COLUMNS, 4);
