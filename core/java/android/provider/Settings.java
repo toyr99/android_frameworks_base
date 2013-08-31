@@ -2735,14 +2735,7 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String QS_COLLAPSE_PANEL = "qs_collapse_panel";
-
-        /**
-         * Quick Settings Torch state
-         *
-         * @hide
-         */
-        public static final String TORCH_STATE = "torch_state";
+        public static final String QS_COLLAPSE_PANEL = "qs_collapse_panel";        
 
         /**
         * Custom Ring Mode
