@@ -2357,19 +2357,7 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
-
-	/**
-         * Stores value for lock before unlock
-         * @hide
-         */
-        public static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
-
-	/**
-         * Stores used unsecure lockscreen for normal mode and unlock before unlock
-         * @hide
-         */
-        public static final String LOCKSCREEN_UNSECURE_USED = "lockscreen_unsecure_used";
-
+	
         /**
          * @deprecated Use {@link android.provider.Settings.Global#LOW_BATTERY_SOUND}
          * instead
@@ -3798,6 +3786,21 @@ public final class Settings {
          */
         public static final String LOCK_SCREEN_OWNER_INFO_ENABLED =
             "lock_screen_owner_info_enabled";
+
+	/**
+         * Whether the unsecure widget screen will be shown before a secure
+         * lock screen
+         * @hide
+         */
+        public static final String LOCK_BEFORE_UNLOCK =
+            "lock_before_unlock";
+
+        /**
+         * Stores used unsecure lockscreen for normal mode and unlock before unlock
+         * @hide
+         */
+        public static final String LOCKSCREEN_UNSECURE_USED =
+            "lockscreen_unsecure_used";
 
         /**
          * The Logging ID (a unique 64-bit value) as a hex string.
