@@ -1912,9 +1912,11 @@
   <!-- Display Rotation Settings -->
   <java-symbol type="bool" name="config_hasRotationLockSwitch" />
 
-  <!-- Notification light -->
+  <!-- Notification and battery light -->
+  <java-symbol type="bool" name="config_intrusiveBatteryLed" />
+  <java-symbol type="bool" name="config_multiColorBatteryLed" />
   <java-symbol type="array" name="notification_light_package_mapping" />
-
+  
   <!-- Irda Service -->
   <java-symbol type="bool" name="config_enableIrdaManagerService" />
 
