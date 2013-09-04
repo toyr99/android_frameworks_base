@@ -2832,6 +2832,25 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_DISABLE_HINTS = "lockscreen_disable_hints";
 
+	/**
+         * Sets the lockscreen background style
+         * @hide
+         */
+        public static final String LOCKSCREEN_BACKGROUND = "lockscreen_background";
+
+	/**
+         * Sets the lockscreen background style array helper
+         * 0 = color fill, 1 = custom image, 2 = full transparent, 3 = default background
+         * @hide
+         */
+        public static final String LOCKSCREEN_BACKGROUND_VALUE = "lockscreen_background_VALUE";
+
+        /**
+         * Sets the lockscreen background alpha
+         * @hide
+         */
+        public static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
