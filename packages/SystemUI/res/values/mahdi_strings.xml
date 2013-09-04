@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (c) 2009, The Mahdi-Rom Project
+ * Copyright (C) 2012-2013 The Mahdi-Rom Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -19,6 +19,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Quick Settings -->
     <!-- Power Menu tile -->
-    <string name="quick_settings_power_menu_label">Power Menu</string>    
+    <string name="quick_settings_power_menu_label">Power Menu</string>
 
+    <!--ScreenShot Trash-->
+    <string name="trash">Trash</string>
+    
 </resources>
