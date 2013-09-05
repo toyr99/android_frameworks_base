@@ -2875,6 +2875,30 @@ public final class Settings {
             "navigation_ring_targets_2",
         };
 
+	/** 
+	 * Navigation bar height
+         * @hide 
+         */
+	public static final String NAV_BUTTONS_HEIGHT = "nav_buttons_height";
+
+	/** 
+	 * Navigation button color
+         * @hide 
+         */ 
+        public static final String NAVIGATION_BUTTON_COLOR = "navigation_button_color";
+
+        /**
+	 * Navigation button glow time
+         * @hide
+         */
+        public static final String NAVIGATION_BUTTON_GLOW_TIME = "navigation_button_glow_time";
+
+        /**
+	 * Navigation button glow color
+         * @hide
+         */
+        public static final String NAVIGATION_BUTTON_GLOW_COLOR = "navigation_button_glow_color";	
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
