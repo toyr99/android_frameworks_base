@@ -45,14 +45,14 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.FrameLayout;
 
-import static com.android.internal.util.cm.NavigationRingConstants.*;
-import com.android.internal.util.cm.NavigationRingHelpers;
+import static com.android.internal.util.mahdi.NavigationRingConstants.*;
+import com.android.internal.util.mahdi.NavigationRingHelpers;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
-import com.android.systemui.cm.ActionTarget;
+import com.android.systemui.mahdi.ActionTarget;
 import com.android.systemui.recent.StatusBarTouchProxy;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;

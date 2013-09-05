@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.cm;
+package com.android.internal.util.mahdi;
 
 public class NavigationRingConstants {
     public static final String ACTION_HOME =                  "home";

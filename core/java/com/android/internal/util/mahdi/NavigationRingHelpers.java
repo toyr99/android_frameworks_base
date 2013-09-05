@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.cm;
+package com.android.internal.util.mahdi;
 
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -32,7 +32,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import static com.android.internal.util.cm.NavigationRingConstants.*;
+import static com.android.internal.util.mahdi.NavigationRingConstants.*;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
 

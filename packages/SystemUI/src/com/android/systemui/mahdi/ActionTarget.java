@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.systemui.cm;
+package com.android.systemui.mahdi;
 
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
@@ -45,7 +45,7 @@ import android.widget.Toast;
 
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.R;
-import static com.android.internal.util.cm.NavigationRingConstants.*;
+import static com.android.internal.util.mahdi.NavigationRingConstants.*;
 import com.android.systemui.screenshot.TakeScreenshotService;
 
 import java.net.URISyntaxException;
