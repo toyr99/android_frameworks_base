@@ -27,7 +27,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.media.AudioManager;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -72,7 +71,6 @@ public class SearchPanelView extends FrameLayout implements
     private final Context mContext;
     private BaseStatusBar mBar;
     private StatusBarTouchProxy mStatusBarTouchProxy;
-    private SettingsObserver mObserver;
 
     private boolean mShowing;
     private View mSearchTargetsContainer;
@@ -94,7 +92,8 @@ public class SearchPanelView extends FrameLayout implements
         mWm = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
         mActionTarget = new ActionTarget(context);
 
-        mObserver = new SettingsObserver(new Handler());
+        SettingsObserver observer = new SettingsObserver(new Handler());
+        observer.observe();
     }
 
     class GlowPadTriggerListener implements GlowPadView.OnTriggerListener {
@@ -114,24 +113,7 @@ public class SearchPanelView extends FrameLayout implements
 
         public void onTrigger(View v, final int target) {
             final int resId = mGlowPadView.getResourceIdForTarget(target);
-            String action = mTargetActivities[target - mStartPosOffset];
-            boolean isAssist = NavigationRingConstants.ACTION_ASSIST.equals(action);
-            Bundle options = null;
-
-            if (isAssist) {
-                ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
-                        R.anim.search_launch_enter, R.anim.search_launch_exit,
-                        getHandler(), SearchPanelView.this);
-                options = opts.toBundle();
-                mWaitingForLaunch = true;
-                vibrate();
-            }
-
-            boolean result = mActionTarget.launchAction(
-                    mTargetActivities[target - mStartPosOffset], options);
-            if (!result && isAssist) {
-                onAnimationStarted();
-            }
+            mActionTarget.launchAction(mTargetActivities[target - mStartPosOffset]);
         }
 
         public void onFinishFinalAnimation() {
@@ -158,6 +140,7 @@ public class SearchPanelView extends FrameLayout implements
         // TODO: fetch views
         mGlowPadView = (GlowPadView) findViewById(R.id.glow_pad_view);
         mGlowPadView.setOnTriggerListener(mGlowPadViewListener);
+
         updateSettings();
         setDrawables();
     }
@@ -227,7 +210,7 @@ public class SearchPanelView extends FrameLayout implements
 
     private boolean hasValidTargets() {
         for (String target : mTargetActivities) {
-            if (!TextUtils.isEmpty(target) && !target.equals(NavigationRingConstants.ACTION_NONE)) 
+            if (!TextUtils.isEmpty(target)) {
                 return true;
             }
         }
@@ -293,19 +276,6 @@ public class SearchPanelView extends FrameLayout implements
             return super.dispatchHoverEvent(event);
         }
         return true;
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        mObserver.observe();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mObserver.unobserve();
     }
 
     /**
@@ -374,10 +344,7 @@ public class SearchPanelView extends FrameLayout implements
                         Settings.System.getUriFor(Settings.System.NAVIGATION_RING_TARGETS[i]),
                         false, this);
             }
-        }
-
-        void unobserve() {
-            mContext.getContentResolver().unregisterContentObserver(this);
+            updateSettings();
         }
 
         @Override
