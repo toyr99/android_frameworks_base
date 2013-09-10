@@ -115,6 +115,7 @@ public class UsbHostManager {
             }
 
             int numInterfaces = interfaceValues.length / 5;
+            int numValidInterfaces = numInterfaces;
             Parcelable[] interfaces = new UsbInterface[numInterfaces];
             try {
                 // repackage interfaceValues as an array of UsbInterface
@@ -136,9 +137,10 @@ public class UsbHostManager {
                                 maxPacketSize, interval);
                     }
 
-                    // don't allow if any interfaces are blacklisted
+                    // drop blacklisted interface
                     if (isBlackListed(interfaceClass, interfaceSubclass, interfaceProtocol)) {
-                        return;
+                        numValidInterfaces--;
+                        continue;
                     }
                     interfaces[intf] = new UsbInterface(interfaceId, interfaceClass,
                             interfaceSubclass, interfaceProtocol, endpoints);
@@ -150,8 +152,22 @@ public class UsbHostManager {
                 return;
             }
 
+            if (numValidInterfaces == 0) {
+                // all interfaces are blacklisted
+                return;
+            }
+
+            // pack interfaces array
+            Parcelable[] validInterfaces = new UsbInterface[numValidInterfaces];
+            int vintf = 0;
+            for (int intf = 0; intf < numInterfaces; intf++) {
+                if (interfaces[intf] != null) {
+                    validInterfaces[vintf++] = interfaces[intf];
+                }
+            }
+
             UsbDevice device = new UsbDevice(deviceName, vendorID, productID,
-                    deviceClass, deviceSubclass, deviceProtocol, interfaces);
+                    deviceClass, deviceSubclass, deviceProtocol, validInterfaces);
             mDevices.put(deviceName, device);
             getCurrentSettings().deviceAttached(device);
         }
