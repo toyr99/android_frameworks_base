@@ -9906,6 +9906,16 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     @Override
+    public boolean isBarTranslucent() {
+        return mPolicy.isBarTranslucent();
+    }
+
+    @Override
+    public void setBarTranslucentAllowed(boolean allowed) {
+        mPolicy.setBarTranslucentAllowed(allowed);
+    }
+
+    @Override
     public void lockNow(Bundle options) {
         mPolicy.lockNow(options);
     }
