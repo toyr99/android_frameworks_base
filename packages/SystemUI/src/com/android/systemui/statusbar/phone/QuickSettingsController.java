@@ -395,10 +395,16 @@ public class QuickSettingsController {
         loadTiles();
         setupBroadcastReceiver();
         setupContentObserver();
-        final ContentResolver resolver = mContext.getContentResolver();
-        if (mRibbonMode) {
+        ContentResolver resolver = mContext.getContentResolver();
+        boolean smallIcons = Settings.System.getIntForUser(resolver,
+                Settings.System.QUICK_SETTINGS_SMALL_ICONS, 0, UserHandle.USER_CURRENT) == 1;
+        if (mRibbonMode || smallIcons) {
             for (QuickSettingsTile t : mQuickSettingsTiles) {
-                t.switchToRibbonMode();
+                if (mRibbonMode) {
+                    t.switchToRibbonMode();
+                } else {
+                    t.switchToSmallIcons();
+                }
             }
         } if (Settings.System.getInt(resolver, //ribbon custom colors aren't supported ATM
                 Settings.System.QUICK_TILES_CUSTOM_COLOR, 0) == 1) {

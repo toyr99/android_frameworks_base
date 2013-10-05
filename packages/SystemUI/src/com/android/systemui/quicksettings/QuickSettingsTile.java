@@ -17,6 +17,7 @@ import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.GestureDetector;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,9 +43,10 @@ public class QuickSettingsTile implements OnClickListener {
     protected final int mTileLayout;
     protected int mDrawable;
     protected String mLabel;
+    protected int mTileTextSize;
+    protected int mTileTextPadding;
     protected int mTileTextColor;
     protected Drawable mRealDrawable;
-
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
     protected SharedPreferences mPrefs;
@@ -100,6 +102,8 @@ public class QuickSettingsTile implements OnClickListener {
             QuickSettingsContainerView container) {
         container.updateResources();
         mTileTextColor = container.getTileTextColor();
+        mTileTextSize = container.getTileTextSize();
+        mTileTextPadding = container.getTileTextPadding();
         mTile = (QuickSettingsTileView) inflater.inflate(
                 R.layout.quick_settings_tile, container, false);
         mTile.setContent(mTileLayout, inflater);
@@ -125,17 +129,30 @@ public class QuickSettingsTile implements OnClickListener {
         }
     }
 
-    void onPostCreate() {
+    public void switchToSmallIcons() {
+        TextView tv = (TextView) mTile.findViewById(R.id.text);
+        if (tv != null) {
+            tv.setText(mLabel);
+            tv.setTextSize(mTileTextSize);
+            tv.setPadding(0, mTileTextPadding, 0, 0);
+        }
+        View image = mTile.findViewById(R.id.image);
+        if (image != null) {
+            MarginLayoutParams params = (MarginLayoutParams) image.getLayoutParams();
+            int margin = mContext.getResources().getDimensionPixelSize(
+                    R.dimen.qs_tile_ribbon_icon_margin);
+            params.topMargin = params.bottomMargin = margin;
+            image.setLayoutParams(params);
+        }
     }
 
-    public void onDestroy() {
-    }
+    void onPostCreate() {}
 
-    public void onReceive(Context context, Intent intent) {
-    }
+    public void onDestroy() {}
 
-    public void onChangeUri(ContentResolver resolver, Uri uri) {
-    }
+    public void onReceive(Context context, Intent intent) {}
+
+    public void onChangeUri(ContentResolver resolver, Uri uri) {}
 
     public void updateResources() {
         if (mTile != null) {
@@ -147,6 +164,8 @@ public class QuickSettingsTile implements OnClickListener {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
         if (tv != null) {
             tv.setText(mLabel);
+            tv.setTextSize(mTileTextSize);
+            tv.setPadding(0, mTileTextPadding, 0, 0);
             if (mTileTextColor != -2) {
                 tv.setTextColor(mTileTextColor);
             }
