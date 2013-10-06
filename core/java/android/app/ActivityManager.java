@@ -384,7 +384,6 @@ public class ActivityManager {
      */
 
     static public boolean isHighEndGfx() {
-
         if (totalSize == 0) {
             MemInfoReader reader = new MemInfoReader();
 			reader.readMemInfo();
@@ -392,7 +391,7 @@ public class ActivityManager {
             reader = null;
 		}
 
-        if (totalSize >= (512*1024*1024)) {
+        if (totalSize >= (256*1024*1024)) {
             return true;
         }
 
