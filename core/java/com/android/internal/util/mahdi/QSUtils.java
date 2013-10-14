@@ -16,6 +16,7 @@ import android.nfc.NfcAdapter;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.android.internal.telephony.PhoneConstants;
 
@@ -51,6 +52,13 @@ public class QSUtils {
         public static boolean globalImmersiveModeEnabled(ContentResolver resolver) {
             return (Settings.System.getIntForUser(resolver, Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, 0,
                     UserHandle.USER_CURRENT_OR_SELF) != 0);
+        }
+
+        public static boolean deviceSupportsPerformanceProfiles(Context ctx) {
+            Resources res = ctx.getResources();
+            String perfProfileProp = res.getString(
+                    com.android.internal.R.string.config_perf_profile_prop);
+            return !TextUtils.isEmpty(perfProfileProp);
         }
 
         public static boolean deviceSupportsNfc(Context ctx) {

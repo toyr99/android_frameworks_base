@@ -98,6 +98,11 @@
     <!-- Name of wildcard profile. -->
     <string name="wildcardProfile">Andere</string>
 
+    <!-- Performance profiles. -->
+    <string name="perf_profile_pwrsv">Energie sparen</string>
+    <string name="perf_profile_bal">Ausgeglichen</string>
+    <string name="perf_profile_perf">Mehr Leistung</string>
+
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">Bildschirmdrehung entsperrt</string>
     <string name="toast_rotation_locked">Bildschirmdrehung gesperrt</string>

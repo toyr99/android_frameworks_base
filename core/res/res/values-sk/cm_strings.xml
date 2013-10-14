@@ -51,4 +51,7 @@
     <string name="privacy_guard_notification_detail">Aplikácii <xliff:g id="app">%1$s</xliff:g> nebude umožnený prístup k osobným údajom</string>
     <string name="profile_picker_title">Profily</string>
     <string name="profile_none">Žiadny</string>
+    <string name="perf_profile_pwrsv">Úsporný</string>
+    <string name="perf_profile_bal">Vyvážený</string>
+    <string name="perf_profile_perf">Výkonný</string>
 </resources>

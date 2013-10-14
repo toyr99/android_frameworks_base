@@ -97,6 +97,11 @@
   
   <!-- Name of wildcard profile. -->
   <string name="wildcardProfile">Άλλα</string>
+
+  <!-- Performance profiles. -->
+  <string name="perf_profile_pwrsv">Εξοικονόμηση ενέργειας</string>
+  <string name="perf_profile_bal">Ισορροπημένο</string>
+  <string name="perf_profile_perf">Επιδόσεις</string>
   
   <!-- Hardware Rotation lock string -->
   <string name="toast_rotation_unlocked">Αυτόματη περιστροφή οθόνης</string>

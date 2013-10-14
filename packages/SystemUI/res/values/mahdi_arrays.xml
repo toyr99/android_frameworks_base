@@ -41,4 +41,11 @@
     <array name="hover_blacklisted_packages">
         <item>com.google.android.googlequicksearchbox</item>
     </array>
+
+    <!-- Performance profiles tiles -->
+    <string-array name="perf_profile_drawables" translatable="false">
+        <item>@drawable/ic_qs_perf_profile_pwrsv</item>
+        <item>@drawable/ic_qs_perf_profile_bal</item>
+        <item>@drawable/ic_qs_perf_profile_perf</item>
+    </string-array>
 </resources>
