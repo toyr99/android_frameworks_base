@@ -622,7 +622,7 @@ public final class BridgeContext extends Context {
                 } else {
                     Bridge.getLog().error(null,
                             String.format(
-                                    "Resouce id 0x%x is not of type STYLE (instead %s)",
+                                    "Resource id 0x%x is not of type STYLE (instead %s)",
                                     defStyleRes, value.getFirst().toString()),
                             null /*data*/);
                 }
