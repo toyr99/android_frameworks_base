@@ -2425,6 +2425,7 @@ public final class Settings {
          */
         public static final String ACTIVE_DISPLAY_SUNLIGHT_MODE = "active_display_sunlight_mode";
 
+
         /**
          * A list of packages to exclude from being displayed in active display.
          * This should be a string of packages separated by |
@@ -3207,6 +3208,12 @@ public final class Settings {
          * @hide
          */
         public static final String APP_SIDEBAR_SHOW_TRIGGER = "app_sidebar_show_trigger";
+
+        /**
+         * Whether national data roaming should be used.
+         * @hide
+         */
+        public static final String MVNO_ROAMING = "mvno_roaming";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
