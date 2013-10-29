@@ -252,7 +252,7 @@ public class KeyguardViewMediator {
     private int mUnlockSoundId;
     private int mLockSoundStreamId;
 
-    private ProfileManager mProfileManager;
+    private ProfileManager mProfileManager;    
 
     /**
      * The volume applied to the lock/unlock sounds.
@@ -593,7 +593,7 @@ public class KeyguardViewMediator {
      */
     public void onScreenTurnedOff(int why) {
         synchronized (this) {
-            mScreenOn = false;
+            mScreenOn = false;            
             if (DEBUG) Log.d(TAG, "onScreenTurnedOff(" + why + ")");
 
             mKeyguardDonePending = false;
@@ -631,7 +631,7 @@ public class KeyguardViewMediator {
         // to enable it a little bit later (i.e, give the user a chance
         // to turn the screen back on within a certain window without
         // having to unlock the screen)
-        final ContentResolver cr = mContext.getContentResolver();
+        final ContentResolver cr = mContext.getContentResolver();        
 
         // From DisplaySettings
         long displayTimeout = Settings.System.getInt(cr, SCREEN_OFF_TIMEOUT,
@@ -640,7 +640,7 @@ public class KeyguardViewMediator {
         // From SecuritySettings
         final long lockAfterTimeout = Settings.Secure.getInt(cr,
                 Settings.Secure.LOCK_SCREEN_LOCK_AFTER_TIMEOUT,
-                KEYGUARD_LOCK_AFTER_DELAY_DEFAULT);
+                KEYGUARD_LOCK_AFTER_DELAY_DEFAULT);     
 
         // From DevicePolicyAdmin
         final long policyTimeout = mLockPatternUtils.getDevicePolicyManager()

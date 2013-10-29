@@ -109,7 +109,7 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
             public void onClick(View v) {
                 mCallback.userActivity(0); // TODO: customize timeout for text?
             }
-        });
+        });      
 
         mPasswordEntry.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -121,7 +121,7 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
             public void afterTextChanged(Editable s) {
                 if (mCallback != null) {
                     mCallback.userActivity(0);
-                }
+                }                
             }
         });
         mSecurityMessageDisplay = new KeyguardMessageArea.Helper(this);
