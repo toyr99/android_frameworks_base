@@ -2508,12 +2508,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // timeout.
         if (keyCode == KeyEvent.KEYCODE_HOME) {
 
-		// If we have released the home key, and didn't do anything else
+	    // If we have released the home key, and didn't do anything else
             // while it was pressed, then it is time to go home!
             if (!down && mHomePressed) {
-                if (mRecentAppsPreloaded) {
-                    cancelPreloadRecentApps();
-                }
                 mHomePressed = false;
                 if (mHomeConsumed) {
                     mHomeConsumed = false;
@@ -2881,6 +2878,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         if (mGlobalKeyManager.handleGlobalKey(mContext, keyCode, event)) {
             return -1;
+	}
         
         // Let the application handle the key.
         return 0;
