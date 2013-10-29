@@ -2926,6 +2926,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL = "status_bar_network_stats_update_frequency";
+
+        /**
+         * Network stats Color style
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_COLOR = "status_bar_network_usage_color"; 
 	
         /**
          * Whether or not to show circle battery around the lockscreen ring
