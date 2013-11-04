@@ -2523,13 +2523,7 @@ public final class Settings {
          * Whether power menu screenshot is enabled
          * @hide
          */
-        public static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";
-
-        /**
-         * Whether power menu profiles switcher is enabled
-         * @hide
-         */
-        public static final String POWER_MENU_PROFILES_ENABLED = "power_menu_profiles_enabled";
+        public static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";        
 
         /**
          * Whether power menu airplane toggle is enabled
@@ -2542,12 +2536,6 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
-
-	/**
-         * Whether to include options in power menu for rebooting into recovery or bootloader
-         * @hide
-         */
-        public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -2614,12 +2602,11 @@ public final class Settings {
             POINTER_SPEED,
             VIBRATE_WHEN_RINGING,
             RINGTONE,
-            NOTIFICATION_SOUND
+            NOTIFICATION_SOUND,
 	    POWER_MENU_REBOOT_ENABLED,
             POWER_MENU_PROFILES_ENABLED,
             POWER_MENU_AIRPLANE_ENABLED,
-            POWER_MENU_SILENT_ENABLED
-	    ADVANCED_REBOOT
+            POWER_MENU_SILENT_ENABLED	    
         };
 
         // Settings moved to Settings.Secure
@@ -4533,6 +4520,12 @@ public final class Settings {
          * @hide
          */
         public static final String PAYMENT_SERVICE_SEARCH_URI = "payment_service_search_uri";
+
+	/**
+         * Whether to include options in power menu for rebooting into recovery or bootloader
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
          * This are the settings to be backed up.
