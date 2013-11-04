@@ -2538,15 +2538,28 @@ public final class Settings {
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
 
 	/**
-        * Expanded Desktop feature.
-        * @hide
-        */
-        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
+         * Whether power menu expanded desktop is enabled
+         * @hide
+         */
+        public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
 
 	/**
-	* Expanded desktop style (with status bar or without status bar)
-        * @hide
-        */
+         * Expanded desktop on/off state
+         * @hide
+         */
+        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
+
+        /** @hide */
+        public static final int EXPANDED_DESKTOP_DISABLED = 0;
+        /** @hide */
+        public static final int EXPANDED_DESKTOP_STATUS_BAR_VISIBLE = 1;
+        /** @hide */
+        public static final int EXPANDED_DESKTOP_STATUS_BAR_HIDDEN = 2;
+
+        /**
+         * Expanded desktop style (with status bar or without status bar)
+         * @hide
+         */
         public static final String EXPANDED_DESKTOP_STYLE = "expanded_desktop_style";
 
         /**
@@ -2616,7 +2629,7 @@ public final class Settings {
             RINGTONE,
             NOTIFICATION_SOUND,
 	    POWER_MENU_REBOOT_ENABLED,
-            POWER_MENU_PROFILES_ENABLED,
+            POWER_MENU_SCREENSHOT_ENABLED,
             POWER_MENU_AIRPLANE_ENABLED,
             POWER_MENU_SILENT_ENABLED	    
         };

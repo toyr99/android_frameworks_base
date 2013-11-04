@@ -1214,8 +1214,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
 
-        if (updateRotation) {
-            updateRotation(true);
+            if (updateRotation) {
+                updateRotation(true);
+            }
         }
     }
 
