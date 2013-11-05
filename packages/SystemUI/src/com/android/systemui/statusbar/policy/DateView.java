@@ -100,14 +100,6 @@ public class DateView extends TextView {
         builder.append(new SimpleDateFormat(dateFmt, l).format(now));
 
         setText(builder.toString());
-    }
-
-        mCurrentTime.setTime(System.currentTimeMillis());
-
-        final String text = mDateFormat.format(mCurrentTime);
-        if (!text.equals(mLastText)) {
-            setText(text);
-            mLastText = text;
+    
         }
     }
-}
