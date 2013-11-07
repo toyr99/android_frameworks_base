@@ -51,12 +51,6 @@
   <!-- Workaround for devices with broken keyboards -->
   <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
 
-  <!-- If this value is true, we handle Samsung CDMA's message ID method -->
-  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" /> 
-
-  <!-- enable stk functionality on Samsung phones -->
-  <java-symbol type="bool" name="config_samsung_stk" />
-
   <!-- HW rotation lock -->
   <java-symbol type="string" name="toast_rotation_unlocked" />
   <java-symbol type="string" name="toast_rotation_locked" />
@@ -65,6 +59,11 @@
   <!-- LUN file to be used by legacy USB manager.
          The existence of this file will be used to determine in the
          legacy USB manager should be started. -->
-  <java-symbol type="string" name="config_legacyUmsLunFile" />  
+  <java-symbol type="string" name="config_legacyUmsLunFile" /> 
+
+  <!-- Telephony -->
+  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
+  <java-symbol type="bool" name="config_samsung_stk" />
+  <java-symbol type="array" name="config_telephony_set_audioparameters" /> 
 
 </resources>
