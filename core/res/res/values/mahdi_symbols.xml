@@ -46,6 +46,9 @@
   <java-symbol type="string" name="wildcardProfile" />
   <java-symbol type="xml" name="profile_default" />
   <java-symbol type="string" name="profile_picker_title" />
-  <java-symbol type="string" name="profile_none" />   
+  <java-symbol type="string" name="profile_none" />
+
+  <!-- Workaround for devices with broken keyboards -->
+  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />   
 
 </resources>
