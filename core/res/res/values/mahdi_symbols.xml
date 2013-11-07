@@ -49,6 +49,9 @@
   <java-symbol type="string" name="profile_none" />
 
   <!-- Workaround for devices with broken keyboards -->
-  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />   
+  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
+
+  <!-- If this value is true, we handle Samsung CDMA's message ID method -->
+  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />   
 
 </resources>
