@@ -1584,23 +1584,7 @@ public class DevicePolicyManager {
                 Log.w(TAG, "Failed talking with device policy service", e);
             }
         }
-    }
-
-    /**
-     * CM: check if secure keyguard is required
-     * @hide
-     */
-    public boolean requireSecureKeyguard() {
-        int encryptionStatus = getStorageEncryptionStatus();
-        if (getPasswordQuality(null) > PASSWORD_QUALITY_UNSPECIFIED ||
-                !KeyStore.getInstance().isEmpty() ||
-                encryptionStatus == DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE ||
-                encryptionStatus == DevicePolicyManager.ENCRYPTION_STATUS_ACTIVATING) {
-            // Require secure keyguard
-            return true;
-        }
-        return false;
-    }
+    }    
 
     /**
      * @hide
