@@ -104,6 +104,7 @@ import com.android.systemui.BatteryCircleMeterView;
 import com.android.systemui.DemoMode;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
+import com.android.systemui.statusbar.AppSidebar;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.GestureRecorder;
@@ -430,6 +431,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
 	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+	    resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.APP_SIDEBAR_POSITION), false, this);
             update();
         }
 
@@ -473,6 +476,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
             mBrightnessControl = !autoBrightness && Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+
+	    int sidebarPosition = Settings.System.getInt(
+                    resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
+            if (sidebarPosition != mSidebarPosition) {
+                mSidebarPosition = sidebarPosition;
+                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
+            }
             
             String notificationShortcutsIsActive = Settings.System.getStringForUser(resolver,
                     Settings.System.NOTIFICATION_SHORTCUTS_CONFIG, UserHandle.USER_CURRENT);
@@ -578,9 +588,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         super.start(); // calls createAndAddWindows()
 
         addNavigationBar();
-	
-        SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.observe();
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext);
@@ -624,6 +631,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 mRibbonQS.setupQuickSettings();
             }
         }
+
+	SettingsObserver observer = new SettingsObserver(mHandler);
+        observer.observe();
     }
 
     // ================================================================================
@@ -713,9 +723,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         });
 
         if (mRecreating) {
+	    removeSidebarView();
         } else {
             addActiveDisplayView();
         }
+
+	addSidebarView();
 
         // figure out which pixel-format to use for the status bar.
         mPixelFormat = PixelFormat.OPAQUE;
@@ -993,6 +1006,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
         // receive broadcasts
         IntentFilter filter = new IntentFilter();
+	filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
@@ -3552,7 +3566,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         if (v instanceof DemoMode) {
             ((DemoMode)v).dispatchDemoCommand(command, args);
         }
-    }           
+    }         
 
     /**
      *  ContentObserver to watch for Quick Settings tiles changes
