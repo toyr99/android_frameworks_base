@@ -2600,7 +2600,13 @@ public final class Settings {
          * volume rocker wake
          * @hide
          */
-        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";	
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
+
+	/**
+         * Volume music controls
+         * @hide
+         */
+        public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";	
 
 	/**
          * Whether the blacklisting feature for phone calls is enabled
