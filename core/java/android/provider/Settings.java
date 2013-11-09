@@ -2606,7 +2606,13 @@ public final class Settings {
          * Volume music controls
          * @hide
          */
-        public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";	
+        public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";
+
+	/**
+         * Whether to prevent loud volume levels when headset is first plugged in.
+         * @hide
+         */
+        public static final String SAFE_HEADSET_VOLUME = "safe_headset_volume";	
 
 	/**
          * Whether the blacklisting feature for phone calls is enabled
