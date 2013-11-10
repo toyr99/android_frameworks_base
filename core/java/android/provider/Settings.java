@@ -1025,6 +1025,8 @@ public final class Settings {
             MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_ENABLED);
             MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_VISIBLE);
             MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED);
+	    MOVED_TO_SECURE.add(Secure.LOCK_BEFORE_UNLOCK);
+            MOVED_TO_SECURE.add(Secure.LOCKSCREEN_UNSECURE_USED);	    
             MOVED_TO_SECURE.add(Secure.LOGGING_ID);
             MOVED_TO_SECURE.add(Secure.PARENTAL_CONTROL_ENABLED);
             MOVED_TO_SECURE.add(Secure.PARENTAL_CONTROL_LAST_UPDATE);
@@ -1781,8 +1783,7 @@ public final class Settings {
          */
         @Deprecated
         public static final String LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED =
-            "lock_pattern_tactile_feedback_enabled";
-
+            "lock_pattern_tactile_feedback_enabled";	
 
         /**
          * A formatted string of the next alarm that is set, or the empty string
@@ -2484,7 +2485,7 @@ public final class Settings {
          * Whether the lockscreen should be completely disabled.
          * @hide
          */
-        public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
+        public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";	
 
         /**
          * @deprecated Use {@link android.provider.Settings.Global#LOW_BATTERY_SOUND}
@@ -3046,7 +3047,7 @@ public final class Settings {
          */
         @Deprecated
         public static final String WIFI_WATCHDOG_PING_TIMEOUT_MS =
-            Secure.WIFI_WATCHDOG_PING_TIMEOUT_MS;
+            Secure.WIFI_WATCHDOG_PING_TIMEOUT_MS;	
     }
 
     /**
@@ -3080,7 +3081,7 @@ public final class Settings {
             MOVED_TO_LOCK_SETTINGS = new HashSet<String>(3);
             MOVED_TO_LOCK_SETTINGS.add(Secure.LOCK_PATTERN_ENABLED);
             MOVED_TO_LOCK_SETTINGS.add(Secure.LOCK_PATTERN_VISIBLE);
-            MOVED_TO_LOCK_SETTINGS.add(Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED);
+            MOVED_TO_LOCK_SETTINGS.add(Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED);	    
 
             MOVED_TO_GLOBAL = new HashSet<String>();
             MOVED_TO_GLOBAL.add(Settings.Global.ADB_ENABLED);
@@ -3760,6 +3761,18 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_SCREEN_LOCK_AFTER_TIMEOUT = "lock_screen_lock_after_timeout";
+
+	/**
+         * Stores value for lock before unlock
+         * @hide
+         */
+        public static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
+
+	/**
+         * Stores used unsecure lockscreen for normal mode and unlock before unlock
+         * @hide
+         */
+        public static final String LOCKSCREEN_UNSECURE_USED = "lockscreen_unsecure_used";
 
 
         /**
