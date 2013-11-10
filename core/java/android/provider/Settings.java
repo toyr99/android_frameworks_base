@@ -2799,7 +2799,7 @@ public final class Settings {
         * Stores the java DateFormat string for the date
         */
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
-
+	
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -2879,7 +2879,7 @@ public final class Settings {
             PHONE_BLACKLIST_NOTIFY_ENABLED,
             PHONE_BLACKLIST_PRIVATE_NUMBER_MODE,
             PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE,
-            PHONE_BLACKLIST_REGEX_ENABLED,	    
+            PHONE_BLACKLIST_REGEX_ENABLED,	    	    
         };
 
         // Settings moved to Settings.Secure
@@ -4819,6 +4819,12 @@ public final class Settings {
          */
         public static final String ADVANCED_REBOOT = "advanced_reboot";
 
+	/**
+         * Whether newly installed apps should run with privacy guard by default
+         * @hide
+         */
+         public static final String PRIVACY_GUARD_DEFAULT = "privacy_guard_default";
+
         /**
          * This are the settings to be backed up.
          *
@@ -4867,7 +4873,8 @@ public final class Settings {
             MOUNT_UMS_AUTOSTART,
             MOUNT_UMS_PROMPT,
             MOUNT_UMS_NOTIFY_ENABLED,
-            UI_NIGHT_MODE
+            UI_NIGHT_MODE,
+	    PRIVACY_GUARD_DEFAULT
         };
 
         /**
