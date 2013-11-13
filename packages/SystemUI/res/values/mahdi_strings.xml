@@ -21,6 +21,10 @@
     <!-- Power Menu tile -->
     <string name="quick_settings_power_menu_label">Power Menu</string>
 
+    <!-- QS Battery Tile -->
+    <string name="quick_settings_battery_charging">Charging</string>
+    <string name="quick_settings_battery_discharging">Discharging</string>
+
     <!--ScreenShot Trash-->
     <string name="trash">Trash</string>
     
