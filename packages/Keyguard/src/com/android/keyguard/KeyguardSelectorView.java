@@ -15,32 +15,23 @@
  */
 package com.android.keyguard;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-
 import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,21 +43,32 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Slog;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.Gravity;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.android.internal.telephony.IccCardConstants.State;
+import com.android.internal.util.mahdi.AppHelper;
 import com.android.internal.util.mahdi.DeviceUtils;
 import com.android.internal.util.mahdi.LockscreenTargetUtils;
+import com.android.internal.util.mahdi.ImageHelper;
+import com.android.internal.util.mahdi.MahdiActions;
+import com.android.internal.util.mahdi.TorchConstants;
 import com.android.internal.util.mahdi.TorchConstants;
 import com.android.internal.view.RotationPolicy;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class KeyguardSelectorView extends LinearLayout implements KeyguardSecurityView {
 
@@ -80,6 +82,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
     private KeyguardSecurityCallback mCallback;
     private GlowPadView mGlowPadView;
+    private KeyguardShortcuts mShortcuts;
     private ObjectAnimator mAnim;
     private View mFadeView;
     private boolean mIsBouncing;
@@ -94,7 +97,6 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private float mBatteryLevel;
     private String[] mStoredTargets;
     private int mTargetOffset;
-    private boolean mIsScreenLarge;
     private GestureDetector mDoubleTapGesture;
     private int mTaps;
 
@@ -102,48 +104,23 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
         public void onTrigger(View v, int target) {
             if (mStoredTargets == null) {
-                final int resId = mGlowPadView.getResourceIdForTarget(target);
-
-                switch (resId) {
-                    case R.drawable.ic_action_assist_generic:
-                        Intent assistIntent =
-                                ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                                .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
-                        if (assistIntent != null) {
-                            mActivityLauncher.launchActivity(assistIntent,
-                                    false, true, null, null);
-                        } else {
-                            Log.w(TAG, "Failed to get intent for assist activity");
-                        }
-                        mCallback.userActivity(0);
-                        break;
-
-                    case R.drawable.ic_lockscreen_camera:
-                        mActivityLauncher.launchCamera(null, null);
-                        mCallback.userActivity(0);
-                        break;
-
-                    case R.drawable.ic_lockscreen_unlock_phantom:
-                    case R.drawable.ic_lockscreen_unlock:
-                        mCallback.userActivity(0);
-                        mCallback.dismiss(false);
-                    break;
-                }
-            } else if (target == mTargetOffset) {
+                mCallback.userActivity(0);
                 mCallback.dismiss(false);
             } else {
-                int realTarget = target - mTargetOffset - 1;
-                String targetUri = realTarget < mStoredTargets.length
-                        ? mStoredTargets[realTarget] : null;
-
-                if (LockscreenTargetUtils.EMPTY_TARGET.equals(targetUri)) {
+                if (target == 0) {
+                    mCallback.userActivity(0);
                     mCallback.dismiss(false);
                 } else {
-                    try {
-                        Intent intent = Intent.parseUri(targetUri, 0);
-                        mActivityLauncher.launchActivity(intent, false, true, null, null);
-                    } catch (URISyntaxException e) {
-                        Log.w(TAG, "Invalid lockscreen target " + targetUri);
+                    int realTarget = target - 1;
+                    String targetUri = realTarget < mStoredTargets.length
+                            ? mStoredTargets[realTarget] : null;
+
+                    if (GlowPadView.EMPTY_TARGET.equals(targetUri)) {
+                        mCallback.userActivity(0);
+                        mCallback.dismiss(false);
+                    } else {
+                        MahdiActions.processAction(mContext, targetUri, false);
+                        mCallback.userActivity(0);
                     }
                 }
             }
@@ -212,11 +189,6 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         @Override
         LockPatternUtils getLockPatternUtils() {
             return mLockPatternUtils;
-        }	
-
-         @Override
-        protected void dismissKeyguardOnNextActivity() {
-            getCallback().dismiss(false);
         }
 
         @Override
@@ -241,6 +213,49 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
         Resources res = getResources();
 
+        LinearLayout glowPadContainer = (LinearLayout) findViewById(
+                R.id.keyguard_glow_pad_container);
+        if (glowPadContainer != null) {
+            glowPadContainer.bringToFront();
+        }
+        final boolean isLandscape = res.getSystem().getConfiguration()
+                .orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if (glowPadContainer != null &&  isLandscape &&
+                LockscreenTargetUtils.isShortcuts(mContext) &&
+                DeviceUtils.isPhone(mContext) &&
+                !LockscreenTargetUtils.isEightTargets(mContext)) {
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL
+            );
+            int pxBottom = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                60,
+                res.getDisplayMetrics());
+            params.setMargins(0, 0, 0, -pxBottom);
+            glowPadContainer.setLayoutParams(params);
+        }
+
+        if (glowPadContainer != null &&
+                LockscreenTargetUtils.isEightTargets(mContext)) {
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    Gravity.CENTER
+            );
+            int pxBottom = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                10,
+                res.getDisplayMetrics());
+            params.setMargins(0, 0, 0, -pxBottom);
+            glowPadContainer.setLayoutParams(params);
+        }
+
+        LinearLayout msgAndShortcutsContainer = (LinearLayout) findViewById(
+                R.id.keyguard_message_and_shortcuts);
+        msgAndShortcutsContainer.bringToFront();
+
         int lockColor = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(),
                 Settings.Secure.LOCKSCREEN_LOCK_COLOR, -2,
@@ -249,6 +264,11 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         int dotColor = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(),
                 Settings.Secure.LOCKSCREEN_DOTS_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        int ringColor = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
                 UserHandle.USER_CURRENT);
 
         String lockIcon = Settings.Secure.getStringForUser(
@@ -277,14 +297,9 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             }
         }
 
-        mGlowPadView.setColoredIcons(lockColor, dotColor, lock);
+        mGlowPadView.setColoredIcons(lockColor, dotColor, ringColor, lock);
 
         updateTargets();
-
-        if (Settings.System.getInt(getContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_VIBRATE_ENABLED, 1) == 0) {
-            mGlowPadView.setVibrateEnabled(false);
-        }
 
         mSecurityMessageDisplay = new KeyguardMessageArea.Helper(this);
         View bouncerFrameView = findViewById(R.id.keyguard_selector_view_frame);
@@ -312,16 +327,20 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             });
         }
 
-        final int unsecureUnlockMethod = Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.LOCKSCREEN_UNSECURE_USED, 1);
-        final int lockBeforeUnlock = Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.LOCK_BEFORE_UNLOCK, 0);
+        final boolean lockBeforeUnlock = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCK_BEFORE_UNLOCK, 0,
+                UserHandle.USER_CURRENT) == 1;
 
-        //bring emergency button on slider lockscreen to front when lockBeforeUnlock is enabled
-        //to make it clickable
-        if (unsecureUnlockMethod == 0 && lockBeforeUnlock == 1) {
-            LinearLayout ecaContainer = (LinearLayout) findViewById(R.id.keyguard_selector_fade_container);
-            ecaContainer.bringToFront();
+        // bring emergency button on slider lockscreen
+        // to front when lockBeforeUnlock is enabled
+        // to make it clickable
+        if (mLockPatternUtils != null && mLockPatternUtils.isSecure() && lockBeforeUnlock) {
+            LinearLayout ecaContainer =
+                (LinearLayout) findViewById(R.id.keyguard_selector_fade_container);
+            if (ecaContainer != null) {
+                ecaContainer.bringToFront();
+            }
         }
         mGlowTorchRunning = false;
         mGlowTorch = Settings.System.getIntForUser(
@@ -353,10 +372,10 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                 || secureCameraDisabled;
         final KeyguardUpdateMonitor monitor = KeyguardUpdateMonitor.getInstance(getContext());
         boolean disabledBySimState = monitor.isSimLocked();
-        boolean cameraTargetPresent =
-            mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+        boolean cameraPresent =
+                mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
         boolean searchTargetPresent =
-            isTargetPresent(R.drawable.ic_action_assist_generic);
+                isTargetPresent(com.android.internal.R.drawable.ic_action_assist_generic);
 
         if (cameraDisabledByAdmin) {
             Log.v(TAG, "Camera disabled by Device Policy");
@@ -371,7 +390,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         boolean searchActionAvailable =
                 ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
                 .getAssistIntent(mContext, false, UserHandle.USER_CURRENT) != null;
-        mCameraDisabled = cameraDisabledByAdmin || disabledBySimState || !cameraTargetPresent
+        mCameraDisabled = cameraDisabledByAdmin || disabledBySimState || !cameraPresent
                 || !currentUserSetup;
         mSearchDisabled = disabledBySimState || !searchActionAvailable || !searchTargetPresent
                 || !currentUserSetup;
@@ -382,73 +401,73 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     public void updateResources() {
         String storedTargets = Settings.System.getStringForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_TARGETS, UserHandle.USER_CURRENT);
+        ArrayList<String> description = new ArrayList<String>();
+        ArrayList<String> directionDescription = new ArrayList<String>();
+        final Resources res = getResources();
+
+        int frontColor = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_TARGETS_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        int backColor = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        Drawable unlockFront = res.getDrawable(R.drawable.ic_lockscreen_unlock_normal);
+        Drawable unlockBack = res.getDrawable(R.drawable.ic_lockscreen_unlock_activated);;
+
+        if (frontColor != -2) {
+            unlockFront = new BitmapDrawable(
+                    res, ImageHelper.getColoredBitmap(unlockFront, frontColor));
+        }
+
+        if (backColor != -2) {
+            unlockBack = new BitmapDrawable(
+                    res, ImageHelper.getColoredBitmap(unlockBack, backColor));
+        }
+
+        int insetType = LockscreenTargetUtils.getInsetForIconType(
+                mContext, GlowPadView.ICON_RESOURCE);
+        Drawable unlock = LockscreenTargetUtils.getLayeredDrawable(mContext,
+                unlockBack, unlockFront, insetType, true);
+        TargetDrawable unlockTarget = new TargetDrawable(res, unlock);
+
+        // Add unlock target
+        description.add(getResources().getString(
+            R.string.description_target_unlock));
+        directionDescription.add(getResources().getString(
+            R.string.accessibility_target_direction));
         if (storedTargets == null) {
-            // Update the search icon with drawable from the search .apk
-            if (!mSearchDisabled) {
-                Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                        .getAssistIntent(mContext, false, UserHandle.USER_CURRENT);
-                if (intent != null) {
-                    // XXX Hack. We need to substitute the icon here but haven't formalized
-                    // the public API. The "_google" metadata will be going away, so
-                    // DON'T USE IT!
-                    ComponentName component = intent.getComponent();
-                    boolean replaced = mGlowPadView.replaceTargetDrawablesIfPresent(component,
-                            ASSIST_ICON_METADATA_NAME + "_google", R.drawable.ic_action_assist_generic);
-
-                    if (!replaced && !mGlowPadView.replaceTargetDrawablesIfPresent(component,
-                            ASSIST_ICON_METADATA_NAME, R.drawable.ic_action_assist_generic)) {
-                        Slog.w(TAG, "Couldn't grab icon from package " + component);
-                    }
-                }
-            }
-
-            mGlowPadView.setEnableTarget(R.drawable.ic_lockscreen_camera, !mCameraDisabled);
-            mGlowPadView.setEnableTarget(R.drawable.ic_action_assist_generic, !mSearchDisabled);
-
-            // Enable magnetic targets
+            ArrayList<TargetDrawable> unlockDrawable = new ArrayList<TargetDrawable>();
+            unlockDrawable.add(unlockTarget);
+            mGlowPadView.setTargetResources(unlockDrawable);
+            mGlowPadView.setTargetDescriptions(description);
+            mGlowPadView.setDirectionDescriptions(directionDescription);
             mGlowPadView.setMagneticTargets(true);
-
-            mGlowPadView.setTargetDescriptionsResourceId(R.array.lockscreen_target_descriptions_unlock_only);
-            mGlowPadView.setDirectionDescriptionsResourceId(R.array.lockscreen_direction_descriptions);
         } else {
+            mGlowPadView.setMagneticTargets(false);
             mStoredTargets = storedTargets.split("\\|");
             ArrayList<TargetDrawable> storedDrawables = new ArrayList<TargetDrawable>();
-
-            final Resources res = getResources();
+            storedDrawables.add(unlockTarget);
             final Drawable blankActiveDrawable = res.getDrawable(
                     R.drawable.ic_lockscreen_target_activated);
             final InsetDrawable activeBack = new InsetDrawable(blankActiveDrawable, 0, 0, 0, 0);
 
-            // Disable magnetic target
-            mGlowPadView.setMagneticTargets(false);
-
-            // Magnetic target replacement
-            final Drawable blankInActiveDrawable = res.getDrawable(
-                    R.drawable.ic_lockscreen_lock_pressed);
-            final Drawable unlockActiveDrawable = res.getDrawable(
-                    R.drawable.ic_lockscreen_unlock_activated);
-
-            // Shift targets for landscape lockscreen on phones
-            for (int i = 0; i < mTargetOffset; i++) {
-                storedDrawables.add(new TargetDrawable(res, null));
-            }
-
-            // Add unlock target
-            storedDrawables.add(new TargetDrawable(res,
-                    res.getDrawable(R.drawable.ic_lockscreen_unlock)));
-
             for (int i = 0; i < 8 - mTargetOffset - 1; i++) {
                 if (i >= mStoredTargets.length) {
                     storedDrawables.add(new TargetDrawable(res, 0));
+                    description.add("");
+                    directionDescription.add("");
                     continue;
                 }
 
                 String uri = mStoredTargets[i];
-                if (uri.equals(LockscreenTargetUtils.EMPTY_TARGET)) {
-                    Drawable d = LockscreenTargetUtils.getLayeredDrawable(
-                            mContext, unlockActiveDrawable, blankInActiveDrawable,
-                            LockscreenTargetUtils.getInsetForIconType(mContext, null), true);
-                    storedDrawables.add(new TargetDrawable(res, d));
+                if (uri.equals(GlowPadView.EMPTY_TARGET)) {
+                    storedDrawables.add(new TargetDrawable(res, 0));
+                    description.add("");
+                    directionDescription.add("");
                     continue;
                 }
 
@@ -459,31 +478,44 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                     boolean frontBlank = false;
                     String type = null;
 
-                    if (intent.hasExtra(LockscreenTargetUtils.ICON_FILE)) {
-                        type = LockscreenTargetUtils.ICON_FILE;
+                    if (intent.hasExtra(GlowPadView.ICON_FILE)) {
+                        type = GlowPadView.ICON_FILE;
                         front = LockscreenTargetUtils.getDrawableFromFile(mContext,
-                                intent.getStringExtra(LockscreenTargetUtils.ICON_FILE));
-                    } else if (intent.hasExtra(LockscreenTargetUtils.ICON_RESOURCE)) {
-                        String source = intent.getStringExtra(LockscreenTargetUtils.ICON_RESOURCE);
-                        String packageName = intent.getStringExtra(LockscreenTargetUtils.ICON_PACKAGE);
+                                intent.getStringExtra(GlowPadView.ICON_FILE));
+                    } else if (intent.hasExtra(GlowPadView.ICON_RESOURCE)) {
+                        String source = intent.getStringExtra(GlowPadView.ICON_RESOURCE);
+                        String packageName = intent.getStringExtra(GlowPadView.ICON_PACKAGE);
 
                         if (source != null) {
                             front = LockscreenTargetUtils.getDrawableFromResources(mContext,
                                     packageName, source, false);
                             back = LockscreenTargetUtils.getDrawableFromResources(mContext,
                                     packageName, source, true);
-                            type = LockscreenTargetUtils.ICON_RESOURCE;
+                            type = GlowPadView.ICON_RESOURCE;
                             frontBlank = true;
                         }
                     }
-                    if (front == null) {
+                    if (front == null || back == null) {
                         front = LockscreenTargetUtils.getDrawableFromIntent(mContext, intent);
-                    }
-                    if (back == null) {
-                        back = activeBack;
                     }
 
                     int inset = LockscreenTargetUtils.getInsetForIconType(mContext, type);
+
+                    if (frontColor != -2) {
+                        front = new BitmapDrawable(
+                                res, ImageHelper.getColoredBitmap(front, frontColor));
+                    }
+
+                    if (backColor != -2) {
+                        if ((back instanceof InsetDrawable)) {
+                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(
+                                    blankActiveDrawable, backColor));
+                        } else {
+                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(
+                                    back, backColor));
+                        }
+                    }
+
                     Drawable drawable = LockscreenTargetUtils.getLayeredDrawable(mContext,
                             back,front, inset, frontBlank);
                     TargetDrawable targetDrawable = new TargetDrawable(res, drawable);
@@ -497,15 +529,27 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                     }
 
                     storedDrawables.add(targetDrawable);
+                    description.add(AppHelper.getFriendlyNameForUri(
+                            mContext, mContext.getPackageManager(), uri));
+                    directionDescription.add("");
                 } catch (URISyntaxException e) {
                     Log.w(TAG, "Invalid target uri " + uri);
                     storedDrawables.add(new TargetDrawable(res, 0));
+                    description.add("");
+                    directionDescription.add("");
                 }
             }
 
-            mGlowPadView.setTargetDescriptionsResourceId(0);
-            mGlowPadView.setDirectionDescriptionsResourceId(0);
+            // Shift targets for landscape lockscreen on phones
+            for (int i = 0; i < mTargetOffset; i++) {
+                storedDrawables.add(new TargetDrawable(res, null));
+                description.add("");
+                directionDescription.add("");
+            }
+
             mGlowPadView.setTargetResources(storedDrawables);
+            mGlowPadView.setTargetDescriptions(description);
+            mGlowPadView.setDirectionDescriptions(directionDescription);
         }
     }
 
@@ -521,6 +565,10 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
     public void setKeyguardCallback(KeyguardSecurityCallback callback) {
         mCallback = callback;
+        mShortcuts = (KeyguardShortcuts) findViewById(R.id.shortcuts);
+        if (mShortcuts != null) {
+            mShortcuts.setKeyguardCallback(callback);
+        }
     }
 
     public void setLockPatternUtils(LockPatternUtils utils) {
