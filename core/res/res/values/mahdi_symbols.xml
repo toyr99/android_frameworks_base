@@ -157,4 +157,9 @@
   <java-symbol type="anim" name="animcontrol_slide_in_right_no_fade" />
   <java-symbol type="anim" name="animcontrol_slide_in_left_no_fade" />
   <java-symbol type="array" name="anim_controls_entries" />
+
+  <!-- EdgeGesture service -->
+  <java-symbol type="dimen" name="edge_gesture_trigger_distance" />
+  <java-symbol type="dimen" name="edge_gesture_perpendicular_distance" />
+  <java-symbol type="dimen" name="edge_gesture_trigger_thickness" />
 </resources>
