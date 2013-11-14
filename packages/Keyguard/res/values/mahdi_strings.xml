@@ -45,4 +45,7 @@
         \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
     </string>
 
+    <!-- Description of accessibility direction for targets [CHAR LIMIT=NONE] -->
+    <string name="accessibility_target_direction">Swipe to activate a target</string>
+
 </resources>

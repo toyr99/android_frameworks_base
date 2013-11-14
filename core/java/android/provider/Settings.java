@@ -2599,6 +2599,27 @@ public final class Settings {
         public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
 
         /**
+         * Whether phone lockscreen uses 5 or 8 targets
+         * @hide
+         */
+        public static final String LOCKSCREEN_EIGHT_TARGETS = "lockscreen_eight_targets";
+
+        /**
+         * Defines the shortcuts to be shown on lockscreen
+         * Usage is like this: target:icon|target:icon|target:icon
+         * if :icon is not set, default application icon will be used
+         * @hide
+         */
+        public static final String LOCKSCREEN_SHORTCUTS = "lockscreen_shortcuts";
+
+        /**
+         * Whether shorcuts open with normal or longpress
+         * @hide
+         */
+        public static final String LOCKSCREEN_SHORTCUTS_LONGPRESS =
+                "lockscreen_shortcuts_longpress";
+
+        /**
          * Whether to show the camera widget on lockscreen
          * @hide
          */
@@ -5622,6 +5643,18 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_FRAME_COLOR = "lockscreen_frame_color";
+
+        /**
+         * Lockscreen widget add, glowpad ring, text, failed pattern ring colors
+         * @hide
+         */
+        public static final String LOCKSCREEN_MISC_COLOR = "lockscreen_misc_color";
+
+        /**
+         * Lockscreen targets and pattern ring colors
+         * @hide
+         */
+        public static final String LOCKSCREEN_TARGETS_COLOR = "lockscreen_targets_color";
 
         /**
          * This preference contains the string that shows for owner info on LockScreen.

@@ -27,10 +27,8 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
@@ -38,6 +36,8 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.android.internal.R;
@@ -49,62 +49,22 @@ import java.io.File;
 public final class LockscreenTargetUtils {
     private static final String TAG = "LockscreenTargetUtils";
 
-    /**
-     * @hide
-     */
-    public final static String ICON_RESOURCE = "icon_resource";
-
-    /**
-     * @hide
-     */
-    public final static String ICON_PACKAGE = "icon_package";
-
-    /**
-     * @hide
-     */
-    public final static String ICON_FILE = "icon_file";
-
-    /**
-     * Number of customizable lockscreen targets for tablets
-     * @hide
-     */
-    public final static int MAX_TABLET_TARGETS = 7;
-
-    /**
-     * Number of customizable lockscreen targets for phones
-     * @hide
-     */
-    public final static int MAX_PHONE_TARGETS = 7;
-
-    /**
-     * Empty target used to reference unused lockscreen targets
-     * @hide
-     */
-    public final static String EMPTY_TARGET = "empty";
-
     private LockscreenTargetUtils() {
     }
 
-    public static boolean isScreenLarge(Context context) {
-        final int screenSize = context.getResources().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK;
-        boolean isScreenLarge = screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE ||
-                screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
-        return isScreenLarge;
-    }
-
     public static int getMaxTargets(Context context) {
-        if (isScreenLarge(context)) {
-            return MAX_TABLET_TARGETS;
+        if (!DeviceUtils.isPhone(context) || isEightTargets(context)) {
+            return GlowPadView.MAX_TABLET_TARGETS;
         }
 
-        return MAX_PHONE_TARGETS;
+        return GlowPadView.MAX_PHONE_TARGETS;
     }
 
     public static int getTargetOffset(Context context) {
         boolean isLandscape = context.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
-        return isLandscape && !isScreenLarge(context) ? 2 : 0;
+        boolean isEightOrLarge = !DeviceUtils.isPhone(context) || isEightTargets(context);
+        return isLandscape && !isEightOrLarge ? 2 : 0;
     }
 
     /**
@@ -117,12 +77,23 @@ public final class LockscreenTargetUtils {
      */
     public static StateListDrawable getLayeredDrawable(Context context,
             Drawable back, Drawable front, int inset, boolean frontBlank) {
+
+        PackageManager pm = context.getPackageManager();
+        Resources keyguardResources = null;
+        try {
+            keyguardResources = pm.getResourcesForApplication("com.android.keyguard");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         final Resources res = context.getResources();
         InsetDrawable[] inactivelayer = new InsetDrawable[2];
         InsetDrawable[] activelayer = new InsetDrawable[2];
 
-        inactivelayer[0] = new InsetDrawable(getDrawableFromResources(context,
-            "com.android.keyguard", "ic_lockscreen_lock_pressed", false), 0, 0, 0, 0);
+        inactivelayer[0] = new InsetDrawable(keyguardResources.getDrawable(
+                    keyguardResources.getIdentifier(
+                    "com.android.keyguard:drawable/ic_lockscreen_lock_pressed",
+                    null, null)), 0, 0, 0, 0);
         inactivelayer[1] = new InsetDrawable(front, inset, inset, inset, inset);
 
         activelayer[0] = new InsetDrawable(back, 0, 0, 0, 0);
@@ -146,56 +117,40 @@ public final class LockscreenTargetUtils {
         return states;
     }
 
-    private static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),
-                Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-        final float roundPx = 24;
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-        return output;
-    }
-
     public static Drawable getDrawableFromFile(Context context, String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
             return null;
         }
 
-        return new BitmapDrawable(context.getResources(),
-                LockscreenTargetUtils.getRoundedCornerBitmap(BitmapFactory.decodeFile(fileName)));
+        if (fileName.startsWith("lockscreen_")) {
+            return new BitmapDrawable(context.getResources(),
+                    ImageHelper.getRoundedCornerBitmap(BitmapFactory.decodeFile(fileName)));
+        } else {
+            return new BitmapDrawable(context.getResources(), BitmapFactory.decodeFile(fileName));
+        }
     }
 
     public static int getInsetForIconType(Context context, String type) {
-        if (TextUtils.equals(type, ICON_RESOURCE)) {
+        if (TextUtils.equals(type, GlowPadView.ICON_RESOURCE)) {
             return 0;
         }
 
-        int inset = 0;
-
+        PackageManager pm = context.getPackageManager();
+        Resources keyguardResources = null;
         try {
-            Context packageContext = context.createPackageContext("com.android.keyguard", 0);
-            Resources res = packageContext.getResources();
-            int targetInsetIdentifier = res.getIdentifier("lockscreen_target_inset", "dimen", "com.android.keyguard");
-            inset = res.getDimensionPixelSize(targetInsetIdentifier);
-            if (TextUtils.equals(type, ICON_FILE)) {
-                int targetIconFileInsetIdentifier = res.getIdentifier(
-                    "lockscreen_target_icon_file_inset", "dimen", "com.android.keyguard");
-                inset += res.getDimensionPixelSize(targetIconFileInsetIdentifier);
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w(TAG, "Could not fetch icons from com.android.keyguard");
-        } catch (Resources.NotFoundException e) {
-            Log.w(TAG, "Could not resolve lockscreen_target_inset", e);
+            keyguardResources = pm.getResourcesForApplication("com.android.keyguard");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        final Resources res = context.getResources();
+        int inset = keyguardResources.getDimensionPixelSize(keyguardResources.getIdentifier(
+                "com.android.keyguard:dimen/lockscreen_target_inset", null, null));
+
+        if (TextUtils.equals(type, GlowPadView.ICON_FILE)) {
+            inset += keyguardResources.getDimensionPixelSize(keyguardResources.getIdentifier(
+                    "com.android.keyguard:dimen/lockscreen_target_icon_file_inset", null, null));
         }
 
         return inset;
@@ -205,16 +160,17 @@ public final class LockscreenTargetUtils {
             String packageName, String identifier, boolean activated) {
         Resources res;
 
-        if (TextUtils.isEmpty(packageName)) {
-            packageName = "com.android.keyguard";
-        }
-
-        try {
-            Context packageContext = context.createPackageContext(packageName, 0);
-            res = packageContext.getResources();
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w(TAG, "Could not fetch icons from package " + packageName);
-            return null;
+        if (packageName != null) {
+            try {
+                res = context.getPackageManager()
+                        .getResourcesForApplication(packageName);
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.w(TAG, "Could not fetch icons from package " + packageName);
+                return null;
+            }
+        } else {
+            res = context.getResources();
+            packageName = "android";
         }
 
         if (activated) {
@@ -299,4 +255,20 @@ public final class LockscreenTargetUtils {
 
         return bitmap;
     }
+
+    public static boolean isShortcuts(Context context) {
+        final String apps = Settings.System.getStringForUser(context.getContentResolver(),
+                Settings.System.LOCKSCREEN_SHORTCUTS, UserHandle.USER_CURRENT);
+        if (apps == null || apps.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isEightTargets(Context context) {
+        return Settings.System.getIntForUser(context.getContentResolver(),
+                    Settings.System.LOCKSCREEN_EIGHT_TARGETS, 0,
+                    UserHandle.USER_CURRENT) == 1;
+    }
 }
+
