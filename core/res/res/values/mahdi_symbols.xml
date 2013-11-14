@@ -73,6 +73,11 @@
   <!-- Privacy Guard -->
   <java-symbol type="string" name="privacy_guard_notification" />
   <java-symbol type="string" name="privacy_guard_notification_detail" />
-  <java-symbol type="drawable" name="stat_notify_privacy_guard" /> 
+  <java-symbol type="drawable" name="stat_notify_privacy_guard" />
+
+  <!-- Hardware Key ReMapping -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
+  <java-symbol type="string" name="config_deviceKeyHandlerLib" />
+  <java-symbol type="string" name="config_deviceKeyHandlerClass" />
 
 </resources>
