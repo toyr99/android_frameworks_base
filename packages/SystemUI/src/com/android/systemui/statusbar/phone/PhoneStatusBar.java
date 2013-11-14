@@ -432,12 +432,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
 	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.APP_SIDEBAR_POSITION), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_CAMERA_WIDGET),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
+
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_CAMERA_WIDGET))) {
+                if (mNavigationBarView != null) {
+                    mNavigationBarView.disableCameraByUser();
+                }
+            }
 
             update();
 
