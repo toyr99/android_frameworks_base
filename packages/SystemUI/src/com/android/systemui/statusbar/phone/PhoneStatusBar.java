@@ -309,11 +309,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED),
                     false, this, UserHandle.USER_ALL);
-            updateBatteryIcons();
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
         }
     }
+
+    public void update() {
+            ContentResolver resolver = mContext.getContentResolver();                      
+            updateBatteryIcons();
+        }    
     
-    private void updateBatteryIcons() {
+        private void updateBatteryIcons() {
         if (mQS != null) {
             mQS.updateBattery();
         }
@@ -393,6 +403,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         super.start(); // calls createAndAddWindows()
 
         addNavigationBar();
+	
+        SettingsObserver observer = new SettingsObserver(mHandler);
+        observer.observe();
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext);
