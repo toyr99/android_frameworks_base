@@ -3227,7 +3227,13 @@ public final class Settings {
          * Whether to attempt to dim the LED color during quiet hours.
          * @hide
          */
-        public static final String QUIET_HOURS_DIM = "quiet_hours_dim";  
+        public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
+
+	/**
+         * Weather to minimize lockscreen challenge on screen turned on
+         * @hide
+         */
+        public static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";  
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
