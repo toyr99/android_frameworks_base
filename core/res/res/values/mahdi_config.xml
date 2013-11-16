@@ -54,4 +54,7 @@
     <!-- Name of that key handler class -->
     <string name="config_deviceKeyHandlerClass" translatable="false"></string>
 
+    <!-- kill app long press back -->
+    <integer name="config_backKillTimeout">750</integer>
+
 </resources>

@@ -94,4 +94,7 @@
     <string name="privacy_guard_notification">Privacy Guard active</string>
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
 
+    <!-- kill app long press back -->
+    <string name="app_killed_message">Application killed. Happy now?</string>
+
 </resources>
