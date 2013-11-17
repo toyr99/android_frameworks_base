@@ -30,6 +30,7 @@ import android.app.Profile;
 import android.app.ProfileManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -106,7 +107,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
-    private ToggleAction mExpandDesktopModeOn;
+    private ToggleAction mGlobalImmersiveModeOn;
     private Profile mChosenProfile;    
 
     private MyAdapter mAdapter;
@@ -207,12 +208,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mSilentModeAction = new SilentModeTriStateAction(mContext, mAudioManager, mHandler);
         }
 
-	mExpandDesktopModeOn = new ToggleAction(
-                R.drawable.ic_lock_expanded_desktop,
-                R.drawable.ic_lock_expanded_desktop,
-                R.string.global_actions_toggle_expanded_desktop_mode,
-                R.string.global_actions_expanded_desktop_mode_on_status,
-                R.string.global_actions_expanded_desktop_mode_off_status) {
+	mGlobalImmersiveModeOn = new ToggleAction(
+                R.drawable.ic_lock_immersive_mode_on,
+                R.drawable.ic_lock_immersive_mode_off,
+                R.string.global_actions_toggle_global_immersive_mode,
+                R.string.global_actions_global_immersive_mode_on_status,
+                R.string.global_actions_global_immersive_mode_off_status) {
 
             void onToggle(boolean on) {
                 changeExpandDesktopModeSystemSetting(on);
@@ -271,6 +272,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         };
         onAirplaneModeChanged();
 
+        final ContentResolver cr = mContext.getContentResolver();
         mItems = new ArrayList<Action>();
 
         // first: power off
@@ -284,6 +286,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     mWindowManagerFuncs.shutdown(true);
                 }
 
+                public boolean onLongPress() {
+                    mWindowManagerFuncs.rebootSafeMode(true);
+                    return true;
+                }
+
                 public boolean showDuringKeyguard() {
                     return true;
                 }
@@ -295,8 +302,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         // next: reboot
         // only shown if enabled, enabled by default
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_REBOOT_ENABLED, 1) == 1) {
+        boolean showReboot = Settings.System.getIntForUser(cr,
+                Settings.System.POWER_MENU_REBOOT_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
+        if (showReboot) {
             mItems.add(
                 new SinglePressAction(R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
                     public void onPress() {
@@ -316,11 +324,73 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         return true;
                     }
                 });
-        }                
+        }
+
+        // next: profile
+        // only shown if both system profiles and the menu item is enabled, enabled by default
+        boolean showProfiles =
+                Settings.System.getIntForUser(cr,
+                        Settings.System.SYSTEM_PROFILES_ENABLED, 1, UserHandle.USER_CURRENT) == 1
+                && Settings.System.getIntForUser(cr,
+                        Settings.System.POWER_MENU_PROFILES_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
+        if (showProfiles) {
+            mItems.add(
+                new ProfileChooseAction() {
+                    public void onPress() {
+                        createProfileDialog();
+                    }
+
+                    public boolean onLongPress() {
+                        return true;
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return false;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return false;
+                    }
+                });
+        }
+
+        // next: screenshot
+        // only shown if enabled, disabled by default
+        boolean showScreenshot = Settings.System.getIntForUser(cr,
+                Settings.System.POWER_MENU_SCREENSHOT_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+        if (showScreenshot) {
+            mItems.add(
+                new SinglePressAction(R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
+                    public void onPress() {
+                        takeScreenshot();
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                });
+        }
+
+        // next: global immersive mode toggle
+        // only shown if enabled and global immersive mode is enabled, disabled by default
+        boolean showGlobalImmersiveMode =
+                Settings.System.getIntForUser(cr,
+                        Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, 0, UserHandle.USER_CURRENT) != 0
+                && Settings.System.getIntForUser(cr,
+                        Settings.System.POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+
+        if (showGlobalImmersiveMode) {
+            mItems.add(mGlobalImmersiveModeOn);
+        }
 
         // next: airplane mode
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_AIRPLANE_ENABLED, 1) == 1) {
+        boolean showAirplaneMode = Settings.System.getIntForUser(cr,
+                Settings.System.POWER_MENU_AIRPLANE_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
+        if (showAirplaneMode) {
             mItems.add(mAirplaneModeOn);
         }
 
@@ -372,74 +442,17 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     }
                 });
         }
-
-	 // next: expanded desktop toggle
-        // only shown if enabled, disabled by default
-        if(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0) == 1){
-            mItems.add(mExpandDesktopModeOn);
+        
+        // last: silent mode
+        boolean showSoundMode = SHOW_SILENT_TOGGLE && Settings.System.getIntForUser(cr,
+                Settings.System.POWER_MENU_SILENT_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
+        if (showSoundMode) {
+            mItems.add(mSilentModeAction);
         }
-
-        // next: profile
-        // only shown if both system profiles and the menu item is enabled, enabled by default
-        final int mProfile = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_PROFILES_ENABLED, 1);
-        final KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        if ((Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SYSTEM_PROFILES_ENABLED, 1) == 1) && (mProfile != 0)) {
-            mItems.add(
-                new ProfileChooseAction() {
-                    public void onPress() {
-                        createProfileDialog();
-                    }
-                    public boolean onLongPress() {
-                        return true;
-                    }
-
-                    public boolean showDuringKeyguard() {
-                        if (mProfile == 2 && !km.isKeyguardSecure()) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-
-                    public boolean showBeforeProvisioning() {
-                        return false;
-                    }
-                });
-        }
-
-        // next: screenshot
-        // only shown if enabled, disabled by default
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_SCREENSHOT_ENABLED, 0) == 1) {
-            mItems.add(
-                new SinglePressAction(R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
-                    public void onPress() {
-                        takeScreenshot();
-                    }
-
-                    public boolean showDuringKeyguard() {
-                        return true;
-                    }
-
-                    public boolean showBeforeProvisioning() {
-                        return true;
-                    }
-                });
-        }        
 
         // one more thing: optionally add a list of users to switch to
         if (SystemProperties.getBoolean("fw.power_user_switcher", false)) {
             addUsersToMenu(mItems);
-        }
-
-        // last: silent mode
-        if ((Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_SILENT_ENABLED, 1) == 1) &&
-                (SHOW_SILENT_TOGGLE)) {
-            mItems.add(mSilentModeAction);
         }
 
         mAdapter = new MyAdapter();
@@ -1185,11 +1198,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private void onExpandDesktopModeChanged() {
-        boolean expandDesktopModeOn = Settings.System.getInt(
+        boolean expandDesktopModeOn = Settings.System.getIntForUser(
                 mContext.getContentResolver(),
-                Settings.System.EXPANDED_DESKTOP_STATE,
-                0) == 1;
-        mExpandDesktopModeOn.updateState(expandDesktopModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
+                Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                0, UserHandle.USER_CURRENT) == 1;
+        mGlobalImmersiveModeOn.updateState(expandDesktopModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
     }
 
     /**
@@ -1209,14 +1222,14 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
-    /**
+     /**
      * Change the expand desktop mode system setting
      */
     private void changeExpandDesktopModeSystemSetting(boolean on) {
-        Settings.System.putInt(
+        Settings.System.putIntForUser(
                 mContext.getContentResolver(),
-                Settings.System.EXPANDED_DESKTOP_STATE,
-                on ? 1 : 0);
+                Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                on ? 1 : 0, UserHandle.USER_CURRENT);
     }
 
     private static final class GlobalActionsDialog extends Dialog implements DialogInterface {
