@@ -57,4 +57,13 @@
     <!-- kill app long press back -->
     <integer name="config_backKillTimeout">750</integer>
 
+    <!-- Device supports LED flashlight -->
+    <bool name="config_enableTorch">false</bool>
+
+    <!-- Dock battery compatibility (disabled by default) -->
+    <bool name="config_hasDockBattery">false</bool>
+
+    <!-- Setting to false will disable CM's IME switcher implementation for tablets -->
+    <bool name="config_show_cmIMESwitcher">true</bool>
+
 </resources>

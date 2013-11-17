@@ -332,47 +332,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     // The last window we were told about in focusChanged.
     WindowState mFocusedWindow;
-    IApplicationToken mFocusedApp;
-
-    // powermenu Tile
-    private PowerMenuReceiver mPowerMenuReceiver;
-    class PowerMenuReceiver extends BroadcastReceiver {
-        private boolean mIsRegistered = false;    
-
-    // Behavior of volume wake
-    boolean mVolumeWakeScreen;
-
-        public PowerMenuReceiver(Context context) {
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (action.equals(Intent.ACTION_POWERMENU)) {
-                showGlobalActionsDialog();
-            }
-            if (action.equals(Intent.ACTION_POWERMENU_REBOOT)) {
-                mWindowManagerFuncs.reboot();
-            }
-        }
-
-        private void registerSelf() {
-            if (!mIsRegistered) {
-                mIsRegistered = true;
-                IntentFilter filter = new IntentFilter();
-                filter.addAction(Intent.ACTION_POWERMENU);
-                filter.addAction(Intent.ACTION_POWERMENU_REBOOT);
-                mContext.registerReceiver(mPowerMenuReceiver, filter);
-            }
-        }
-
-        private void unregisterSelf() {
-            if (mIsRegistered) {
-                mIsRegistered = false;
-                mContext.unregisterReceiver(this);
-            }
-        }
-    }
+    IApplicationToken mFocusedApp;                  
 
     private final class PointerLocationPointerEventListener implements PointerEventListener {
         @Override
@@ -1184,10 +1144,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             screenTurningOn(null);
         } else {
             screenTurnedOff(WindowManagerPolicy.OFF_BECAUSE_OF_USER);
-        }
-    // powermenuTile register broadcast receiver for power menu intents
-        mPowerMenuReceiver = new PowerMenuReceiver(context);
-        mPowerMenuReceiver.registerSelf();      
+        }     
 
         String deviceKeyHandlerLib = mContext.getResources().getString(
                 com.android.internal.R.string.config_deviceKeyHandlerLib);

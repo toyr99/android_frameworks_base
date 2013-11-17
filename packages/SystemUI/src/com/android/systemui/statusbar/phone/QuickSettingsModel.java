@@ -272,10 +272,6 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     private RefreshCallback mSslCaCertWarningCallback;
     private State mSslCaCertWarningState = new State();
 
-    private QuickSettingsTileView mPowerMenuTile;
-    private RefreshCallback mPowerMenuCallback;
-    private State mPowerMenuState = new State();
-
     private RotationLockController mRotationLockController;
 
     public QuickSettingsModel(Context context) {
@@ -315,7 +311,6 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         refreshRotationLockTile();
         refreshRssiTile();
         refreshLocationTile();
-        refreshPowerMenuTile();
     }
 
     // Settings
@@ -804,17 +799,5 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         }
         mSslCaCertWarningState.label = r.getString(R.string.ssl_ca_cert_warning);
         mSslCaCertWarningCallback.refreshView(mSslCaCertWarningTile, mSslCaCertWarningState);
-    }
-
-    // Power Menu
-    void addPowerMenuTile(QuickSettingsTileView view, RefreshCallback cb) {
-        mPowerMenuTile = view;
-        mPowerMenuCallback = cb;
-        refreshPowerMenuTile();
-    }
-    void refreshPowerMenuTile() {
-        Resources r = mContext.getResources();
-        mPowerMenuState.label = r.getString(R.string.quick_settings_power_menu_label);
-        mPowerMenuCallback.refreshView(mPowerMenuTile, mPowerMenuState);
     }
 }

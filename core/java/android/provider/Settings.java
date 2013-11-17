@@ -2792,14 +2792,7 @@ public final class Settings {
          * boolean (1 or 0).
          * @hide
          */
-        public static final String NOISE_SUPPRESSION = "noise_suppression";
-
-	 /**
-         * Quick Settings Quick Pulldown
-         *
-         * @hide
-         */
-        public static final String QS_QUICK_PULLDOWN = "qs_quick_pulldown";
+        public static final String NOISE_SUPPRESSION = "noise_suppression";	 
 
 	/**
          * Show or hide clock
@@ -3007,6 +3000,94 @@ public final class Settings {
          * @hide
          */
         public static final String INCREASING_RING_INTERVAL = "increasing_ring_interval";
+
+	/**
+         * Quick Settings Panel Tiles to Use
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TILES = "quick_settings_tiles";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_ALARM = "qs_dyanmic_alarm";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_BUGREPORT = "qs_dyanmic_bugreport";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_IME = "qs_dyanmic_ime";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_USBTETHER = "qs_dyanmic_usbtether";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_DOCK_BATTERY = "qs_dyanmic_dock_battery";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_WIFI = "qs_dyanmic_wifi";
+
+        /**
+         * Quick Settings Quick Pulldown
+         *
+         * @hide
+         */
+        public static final String QS_QUICK_PULLDOWN = "qs_quick_pulldown";
+
+        /**
+         * Quick Settings Collapse Pane
+         *
+         * @hide
+         */
+        public static final String QS_COLLAPSE_PANEL = "qs_collapse_panel";
+
+	/**
+        * Custom Ring Mode
+        * @hide
+        */
+        public static final String EXPANDED_RING_MODE = "expanded_ring_mode";        
+
+	/**
+        * Custom Network Mode
+        * @hide
+        */
+        public static final String EXPANDED_NETWORK_MODE = "expanded_network_mode";
+
+	/**
+        * Notification Power Widget - Custom Screen Timeout
+        * @hide
+        */
+        public static final String EXPANDED_SCREENTIMEOUT_MODE = "expanded_screentimeout_mode";
+
+	/**
+         * Use the Notification Power Widget? (Who wouldn't!)
+         *
+         * @hide
+         */
+        public static final String EXPANDED_VIEW_WIDGET = "expanded_view_widget";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

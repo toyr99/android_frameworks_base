@@ -206,12 +206,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
     TextView mNotificationPanelDebugText;
 
     // settings
-    QuickSettings mQS;
+    QuickSettingsController mQS;
+    QuickSettings mqs;
     boolean mHasSettingsPanel, mHasFlipSettings;
     SettingsPanelView mSettingsPanel;
     View mFlipSettingsView;
     QuickSettingsContainerView mSettingsContainer;
     int mSettingsPanelGravity;
+    private TilesChangedObserver mTilesChangedObserver;
 
     // top bar
     View mNotificationPanelHeader;
@@ -324,8 +326,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         }    
     
         private void updateBatteryIcons() {
-        if (mQS != null) {
-            mQS.updateBattery();
+        if (mqs != null) {
+            mqs.updateBattery();
         }
         if (mBattery != null && mCircleBattery != null) {
             mBattery.updateSettings();
@@ -590,6 +592,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         // Other icons
         mLocationController = new LocationController(mContext); // will post a notification
         mBatteryController = new BatteryController(mContext);
+
         mNetworkController = new NetworkController(mContext);
         mBluetoothController = new BluetoothController(mContext);
         mRotationLockController = new RotationLockController(mContext);
@@ -673,7 +676,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             mSettingsContainer = (QuickSettingsContainerView)
                     mStatusBarWindow.findViewById(R.id.quick_settings_container);
             if (mSettingsContainer != null) {
-                mQS = new QuickSettings(mContext, mSettingsContainer);
+                mQS = new QuickSettingsController(mContext, mSettingsContainer, this,
+                        Settings.System.QUICK_SETTINGS_TILES);
                 if (!mNotificationPanelIsFullScreenWidth) {
                     mSettingsContainer.setSystemUiVisibility(
                             View.STATUS_BAR_DISABLE_NOTIFICATION_TICKER
@@ -684,10 +688,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 }
                 mQS.setService(this);
                 mQS.setBar(mStatusBarView);
-                mQS.setup(mNetworkController, mBluetoothController, mBatteryController,
-                        mLocationController, mRotationLockController);
-            } else {
-                mQS = null; // fly away, be free
+                mQS.setupQuickSettings();
+
+                // Start observing for changes
+                if (mTilesChangedObserver == null) {
+                    mTilesChangedObserver = new TilesChangedObserver(mHandler);
+                    mTilesChangedObserver.startObserving();
+                }
             }
         }
 
@@ -1746,7 +1753,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
         if (mClearButtonAnim != null) mClearButtonAnim.cancel();
 
-        final boolean halfWayDone = mFlipSettingsView.getVisibility() == View.VISIBLE;
+	    final boolean halfWayDone = mFlipSettingsView.getVisibility() == View.VISIBLE;
         final int zeroOutDelays = halfWayDone ? 0 : 1;
 
 	if (!halfWayDone) {
@@ -1783,6 +1790,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 .setDuration(FLIP_DURATION),
                 mClearButton, View.INVISIBLE));
         mNotificationPanel.postDelayed(new Runnable() {
+            @Override
             public void run() {
                 updateCarrierLabelVisibility(false);
             }
@@ -2930,6 +2938,55 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         View v = mStatusBarView.findViewById(id);
         if (v instanceof DemoMode) {
             ((DemoMode)v).dispatchDemoCommand(command, args);
+        }
+    }           
+
+    /**
+     *  ContentObserver to watch for Quick Settings tiles changes
+     * @author dvtonder
+     *
+     */
+    private class TilesChangedObserver extends ContentObserver {
+        public TilesChangedObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            if (mSettingsContainer != null) {
+                mQS.setupQuickSettings();
+            }
+        }
+
+        public void startObserving() {
+            final ContentResolver cr = mContext.getContentResolver();
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_SETTINGS_TILES),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_ALARM),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_BUGREPORT),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_DOCK_BATTERY),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_IME),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_USBTETHER),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QS_DYNAMIC_WIFI),
+                    false, this, UserHandle.USER_ALL);
         }
     }
 }
