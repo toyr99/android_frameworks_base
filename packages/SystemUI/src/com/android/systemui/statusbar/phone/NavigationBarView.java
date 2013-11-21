@@ -29,6 +29,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -59,7 +60,7 @@ import android.widget.LinearLayout;
 import com.android.internal.util.mahdi.ButtonConfig;
 import com.android.internal.util.mahdi.ButtonsConstants;
 import com.android.internal.util.mahdi.ButtonsHelper;
-import com.android.internal.util.mahdi.ColorHelper;
+import com.android.internal.util.mahdi.ImageHelper;
 import com.android.internal.util.mahdi.DeviceUtils;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
@@ -119,7 +120,8 @@ public class NavigationBarView extends LinearLayout {
 
     private int mNavBarButtonColor;
     private int mNavBarButtonColorMode;
-    private boolean mAppIsBinded = false;
+    private boolean mAppIsBinded;
+    private boolean mAppIsMissing;
 
     private FrameLayout mRot0;
     private FrameLayout mRot90;
@@ -262,7 +264,8 @@ public class NavigationBarView extends LinearLayout {
         mCameraDisabledByDpm = isCameraDisabledByDpm();
         watchForDevicePolicyChanges();
 
-        mButtonsConfig = ButtonsHelper.getNavBarConfig(mContext);
+        mButtonsConfig = ButtonsHelper.getNavBarConfigWithDescription(
+                mContext, "shortcut_action_values", "shortcut_action_entries");
         mButtonIdList = new ArrayList<Integer>();
     }
 
@@ -378,6 +381,8 @@ public class NavigationBarView extends LinearLayout {
         ((LinearLayout) mRot90.findViewById(R.id.nav_buttons)).removeAllViews();
         ((LinearLayout) mRot90.findViewById(R.id.lights_out)).removeAllViews();
 
+        mAppIsBinded = false;
+
         for (int i = 0; i <= 1; i++) {
             boolean landscape = (i == 1);
 
@@ -402,7 +407,8 @@ public class NavigationBarView extends LinearLayout {
                 KeyButtonView v = generateKey(landscape,
                         buttonConfig.getClickAction(),
                         buttonConfig.getLongpressAction(),
-                        buttonConfig.getIcon());
+                        buttonConfig.getIcon(),
+                        buttonConfig.getClickActionDescription());
                 v.setTag((landscape ? "key_land_" : "key_") + j);
 
                 addButton(navButtonLayout, v, landscape);
@@ -441,7 +447,7 @@ public class NavigationBarView extends LinearLayout {
         mBackAltIcon = res.getDrawable(R.drawable.ic_sysbar_back_ime);
         if (mNavBarButtonColorMode != 3) {
             mBackAltIcon = new BitmapDrawable(mContext.getResources(),
-                ColorHelper.getColoredBitmap(mBackAltIcon, mNavBarButtonColor));
+                ImageHelper.getColoredBitmap(mBackAltIcon, mNavBarButtonColor));
         }
 
         // now the keyguard searchlight and camera button
@@ -454,7 +460,7 @@ public class NavigationBarView extends LinearLayout {
         if (searchLight != null && defaultSearchLightDrawable != null) {
             if (mNavBarButtonColorMode != 3) {
                 searchLight.setImageBitmap(
-                    ColorHelper.getColoredBitmap(defaultSearchLightDrawable, mNavBarButtonColor));
+                    ImageHelper.getColoredBitmap(defaultSearchLightDrawable, mNavBarButtonColor));
             } else {
                 searchLight.setImageDrawable(defaultSearchLightDrawable);
             }
@@ -462,7 +468,7 @@ public class NavigationBarView extends LinearLayout {
         if (cameraButton != null && defaultCameraButtonDrawable != null) {
             if (mNavBarButtonColorMode != 3) {
                 cameraButton.setImageBitmap(
-                    ColorHelper.getColoredBitmap(defaultCameraButtonDrawable, mNavBarButtonColor));
+                    ImageHelper.getColoredBitmap(defaultCameraButtonDrawable, mNavBarButtonColor));
             } else {
                 cameraButton.setImageDrawable(defaultCameraButtonDrawable);
             }
@@ -470,12 +476,12 @@ public class NavigationBarView extends LinearLayout {
     }
 
     private KeyButtonView generateKey(boolean landscape, String clickAction,
-            String longpress,
-            String iconUri) {
+            String longpress, String iconUri, String description) {
 
         KeyButtonView v = new KeyButtonView(mContext, null);
         v.setClickAction(clickAction);
         v.setLongpressAction(longpress);
+        v.setContentDescription(description);
         v.setLayoutParams(getLayoutParams(landscape, 80));
 
         if (clickAction.equals(ButtonsConstants.ACTION_BACK)) {
@@ -488,6 +494,10 @@ public class NavigationBarView extends LinearLayout {
             int buttonId = v.generateViewId();
             v.setId(buttonId);
             mButtonIdList.add(buttonId);
+        }
+
+        if (!clickAction.startsWith("**")) {
+            mAppIsBinded = true;
         }
 
         boolean colorize = true;
@@ -504,16 +514,16 @@ public class NavigationBarView extends LinearLayout {
                 v.setPaddingRelative(appIconPadding[0], appIconPadding[1],
                         appIconPadding[2], appIconPadding[3]);
             }
-            if (mNavBarButtonColorMode != 0) {
+            if (mNavBarButtonColorMode != 0
+                && !iconUri.startsWith(ButtonsConstants.SYSTEM_ICON_IDENTIFIER)) {
                 colorize = false;
             }
-            mAppIsBinded = true;
         }
 
         Drawable d = ButtonsHelper.getButtonIconImage(mContext, clickAction, iconUri);
         if (d != null) {
             if (colorize && mNavBarButtonColorMode != 3) {
-                v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
+                v.setImageBitmap(ImageHelper.getColoredBitmap(d, mNavBarButtonColor));
             } else {
                 v.setImageDrawable(d);
             }
@@ -522,6 +532,35 @@ public class NavigationBarView extends LinearLayout {
         v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                 : R.drawable.ic_sysbar_highlight);
         return v;
+    }
+
+    public boolean hasAppBinded() {
+        ButtonConfig buttonConfig;
+        if (mAppIsBinded && mButtonsConfig != null) {
+           for (int j = 0; j < mButtonsConfig.size(); j++) {
+               buttonConfig = mButtonsConfig.get(j);
+                if (!buttonConfig.getClickAction().startsWith("**")) {
+                    try {
+                        Intent in = Intent.parseUri(buttonConfig.getClickAction(), 0);
+                        PackageManager pm = mContext.getPackageManager();
+                        ActivityInfo aInfo = in.resolveActivityInfo(
+                            pm, PackageManager.GET_ACTIVITIES);
+                        if (aInfo == null) {
+                            mAppIsMissing = true;
+                            return true;
+                        }
+                    } catch (Exception e) {
+                        mAppIsMissing = true;
+                        return true;
+                    }
+                }
+            }
+        }
+        if (mAppIsMissing) {
+            mAppIsMissing = false;
+            return true;
+        }
+        return false;
     }
 
     private View generateMenuKey(boolean landscape, int keyId) {
@@ -536,7 +575,7 @@ public class NavigationBarView extends LinearLayout {
 
         Drawable d = mContext.getResources().getDrawable(R.drawable.ic_sysbar_menu);
         if (mNavBarButtonColorMode != 3) {
-            v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
+            v.setImageBitmap(ImageHelper.getColoredBitmap(d, mNavBarButtonColor));
         } else {
             v.setImageDrawable(d);
         }
@@ -620,7 +659,7 @@ public class NavigationBarView extends LinearLayout {
                 500).show();
         }
 
-         mNavigationIconHints = hints;
+        mNavigationIconHints = hints;
 
         final View back = getBackButton();
         if (back != null) {
@@ -1013,7 +1052,8 @@ public class NavigationBarView extends LinearLayout {
         mNavBarButtonColorMode = Settings.System.getIntForUser(resolver,
                 Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0, UserHandle.USER_CURRENT);
 
-        mButtonsConfig = ButtonsHelper.getNavBarConfig(mContext);
+        mButtonsConfig = ButtonsHelper.getNavBarConfigWithDescription(
+                mContext, "shortcut_action_values", "shortcut_action_entries");
 
         mMenuSetting = Settings.System.getIntForUser(resolver,
                 Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU,
