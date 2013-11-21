@@ -20,8 +20,7 @@ import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChan
 
 import static com.android.internal.util.mahdi.QSUtils.deviceSupportsMobileData;
 
-public class MobileNetworkTile extends QuickSettingsTile implements NetworkSignalChangedCallback{
-
+public class MobileNetworkTile extends NetworkTile {
     private static final int NO_OVERLAY = 0;
     private static final int DISABLED_OVERLAY = -1;
 
@@ -31,14 +30,13 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
     private int mDataTypeIconId = NO_OVERLAY;
     private String dataContentDescription;
     private String signalContentDescription;
-    private boolean wifiOn = false;
+    private boolean mWifiOn = false;
 
     private ConnectivityManager mCm;
 
     public MobileNetworkTile(Context context, QuickSettingsController qsc, NetworkController controller) {
-        super(context, qsc, R.layout.quick_settings_tile_rssi);
+        super(context, qsc, controller, R.layout.quick_settings_tile_rssi);
 
-        mController = controller;
         mCm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         mOnClick = new View.OnClickListener() {
@@ -68,27 +66,9 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
     }
 
     @Override
-    void onPostCreate() {
-        mController.addNetworkSignalChangedCallback(this);
-        updateTile();
-        super.onPostCreate();
-    }
-
-    @Override
-    public void onDestroy() {
-        mController.removeNetworkSignalChangedCallback(this);
-        super.onDestroy();
-    }
-
-    @Override
-    public void updateResources() {
-        updateTile();
-        super.updateResources();
-    }
-
-    private synchronized void updateTile() {
+    protected void updateTile() {
         Resources r = mContext.getResources();
-        dataContentDescription = mEnabled && (mDataTypeIconId > 0) && !wifiOn
+        dataContentDescription = mEnabled && (mDataTypeIconId > 0) && !mWifiOn
                 ? dataContentDescription
                 : r.getString(R.string.accessibility_no_data);
         mLabel = mEnabled
@@ -97,12 +77,17 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
     }
 
     @Override
-    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId, boolean activityIn, boolean activityOut, String wifiSignalContentDescriptionId, String description) {
-        wifiOn = enabled;
+    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId,
+            boolean activityIn, boolean activityOut,
+            String wifiSignalContentDescriptionId, String description) {
+        mWifiOn = enabled;
     }
 
     @Override
-    public void onMobileDataSignalChanged(boolean enabled, int mobileSignalIconId, String mobileSignalContentDescriptionId, int dataTypeIconId, boolean activityIn, boolean activityOut, String dataTypeContentDescriptionId, String description) {
+    public void onMobileDataSignalChanged(boolean enabled,
+            int mobileSignalIconId, String mobileSignalContentDescriptionId,
+            int dataTypeIconId, boolean activityIn, boolean activityOut,
+            String dataTypeContentDescriptionId, String description) {
         if (deviceSupportsMobileData(mContext)) {
             // TODO: If view is in awaiting state, disable
             Resources r = mContext.getResources();
@@ -114,7 +99,7 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
                     : r.getString(R.string.accessibility_no_signal);
 
             // Determine the overlay image
-            if (enabled && (dataTypeIconId > 0) && !wifiOn) {
+            if (enabled && (dataTypeIconId > 0) && !mWifiOn) {
                 mDataTypeIconId = dataTypeIconId;
             } else if (!mCm.getMobileDataEnabled()) {
                 mDataTypeIconId = DISABLED_OVERLAY;
@@ -125,6 +110,7 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
             mEnabled = enabled;
             mDescription = description;
 
+            setActivity(activityIn, activityOut);
             updateResources();
         }
     }
@@ -135,7 +121,7 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
 
     @Override
     void updateQuickSettings() {
-        TextView tv = (TextView) mTile.findViewById(R.id.rssi_textview);
+        TextView tv = (TextView) mTile.findViewById(R.id.text);
         ImageView iv = (ImageView) mTile.findViewById(R.id.rssi_image);
 
         iv.setImageResource(mDrawable);

@@ -67,7 +67,7 @@ public class QuickSettingsTile implements OnClickListener {
     public void setLabelVisibility(boolean visible) {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
         if (tv != null) {
-            tv.setVisibility(visible ? View.VISIBLE : View.GONE);
+            tv.setVisibility(View.GONE);
         }
         View sepPadding = mTile.findViewById(R.id.separator_padding);
         if (sepPadding != null) {
@@ -84,7 +84,7 @@ public class QuickSettingsTile implements OnClickListener {
     public void onChangeUri(ContentResolver resolver, Uri uri) {}
 
     public void updateResources() {
-        if(mTile != null) {
+        if (mTile != null) {
             updateQuickSettings();
         }
     }

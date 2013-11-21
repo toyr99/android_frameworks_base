@@ -19,12 +19,11 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
     private BatteryController mController;
 
     private int mBatteryLevel = 0;
-    private boolean mPluggedIn = false;
-    private Drawable mBatteryIcon;
+    private boolean mPluggedIn;
 
     public BatteryTile(Context context, QuickSettingsController qsc, BatteryController controller) {
-        super(context, qsc);
-
+        super(context, qsc, R.layout.quick_settings_tile_battery); 
+        
         mController = controller;
 
         mOnClick = new View.OnClickListener() {
@@ -49,42 +48,34 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
     }
 
     @Override
+    public void onBatteryLevelChanged(int level, boolean pluggedIn) {
+        mBatteryLevel = level;
+        mPluggedIn = pluggedIn;
+        updateResources();
+    }
+
+    @Override
     public void updateResources() {
         updateTile();
         super.updateResources();
     }
 
     private synchronized void updateTile() {
-        final int drawableResId = (mPluggedIn && mBatteryLevel < 100)
-                ? R.drawable.qs_sys_battery_charging : R.drawable.qs_sys_battery;
-
-        mBatteryIcon = mContext.getResources().getDrawable(drawableResId);
-
         if (mBatteryLevel == 100) {
             mLabel = mContext.getString(R.string.quick_settings_battery_charged_label);
-        } else if (mPluggedIn) {
-            mLabel = mContext.getString(R.string.quick_settings_battery_charging_label,
-                    mBatteryLevel);
         } else {
-            mLabel = mContext.getString(R.string.status_bar_settings_battery_meter_format,
-                    mBatteryLevel);
+            mLabel = mPluggedIn
+                ? mContext.getString(R.string.quick_settings_battery_charging_label,
+                        mBatteryLevel)
+                : mContext.getString(R.string.status_bar_settings_battery_meter_format,
+                        mBatteryLevel);
         }
     }
 
     @Override
     void updateQuickSettings() {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
-        ImageView iv = (ImageView) mTile.findViewById(R.id.image);
-
         tv.setText(mLabel);
-        iv.setImageDrawable(mBatteryIcon);
-        iv.setImageLevel(mBatteryLevel);
     }
 
-    @Override
-    public void onBatteryLevelChanged(int level, boolean pluggedIn) {
-        mBatteryLevel = level;
-        mPluggedIn = pluggedIn;
-        updateResources();
-    }
 }

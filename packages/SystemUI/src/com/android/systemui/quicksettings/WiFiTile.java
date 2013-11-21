@@ -2,30 +2,23 @@ package com.android.systemui.quicksettings;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.policy.NetworkController;
-import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
 
-public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedCallback{
-    private NetworkController mController;
+public class WiFiTile extends NetworkTile {
     private boolean mWifiConnected;
     private boolean mWifiNotConnected;
     private int mWifiSignalIconId;
     private String mDescription;
 
     public WiFiTile(Context context, QuickSettingsController qsc, NetworkController controller) {
-        super(context, qsc);
-
-        mController = controller;
+        super(context, qsc, controller, R.layout.quick_settings_tile_wifi);
 
         mOnClick = new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 WifiManager wfm = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
@@ -33,7 +26,6 @@ public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedC
             }
         };
         mOnLongClick = new OnLongClickListener() {
-
             @Override
             public boolean onLongClick(View v) {
                 startSettingsActivity(android.provider.Settings.ACTION_WIFI_SETTINGS);
@@ -43,25 +35,7 @@ public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedC
     }
 
     @Override
-    void onPostCreate() {
-        mController.addNetworkSignalChangedCallback(this);
-        updateTile();
-        super.onPostCreate();
-    }
-
-    @Override
-    public void onDestroy() {
-        mController.removeNetworkSignalChangedCallback(this);
-        super.onDestroy();
-    }
-
-    @Override
-    public void updateResources() {
-        updateTile();
-        super.updateResources();
-    }
-
-    private synchronized void updateTile() {
+    protected void updateTile() {
         if (mWifiConnected) {
             mDrawable = mWifiSignalIconId;
             mLabel = mDescription.substring(1, mDescription.length()-1);
@@ -75,20 +49,25 @@ public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedC
     }
 
     @Override
-    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId, boolean activityIn, boolean activityOut, String wifiSignalContentDescriptionId, String description) {
+    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId,
+            boolean activityIn, boolean activityOut,
+            String wifiSignalContentDescriptionId, String description) {
         mWifiConnected = enabled && (wifiSignalIconId > 0) && (description != null);
         mWifiNotConnected = (wifiSignalIconId > 0) && (description == null);
         mWifiSignalIconId = wifiSignalIconId;
         mDescription = description;
+        setActivity(activityIn, activityOut);
         updateResources();
     }
 
     @Override
-    public void onMobileDataSignalChanged(boolean enabled, int mobileSignalIconId, String mobileSignalContentDescriptionId, int dataTypeIconId, boolean activityIn, boolean activityOut, String dataTypeContentDescriptionId, String description) {
+    public void onMobileDataSignalChanged(boolean enabled, int mobileSignalIconId,
+            String mobileSignalContentDescriptionId, int dataTypeIconId,
+            boolean activityIn, boolean activityOut,
+            String dataTypeContentDescriptionId, String description) {
     }
 
     @Override
     public void onAirplaneModeChanged(boolean enabled) {
     }
-
 }
