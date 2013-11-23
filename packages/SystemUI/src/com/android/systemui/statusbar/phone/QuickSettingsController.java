@@ -32,7 +32,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NFC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_PROFILE;
-//import static com.android.internal.util.mahdi.QSConstants.TILE_QUIETHOURS;
+import static com.android.internal.util.mahdi.QSConstants.TILE_QUIETHOURS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_RINGER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SCREENTIMEOUT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SETTINGS;
@@ -80,7 +80,7 @@ import com.android.systemui.quicksettings.NfcTile;
 import com.android.systemui.quicksettings.PreferencesTile;
 import com.android.systemui.quicksettings.ProfileTile;
 import com.android.systemui.quicksettings.QuickSettingsTile;
-//import com.android.systemui.quicksettings.QuietHoursTile;
+import com.android.systemui.quicksettings.QuietHoursTile;
 import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.ScreenTimeoutTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
@@ -240,8 +240,8 @@ public class QuickSettingsController {
                 // No need to check again here
                 qs = new NfcTile(mContext, this);
             } else if (tile.equals(TILE_WIMAX)) {            
-            //} else if (tile.equals(TILE_QUIETHOURS)) {
-            //    qs = new QuietHoursTile(mContext, this);
+            } else if (tile.equals(TILE_QUIETHOURS)) {
+                qs = new QuietHoursTile(mContext, this);
             } else if (tile.equals(TILE_VOLUME)) {
                 qs = new VolumeTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_IMMERSIVEMODE)) {
