@@ -73,7 +73,7 @@ public class ScreenTimeoutTile extends QuickSettingsTile {
     private synchronized void updateTile() {
         int timeout = getScreenTimeout();
         mLabel = makeTimeoutSummaryString(mContext, timeout);
-        mDrawable = R.drawable.ic_qs_screen_timeout_off;
+        mDrawable = R.drawable.ic_qs_screen_timeout_on;
 
         /* TODO: Determine if we need an on and off state
         if (timeout <= SCREEN_TIMEOUT_LOW) {

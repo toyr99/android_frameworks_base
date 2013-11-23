@@ -213,16 +213,20 @@ public class MobileNetworkTypeTile extends QuickSettingsTile implements NetworkS
     }
 
     @Override
-    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId, boolean activityIn, boolean activityOut, String wifiSignalContentDescriptionId, String description) {
-
-    }
-
-    @Override
-    public void onMobileDataSignalChanged(boolean enabled, int mobileSignalIconId, String mobileSignalContentDescriptionId, int dataTypeIconId, boolean activityIn, boolean activityOut, String dataTypeContentDescriptionId, String description) {
-        updateResources();
-    }
-
-    @Override
     public void onAirplaneModeChanged(boolean enabled) {
+    }
+
+    @Override
+    public void onWifiSignalChanged(boolean enabled, int wifiSignalIconId,
+            boolean activityIn, boolean activityOut,
+            String wifiSignalContentDescriptionId, String description) {
+    }
+
+    @Override
+    public void onMobileDataSignalChanged(boolean enabled,
+            int mobileSignalIconId, String mobileSignalContentDescriptionId,
+            int dataTypeIconId, boolean activityIn, boolean activityOut,
+            String dataTypeContentDescriptionId, String description) {
+        updateResources();
     }
 }
