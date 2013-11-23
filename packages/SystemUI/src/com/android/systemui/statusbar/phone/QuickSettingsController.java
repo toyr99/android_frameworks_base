@@ -44,6 +44,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFI;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIMAX;
+import static com.android.internal.util.mahdi.QSConstants.TILE_NAVBAR;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -92,6 +93,7 @@ import com.android.systemui.quicksettings.VolumeTile;
 import com.android.systemui.quicksettings.WiFiDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
+import com.android.systemui.quicksettings.NavBarTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -247,6 +249,8 @@ public class QuickSettingsController {
                 if (QSUtils.globalImmersiveModeEnabled(resolver)) {
                     qs = new ImmersiveModeTile(mContext, this, mHandler);
                 }
+	    } else if (tile.equals(TILE_NAVBAR)) {
+                qs = new NavBarTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_NETWORKADB)) {
                 mTileStatusUris.add(Settings.Global.getUriFor(Settings.Global.ADB_ENABLED));
                 if (QSUtils.adbEnabled(resolver)) {
