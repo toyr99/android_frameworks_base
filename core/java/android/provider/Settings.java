@@ -2676,7 +2676,13 @@ public final class Settings {
          * Whether power menu screenshot is enabled
          * @hide
          */
-        public static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";        
+        public static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";
+
+	/**
+         * Whether power menu screen record is enabled
+          * @hide
+         */
+        public static final String POWER_MENU_SCREENRECORD_ENABLED = "power_menu_screenrecord_enabled";       
 
         /**
          * Whether power menu airplane toggle is enabled
@@ -2849,6 +2855,11 @@ public final class Settings {
         * Stores the java DateFormat string for the date
         */
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
+
+	/* Network speed indicator
+         * @hide
+         */
+        public static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
 	
         /**
          * Whether or not to show circle battery around the lockscreen ring
@@ -3234,6 +3245,18 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";  
+
+        /**
+         * Width and height of output vide expressed in WxH
+         * @hide
+         */
+        public static final String SCREEN_RECORDER_OUTPUT_DIMENSIONS = "screen_recorder_output_dimensions";
+
+        /**
+         * Screen recorder framerate in bits per second
+         * @hide
+         */
+        public static final String SCREEN_RECORDER_BITRATE = "screen_recorder_bitrate";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
