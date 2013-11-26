@@ -45,6 +45,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_WIFI;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIMAX;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NAVBAR;
+import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKSPEED;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -94,6 +95,7 @@ import com.android.systemui.quicksettings.WiFiDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.quicksettings.NavBarTile;
+import com.android.systemui.quicksettings.NetworkSpeedTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -251,6 +253,8 @@ public class QuickSettingsController {
                 }
 	    } else if (tile.equals(TILE_NAVBAR)) {
                 qs = new NavBarTile(mContext, this, mHandler);
+	    } else if (tile.equals(TILE_NETWORKSPEED)) {
+                qs = new NetworkSpeedTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_NETWORKADB)) {
                 mTileStatusUris.add(Settings.Global.getUriFor(Settings.Global.ADB_ENABLED));
                 if (QSUtils.adbEnabled(resolver)) {
