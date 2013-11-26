@@ -2549,7 +2549,13 @@ public final class Settings {
          * Whether the lockscreen should be completely disabled.
          * @hide
          */
-        public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";	
+        public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
+
+	/**
+         * Stores values for custom lockscreen targets
+         * @hide
+         */
+        public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
 
         /**
          * Whether to display notifications on screen when screen is off
