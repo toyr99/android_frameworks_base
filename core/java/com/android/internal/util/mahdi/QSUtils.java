@@ -84,4 +84,8 @@ public class QSUtils {
 	public static boolean NavBarEnabled(ContentResolver resolver) {
             return (Settings.System.getInt(resolver, Settings.System.NAVIGATION_BAR_SHOW, 1) == 1);
         }
+
+	public static boolean NetworkSpeedEnabled(ContentResolver resolver) {
+            return (Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC, 1) == 1);
+        }
 }
