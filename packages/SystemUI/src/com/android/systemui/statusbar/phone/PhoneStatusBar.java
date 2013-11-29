@@ -2175,6 +2175,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                         .setDuration(FLIP_DURATION_OUT),
                     mRibbonView, View.GONE));
         }
+	mSettingsButtonAnim = start(
+            setVisibilityWhenDone(
+                ObjectAnimator.ofFloat(mSettingsButton, View.ALPHA, 0f)
+                    .setDuration(FLIP_DURATION),
+                    mScrollView, View.INVISIBLE));
+        mNotificationButton.setVisibility(View.VISIBLE);
+        mNotificationButtonAnim = start(
+            ObjectAnimator.ofFloat(mNotificationButton, View.ALPHA, 1f)
+                .setDuration(FLIP_DURATION));
         mClearButtonAnim = start(
             setVisibilityWhenDone(
                 ObjectAnimator.ofFloat(mClearButton, View.ALPHA, 0f)
