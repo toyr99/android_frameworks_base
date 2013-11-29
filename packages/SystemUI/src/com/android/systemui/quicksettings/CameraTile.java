@@ -246,6 +246,7 @@ public class CameraTile extends QuickSettingsTile {
         super(context, qsc, R.layout.quick_settings_tile_camera);
         mHandler = handler;
         mLabel = mContext.getString(R.string.quick_settings_camera_label);
+        mDrawable = R.drawable.ic_qs_camera;
 
         String imageFileNameFormat = DEFAULT_IMAGE_FILE_NAME_FORMAT;
         try {

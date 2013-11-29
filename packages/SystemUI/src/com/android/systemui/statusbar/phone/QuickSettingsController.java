@@ -122,15 +122,15 @@ public class QuickSettingsController {
     private BroadcastReceiver mReceiver;
     private ContentObserver mObserver;
     public PhoneStatusBar mStatusBarService;
-    private final String mSettingsString;
-    private boolean mHideLiveTiles;
-    private boolean mHideLiveTileLabels;
+    private final String mSettingsKey;
+    private final boolean mRibbonMode;
 
     private InputMethodTile mIMETile;
 
     private static final int MSG_UPDATE_TILES = 1000;
 
-    public QuickSettingsController(Context context, QuickSettingsContainerView container, PhoneStatusBar statusBarService, String settings) {
+    public QuickSettingsController(Context context, QuickSettingsContainerView container,
+            PhoneStatusBar statusBarService, String settingsKey, boolean ribbonMode) {
         mContext = context;
         mContainerView = container;
         mHandler = new Handler() {
@@ -147,7 +147,8 @@ public class QuickSettingsController {
         };
         mStatusBarService = statusBarService;
         mQuickSettingsTiles = new ArrayList<QuickSettingsTile>();
-        mSettingsString = settings;
+        mSettingsKey = settingsKey;
+        mRibbonMode = ribbonMode;
     }
 
     void loadTiles() {
@@ -183,7 +184,7 @@ public class QuickSettingsController {
         ContentResolver resolver = mContext.getContentResolver();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         String tiles = Settings.System.getStringForUser(resolver,
-                mSettingsString, UserHandle.USER_CURRENT);
+                mSettingsKey, UserHandle.USER_CURRENT);
         if (tiles == null) {
             Log.i(TAG, "Default tiles being loaded");
             tiles = TextUtils.join(TILE_DELIMITER, TILES_DEFAULT);
@@ -268,7 +269,7 @@ public class QuickSettingsController {
             }
         }
 
-        if (mHideLiveTiles) {
+        if (mRibbonMode) {
             return;
         }
 
@@ -331,9 +332,9 @@ public class QuickSettingsController {
         loadTiles();
         setupBroadcastReceiver();
         setupContentObserver();
-        if (mHideLiveTileLabels) {
+        if (mRibbonMode) {
             for (QuickSettingsTile t : mQuickSettingsTiles) {
-                t.setLabelVisibility(false);
+                t.switchToRibbonMode();
             }
         }
     }
@@ -429,13 +430,5 @@ public class QuickSettingsController {
         for (QuickSettingsTile t : mQuickSettingsTiles) {
             t.updateResources();
         }
-    }
-
-    public void hideLiveTileLabels(boolean hide) {
-        mHideLiveTileLabels = hide;
-    }
-
-    public void hideLiveTiles(boolean hide) {
-        mHideLiveTiles = hide;
     }
 }
