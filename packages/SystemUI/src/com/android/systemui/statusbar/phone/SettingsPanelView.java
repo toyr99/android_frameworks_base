@@ -72,6 +72,8 @@ public class SettingsPanelView extends PanelView {
         mHandleBar = resources.getDrawable(R.drawable.status_bar_close);
         mHandleBarHeight = resources.getDimensionPixelSize(R.dimen.close_handle_height);
         mHandleView = findViewById(R.id.handle);
+        mBackground = (ImageView) findViewById(R.id.notification_wallpaper);
+        setBackgroundDrawables();
     }
 
     public void setQuickSettings(QuickSettingsController qs) {
@@ -170,4 +172,56 @@ public class SettingsPanelView extends PanelView {
         }
         return super.onTouchEvent(event);
     }
+
+    private void setDefaultBackground(int resource, int color, int alpha) {
+        setBackgroundResource(resource);
+        if (color != -2) {
+            getBackground().setColorFilter(color, Mode.SRC_ATOP);
+        } else {
+            getBackground().setColorFilter(null);
+        }
+        getBackground().setAlpha(alpha);
+        mBackgroundDrawable = null;
+        mBackground.setImageDrawable(null);
+    }
+
+    protected void setBackgroundDrawables() {
+        float alpha = Settings.System.getFloatForUser(
+                mContext.getContentResolver(),
+                Settings.System.NOTIFICATION_BACKGROUND_ALPHA, 0.1f,
+                UserHandle.USER_CURRENT);
+        int backgroundAlpha = (int) ((1 - alpha) * 255);
+
+        String notifiBack = Settings.System.getStringForUser(
+                mContext.getContentResolver(),
+                Settings.System.NOTIFICATION_BACKGROUND,
+                UserHandle.USER_CURRENT);
+
+        if (notifiBack == null) {
+            setDefaultBackground(R.drawable.notification_panel_bg, -2, backgroundAlpha);
+            return;
+        }
+
+        if (notifiBack.startsWith("color=")) {
+            notifiBack = notifiBack.substring("color=".length());
+            try {
+                setDefaultBackground(R.drawable.notification_panel_bg,
+                        Color.parseColor(notifiBack), backgroundAlpha);
+            } catch(NumberFormatException e) {
+            }
+        } else {
+            File f = new File(Uri.parse(notifiBack).getPath());
+            if (f !=  null) {
+                Bitmap backgroundBitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                mBackgroundDrawable =
+                    new BitmapDrawable(getContext().getResources(), backgroundBitmap);
+            }
+        }
+        if (mBackgroundDrawable != null) {
+            setBackgroundResource(com.android.internal.R.color.transparent);
+            mBackgroundDrawable.setAlpha(backgroundAlpha);
+            mBackground.setImageDrawable(mBackgroundDrawable);
+        }
+    }
+
 }
