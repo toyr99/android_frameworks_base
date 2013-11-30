@@ -41,6 +41,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -58,6 +59,7 @@ import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 
 import com.android.internal.telephony.IccCardConstants.State;
+import com.android.internal.util.mahdi.DeviceUtils;
 import com.android.internal.util.mahdi.LockscreenTargetUtils;
 import com.android.internal.util.mahdi.TorchConstants;
 import com.android.internal.view.RotationPolicy;
@@ -236,8 +238,45 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+
+        Resources res = getResources();
+
+        int lockColor = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_LOCK_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        int dotColor = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_DOTS_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        String lockIcon = Settings.Secure.getStringForUser(
+                mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_LOCK_ICON,
+                UserHandle.USER_CURRENT);
+
         mGlowPadView = (GlowPadView) findViewById(R.id.glow_pad_view);
         mGlowPadView.setOnTriggerListener(mOnTriggerListener);
+
+        Drawable lock = null;
+
+        if (lockIcon != null && lockIcon.length() > 0) {
+            File f = new File(Uri.parse(lockIcon).getPath());
+            if (f.exists()) {
+                lock = new BitmapDrawable(
+                        mContext.getResources(), f.getAbsolutePath());
+                if (Settings.Secure.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.Secure.LOCKSCREEN_COLORIZE_LOCK, 0,
+                        UserHandle.USER_CURRENT) == 0) {
+                    lockColor = -2;
+                }
+            }
+        }
+
+        mGlowPadView.setColoredIcons(lockColor, dotColor, lock);
+
         updateTargets();
 
         if (Settings.System.getInt(getContext().getContentResolver(),
@@ -247,7 +286,9 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
         mSecurityMessageDisplay = new KeyguardMessageArea.Helper(this);
         View bouncerFrameView = findViewById(R.id.keyguard_selector_view_frame);
-        mBouncerFrame = bouncerFrameView.getBackground();
+        mBouncerFrame =
+                KeyguardSecurityViewHelper.colorizeFrame(
+                mContext, bouncerFrameView.getBackground());
 
         mDoubleTapGesture = new GestureDetector(mContext,
                 new GestureDetector.SimpleOnGestureListener() {
