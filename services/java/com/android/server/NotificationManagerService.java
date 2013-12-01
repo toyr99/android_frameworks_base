@@ -189,6 +189,8 @@ public class NotificationManagerService extends INotificationManager.Stub
     private ArrayList<NotificationRecord> mLights = new ArrayList<NotificationRecord>();
     private NotificationRecord mLedNotification;
 
+    private HashMap<String, Long> mAnnoyingNotifications = new HashMap<String, Long>();
+
     private final AppOpsManager mAppOps;
 
     // contains connections to all connected listeners, including app services
@@ -2139,7 +2141,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                             && (r.getUserId() == UserHandle.USER_ALL ||
                                 (r.getUserId() == userId && r.getUserId() == currentUser))
                             && canInterrupt
-                            && mSystemReady) {
+                            && mSystemReady
+                            && !notificationIsAnnoying(pkg)) {
 		    try {
                 	final ProfileManager profileManager =
                         (ProfileManager) mContext.getSystemService(Context.PROFILE_SERVICE);
@@ -2281,6 +2284,33 @@ public class NotificationManagerService extends INotificationManager.Stub
         });
 
         idOut[0] = id;
+    }
+
+    private boolean notificationIsAnnoying(String pkg) {
+        final long annoyingNotificationThreshold = Settings.System.getLongForUser(
+                mContext.getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0,
+                UserHandle.USER_CURRENT_OR_SELF);
+
+        if (annoyingNotificationThreshold == 0) {
+            return false;
+        }
+
+        if("android".equals(pkg)) {
+            return false;
+        }
+
+        long currentTime = System.currentTimeMillis();
+        if (mAnnoyingNotifications.containsKey(pkg)
+                && (currentTime - mAnnoyingNotifications.get(pkg)
+                        < annoyingNotificationThreshold)) {
+            // less than threshold; it's an annoying notification!!
+            return true;
+        } else {
+            // not in map or time to re-add
+            mAnnoyingNotifications.put(pkg, currentTime);
+            return false;
+        }
     }
 
     private void sendAccessibilityEvent(Notification notification, CharSequence packageName) {
