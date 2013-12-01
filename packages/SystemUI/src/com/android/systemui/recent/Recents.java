@@ -50,7 +50,7 @@ public class Recents extends SystemUI implements RecentsComponent {
 
     @Override
     public void toggleRecents(Display display, int layoutDirection,
-            View statusBarView, int expandedDesktopStyle) {
+            View statusBarView, int GlobalImmersiveModeStyle) {
         if (DEBUG) Log.d(TAG, "toggle recents panel");
         try {
             TaskDescription firstTask = RecentTasksLoader.getInstance(mContext).getFirstTask();
@@ -102,7 +102,7 @@ public class Recents extends SystemUI implements RecentsComponent {
 
 
                 DisplayMetrics dm = new DisplayMetrics();
-                if (expandedDesktopStyle == 2) {
+                if (GlobalImmersiveModeStyle == 2) {
                     display.getRealMetrics(dm);
                 } else {
                     display.getMetrics(dm);
@@ -159,7 +159,7 @@ public class Recents extends SystemUI implements RecentsComponent {
                     float statusBarHeight = res.getDimensionPixelSize(
                             com.android.internal.R.dimen.status_bar_height);
                     float recentsItemTopPadding = statusBarHeight;
-                    if (expandedDesktopStyle != 0) {
+                    if (GlobalImmersiveModeStyle != 0) {
                         statusBarHeight = 0;
                     }
 

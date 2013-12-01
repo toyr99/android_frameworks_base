@@ -26,6 +26,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -170,7 +171,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected ActiveDisplayView mActiveDisplayView;
 
-    private int mExpandedDesktopStyle = 0;
+    private int mGlobalImmersiveModeStyle = 0;
 
     public IStatusBarService getStatusBarService() {
         return mBarService;
@@ -200,9 +201,9 @@ public abstract class BaseStatusBar extends SystemUI implements
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.EXPANDED_DESKTOP_STATE), false, this);
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STATE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.EXPANDED_DESKTOP_STYLE), false, this);
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE), false, this);
             update();
         }
 
@@ -213,11 +214,11 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         private void update() {
             ContentResolver resolver = mContext.getContentResolver();
-            mExpandedDesktopStyle = 0;
+            mGlobalImmersiveModeStyle = 0;
             if (Settings.System.getIntForUser(resolver,
-                    Settings.System.EXPANDED_DESKTOP_STATE, 0, UserHandle.USER_CURRENT) != 0) {
-                mExpandedDesktopStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
-                        Settings.System.EXPANDED_DESKTOP_STYLE, 0, UserHandle.USER_CURRENT);
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STATE, 0, UserHandle.USER_CURRENT) != 0) {
+                mGlobalImmersiveModeStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, 0, UserHandle.USER_CURRENT);
             }
         }
     };
@@ -613,7 +614,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected void toggleRecentsActivity() {
         if (mRecents != null) {
             mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView(),
-                    mExpandedDesktopStyle);
+                    mGlobalImmersiveModeStyle);
         }
     }
 

@@ -21,7 +21,7 @@ import android.view.View;
 
 public interface RecentsComponent {
     void toggleRecents(Display display, int layoutDirection, View statusBarView,
-                       int expandedDesktopStyle);
+                       int GlobalImmersiveModeStyle);
 
     void preloadRecentTasksList();
 
