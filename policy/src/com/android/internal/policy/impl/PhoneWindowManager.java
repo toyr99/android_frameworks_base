@@ -3873,8 +3873,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private int updateSystemUiVisibilityFlagsForGlobalImmersiveMode(int vis) {
         if (immersiveModeHidesNavigationBar()) {
-            vis |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+                vis |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         }
+
         if (immersiveModeHidesStatusBar()) {
             vis |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
         }
@@ -5786,6 +5787,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 && (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0) {
             mNavigationBarController.showTransient();
             visibility |= View.NAVIGATION_BAR_TRANSIENT;
+	    mWindowManagerFuncs.addSystemUIVisibilityFlag(View.NAVIGATION_BAR_TRANSIENT);
         }
         final int visibility2 = visibility;
         mLastSystemUiFlags = visibility;
