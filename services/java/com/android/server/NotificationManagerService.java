@@ -1402,17 +1402,23 @@ public class NotificationManagerService extends INotificationManager.Stub
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_ENABLED), false, this);
+                    Settings.System.QUIET_HOURS_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_START), false, this);
+                    Settings.System.QUIET_HOURS_START),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_END), false, this);
+                    Settings.System.QUIET_HOURS_END),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_MUTE), false, this);
+                    Settings.System.QUIET_HOURS_MUTE),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_STILL), false, this);
+                    Settings.System.QUIET_HOURS_STILL),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUIET_HOURS_DIM), false, this);
+                    Settings.System.QUIET_HOURS_DIM),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -1424,17 +1430,23 @@ public class NotificationManagerService extends INotificationManager.Stub
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             mQuietHoursEnabled = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+                    Settings.System.QUIET_HOURS_ENABLED, 0,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
             mQuietHoursStart = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
+                    Settings.System.QUIET_HOURS_START, 0,
+                    UserHandle.USER_CURRENT_OR_SELF);
             mQuietHoursEnd = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
+                    Settings.System.QUIET_HOURS_END, 0,
+                    UserHandle.USER_CURRENT_OR_SELF);
             mQuietHoursMute = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_MUTE, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+                    Settings.System.QUIET_HOURS_MUTE, 0,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
             mQuietHoursStill = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_STILL, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+                    Settings.System.QUIET_HOURS_STILL, 0,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
             mQuietHoursDim = Settings.System.getIntForUser(resolver,
-                    Settings.System.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+                    Settings.System.QUIET_HOURS_DIM, 0,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
         }
     }
 
@@ -2442,11 +2454,12 @@ public class NotificationManagerService extends INotificationManager.Stub
             }
         }
 
-        // Don't flash while we are in a call, screen is on or we are in quiet hours with light dimmed
+        // Don't flash while we are in a call, screen is
+        // on or we are in quiet hours with light dimmed
         if (mLedNotification == null || mInCall
                 || (mScreenOn) || (inQuietHours() && mQuietHoursDim)) {
             mNotificationLight.turnOff();
-        } else {
+        } else if (mNotificationPulseEnabled) {
             final Notification ledno = mLedNotification.sbn.getNotification();
             final NotificationLedValues ledValues = getLedValuesForNotification(mLedNotification);
             int ledARGB = ledno.ledARGB;
