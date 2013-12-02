@@ -589,6 +589,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
         addNavigationBar();
 
+	SettingsObserver observer = new SettingsObserver(mHandler);
+        observer.observe();
+
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext);
 
@@ -631,9 +634,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 mRibbonQS.setupQuickSettings();
             }
         }
-
-	SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.observe();
     }
 
     // ================================================================================
