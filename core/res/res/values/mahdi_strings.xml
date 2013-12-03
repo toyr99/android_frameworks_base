@@ -121,4 +121,6 @@
         intercept an outgoing SMS.
         Malicious apps may use this to prevent outgoing SMS messages.</string>
 
+    <string name="immersive_mode_confirmation_bottom">Swipe up from the bottom to exit full screen.</string>
+
 </resources>
