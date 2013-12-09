@@ -1216,7 +1216,7 @@ static const RegJNIRec gRegJNI[] = {
     REG_JNI(register_com_android_internal_content_NativeLibraryHelper),
     REG_JNI(register_com_android_internal_net_NetworkStatsFactory),
     REG_JNI(register_android_content_res_PackageRedirectionMap),    
-#ifdef QCOM_ACTIVITY_TRIGGER
+#ifdef QCOM_HARDWARE
     REG_JNI(register_com_android_internal_app_ActivityTrigger),
 #endif
 };
