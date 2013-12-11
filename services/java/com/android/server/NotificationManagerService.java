@@ -2180,6 +2180,7 @@ public class NotificationManagerService extends INotificationManager.Stub
                                    Settings.System.NOTIFICATION_SOUND) != null;
                         } else if (!(QuietHoursHelper.inQuietHours(mContext,
                                 Settings.System.QUIET_HOURS_MUTE)) && notification.sound != null) {
+                            soundUri = notification.sound;
                             hasValidSound = (soundUri != null);
                         }
 
