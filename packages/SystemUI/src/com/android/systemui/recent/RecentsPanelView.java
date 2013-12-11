@@ -954,18 +954,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mRecentsContainer.drawFadedEdges(canvas, left, right, top, bottom);
     }
 
-    @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        if (mClearRecents != null) {
-            MarginLayoutParams lp = (MarginLayoutParams) mClearRecents.getLayoutParams();
-            lp.topMargin = insets.top;
-            lp.rightMargin = insets.right;
-            mClearRecents.setLayoutParams(lp);
-        }
-
-        return super.fitSystemWindows(insets);
-    }
-
     class FakeClearUserDataObserver extends IPackageDataObserver.Stub {
         public void onRemoveCompleted(final String packageName, final boolean succeeded) {
         }
