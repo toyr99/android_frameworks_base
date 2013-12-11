@@ -7150,7 +7150,6 @@ public final class Settings {
 
         /**
          * Control whether the process CPU info meter should be shown.
-	 * @hide
          */
         public static final String SHOW_CPU = "show_cpu";
 
