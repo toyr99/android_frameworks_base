@@ -125,5 +125,15 @@
 
     <!-- Hide notification icons -->
     <string name="status_bar_notification_hide_icon_packages">Hide app\'s notification icon(s)</string>
+
+    <!-- Custom Shortcut Actions -->
+    <string name="shortcut_picker">Custom Shortcuts</string>
+    <string name="shortcut_immersive">Immersive Mode Toggle</string>
+    <string name="shortcut_quiethours">Quiethours Toggle</string>
+    <string name="shortcut_rotation">Rotation Lock Toggle</string>
+    <string name="shortcut_torch">Torch Toggle</string>
+    <string name="shortcut_reboot">Reboot (instant)</string>
+    <string name="shortcut_last_app">Last App</string>
+    <string name="shortcut_screenshot">Screenshot</string>
     
 </resources>
