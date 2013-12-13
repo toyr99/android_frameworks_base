@@ -86,9 +86,11 @@ public class MobileNetworkTypeTile extends QuickSettingsTile implements NetworkS
                         }
                         break;
                 }
-
                 mMode = NETWORK_MODE_UNKNOWN;
                 mContext.sendBroadcast(intent);
+                if (isFlipTilesEnabled()) {
+                    flipTile(0);
+                }
             }
         };
 

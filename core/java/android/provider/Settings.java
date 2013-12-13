@@ -3305,6 +3305,13 @@ public final class Settings {
          */
         public static final String QS_COLLAPSE_PANEL = "qs_collapse_panel";
 
+        /**
+         * Animate-flip Quick Settings Panel Tiles on click
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TILES_FLIP = "quick_settings_tiles_flip";
+
 	/**
         * Custom Ring Mode
         * @hide

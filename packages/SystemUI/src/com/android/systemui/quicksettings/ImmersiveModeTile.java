@@ -28,6 +28,9 @@ public class ImmersiveModeTile extends QuickSettingsTile {
                 Settings.System.putIntForUser(mContext.getContentResolver(),
                         Settings.System.GLOBAL_IMMERSIVE_MODE_STATE, mEnabled ? 0 : 1,
                         UserHandle.USER_CURRENT);
+                if (isFlipTilesEnabled()) {
+                    flipTile(0);
+                }
             }
         };
 
