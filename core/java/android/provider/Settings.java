@@ -3485,6 +3485,13 @@ public final class Settings {
          */
         public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
 
+        /**
+         * Should call status sounds be played
+         *
+         * @hide
+         */
+        public static final String CALL_END_SOUND = "call_end_sound";
+
 	/**
          * HALO enabled, should default to 0 (HALO is disabled)
          * @hide
