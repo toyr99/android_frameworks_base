@@ -6093,6 +6093,21 @@ public final class Settings {
         public static final String UI_NIGHT_MODE = "ui_night_mode";
 
         /**
+         * The current theme mode that has been selected by the user.  Owned
+         * and controlled by UiModeManagerService.
+         * @hide
+         */
+        public static final String UI_THEME_MODE = "ui_theme_mode";
+
+        /**
+         * Auto theme mode which switches either based on daytime or lightsensor
+         * values: 0 = manual (default), 1 = auto twilight (based on daytime)
+         * 2 = auto lightsensor (based on light conditions)
+         * @hide
+         */
+        public static final String UI_THEME_AUTO_MODE = "ui_theme_auto_mode";
+
+        /**
          * Whether screensavers are enabled.
          * @hide
          */
@@ -6167,26 +6182,26 @@ public final class Settings {
          */
         public static final String PAYMENT_SERVICE_SEARCH_URI = "payment_service_search_uri";
 
-	/**
+        /**
          * Whether to include options in power menu for rebooting into recovery or bootloader
          * @hide
          */
         public static final String ADVANCED_REBOOT = "advanced_reboot";
 
-	/**
+        /**
          * Whether to display the 'Wipe data' and 'Force close' options in the notification
          * area and in the recent app list
          * @hide
          */
         public static final String DEVELOPMENT_SHORTCUT = "development_shortcut";
 
-	/**
+        /**
          * Whether newly installed apps should run with privacy guard by default
          * @hide
          */
          public static final String PRIVACY_GUARD_DEFAULT = "privacy_guard_default";
 
-	/**
+        /**
          * Whether to allow killing of the foreground app by long-pressing the Back button
          * @hide
          */
@@ -6241,8 +6256,10 @@ public final class Settings {
             MOUNT_UMS_PROMPT,
             MOUNT_UMS_NOTIFY_ENABLED,
             UI_NIGHT_MODE,
-	    PRIVACY_GUARD_DEFAULT,
-	    DEVELOPMENT_SHORTCUT
+            PRIVACY_GUARD_DEFAULT,
+            DEVELOPMENT_SHORTCUT,
+            UI_THEME_MODE,
+            UI_THEME_AUTO_MODE
         };
 
         /**

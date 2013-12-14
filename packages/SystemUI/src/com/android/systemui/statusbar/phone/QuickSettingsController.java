@@ -44,6 +44,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_SCREENTIMEOUT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SETTINGS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SLEEP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SYNC;
+import static com.android.internal.util.mahdi.QSConstants.TILE_THEME;
 import static com.android.internal.util.mahdi.QSConstants.TILE_TORCH;
 import static com.android.internal.util.mahdi.QSConstants.TILE_USER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_VOLUME;
@@ -98,6 +99,7 @@ import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.ScreenTimeoutTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
 import com.android.systemui.quicksettings.SyncTile;
+import com.android.systemui.quicksettings.ThemeTile;
 import com.android.systemui.quicksettings.ToggleLockscreenTile;
 import com.android.systemui.quicksettings.TorchTile;
 import com.android.systemui.quicksettings.UsbTetherTile;
@@ -272,26 +274,27 @@ public class QuickSettingsController {
                 // User cannot add the NFC tile if the device does not support it
                 // No need to check again here
                 qs = new NfcTile(mContext, this);
-            } else if (tile.equals(TILE_WIMAX)) {
             } else if (tile.equals(TILE_QUICKRECORD)) {
                 qs = new QuickRecordTile(mContext, this);           
             } else if (tile.equals(TILE_QUIETHOURS)) {
                 qs = new QuietHoursTile(mContext, this);
             } else if (tile.equals(TILE_VOLUME)) {
                 qs = new VolumeTile(mContext, this, mHandler);
-            } else if (tile.equals(TILE_IMMERSIVEMODE)) {
-                mTileStatusUris.add(Settings.System.getUriFor(Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE));
-                if (QSUtils.globalImmersiveModeEnabled(resolver)) {
-                    qs = new ImmersiveModeTile(mContext, this, mHandler);
-                }
-	    } else if (tile.equals(TILE_NAVBAR)) {
-                qs = new NavBarTile(mContext, this, mHandler);
-	    } else if (tile.equals(TILE_NETWORKSPEED)) {
+            } else if (tile.equals(TILE_NAVBAR)) {
+                    qs = new NavBarTile(mContext, this, mHandler);
+            } else if (tile.equals(TILE_NETWORKSPEED)) {
                 qs = new NetworkSpeedTile(mContext, this, mHandler);
+            } else if (tile.equals(TILE_THEME)) {
+                qs = new ThemeTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKADB)) {
                 mTileStatusUris.add(Settings.Global.getUriFor(Settings.Global.ADB_ENABLED));
                 if (QSUtils.adbEnabled(resolver)) {
                     qs = new NetworkAdbTile(mContext, this);
+                }
+            } else if (tile.equals(TILE_IMMERSIVEMODE)) {
+                mTileStatusUris.add(Settings.System.getUriFor(Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE));
+                if (QSUtils.globalImmersiveModeEnabled(resolver)) {
+                    qs = new ImmersiveModeTile(mContext, this, mHandler);
                 }
             }
 
