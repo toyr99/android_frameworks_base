@@ -41,6 +41,7 @@ public class ButtonsConstants {
     public static final String ACTION_POWER_MENU           = "**power_menu**";
     public static final String ACTION_TORCH                = "**torch**";
     public static final String ACTION_OMNISWITCH           = "**omniswitch**";
+    public static final String ACTION_THEME_SWITCH         = "**theme_switch**";
 
     // no action
     public static final String ACTION_NULL            = "**null**";

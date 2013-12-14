@@ -19,10 +19,12 @@ package com.android.internal.util.mahdi;
 import android.app.Activity;
 import android.app.ActivityManagerNative;
 import android.app.SearchManager;
+import android.app.IUiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -83,13 +85,14 @@ public class MahdiActions {
             }
 
             if (collapseShade) {
-                    if (!action.equals(ButtonsConstants.ACTION_QS)
-                            && !action.equals(ButtonsConstants.ACTION_NOTIFICATIONS)) {
-                        try {
-                            barService.collapsePanels();
-                        } catch (RemoteException ex) {
-                        }
+                if (!action.equals(ButtonsConstants.ACTION_QS)
+                        && !action.equals(ButtonsConstants.ACTION_NOTIFICATIONS)
+                        && !action.equals(ButtonsConstants.ACTION_THEME_SWITCH)) {
+                    try {
+                        barService.collapsePanels();
+                    } catch (RemoteException ex) {
                     }
+                }
             }
 
             // process the actions
@@ -131,6 +134,36 @@ public class MahdiActions {
                         context.getContentResolver(),
                         Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
                         immersiveModeOn ? 0 : 1, UserHandle.USER_CURRENT);
+                return;
+            } else if (action.equals(ButtonsConstants.ACTION_THEME_SWITCH)) {
+                boolean autoLightMode = Settings.Secure.getIntForUser(
+                        context.getContentResolver(),
+                        Settings.Secure.UI_THEME_AUTO_MODE, 0,
+                        UserHandle.USER_CURRENT) == 1;
+                boolean state = context.getResources().getConfiguration().uiThemeMode
+                        == Configuration.UI_THEME_MODE_HOLO_DARK;
+                if (autoLightMode) {
+                    try {
+                        barService.collapsePanels();
+                    } catch (RemoteException ex) {
+                    }
+                    Toast.makeText(context,
+                            com.android.internal.R.string.theme_auto_switch_mode_error,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Handle a switch change
+                // we currently switch between holodark and hololight till either
+                // theme engine is ready or lightheme is ready. Currently due of
+                // missing light themeing hololight = system base theme
+                final IUiModeManager uiModeManagerService = IUiModeManager.Stub.asInterface(
+                        ServiceManager.getService(Context.UI_MODE_SERVICE));
+                try {
+                    uiModeManagerService.setUiThemeMode(state
+                            ? Configuration.UI_THEME_MODE_HOLO_LIGHT
+                            : Configuration.UI_THEME_MODE_HOLO_DARK);
+                } catch (RemoteException e) {
+                }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_KILL)) {
                 if (isKeyguardShowing) {

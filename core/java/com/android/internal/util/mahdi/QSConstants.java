@@ -37,6 +37,7 @@ public class QSConstants {
         public static final String TILE_MUSIC = "toggleMusic";
         public static final String TILE_CUSTOM = "toggleCustom";
         public static final String TILE_CONTACT = "tileContact";
+        public static final String TILE_THEME = "toggleTheme";
 
         //Key for custom tile additive
         public static final String TILE_CUSTOM_KEY = " Key=";
