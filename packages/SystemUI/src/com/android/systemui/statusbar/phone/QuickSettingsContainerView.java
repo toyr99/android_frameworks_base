@@ -18,7 +18,10 @@ package com.android.systemui.statusbar.phone;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
@@ -172,5 +175,11 @@ public class QuickSettingsContainerView extends FrameLayout {
                 }
             }
         }
+    }
+
+    public int getTileTextColor() {
+        int tileTextColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QUICK_TILES_TEXT_COLOR, -2, UserHandle.USER_CURRENT);
+        return tileTextColor;
     }
 }

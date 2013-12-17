@@ -27,7 +27,9 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_DELIMITER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_IMMERSIVEMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_GPS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LOCKSCREEN;
+import static com.android.internal.util.mahdi.QSConstants.TILE_LTE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_MOBILEDATA;
+import static com.android.internal.util.mahdi.QSConstants.TILE_MUSIC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NFC;
@@ -56,6 +58,7 @@ import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -74,8 +77,10 @@ import com.android.systemui.quicksettings.CameraTile;
 import com.android.systemui.quicksettings.ImmersiveModeTile;
 import com.android.systemui.quicksettings.GPSTile;
 import com.android.systemui.quicksettings.InputMethodTile;
+import com.android.systemui.quicksettings.LteTile;
 import com.android.systemui.quicksettings.MobileNetworkTile;
 import com.android.systemui.quicksettings.MobileNetworkTypeTile;
+import com.android.systemui.quicksettings.MusicTile;
 import com.android.systemui.quicksettings.NetworkAdbTile;
 import com.android.systemui.quicksettings.NfcTile;
 import com.android.systemui.quicksettings.PreferencesTile;
@@ -100,6 +105,7 @@ import com.android.systemui.quicksettings.NetworkSpeedTile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class QuickSettingsController {
     private static String TAG = "QuickSettingsController";
@@ -151,6 +157,10 @@ public class QuickSettingsController {
         mRibbonMode = ribbonMode;
     }
 
+    public boolean isRibbonMode() {
+        return mRibbonMode;
+    }
+
     void loadTiles() {
         // Reset reference tiles
         mIMETile = null;
@@ -158,6 +168,7 @@ public class QuickSettingsController {
         // Filter items not compatible with device
         boolean cameraSupported = QSUtils.deviceSupportsCamera();
         boolean bluetoothSupported = QSUtils.deviceSupportsBluetooth();
+        boolean lteSupported = QSUtils.deviceSupportsLte(mContext);
         boolean mobileDataSupported = QSUtils.deviceSupportsMobileData(mContext);        
         boolean gpsSupported = QSUtils.deviceSupportsGps(mContext);
         boolean torchSupported = QSUtils.deviceSupportsTorch(mContext);
@@ -170,6 +181,10 @@ public class QuickSettingsController {
             TILES_DEFAULT.remove(TILE_WIFIAP);
             TILES_DEFAULT.remove(TILE_MOBILEDATA);
             TILES_DEFAULT.remove(TILE_NETWORKMODE);
+        }
+
+        if (!lteSupported) {
+            TILES_DEFAULT.remove(TILE_LTE);
         }        
 
         if (!gpsSupported) {
@@ -221,8 +236,12 @@ public class QuickSettingsController {
                 qs = new ScreenTimeoutTile(mContext, this);
             } else if (tile.equals(TILE_MOBILEDATA) && mobileDataSupported) {
                 qs = new MobileNetworkTile(mContext, this, mStatusBarService.mNetworkController);
+            } else if (tile.equals(TILE_MUSIC)) {
+                qs = new MusicTile(mContext, this);
             } else if (tile.equals(TILE_LOCKSCREEN)) {
                 qs = new ToggleLockscreenTile(mContext, this);
+            } else if (tile.equals(TILE_LTE)) {
+                qs = new LteTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKMODE) && mobileDataSupported) {
                 qs = new MobileNetworkTypeTile(mContext, this, mStatusBarService.mNetworkController);
             } else if (tile.equals(TILE_AUTOROTATE)) {

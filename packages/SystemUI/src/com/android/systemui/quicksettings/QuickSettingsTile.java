@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.util.TypedValue;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +36,8 @@ public class QuickSettingsTile implements OnClickListener {
     protected final int mTileLayout;
     protected int mDrawable;
     protected String mLabel;
+    protected int mTileTextColor;
+
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
     protected SharedPreferences mPrefs;
@@ -54,6 +58,8 @@ public class QuickSettingsTile implements OnClickListener {
 
     public void setupQuickSettingsTile(LayoutInflater inflater,
             QuickSettingsContainerView container) {
+        mTileTextColor = container.getTileTextColor();
+
         mTile = (QuickSettingsTileView) inflater.inflate(
                 R.layout.quick_settings_tile, container, false);
         mTile.setContent(mTileLayout, inflater);
@@ -98,6 +104,9 @@ public class QuickSettingsTile implements OnClickListener {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
         if (tv != null) {
             tv.setText(mLabel);
+            if (mTileTextColor != -2) {
+                tv.setTextColor(mTileTextColor);
+            }
         }
         ImageView image = (ImageView) mTile.findViewById(R.id.image);
         if (image != null) {
@@ -130,13 +139,7 @@ public class QuickSettingsTile implements OnClickListener {
     public void onClick(View v) {
         if (mOnClick != null) {
             mOnClick.onClick(v);
-        }
-
-        ContentResolver resolver = mContext.getContentResolver();
-        boolean shouldCollapse = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_COLLAPSE_PANEL, 0, UserHandle.USER_CURRENT) == 1;
-        if (shouldCollapse) {
-            mQsc.mBar.collapseAllPanels(true);
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         }
     }
 }

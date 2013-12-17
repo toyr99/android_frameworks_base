@@ -232,7 +232,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     // settings
     QuickSettingsController mQS;
-    QuickSettings mqs;
     boolean mHasSettingsPanel, mHasFlipSettings;
     SettingsPanelView mSettingsPanel;
     View mFlipSettingsView;
@@ -444,13 +443,24 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             super.onChange(selfChange, uri);
 
             if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_SETTINGS_TILES))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_TEXT_COLOR))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_BG_COLOR))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_BG_PRESSED_COLOR))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_BG_ALPHA))) {
+                if (mQS != null) {
+                    mQS.setupQuickSettings();
+                }
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CAMERA_WIDGET))) {
                 if (mNavigationBarView != null) {
                     mNavigationBarView.disableCameraByUser();
-                }
-            }            
-
-            if (uri.equals(Settings.System.getUriFor(
+                }            
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_BUTTON_TINT))
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE))
@@ -509,9 +519,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
     }
 
     private void updateBatteryIcons() {
-        if (mqs != null) {
-            mqs.updateBattery();
-        }
         if (mBattery != null && mCircleBattery != null) {
             mBattery.updateSettings();
             mCircleBattery.updateSettings();
@@ -955,6 +962,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         mCloseViewHeight = res.getDimensionPixelSize(R.dimen.close_handle_height);
         updateCarrierMargin(false);
 
+        // when we recreate statusbar shutdown quick settings before
+        // we eventually recreate them
+        if (mQS != null) {
+            mQS.shutdown();
+            mQS = null;
+        }
+
         // Quick Settings (where available, some restrictions apply)
         if (mHasSettingsPanel) {
             // first, figure out where quick settings should be inflated
@@ -984,11 +998,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 }
             }
 
-	    if (mQS != null) {
-                mQS.shutdown();
-                mQS = null;
-            }
-
             // wherever you find it, Quick Settings needs a container to survive
             mSettingsContainer = (QuickSettingsContainerView)
                     mStatusBarWindow.findViewById(R.id.quick_settings_container);
@@ -1012,7 +1021,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     mTilesChangedObserver = new TilesChangedObserver(mHandler);
                     mTilesChangedObserver.startObserving();
                 }
-	    } else {
+            } else {
                 mQS = null; // fly away, be free
             }
 
@@ -3720,6 +3729,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             final ContentResolver cr = mContext.getContentResolver();
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_SETTINGS_TILES),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_TEXT_COLOR),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_COLOR),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_PRESSED_COLOR),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_ALPHA),
                     false, this, UserHandle.USER_ALL);
 
             cr.registerContentObserver(

@@ -523,7 +523,8 @@ public class NavigationBarView extends LinearLayout {
     private View generateMenuKey(boolean landscape, int keyId) {
         KeyButtonView v = new KeyButtonView(mContext, null);
         v.setLayoutParams(getLayoutParams(landscape, 40));
-        v.setCode(KeyEvent.KEYCODE_MENU);
+        v.setClickAction(ButtonsConstants.ACTION_MENU);
+        v.setLongpressAction(ButtonsConstants.ACTION_NULL);
         v.setVisibility(View.INVISIBLE);
         v.setContentDescription(getResources().getString(R.string.accessibility_menu));
         v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land

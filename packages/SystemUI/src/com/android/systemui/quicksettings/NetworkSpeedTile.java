@@ -28,15 +28,6 @@ public class NetworkSpeedTile extends QuickSettingsTile {
                         mEnabled ? 0 : 1, UserHandle.USER_CURRENT);
             }
         };
-        mOnLongClick = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("com.android.settings", "com.android.settings.Settings$QuietHoursSettingsActivity");
-                startSettingsActivity(intent);
-                return true;
-            }
-        };
         qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.STATUS_BAR_TRAFFIC), this);
     }
 

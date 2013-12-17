@@ -18,13 +18,22 @@ package com.android.systemui.statusbar.phone;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
+import android.net.Uri;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.EventLog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.ImageView;
 
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
@@ -35,6 +44,8 @@ import com.android.systemui.statusbar.policy.LocationController;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.RotationLockController;
 
+import java.io.File;
+
 public class SettingsPanelView extends PanelView {
     public static final boolean DEBUG_GESTURES = true;
 
@@ -44,6 +55,8 @@ public class SettingsPanelView extends PanelView {
     Drawable mHandleBar;
     int mHandleBarHeight;
     View mHandleView;
+    Drawable mBackgroundDrawable;
+    ImageView mBackground;
 
     public SettingsPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -83,10 +96,6 @@ public class SettingsPanelView extends PanelView {
     public void setup(NetworkController networkController, BluetoothController bluetoothController,
             BatteryController batteryController, LocationController locationController,
             RotationLockController rotationLockController) {
-        if (mQS != null) {
-            /*mQS.setup(networkController, bluetoothController, batteryController,
-                    locationController, rotationLockController);*/
-        }
     }
 
     void updateResources() {
@@ -150,6 +159,9 @@ public class SettingsPanelView extends PanelView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (mQS == null) {
+            return false;
+        }
         if (DEBUG_GESTURES) {
             if (event.getActionMasked() != MotionEvent.ACTION_MOVE) {
                 EventLog.writeEvent(EventLogTags.SYSUI_QUICKPANEL_TOUCH,

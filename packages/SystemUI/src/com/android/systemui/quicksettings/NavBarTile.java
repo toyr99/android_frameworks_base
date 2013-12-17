@@ -32,7 +32,7 @@ public class NavBarTile extends QuickSettingsTile {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("com.android.settings", "com.android.settings.Settings$QuietHoursSettingsActivity");
+                intent.setClassName("com.android.settings", "com.android.settings.Settings$NavbarSettingsActivity");
                 startSettingsActivity(intent);
                 return true;
             }
