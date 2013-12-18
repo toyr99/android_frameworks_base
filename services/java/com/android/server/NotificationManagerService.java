@@ -1528,8 +1528,7 @@ public class NotificationManagerService extends INotificationManager.Stub
 
             // LED enabled
             mNotificationPulseEnabled = Settings.System.getIntForUser(resolver,
-                    Settings.System.NOTIFICATION_LIGHT_PULSE, mNotificationPulseEnabled ? 1 : 0, 
-                    UserHandle.USER_CURRENT) != 0;
+                    Settings.System.NOTIFICATION_LIGHT_PULSE, 0, UserHandle.USER_CURRENT) != 0;
 
             // LED default color
             mDefaultNotificationColor = Settings.System.getIntForUser(resolver,
@@ -1597,9 +1596,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         mNotificationLight = lights.getLight(LightsService.LIGHT_ID_NOTIFICATIONS);
         mAttentionLight = lights.getLight(LightsService.LIGHT_ID_ATTENTION);
 
-        Resources resources = mContext.getResources();
-        mNotificationPulseEnabled = resources.getBoolean(
-                R.bool.config_intrusiveNotificationLed);
+        Resources resources = mContext.getResources();        
         mDefaultNotificationColor = resources.getColor(
                 R.color.config_defaultNotificationColor);
         mDefaultNotificationLedOn = resources.getInteger(
@@ -2583,11 +2580,12 @@ public class NotificationManagerService extends INotificationManager.Stub
             }
         }
 
-        // Don't flash while we are in a call or screen is on or its disabled
-	if (mLedNotification == null || mInCall || mScreenOn || !mNotificationPulseEnabled
+        // Don't flash while we are in a call, screen is
+        // on or we are in quiet hours with light dimmed
+        if (mLedNotification == null || mInCall || mScreenOn
                 || (QuietHoursHelper.inQuietHours(mContext, Settings.System.QUIET_HOURS_DIM))) {
-           mNotificationLight.turnOff();
-        } else {
+            mNotificationLight.turnOff();
+        } else if (mNotificationPulseEnabled) {
             final Notification ledno = mLedNotification.sbn.getNotification();
             final NotificationLedValues ledValues = getLedValuesForNotification(mLedNotification);
             int ledARGB = ledno.ledARGB;
