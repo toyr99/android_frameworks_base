@@ -23,6 +23,8 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_BATTERY;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BLUETOOTH;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BRIGHTNESS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CAMERA;
+import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM;
+import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM_KEY;
 import static com.android.internal.util.mahdi.QSConstants.TILE_DELIMITER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_IMMERSIVEMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LOCATION;
@@ -75,6 +77,7 @@ import com.android.systemui.quicksettings.BluetoothTile;
 import com.android.systemui.quicksettings.BrightnessTile;
 import com.android.systemui.quicksettings.BugReportTile;
 import com.android.systemui.quicksettings.CameraTile;
+import com.android.systemui.quicksettings.CustomTile;
 import com.android.systemui.quicksettings.ImmersiveModeTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 import com.android.systemui.quicksettings.LocationTile;
@@ -228,6 +231,8 @@ public class QuickSettingsController {
                 qs = new BrightnessTile(mContext, this);
             } else if (tile.equals(TILE_CAMERA) && cameraSupported) {
                 qs = new CameraTile(mContext, this, mHandler);
+            } else if (tile.contains(TILE_CUSTOM)) {
+                qs = new CustomTile(mContext, this, findCustomKey(tile));
             } else if (tile.equals(TILE_RINGER)) {
                 qs = new RingerModeTile(mContext, this);
             } else if (tile.equals(TILE_SYNC)) {
@@ -329,6 +334,11 @@ public class QuickSettingsController {
             qs.setupQuickSettingsTile(inflater, mContainerView);
             mQuickSettingsTiles.add(qs);
         }
+    }
+
+    private String findCustomKey (String tile) {
+        String[] split = tile.split(TILE_CUSTOM_KEY);
+        return split[1];
     }
 
     public void shutdown() {

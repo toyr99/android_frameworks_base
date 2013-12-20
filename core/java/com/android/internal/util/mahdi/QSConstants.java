@@ -32,9 +32,14 @@ public class QSConstants {
         public static final String TILE_IMMERSIVEMODE = "toggleImmersiveMode";
         public static final String TILE_CAMERA = "toggleCamera";
         public static final String TILE_NETWORKADB = "toggleNetworkAdb";
-	public static final String TILE_NAVBAR = "toggleNavBar";
-	public static final String TILE_NETWORKSPEED = "toggleNetworkSpeed";
+        public static final String TILE_NAVBAR = "toggleNavBar";
+        public static final String TILE_NETWORKSPEED = "toggleNetworkSpeed";
         public static final String TILE_MUSIC = "toggleMusic";
+        public static final String TILE_CUSTOM = "toggleCustom";
+
+        //Key for custom tile additive
+        public static final String TILE_CUSTOM_KEY = " Key=";
+        public static final String TILE_CUSTOM_DELIMITER = " =action= ";
 
         public static final String TILE_DELIMITER = "|";
         public static ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
