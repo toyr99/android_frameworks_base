@@ -123,10 +123,14 @@ public class MobileNetworkTile extends NetworkTile {
     void updateQuickSettings() {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
         ImageView iv = (ImageView) mTile.findViewById(R.id.rssi_image);
-
+        if (tv != null) {
+            tv.setText(mLabel);            
+            if (mTileTextColor != -2) {
+                tv.setTextColor(mTileTextColor);
+            }
+        }
         iv.setImageResource(mDrawable);
-        updateOverlayImage(mDataTypeIconId);
-        tv.setText(mLabel);
+        updateOverlayImage(mDataTypeIconId);        
         mTile.setContentDescription(mContext.getResources().getString(
                 R.string.accessibility_quick_settings_mobile,
                 signalContentDescription, dataContentDescription,
