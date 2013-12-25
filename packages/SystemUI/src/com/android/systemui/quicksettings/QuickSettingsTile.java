@@ -10,7 +10,6 @@ import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.TypedValue;
-import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -139,7 +138,13 @@ public class QuickSettingsTile implements OnClickListener {
     public void onClick(View v) {
         if (mOnClick != null) {
             mOnClick.onClick(v);
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        }
+
+        ContentResolver resolver = mContext.getContentResolver();
+        boolean shouldCollapse = Settings.System.getIntForUser(resolver,
+                Settings.System.QS_COLLAPSE_PANEL, 0, UserHandle.USER_CURRENT) == 1;
+        if (shouldCollapse) {
+            mQsc.mBar.collapseAllPanels(true);
         }
     }
 }
