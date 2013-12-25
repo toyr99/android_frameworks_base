@@ -1026,7 +1026,6 @@ public final class Settings {
             MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_VISIBLE);
             MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED);
 	    MOVED_TO_SECURE.add(Secure.LOCK_NUMPAD_RANDOM);
-	    MOVED_TO_SECURE.add(Secure.LOCK_PATTERN_SIZE);
 	    MOVED_TO_SECURE.add(Secure.LOCK_BEFORE_UNLOCK);
             MOVED_TO_SECURE.add(Secure.LOCKSCREEN_UNSECURE_USED);	    
             MOVED_TO_SECURE.add(Secure.LOGGING_ID);
@@ -4750,12 +4749,6 @@ public final class Settings {
           */
 
         public static final String LOCK_NUMPAD_RANDOM = "lock_numpad_random";
-
-	/**
-         * Determines the width and height of the LockPatternView widget
-         * @hide
-         */
-        public static final String LOCK_PATTERN_SIZE = "lock_pattern_size";
 
         /**
          * Whether lock pattern will vibrate as user enters (0 = false, 1 =
