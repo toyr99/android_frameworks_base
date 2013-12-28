@@ -113,6 +113,16 @@ public class MahdiActions {
                 }
                 context.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
+            } else if (action.equals(ButtonsConstants.ACTION_IMMERSIVE_MODE)) {
+                boolean immersiveModeOn = Settings.System.getIntForUser(
+                        context.getContentResolver(),
+                        Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                        0, UserHandle.USER_CURRENT) == 1;
+                Settings.System.putIntForUser(
+                        context.getContentResolver(),
+                        Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                        immersiveModeOn ? 0 : 1, UserHandle.USER_CURRENT);
+                return;
             } else if (action.equals(ButtonsConstants.ACTION_KILL)) {
                 if (isKeyguardShowing) {
                     return;
