@@ -107,6 +107,7 @@ public class KeyguardHostView extends KeyguardViewBase {
     private KeyguardSecurityViewFlipper mSecurityViewContainer;
     private KeyguardSelectorView mKeyguardSelectorView;
     private KeyguardTransportControlView mTransportControl;
+    private ChallengeLayout mChallenge;
     private boolean mIsVerifyUnlockOnly;
     private View mExpandChallengeView;
     private boolean mEnableFallback; // TODO: This should get the value from KeyguardPatternView
@@ -422,12 +423,10 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         mMultiPaneChallengeLayout =
                 (MultiPaneChallengeLayout) findViewById(R.id.multi_pane_challenge);
-        ChallengeLayout challenge = mSlidingChallengeLayout != null ? mSlidingChallengeLayout :
+        mChallenge = mSlidingChallengeLayout != null ? mSlidingChallengeLayout :
                 mMultiPaneChallengeLayout;
-        challenge.setOnBouncerStateChangedListener(mViewStateManager);
-        mAppWidgetContainer.setBouncerAnimationDuration(challenge.getBouncerAnimationDuration());
         mViewStateManager.setPagedView(mAppWidgetContainer);
-        mViewStateManager.setChallengeLayout(challenge);
+        mViewStateManager.setChallengeLayout(mChallenge);
         mSecurityViewContainer = (KeyguardSecurityViewFlipper) findViewById(R.id.view_flipper);
         mKeyguardSelectorView = (KeyguardSelectorView) findViewById(R.id.keyguard_selector_view);
         mViewStateManager.setSecurityViewContainer(mSecurityViewContainer);
@@ -504,13 +503,13 @@ public class KeyguardHostView extends KeyguardViewBase {
         showPrimarySecurityScreen(false);
         updateSecurityViews();
         enableUserSelectorIfNecessary();
+        minimizeChallengeIfDesired();
 
         mExpandChallengeView = (View) findViewById(R.id.expand_challenge_handle);
         if (mExpandChallengeView != null) {
             mExpandChallengeView.setOnLongClickListener(mFastUnlockClickListener);
+            mExpandChallengeView.bringToFront();
         }
-
-        minimizeChallengeIfDesired();
     }
 
     private final OnLongClickListener mFastUnlockClickListener = new OnLongClickListener() {
@@ -537,6 +536,9 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         // This needs to be called after the pages are all added.
         mViewStateManager.showUsabilityHints(mContext);
+
+        mAppWidgetContainer.setBouncerAnimationDuration(mChallenge.getBouncerAnimationDuration());
+        mChallenge.setOnBouncerStateChangedListener(mViewStateManager);
     }
 
     private void maybeEnableAddButton() {
@@ -1196,14 +1198,11 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         // Enter full screen mode if we're in SIM or Account screen
         boolean fullScreenEnabled = getResources().getBoolean(R.bool.kg_sim_puk_account_full_screen);
-        boolean isSimOrAccount = securityMode == SecurityMode.SimPin
-                || securityMode == SecurityMode.SimPuk
-                || securityMode == SecurityMode.Account;
         mAppWidgetContainer.setVisibility(
-                isSimOrAccount && fullScreenEnabled ? View.GONE : View.VISIBLE);
+                isSimOrAccount(securityMode, false) && fullScreenEnabled ? View.GONE : View.VISIBLE);
 
         // Don't show camera or search in navbar when SIM or Account screen is showing
-        setSystemUiVisibility(isSimOrAccount ?
+        setSystemUiVisibility(isSimOrAccount(securityMode, false) ?
                 (getSystemUiVisibility() | View.STATUS_BAR_DISABLE_SEARCH)
                 : (getSystemUiVisibility() & ~View.STATUS_BAR_DISABLE_SEARCH));
 
@@ -1256,8 +1255,6 @@ public class KeyguardHostView extends KeyguardViewBase {
         if (DEBUG) Log.d(TAG, "screen on, instance " + Integer.toHexString(hashCode()));
         showPrimarySecurityScreen(false);
         getSecurityView(mCurrentSecuritySelection).onResume(KeyguardSecurityView.SCREEN_ON);
-
-        minimizeChallengeIfDesired();
 
         // This is a an attempt to fix bug 7137389 where the device comes back on but the entire
         // layout is blank but forcing a layout causes it to reappear (e.g. with with
@@ -1341,7 +1338,8 @@ public class KeyguardHostView extends KeyguardViewBase {
     }
 
     private void minimizeChallengeIfDesired() {
-        if (mSlidingChallengeLayout == null) {
+        if (mSlidingChallengeLayout == null
+                || isSimOrAccount(mCurrentSecuritySelection, true)) {
             return;
         }
 
@@ -1350,6 +1348,15 @@ public class KeyguardHostView extends KeyguardViewBase {
                 UserHandle.USER_CURRENT) == 1) {
             mSlidingChallengeLayout.showChallenge(false);
         }
+    }
+
+    private boolean isSimOrAccount(SecurityMode securityMode, boolean isInvalidCheck) {
+        final boolean isSimOrAccount = securityMode == SecurityMode.SimPin
+                || securityMode == SecurityMode.SimPuk
+                || securityMode == SecurityMode.Account;
+        return isInvalidCheck
+                ? isSimOrAccount || securityMode == SecurityMode.Invalid
+                : isSimOrAccount;
     }
 
     private int getSecurityViewIdForMode(SecurityMode securityMode) {
@@ -1468,6 +1475,7 @@ public class KeyguardHostView extends KeyguardViewBase {
             View addWidget = inflater.inflate(R.layout.keyguard_add_widget, this, false);
             mAppWidgetContainer.addWidget(addWidget, 0);
             View addWidgetButton = addWidget.findViewById(R.id.keyguard_add_widget_view);
+
             addWidgetButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
