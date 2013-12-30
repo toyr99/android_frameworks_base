@@ -108,7 +108,7 @@ import com.android.internal.util.mahdi.ButtonsHelper;
 import com.android.internal.util.mahdi.DeviceUtils;
 
 import com.android.systemui.BatteryMeterView;
-import com.android.systemui.BatteryCircleMeterView;
+import com.android.systemui.BatteryMeterView.BatteryMeterMode;
 import com.android.systemui.DemoMode;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
@@ -273,6 +273,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     private boolean mShowCarrierInPanel = false;
 
+    private BatteryMeterView mBatteryView;
+
     // position
     int[] mPositionTmp = new int[2];
     boolean mExpandedVisible;
@@ -343,9 +345,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
-    private BatteryMeterView mBattery;
-    private BatteryCircleMeterView mCircleBattery;
-
     // XXX: gesture research
     private final GestureRecorder mGestureRec = DEBUG_GESTURES
         ? new GestureRecorder("/sdcard/statusbar_gestures.dat")
@@ -392,21 +391,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         }
 
         void observe() {
-            ContentResolver resolver = mContext.getContentResolver();          
+            ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_COLOR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED),
+                    Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_SHORTCUTS_CONFIG),
@@ -459,7 +449,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_ALPHA),
                     false, this, UserHandle.USER_ALL);
-            update();
+            updateSettings();
         }
 
         @Override
@@ -524,19 +514,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     mSearchPanelView.updateSettings();
                 }
             }
-
-	    update();
+	    updateSettings();
         }
 
-        public void update() {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+
+        public void updateSettings() {
             ContentResolver resolver = mContext.getContentResolver();
-	    boolean autoBrightness = Settings.System.getInt(
+            boolean autoBrightness = Settings.System.getInt(
                     resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0) ==
                     Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
             mBrightnessControl = !autoBrightness && Settings.System.getInt(
-                    resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+                    resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;            
 
-	    int sidebarPosition = Settings.System.getInt(
+            int sidebarPosition = Settings.System.getInt(
                     resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
             if (sidebarPosition != mSidebarPosition) {
                 mSidebarPosition = sidebarPosition;
@@ -552,17 +546,37 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.NOTIFICATION_HIDE_CARRIER, 0, UserHandle.USER_CURRENT) != 0;
             if (mCarrierLabel != null) {
                 toggleCarrierAndWifiLabelVisibility();
-	    }
-            updateBatteryIcons();
-        }
-    }
 
-    private void updateBatteryIcons() {
-        if (mBattery != null && mCircleBattery != null) {
-            mBattery.updateSettings();
-            mCircleBattery.updateSettings();
-        }
-    }
+            int batteryStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_BATTERY, 0);
+            BatteryMeterMode mode = BatteryMeterMode.BATTERY_METER_ICON_PORTRAIT;
+            switch (batteryStyle) {
+            case 2:
+                mode = BatteryMeterMode.BATTERY_METER_CIRCLE;
+                break;
+
+            case 4:
+                mode = BatteryMeterMode.BATTERY_METER_GONE;
+                break;
+
+            case 5:
+                mode = BatteryMeterMode.BATTERY_METER_ICON_LANDSCAPE;
+                break;
+
+            default:
+                break;
+            }
+
+            boolean showPercent = Settings.System.getInt(resolver,
+                   Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT, 0) == 1;
+
+            mBatteryView.setMode(mode);
+            mBatteryController.onBatteryMeterModeChanged(mode);
+            mBatteryView.setShowPercent(showPercent);
+            mBatteryController.onBatteryMeterShowPercent(showPercent);
+
+            }                        
+        }        
+    }    
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     private boolean mUserSetup = false;
@@ -909,6 +923,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         final SignalClusterView signalCluster =
                 (SignalClusterView)mStatusBarView.findViewById(R.id.signal_cluster);
 
+        mBatteryView = (BatteryMeterView) mStatusBarView.findViewById(R.id.battery);
 
         mNetworkController.addSignalCluster(signalCluster);
         signalCluster.setNetworkController(mNetworkController);
@@ -1111,10 +1126,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         resetUserSetupObserver();
 
 	mNotificationShortcutsLayout.setupShortcuts();
-
-	mBattery = (BatteryMeterView) mStatusBarView.findViewById(R.id.battery);
-        mCircleBattery = (BatteryCircleMeterView) mStatusBarView.findViewById(R.id.circle_battery);
-        updateBatteryIcons();
 
         return mStatusBarView;
     }
@@ -2635,6 +2646,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             mGestureRec.add(event);
         }
 
+        if (mBrightnessControl) {
+            brightnessControl(event);
+            if ((mDisabled & StatusBarManager.DISABLE_EXPAND) != 0) {
+                return true;
+            }
+        }
+
         if (mStatusBarWindowState == WINDOW_STATE_SHOWING) {
             final boolean upOrCancel =
                     event.getAction() == MotionEvent.ACTION_UP ||
@@ -2643,13 +2661,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 setInteracting(StatusBarManager.WINDOW_STATUS_BAR, false);
             } else {
                 setInteracting(StatusBarManager.WINDOW_STATUS_BAR, true);
-            }
-        }
-
-	if (mBrightnessControl) {
-            brightnessControl(event);
-            if ((mDisabled & StatusBarManager.DISABLE_EXPAND) != 0) {
-                return true;
             }
         }
 
@@ -3473,7 +3484,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         if (MULTIUSER_DEBUG) mNotificationPanelDebugText.setText("USER " + newUserId);
         animateCollapsePanels();
         updateNotificationIcons();
-        resetUserSetupObserver();
+        resetUserSetupObserver();              
     }
 
     private void updateSwapXY() {

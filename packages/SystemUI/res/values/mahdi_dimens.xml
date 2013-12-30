@@ -81,4 +81,11 @@
     <dimen name="halo_speech_vpadding_bottom">3dp</dimen>
     <dimen name="halo_content_max_width">250dp</dimen>
 
+    <!-- Status bar battery icons dimensions -->
+    <dimen name="status_bar_battery_height">16dp</dimen>
+    <dimen name="status_bar_battery_width">10.5dp</dimen>
+
+    <!-- Padding under status bar battery icon -->
+    <dimen name="status_bar_battery_bottom_padding">1px</dimen>
+
 </resources>
