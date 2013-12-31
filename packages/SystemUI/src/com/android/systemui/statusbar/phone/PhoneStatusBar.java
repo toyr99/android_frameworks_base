@@ -94,6 +94,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -393,11 +394,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY),
-                    false, this, UserHandle.USER_ALL);
+                    Settings.System.STATUS_BAR_BATTERY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT),
-                    false, this, UserHandle.USER_ALL);
+                    Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_SHORTCUTS_CONFIG),
                     false, this, UserHandle.USER_ALL);
@@ -512,70 +511,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 prepareNavigationBarView();
                 if (mSearchPanelView != null) {
                     mSearchPanelView.updateSettings();
-                }
             }
-	    updateSettings();
         }
+	updateSettings();
+    }
 
-        @Override
+    @Override
         public void onChange(boolean selfChange) {
             updateSettings();
         }
-
-        public void updateSettings() {
-            ContentResolver resolver = mContext.getContentResolver();
-            boolean autoBrightness = Settings.System.getInt(
-                    resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0) ==
-                    Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
-            mBrightnessControl = !autoBrightness && Settings.System.getInt(
-                    resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;            
-
-            int sidebarPosition = Settings.System.getInt(
-                    resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
-            if (sidebarPosition != mSidebarPosition) {
-                mSidebarPosition = sidebarPosition;
-                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
-            }
-            
-            String notificationShortcutsIsActive = Settings.System.getStringForUser(resolver,
-                    Settings.System.NOTIFICATION_SHORTCUTS_CONFIG, UserHandle.USER_CURRENT);
-            mNotificationShortcutsIsActive = !(notificationShortcutsIsActive == null
-                    || notificationShortcutsIsActive.isEmpty());
-
-            mNotificationHideCarrier = Settings.System.getIntForUser(resolver,
-                    Settings.System.NOTIFICATION_HIDE_CARRIER, 0, UserHandle.USER_CURRENT) != 0;
-            if (mCarrierLabel != null) {
-                toggleCarrierAndWifiLabelVisibility();
-
-            int batteryStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_BATTERY, 0);
-            BatteryMeterMode mode = BatteryMeterMode.BATTERY_METER_ICON_PORTRAIT;
-            switch (batteryStyle) {
-            case 2:
-                mode = BatteryMeterMode.BATTERY_METER_CIRCLE;
-                break;
-
-            case 4:
-                mode = BatteryMeterMode.BATTERY_METER_GONE;
-                break;
-
-            case 5:
-                mode = BatteryMeterMode.BATTERY_METER_ICON_LANDSCAPE;
-                break;
-
-            default:
-                break;
-            }
-
-            boolean showPercent = Settings.System.getInt(resolver,
-                   Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT, 0) == 1;
-
-            mBatteryView.setMode(mode);
-            mBatteryController.onBatteryMeterModeChanged(mode);
-            mBatteryView.setShowPercent(showPercent);
-            mBatteryController.onBatteryMeterShowPercent(showPercent);
-
-            }                        
-        }        
     }    
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
@@ -3484,7 +3428,74 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         if (MULTIUSER_DEBUG) mNotificationPanelDebugText.setText("USER " + newUserId);
         animateCollapsePanels();
         updateNotificationIcons();
-        resetUserSetupObserver();              
+        resetUserSetupObserver();
+        updateSettings();        
+        super.userSwitched(newUserId);              
+    }
+
+    private void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+        //XXX: multi-user correct?
+        boolean autoBrightness = Settings.System.getInt(
+                resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0) ==
+                Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+        mBrightnessControl = !autoBrightness && Settings.System.getInt(
+                resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+
+        int batteryStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_BATTERY, 0);
+        BatteryMeterMode mode = BatteryMeterMode.BATTERY_METER_ICON_PORTRAIT;
+        switch (batteryStyle) {
+        case 2:
+            mode = BatteryMeterMode.BATTERY_METER_CIRCLE;
+            break;
+
+        case 4:
+            mode = BatteryMeterMode.BATTERY_METER_GONE;
+            break;
+
+        case 5:
+            mode = BatteryMeterMode.BATTERY_METER_ICON_LANDSCAPE;
+            break;
+
+        default:
+            break;
+        }
+
+        boolean showPercent = Settings.System.getInt(resolver,
+                   Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT, 0) == 1;
+
+        mBatteryView.setMode(mode);
+        mBatteryController.onBatteryMeterModeChanged(mode);
+        mBatteryView.setShowPercent(showPercent);
+        mBatteryController.onBatteryMeterShowPercent(showPercent);           
+
+        int sidebarPosition = Settings.System.getInt(
+                resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
+        if (sidebarPosition != mSidebarPosition) {
+            mSidebarPosition = sidebarPosition;
+            mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
+        }
+            
+        String notificationShortcutsIsActive = Settings.System.getStringForUser(resolver,
+                Settings.System.NOTIFICATION_SHORTCUTS_CONFIG, UserHandle.USER_CURRENT);
+        mNotificationShortcutsIsActive = !(notificationShortcutsIsActive == null
+                || notificationShortcutsIsActive.isEmpty());
+
+        mNotificationHideCarrier = Settings.System.getIntForUser(resolver,
+                Settings.System.NOTIFICATION_HIDE_CARRIER, 0, UserHandle.USER_CURRENT) != 0;
+        if (mCarrierLabel != null) {
+            toggleCarrierAndWifiLabelVisibility();
+
+        }                        
+    }
+
+    private void resetUserSetupObserver() {
+        mContext.getContentResolver().unregisterContentObserver(mUserSetupObserver);
+        mUserSetupObserver.onChange(false);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.USER_SETUP_COMPLETE), true,
+                mUserSetupObserver,
+                mCurrentUserId);
     }
 
     private void updateSwapXY() {
@@ -3502,15 +3513,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 mNavigationBarView.mDelegateHelper.setSwapXY(false);
             }
         }
-    }
-
-    private void resetUserSetupObserver() {
-        mContext.getContentResolver().unregisterContentObserver(mUserSetupObserver);
-        mUserSetupObserver.onChange(false);
-        mContext.getContentResolver().registerContentObserver(
-                Settings.Secure.getUriFor(Settings.Secure.USER_SETUP_COMPLETE), true,
-                mUserSetupObserver,
-                mCurrentUserId);
     }
 
     private void setHeadsUpVisibility(boolean vis) {
