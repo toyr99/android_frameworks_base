@@ -260,7 +260,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         if (upgradeVersion < 22) {
-            upgradeVersion = 22;            
+            upgradeVersion = 22;
+            // Upgrade the lock gesture storage location and format
+            upgradeLockPatternLocation(db);            
         }
 
         if (upgradeVersion < 23) {
@@ -719,6 +721,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                    Secure.LOCK_PATTERN_ENABLED,
                    Secure.LOCK_PATTERN_VISIBLE,
                    Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED,
+                   Secure.LOCK_PATTERN_SIZE,
+                   Secure.LOCK_DOTS_VISIBLE,
+                   Secure.LOCK_SHOW_ERROR_PATH,
                    "lockscreen.password_type",
                    "lockscreen.lockoutattemptdeadline",
                    "lockscreen.patterneverchosen",
@@ -1712,6 +1717,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (deleteStmt != null) {
                 deleteStmt.close();
             }
+        }
+    }
+
+    private void upgradeLockPatternLocation(SQLiteDatabase db) {
+        Cursor c = db.query(TABLE_SYSTEM, new String[] {"_id", "value"}, "name='lock_pattern'",
+                null, null, null, null);
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            String lockPattern = c.getString(1);
+            if (!TextUtils.isEmpty(lockPattern)) {
+                // Convert lock pattern
+                try {
+                    LockPatternUtils lpu = new LockPatternUtils(mContext);
+                    List<LockPatternView.Cell> cellPattern =
+                            lpu.stringToPattern(lockPattern);
+                    lpu.saveLockPattern(cellPattern);
+                } catch (IllegalArgumentException e) {
+                    // Don't want corrupted lock pattern to hang the reboot process
+                }
+            }
+            c.close();
+            db.delete(TABLE_SYSTEM, "name='lock_pattern'", null);
+        } else {
+            c.close();
         }
     }
 
