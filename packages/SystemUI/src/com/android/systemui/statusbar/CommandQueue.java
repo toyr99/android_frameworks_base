@@ -381,6 +381,7 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_TOGGLE_KILL_APP:
                     mCallbacks.toggleKillApp();
+                    break;
                 case MSG_SET_AUTOROTATE_STATUS:
                     mCallbacks.setAutoRotate(msg.arg1 != 0);
                     break;
