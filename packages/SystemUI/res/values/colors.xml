@@ -48,6 +48,6 @@
     <color name="navigationbar_button_glow_default_color">#FFFFFFFF</color>
 
     <!-- Network speed indicator -->
-    <color name="status_bar_traffic_color">#FFFFFFFF</color>
+    <color name="status_bar_traffic_color">#FFDFDEDE</color>
 
 </resources>
