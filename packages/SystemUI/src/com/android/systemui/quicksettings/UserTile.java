@@ -102,6 +102,7 @@ public class UserTile extends QuickSettingsTile {
         TextView tv = (TextView) mTile.findViewById(R.id.user_textview);
         if (tv != null) {
             tv.setText(mLabel);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
             if (mTileTextColor != -2) {
                 tv.setTextColor(mTileTextColor);
             }
