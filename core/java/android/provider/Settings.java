@@ -3233,13 +3233,6 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES = "quick_settings_tiles";
 
         /**
-         * Quick Settings show text under icon
-         *
-         * @hide
-         */
-        public static final String QUICK_SETTINGS_HIDE_LABELS = "qs_hide_text";
-
-        /**
          * Color of QuickSettings tiles text
          * @hide
          */
