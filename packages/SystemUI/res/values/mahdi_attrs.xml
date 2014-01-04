@@ -15,6 +15,10 @@
 -->
 
 <resources>
+    <declare-styleable name="BatteryIcon">
+        <attr name="batteryView" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="QuickSettingsContainer">
         <attr name="singleRow" format="boolean" />
     </declare-styleable>

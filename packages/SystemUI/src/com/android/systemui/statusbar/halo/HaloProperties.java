@@ -52,7 +52,7 @@ import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChang
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
 
-public class HaloProperties extends FrameLayout implements NetworkSignalChangedCallback {
+public class HaloProperties extends FrameLayout implements BatteryStateChangeCallback, NetworkSignalChangedCallback {
 
     public enum Overlay {
         NONE,
@@ -490,7 +490,8 @@ public class HaloProperties extends FrameLayout implements NetworkSignalChangedC
         SimpleDateFormat dayOfMonth = new SimpleDateFormat("dd");
         return dayOfMonth.format(new Date()).toUpperCase();
     }
-    
+
+    @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn) {
         mBatteryLevel = level;
         mCharging = pluggedIn;
