@@ -7,7 +7,7 @@ public class QSConstants {
         public static final String TILE_BATTERY = "toggleBattery";
         public static final String TILE_SETTINGS = "toggleSettings";
         public static final String TILE_WIFI = "toggleWifi";
-        public static final String TILE_GPS = "toggleGPS";
+        public static final String TILE_LOCATION = "toggleLocation";
         public static final String TILE_BLUETOOTH = "toggleBluetooth";
         public static final String TILE_BRIGHTNESS = "toggleBrightness";
         public static final String TILE_RINGER = "toggleSound";
@@ -45,7 +45,7 @@ public class QSConstants {
             TILES_DEFAULT.add(TILE_SETTINGS);
             TILES_DEFAULT.add(TILE_WIFI);
             TILES_DEFAULT.add(TILE_MOBILEDATA);
-            TILES_DEFAULT.add(TILE_GPS);
+            TILES_DEFAULT.add(TILE_LOCATION);
             TILES_DEFAULT.add(TILE_TORCH);
             TILES_DEFAULT.add(TILE_BATTERY);
             TILES_DEFAULT.add(TILE_AIRPLANE);

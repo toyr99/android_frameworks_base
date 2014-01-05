@@ -25,7 +25,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_BRIGHTNESS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CAMERA;
 import static com.android.internal.util.mahdi.QSConstants.TILE_DELIMITER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_IMMERSIVEMODE;
-import static com.android.internal.util.mahdi.QSConstants.TILE_GPS;
+import static com.android.internal.util.mahdi.QSConstants.TILE_LOCATION;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LOCKSCREEN;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LTE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_MOBILEDATA;
@@ -76,8 +76,8 @@ import com.android.systemui.quicksettings.BrightnessTile;
 import com.android.systemui.quicksettings.BugReportTile;
 import com.android.systemui.quicksettings.CameraTile;
 import com.android.systemui.quicksettings.ImmersiveModeTile;
-import com.android.systemui.quicksettings.GPSTile;
 import com.android.systemui.quicksettings.InputMethodTile;
+import com.android.systemui.quicksettings.LocationTile;
 import com.android.systemui.quicksettings.LteTile;
 import com.android.systemui.quicksettings.MobileNetworkTile;
 import com.android.systemui.quicksettings.MobileNetworkTypeTile;
@@ -190,7 +190,7 @@ public class QuickSettingsController {
         }        
 
         if (!gpsSupported) {
-            TILES_DEFAULT.remove(TILE_GPS);
+            TILES_DEFAULT.remove(TILE_LOCATION);
         }
 
         if (!torchSupported) {
@@ -220,8 +220,8 @@ public class QuickSettingsController {
                 qs = new PreferencesTile(mContext, this);
             } else if (tile.equals(TILE_WIFI)) {
                 qs = new WiFiTile(mContext, this, mStatusBarService.mNetworkController);
-            } else if (tile.equals(TILE_GPS)) {
-                qs = new GPSTile(mContext, this);
+            } else if (tile.equals(TILE_LOCATION)) {
+                qs = new LocationTile(mContext, this);
             } else if (tile.equals(TILE_BLUETOOTH) && bluetoothSupported) {
                 qs = new BluetoothTile(mContext, this, mStatusBarService.mBluetoothController);
             } else if (tile.equals(TILE_BRIGHTNESS)) {
