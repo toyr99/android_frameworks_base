@@ -135,6 +135,7 @@
     <string name="shortcut_reboot">Reboot (instant)</string>
     <string name="shortcut_last_app">Last App</string>
     <string name="shortcut_screenshot">Screenshot</string>
+    <string name="shortcut_screensleep">Sleep Screen</string>
 
     <!-- Dialog Cancel/OK -->
     <string name="cancel">Cancel</string>
