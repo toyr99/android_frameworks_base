@@ -3409,6 +3409,14 @@ public final class Settings {
         public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
 
         /**
+         * Whether flip action during incomming call should mute or dismiss
+         * the call (mute = 0, dismiss = 1, nothing = 2 (default))
+         *
+         * @hide
+         */
+        public static final String CALL_FLIP_ACTION_KEY = "call_flip_action_key";
+
+        /**
          * Should call status sounds be played
          *
          * @hide
