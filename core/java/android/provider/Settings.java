@@ -3446,6 +3446,13 @@ public final class Settings {
         public static final String CALL_FLIP_ACTION_KEY = "call_flip_action_key";
 
         /**
+         * Whether incomming call UI stays in background
+         *
+         * @hide
+         */
+        public static final String CALL_UI_IN_BACKGROUND = "call_ui_in_background";
+
+        /**
          * Should call status sounds be played
          *
          * @hide
