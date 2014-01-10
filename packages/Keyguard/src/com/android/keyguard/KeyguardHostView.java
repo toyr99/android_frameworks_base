@@ -423,14 +423,13 @@ public class KeyguardHostView extends KeyguardViewBase {
         showPrimarySecurityScreen(false);
         updateSecurityViews();
         enableUserSelectorIfNecessary();
-        minimizeChallengeIfDesired();
 
         mExpandChallengeView = (View) findViewById(R.id.expand_challenge_handle);
         if (mExpandChallengeView != null) {
             mExpandChallengeView.setOnLongClickListener(mFastUnlockClickListener);
-            mExpandChallengeView.bringToFront();
         }
 
+        minimizeChallengeIfDesired();
     }
 
     private final OnLongClickListener mFastUnlockClickListener = new OnLongClickListener() {
@@ -777,12 +776,14 @@ public class KeyguardHostView extends KeyguardViewBase {
      * @param turningOff true if the device is being turned off
      */
     void showPrimarySecurityScreen(boolean turningOff) {
-        final boolean lockBeforeUnlock = Settings.Secure.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.Secure.LOCK_BEFORE_UNLOCK, 0,
-                UserHandle.USER_CURRENT) == 1;
+        final boolean lockBeforeUnlock = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCK_BEFORE_UNLOCK, 0, UserHandle.USER_CURRENT) == 1;
+        final boolean isSimOrAccount = mCurrentSecuritySelection == SecurityMode.SimPin
+                || mCurrentSecuritySelection == SecurityMode.SimPuk
+                || mCurrentSecuritySelection == SecurityMode.Account
+                || mCurrentSecuritySelection == SecurityMode.Invalid;
 
-        if (lockBeforeUnlock && !isSimOrAccount(mCurrentSecuritySelection, true)) {
+        if (lockBeforeUnlock && !isSimOrAccount) {
             showSecurityScreen(SecurityMode.None);
         } else {
             SecurityMode securityMode = mSecurityModel.getSecurityMode();
@@ -794,7 +795,7 @@ public class KeyguardHostView extends KeyguardViewBase {
                 securityMode = mSecurityModel.getAlternateFor(securityMode);
             }
             showSecurityScreen(securityMode);
-          }
+        }
     }
 
     /**
@@ -1032,11 +1033,14 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         // Enter full screen mode if we're in SIM or Account screen
         boolean fullScreenEnabled = getResources().getBoolean(R.bool.kg_sim_puk_account_full_screen);
+        boolean isSimOrAccount = securityMode == SecurityMode.SimPin
+                || securityMode == SecurityMode.SimPuk
+                || securityMode == SecurityMode.Account;
         mAppWidgetContainer.setVisibility(
-                isSimOrAccount(securityMode, false) && fullScreenEnabled ? View.GONE : View.VISIBLE);
+                isSimOrAccount && fullScreenEnabled ? View.GONE : View.VISIBLE);
 
         // Don't show camera or search in navbar when SIM or Account screen is showing
-        setSystemUiVisibility(isSimOrAccount(securityMode, false) ?
+        setSystemUiVisibility(isSimOrAccount ?
                 (getSystemUiVisibility() | View.STATUS_BAR_DISABLE_SEARCH)
                 : (getSystemUiVisibility() & ~View.STATUS_BAR_DISABLE_SEARCH));
 
@@ -1085,6 +1089,8 @@ public class KeyguardHostView extends KeyguardViewBase {
         showPrimarySecurityScreen(false);
         getSecurityView(mCurrentSecuritySelection).onResume(KeyguardSecurityView.SCREEN_ON);
 
+        minimizeChallengeIfDesired();
+
         // This is a an attempt to fix bug 7137389 where the device comes back on but the entire
         // layout is blank but forcing a layout causes it to reappear (e.g. with with
         // hierarchyviewer).
@@ -1095,7 +1101,6 @@ public class KeyguardHostView extends KeyguardViewBase {
         }
 
         requestFocus();
-        minimizeChallengeIfDesired();
     }
 
     @Override
@@ -1153,8 +1158,7 @@ public class KeyguardHostView extends KeyguardViewBase {
     }
 
     private void minimizeChallengeIfDesired() {
-        if (mSlidingChallengeLayout == null
-                || isSimOrAccount(mCurrentSecuritySelection, true)) {
+        if (mSlidingChallengeLayout == null) {
             return;
         }
 
@@ -1163,15 +1167,6 @@ public class KeyguardHostView extends KeyguardViewBase {
                 UserHandle.USER_CURRENT) == 1) {
             mSlidingChallengeLayout.showChallenge(false);
         }
-    }
-
-    private boolean isSimOrAccount(SecurityMode securityMode, boolean isInvalidCheck) {
-        final boolean isSimOrAccount = securityMode == SecurityMode.SimPin
-                || securityMode == SecurityMode.SimPuk
-                || securityMode == SecurityMode.Account;
-        return isInvalidCheck
-                ? isSimOrAccount || securityMode == SecurityMode.Invalid
-                : isSimOrAccount;
     }
 
     private int getSecurityViewIdForMode(SecurityMode securityMode) {
