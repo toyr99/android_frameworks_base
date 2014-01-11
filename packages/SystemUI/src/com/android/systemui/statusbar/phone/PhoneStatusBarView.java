@@ -286,8 +286,10 @@ public class PhoneStatusBarView extends PanelBar {
             // Tablet
             if (mFullyOpenedPanel != null) {
                 mBar.updateNotificationShortcutsVisibility(true);
+                mBar.updateCarrierAndWifiLabelVisibility(false, false);
             } else {
                 mBar.updateNotificationShortcutsVisibility(false);
+                mBar.updateCarrierAndWifiLabelVisibility(false, false);
             }
         } else {
             // Phone
@@ -296,11 +298,12 @@ public class PhoneStatusBarView extends PanelBar {
                     !(mBar.mSettingsButton.getVisibility() == View.VISIBLE &&
                     mBar.mNotificationButton.getVisibility() == View.VISIBLE))) {
                 mBar.updateNotificationShortcutsVisibility(true);
+                mBar.updateCarrierAndWifiLabelVisibility(false, false);
             } else {
                 mBar.updateNotificationShortcutsVisibility(false);
+                mBar.updateCarrierAndWifiLabelVisibility(false, false);
             }
         }
-        mBar.updateCarrierAndWifiLabelVisibility(false);
     }
 
 }
