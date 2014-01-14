@@ -19,6 +19,8 @@ package com.android.systemui.shortcuts;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
 
 import com.android.internal.util.mahdi.MahdiActions;
 import com.android.internal.util.mahdi.ButtonsConstants;
@@ -33,8 +35,19 @@ public class Immersive extends Activity  {
     @Override
     public void onResume() {
         super.onResume();
-        MahdiActions.processAction(
-                this, ButtonsConstants.ACTION_IMMERSIVE_MODE, false);
+        int value = getIntent().getIntExtra("value", 2);
+
+        if (value == 2) {
+            value = Settings.System.getIntForUser(
+                    getContentResolver(),
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                    0, UserHandle.USER_CURRENT_OR_SELF) == 1 ? 0 : 1;
+        }
+
+        Settings.System.putIntForUser(
+                getContentResolver(),
+                Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                value, UserHandle.USER_CURRENT_OR_SELF);
         this.finish();
     }
 }
