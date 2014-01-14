@@ -455,7 +455,7 @@ public class BatteryMeterView extends View implements DemoMode {
             if (mBatteryTypeView.equals("statusbar")) {
                 height = metrics.density * 16f + 0.5f;
                 if (mBatteryStyle == BATTERY_STYLE_PERCENT) {
-                    width = metrics.density * 35f + 0.5f;
+                    width = metrics.density * 38f + 0.5f;
                 } else {
                     width = metrics.density * 10.5f + 0.5f;
                 }
@@ -470,9 +470,7 @@ public class BatteryMeterView extends View implements DemoMode {
                     width = metrics.density * 22f + 0.5f;
                 }
                 lp = new LinearLayout.LayoutParams((int) width, (int) height);
-                lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
-                lp.setMargins(0, res.getDimensionPixelSize(R.dimen.qs_tile_margin_above_icon),
-                    0, res.getDimensionPixelSize(R.dimen.qs_tile_margin_below_icon));
+                lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;                
                 setLayoutParams(lp);
             }
 
