@@ -63,7 +63,7 @@ import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.android.internal.util.cm.TorchConstants;
+import com.android.internal.util.mahdi.TorchConstants;
 
 /**
  * Manages creating, showing, hiding and resetting the keyguard.  Calls back
