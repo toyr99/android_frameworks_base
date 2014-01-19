@@ -1123,6 +1123,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateBatteryIcons();
 
         mNetworkController.setListener(this);
+        updateCarrierAndWifiLabelVisibility(true);
 
         return mStatusBarView;
     }
