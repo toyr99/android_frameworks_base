@@ -48,12 +48,6 @@
     <!-- Device has a h/w rotation lock switch -->
     <bool name="config_hasRotationLockSwitch">false</bool>
 
-    <!-- Path to the library that contains a device specific key handler -->
-    <string name="config_deviceKeyHandlerLib" translatable="false"></string>
-
-    <!-- Name of that key handler class -->
-    <string name="config_deviceKeyHandlerClass" translatable="false"></string>
-
     <!-- kill app long press back -->
     <integer name="config_backKillTimeout">750</integer>
 
