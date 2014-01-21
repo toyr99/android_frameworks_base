@@ -24,11 +24,11 @@ public class NetworkSpeedTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Settings.System.putIntForUser(mContext.getContentResolver(), Settings.System.STATUS_BAR_TRAFFIC,
+                Settings.System.putIntForUser(mContext.getContentResolver(), Settings.System.NETWORK_TRAFFIC_STATE,
                         mEnabled ? 0 : 1, UserHandle.USER_CURRENT);
             }
         };
-        qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.STATUS_BAR_TRAFFIC), this);
+        qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.NETWORK_TRAFFIC_STATE), this);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class NetworkSpeedTile extends QuickSettingsTile {
 
     private synchronized void updateTile() {
         mEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_TRAFFIC, 0, UserHandle.USER_CURRENT) == 1;
+                Settings.System.NETWORK_TRAFFIC_STATE, 0, UserHandle.USER_CURRENT) == 1;
         if (mEnabled) {
             mDrawable = R.drawable.ic_qs_network_speed_on;
             mLabel = mContext.getString(R.string.quick_settings_network_speed_on);
