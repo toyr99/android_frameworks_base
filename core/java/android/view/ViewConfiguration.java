@@ -212,6 +212,7 @@ public class ViewConfiguration {
      */
     private static final int OVERFLING_DISTANCE = 6;
 
+    private Context mContext;
     private final int mEdgeSlop;
     private final int mFadingEdgeLength;
     private final int mMinimumFlingVelocity;
@@ -229,7 +230,6 @@ public class ViewConfiguration {
 
     private boolean sHasPermanentMenuKey;
     private boolean sHasPermanentMenuKeySet;
-    private Context mContext;
 
     static final SparseArray<ViewConfiguration> sConfigurations =
             new SparseArray<ViewConfiguration>(2);
@@ -267,6 +267,7 @@ public class ViewConfiguration {
      * @see android.util.DisplayMetrics
      */
     private ViewConfiguration(Context context) {
+        mContext = context;
         final Resources res = context.getResources();
         final DisplayMetrics metrics = res.getDisplayMetrics();
         final Configuration config = res.getConfiguration();
@@ -296,6 +297,7 @@ public class ViewConfiguration {
 
         mOverscrollDistance = (int) (sizeAndDensity * OVERSCROLL_DISTANCE + 0.5f);
         mOverflingDistance = (int) (sizeAndDensity * OVERFLING_DISTANCE + 0.5f);
+
 
         if (!sHasPermanentMenuKeySet) {
             IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
@@ -698,18 +700,14 @@ public class ViewConfiguration {
      * @return true if a permanent menu key is present, false otherwise.
      */
     public boolean hasPermanentMenuKey() {
-        // The action overflow button within app UI can
-        // be controlled with a system setting
-        int showOverflowButton = Settings.System.getInt(
-                mContext.getContentResolver(),
-                Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0);
-        if (showOverflowButton == 1) {
-            // Force overflow button on by reporting that
-            // the device has no permanent menu key
-            return false;
-        } else {
-            return sHasPermanentMenuKey;
+        boolean emulateMenuKey = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.EMULATE_MENU_KEY, 0) == 1;
+
+        if(!sHasPermanentMenuKey && emulateMenuKey){
+            return true;
         }
+
+        return sHasPermanentMenuKey;
     }
 
     /**
