@@ -630,23 +630,16 @@
 
     <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
+            1 - Recent apps view in SystemUI
+            2 - Launch assist intent
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
-    <integer name="config_longPressOnHomeBehavior">2</integer>
+    <integer name="config_longPressOnHomeBehavior">1</integer>
 
     <!-- Control the behavior when the user double-taps the home button.
             0 - Nothing
-            1 - Menu
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
+            1 - Recent apps view in SystemUI
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
@@ -1360,7 +1353,7 @@
             16 - App switch
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">7</integer>
+    <integer name="config_deviceHardwareKeys">0</integer>
 
     <!-- bool value to for enabling motion accelerometer -->
     <bool name="use_motion_accel">false</bool>
