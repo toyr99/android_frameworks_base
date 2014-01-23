@@ -80,7 +80,6 @@ public class NotificationViewManager {
         public int notificationsHeight = 4;
         public float offsetTop = 0.3f;
         public boolean privacyMode = false;
-        public boolean dynamicWidth = true;
 
         public Configuration(Handler handler) {
             super(handler);
@@ -111,8 +110,6 @@ public class NotificationViewManager {
                 Settings.System.LOCKSCREEN_NOTIFICATIONS_OFFSET_TOP), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                 Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.LOCKSCREEN_NOTIFICATIONS_DYNAMIC_WIDTH), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS), false, this);
         }
@@ -147,8 +144,6 @@ public class NotificationViewManager {
                 Settings.System.LOCKSCREEN_NOTIFICATIONS_HEIGHT, notificationsHeight);
             offsetTop = Settings.System.getFloat(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_NOTIFICATIONS_OFFSET_TOP, offsetTop);
-            dynamicWidth = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.LOCKSCREEN_NOTIFICATIONS_DYNAMIC_WIDTH, dynamicWidth ? 1 : 0) == 1;
             String excludedApps = Settings.System.getString(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS);
 
@@ -187,10 +182,10 @@ public class NotificationViewManager {
         @Override
         public void onNotificationPosted(final StatusBarNotification sbn) {
             boolean screenOffAndNotCovered = !mIsScreenOn && mTimeCovered == 0;
-            boolean ongoingAndReposted = sbn.isOngoing() && mHostView.containsNotification(sbn);
-            if (mHostView.addNotification(sbn, (screenOffAndNotCovered || mIsScreenOn) && !ongoingAndReposted,
+            boolean showNotification = !mHostView.containsNotification(sbn) || mHostView.getNotification(sbn).when != sbn.getNotification().when;
+            if (mHostView.addNotification(sbn, (screenOffAndNotCovered || mIsScreenOn) && showNotification,
                         config.forceExpandedView) && config.wakeOnNotification && screenOffAndNotCovered
-                        && !ongoingAndReposted) {
+                        && showNotification && mTimeCovered == 0) {
                 wakeDevice();
             }
         }
