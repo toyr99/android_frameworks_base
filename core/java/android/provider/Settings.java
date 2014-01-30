@@ -3502,7 +3502,19 @@ public final class Settings {
          */
         public static final String HALO_NOTIFY_COUNT = "halo_notify_count";
 
-	/**
+        /**
+         * HALO message box animation?, should default to 2 (flip animation)
+         * @hide
+         */
+        public static final String HALO_MSGBOX_ANIMATION = "halo_msgbox_animation";
+
+        /**
+         * HALO unlock ping?, should default to 0 (no, do not ping on unlock)
+         * @hide
+         */
+        public static final String HALO_UNLOCK_PING = "halo_unlock_ping";
+
+        /**
          * Enables/disables lockscreen notifications
          * @hide
          */
@@ -3592,18 +3604,6 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE = "lockscreen_notifications_privacy_mode";
-
-        /**
-         * HALO message box animation?, should default to 2 (flip animation)
-         * @hide
-         */
-        public static final String HALO_MSGBOX_ANIMATION = "halo_msgbox_animation";
-
-        /**
-         * HALO unlock ping?, should default to 0 (no, do not ping on unlock)
-         * @hide
-         */
-        public static final String HALO_UNLOCK_PING = "halo_unlock_ping";
 
         /**
          * Whether or not to launch default music player when headset is connected

@@ -219,6 +219,13 @@ public class NavigationBarView extends LinearLayout {
         }
     };
 
+    private final OnClickListener mNavBarClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            KeyguardTouchDelegate.getInstance(getContext()).dispatchButtonClick(0);
+        }
+    };
+
     private class H extends Handler {
         public void handleMessage(Message m) {
             switch (m.what) {
@@ -350,6 +357,11 @@ public class NavigationBarView extends LinearLayout {
     // shown when keyguard is visible and camera is available
     public View getCameraButton() {
         return mCurrentView.findViewById(R.id.camera_button);
+    }
+
+    // used for lockscreen notifications
+    public View getNotifsButton() {
+        return mCurrentView.findViewById(R.id.show_notifs);
     }
 
     @Override
@@ -696,6 +708,13 @@ public class NavigationBarView extends LinearLayout {
                     && !mCameraDisabledByUser);
         }
 
+        final boolean showNotifs = disableSearch &&
+            Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_NOTIFICATIONS, 1) == 1
+            && Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0) == 0;
+        setVisibleOrGone(getNotifsButton(), showNotifs);
+
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);
 
         setMenuVisibility(mShowMenu, true);
@@ -844,11 +863,15 @@ public class NavigationBarView extends LinearLayout {
         boolean hasCamera = false;
         for (int i = 0; i < mRotatedViews.length; i++) {
             final View cameraButton = mRotatedViews[i].findViewById(R.id.camera_button);
+            final View notifsButton = mRotatedViews[i].findViewById(R.id.show_notifs);
             final View searchLight = mRotatedViews[i].findViewById(R.id.search_light);
             if (cameraButton != null) {
                 hasCamera = true;
                 cameraButton.setOnTouchListener(onTouchListener);
                 cameraButton.setOnClickListener(onClickListener);
+            }
+            if (notifsButton != null) {
+                notifsButton.setOnClickListener(mNavBarClickListener);
             }
             if (searchLight != null) {
                 searchLight.setOnClickListener(onClickListener);
