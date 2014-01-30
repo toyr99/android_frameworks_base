@@ -457,7 +457,7 @@ public class BatteryCircleMeterView extends ImageView {
         }
         final int x = measure.getWidth() / 2;
 
-        mCircleSize = measure.getHeight();
+        mCircleSize = measure.getHeight() - 3;
     }
 
 }
