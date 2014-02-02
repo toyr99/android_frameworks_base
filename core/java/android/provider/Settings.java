@@ -3190,20 +3190,6 @@ public final class Settings {
          */
         public static final String QUICK_TILES_TEXT_COLOR = "quick_tiles_text_color";
 
-
-       /**
-        * Enables dynamic with for shown notifications on devices >= xxhdpi
-        * @hide
-        */
-        public static final String LOCKSCREEN_NOTIFICATIONS_DYNAMIC_WIDTH = "lockscreen_notifications_dynamic_width";
-
-       /**
-        * A list of packages to exclude from being displayed as lockscreen notifications.
-        * This should be a string of packages separated by |
-        * @hide
-        */
-        public static final String LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS = "lockscreen_notifications_excluded_apps";
-
         /**
          * QuickSettings tiles background color
          *
@@ -3616,6 +3602,19 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE = "lockscreen_notifications_privacy_mode";
+
+        /**
+         * A list of packages to exclude from being displayed as lockscreen notifications.
+         * This should be a string of packages separated by |
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS = "lockscreen_notifications_excluded_apps";
+
+        /**
+         * Set a custom notification background color
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_COLOR = "lockscreen_notifications_color";
 
         /**
          * Whether or not to launch default music player when headset is connected
