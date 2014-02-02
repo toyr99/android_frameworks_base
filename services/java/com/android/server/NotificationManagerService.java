@@ -2079,7 +2079,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                         // so that we do not play sounds, show lights, etc. for invalid notifications
                         Slog.e(TAG, "WARNING: In a future release this will crash the app: "
                                 + n.getPackageName());
-                    }	    
+
+                    }
 
                     // If we're not supposed to beep, vibrate, etc. then don't.
                     if (((mDisabledNotifications & StatusBarManager.DISABLE_NOTIFICATION_ALERTS) == 0)
@@ -2090,18 +2091,14 @@ public class NotificationManagerService extends INotificationManager.Stub
                             && canInterrupt
                             && mSystemReady
                             && !notificationIsAnnoying(pkg)) {
-		    try {
-                	final ProfileManager profileManager =
+
+		            final ProfileManager profileManager =
                         (ProfileManager) mContext.getSystemService(Context.PROFILE_SERVICE);
 
-                	ProfileGroup group = profileManager.getActiveProfileGroup(pkg);
-                	if (group != null) {
-			// FIXME: local variable notification is accessed from within inner class. needs to be declared final
-                    	//notification = group.processNotification(notification);
-                	}
-            	    } catch(Throwable th) {
-                	Log.e(TAG, "An error occurred profiling the notification.", th);
-            	    }
+                    ProfileGroup group = profileManager.getActiveProfileGroup(pkg);
+                    if (group != null) {
+                        group.applyOverridesToNotification(notification);
+                    }
 
                         final AudioManager audioManager = (AudioManager) mContext
                         .getSystemService(Context.AUDIO_SERVICE);
