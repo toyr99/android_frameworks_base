@@ -125,6 +125,32 @@ public class MahdiActions {
                 }
                 context.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
+            } else if (action.equals(ButtonsConstants.ACTION_PIE)) {
+                boolean pieState = isPieEnabled(context);
+                if (pieState && !isNavBarEnabled(context) && isNavBarDefault(context)) {
+                    Toast.makeText(context,
+                            com.android.internal.R.string.disable_pie_navigation_error,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Settings.System.putIntForUser(
+                        context.getContentResolver(),
+                        Settings.System.PIE_CONTROLS,
+                        pieState ? 0 : 1, UserHandle.USER_CURRENT);
+                return;
+            } else if (action.equals(ButtonsConstants.ACTION_NAVBAR)) {
+                boolean navBarState = isNavBarEnabled(context);
+                if (navBarState && !isPieEnabled(context) && isNavBarDefault(context)) {
+                    Toast.makeText(context,
+                            com.android.internal.R.string.disable_navigation_pie_error,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Settings.System.putIntForUser(
+                        context.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_SHOW,
+                        navBarState ? 0 : 1, UserHandle.USER_CURRENT);
+                return;
             } else if (action.equals(ButtonsConstants.ACTION_IMMERSIVE_MODE)) {
                 boolean immersiveModeOn = Settings.System.getIntForUser(
                         context.getContentResolver(),
@@ -149,7 +175,7 @@ public class MahdiActions {
                     }
                     Toast.makeText(context,
                             com.android.internal.R.string.theme_auto_switch_mode_error,
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_LONG).show();
                     return;
                 }
                 // Handle a switch change
@@ -319,6 +345,23 @@ public class MahdiActions {
                 return;
             }
 
+    }
+
+    public static boolean isPieEnabled(Context context) {
+        return Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.PIE_CONTROLS,
+                0, UserHandle.USER_CURRENT) == 1;
+    }
+
+    public static boolean isNavBarEnabled(Context context) {
+        return Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_SHOW,
+                isNavBarDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) == 1;
+    }
+
+    public static boolean isNavBarDefault(Context context) {
+        return context.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
     }
 
     private static void startActivity(Context context, IWindowManager windowManagerService,
