@@ -44,6 +44,8 @@ public class ButtonsConstants {
     public static final String ACTION_OMNISWITCH           = "**omniswitch**";
     public static final String ACTION_THEME_SWITCH         = "**theme_switch**";
     public static final String ACTION_KEYGUARD_SEARCH      = "**keyguard_search**";
+    public static final String ACTION_PIE                  = "**pie**";
+    public static final String ACTION_NAVBAR               = "**nav_bar**";
 
     // no action
     public static final String ACTION_NULL            = "**null**";
