@@ -181,9 +181,7 @@
     <string name="shortcut_reboot">Neustart</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_last_app">Letzte App</string>
-    <string name="shortcut_power_menu">Ein/Aus-Taste</string>
     <string name="shortcut_screenshot">Bildschirmfoto</string>
-    <string name="shortcut_screensleep">Schlafen legen</string>
     <string name="shortcut_volume">Lautstärke</string>
     <string name="shortcut_toggle_title">Aktion ausführen</string>
     <string name="shortcut_chamber">Kammer der Geheimnisse</string>
