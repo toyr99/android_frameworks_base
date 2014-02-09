@@ -178,13 +178,11 @@
     <string name="shortcut_immersive">Modo inmersivo</string>
     <string name="shortcut_quiethours">Horas de silencio</string>
     <string name="shortcut_rotation">Rotación</string>
-    <string name="shortcut_torch">Toggle linterna</string>
+    <string name="shortcut_torch">Linterna</string>
     <string name="shortcut_reboot">Reinicio</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_last_app">Última App</string>
-    <string name="shortcut_power_menu">Menú Power</string>
     <string name="shortcut_screenshot">Captura de pantalla</string>
-    <string name="shortcut_screensleep">Dormir</string>
     <string name="shortcut_volume">Volumen</string>
     <string name="shortcut_toggle_title">Acción rendimiento</string>
     <string name="shortcut_chamber">Cámara de secretos</string>
