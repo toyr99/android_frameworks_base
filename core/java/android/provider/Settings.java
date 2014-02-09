@@ -3431,18 +3431,11 @@ public final class Settings {
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
 
         /**
-        * Whether to control brightness from status bar
-        *
-        * @hide
-        */
-       public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
-
-        /**
-         * Should the non-intrsive incall ui be used
+         * Whether to control brightness from status bar
          *
          * @hide
          */
-        public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
          * Whether flip action during incomming call should mute or dismiss
