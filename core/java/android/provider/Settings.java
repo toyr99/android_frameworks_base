@@ -4385,6 +4385,13 @@ public final class Settings {
                 "pie_buttons_config_second_layer";
 
         /**
+         * Whether pie triggers on the left and right edge should be reduced if IME shows up.
+         * Default = 1 (enabled)
+         * @hide
+         */
+        public static final String PIE_IME_CONTROL = "pie_ime_control";
+
+        /**
          * Add smart phone caller
          * @hide
          */
