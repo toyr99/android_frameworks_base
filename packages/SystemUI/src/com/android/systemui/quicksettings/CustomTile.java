@@ -36,7 +36,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.android.internal.util.mahdi.AppHelper;
+import com.android.internal.util.mahdi.Converter;
+import com.android.internal.util.mahdi.ImageHelper;
 import com.android.internal.util.mahdi.MahdiActions;
+
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -220,17 +223,31 @@ public class CustomTile extends QuickSettingsTile {
                 if (mCustomIcon[mState] != null && mCustomIcon[mState].length() > 0) {
                     File f = new File(Uri.parse(mCustomIcon[mState]).getPath());
                     if (f.exists()) {
-                        mRealDrawable = new BitmapDrawable(
-                                mContext.getResources(), f.getAbsolutePath());
+                        mRealDrawable = ImageHelper.resize(mContext, new BitmapDrawable(
+                                mContext.getResources(), f.getAbsolutePath()),
+                                Converter.dpToPx(mContext, 60));
                     }
                 } else {
                     try {
+                        String extraIconPath = "";
                         if (mClickActions[mState] != null) {
+                            extraIconPath =
+                                mClickActions[mState].replaceAll(".*?hasExtraIcon=", "");
                             mRealDrawable = mContext.getPackageManager().getActivityIcon(
                                     Intent.parseUri(mClickActions[mState], 0));
                         } else if (mLongActions[mState] != null) {
+                            extraIconPath =
+                                mLongActions[mState].replaceAll(".*?hasExtraIcon=", "");
                             mRealDrawable = mContext.getPackageManager().getActivityIcon(
                                     Intent.parseUri(mLongActions[mState], 0));
+                        }
+                        if (extraIconPath.length() > 0) {
+                            File f = new File(Uri.parse(extraIconPath).getPath());
+                            if (f.exists()) {
+                                mRealDrawable = ImageHelper.resize(mContext, new BitmapDrawable(
+                                        mContext.getResources(), f.getAbsolutePath()),
+                                        Converter.dpToPx(mContext, 60));
+                            }
                         }
                     } catch (NameNotFoundException e) {
                         mRealDrawable = null;
