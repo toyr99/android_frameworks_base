@@ -404,16 +404,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         void observe() {
-            ContentResolver resolver = mContext.getContentResolver();          
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_COLOR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR),
-                    false, this, UserHandle.USER_ALL);
+            ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY),
                     false, this, UserHandle.USER_ALL);
