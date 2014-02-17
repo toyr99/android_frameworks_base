@@ -26,9 +26,6 @@ public class SleepScreenTile extends QuickSettingsTile {
             @Override
             public void onClick(View v) {
                 pm.goToSleep(SystemClock.uptimeMillis());
-                if (isFlipTilesEnabled()) {
-                    flipTile(0);
-                }
             }
         };
         mOnLongClick = new OnLongClickListener() {
