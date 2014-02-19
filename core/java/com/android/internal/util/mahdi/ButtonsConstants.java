@@ -40,6 +40,7 @@ public class ButtonsConstants {
     public static final String ACTION_VIB_SILENT           = "**ring_vib_silent**";
     public static final String ACTION_POWER_MENU           = "**power_menu**";
     public static final String ACTION_TORCH                = "**torch**";
+    public static final String ACTION_OMNISWITCH           = "**omniswitch**";
 
     // no action
     public static final String ACTION_NULL            = "**null**";

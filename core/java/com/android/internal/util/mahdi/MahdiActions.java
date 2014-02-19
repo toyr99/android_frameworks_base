@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.ActivityManagerNative;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.input.InputManager;
@@ -247,13 +248,20 @@ public class MahdiActions {
                         }
                     }
                 }
+            } else if (action.equals(ButtonsConstants.ACTION_OMNISWITCH)) {
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName(
+                        "org.omnirom.omniswitch",
+                        "org.omnirom.omniswitch.MainActivity"));
+                startActivity(context, windowManagerService, isKeyguardShowing, intent);
+                return;
             } else {
                 // we must have a custom uri
                 Intent intent = null;
                 try {
                     intent = Intent.parseUri(action, 0);
                 } catch (URISyntaxException e) {
-                    Log.e("SlimActions:", "URISyntaxException: [" + action + "]");
+                    Log.e("MahdiActions:", "URISyntaxException: [" + action + "]");
                     return;
                 }
                 startActivity(context, windowManagerService, isKeyguardShowing, intent);
