@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (C) 2012-2013 The Mahdi-Rom Project
+ * Copyright (C) 2012-2014 The Mahdi-Rom Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -44,6 +44,11 @@
     <string name="quick_settings_lockscreen">Pantalla de bloqueo</string>
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pause</string>
+    <string name="quick_settings_music_schedule_title">Temporizador</string>
+    <string name="quick_settings_music_schedule_in_progress">Temporizador en progreso</string>
+    <string name="quick_settings_music_schedule_start">Iniciar temporizador</string>
+    <string name="quick_settings_music_schedule_cancel">Borrar temporizador</string>
+    <string name="quick_settings_music_schedule_update">Actualizar temporizador</string>
     <string name="quick_settings_network_type">Modo de red</string>
     <string name="quick_settings_report_bug">Reportar bug</string>
     <string name="quick_settings_sync">Sync</string>
@@ -67,6 +72,8 @@
     <string name="quick_settings_quick_record_rec">Grabando...</string>
     <string name="quick_settings_quick_record_save">Guardado</string>
     <string name="quick_settings_quick_record_play">Reproduciendo...</string>
+    <string name="quick_settings_custom_toggle">Personal</string>
+    <string name="quick_settings_contact_toggle">Contactos</string>
 
     <!-- Immersive mode strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
     <string name="quick_settings_immersive_mode">Expandida</string>
@@ -125,5 +132,42 @@
 
     <!-- Hide notification icons -->
     <string name="status_bar_notification_hide_icon_packages">Ocultar icono de notificación de aplicaciones</string>
-    
+	
+	<!-- Dialog Cancel/OK -->
+    <string name="cancel">Cancelar</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Off</string>
+    <string name="on">On</string>
+    <string name="toggle">Toggle</string>
+
+    <!-- Custom Shortcut Actions -->
+    <string name="shortcut_picker">Accesos directos personales</string>
+    <string name="shortcut_immersive">Modo inmersivo</string>
+    <string name="shortcut_quiethours">Horas de silencio</string>
+    <string name="shortcut_rotation">Rotación</string>
+    <string name="shortcut_torch">Toggle linterna</string>
+    <string name="shortcut_reboot">Reinicio</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_last_app">Última App</string>
+    <string name="shortcut_power_menu">Menú Power</string>
+    <string name="shortcut_screenshot">Captura de pantalla</string>
+    <string name="shortcut_screensleep">Dormir</string>
+    <string name="shortcut_volume">Volumen</string>
+    <string name="shortcut_toggle_title">Acción rendimiento</string>
+    <string name="shortcut_chamber">Cámara de secretos</string>
+    <string name="chamber_disabled">Cámara secreta cerrada</string>
+    <string name="chamber_title">Configuración de entrada de cadena</string>
+    <string name="chamber_message">Configuración de entrada de cadena puede aparecer como casilla o  lista. Los ajustes se pueden encontrar en el archivo Settings.java . ADVERTENCIA : Este proceso es peligroso</string>
+    <string name="chamber_invalid">Esta entrada no es válida.Tenga cuidado</string>
+    <string name="chamber_checkbox">Casilla de verificación</string>
+    <string name="chamber_chk_message">¿Es esta configuración de casilla?</string>
+    <string name="chamber_int">Valores de entrada</string>
+    <string name="chamber_int_message">Introduzca valores.Separe cada valor con una coma.Los ajustes de color aceptan valores hexadecimales como #FF00aacc o valores básicos de colores como el rojo,verde y amarillo.</string>
+    <string name="chamber_name_title">Nombre de acceso directo</string>
+    <string name="chamber_name_message">Dé un nombre al acceso directo para mostrar con el icono.</string>
+    <string name="chamber_name_toast">Usar nombre por defecto</string>    
 </resources>
