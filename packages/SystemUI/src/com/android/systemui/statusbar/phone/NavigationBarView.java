@@ -768,7 +768,8 @@ public class NavigationBarView extends LinearLayout {
                 Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0) == 0;
         setVisibleOrGone(getSearchLight(), showSearch);
-        setVisibleOrGone(getCameraButton(), shouldShowCamera);
+        setVisibleOrGone(getCameraButton(), shouldShowCamera && !mCameraDisabledByDpm
+                    && !mCameraDisabledByUser);
         // Just hide view if neccessary - don't show it because that interferes with Keyguard
         // which uses setButtonDrawable to decide whether it should be shown
         setVisibleOrGone(getNotifsButton(), showNotifs && mWasNotifsButtonVisible);
