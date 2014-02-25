@@ -2915,29 +2915,13 @@ public final class Settings {
         */
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
 
-	/**
-         * Whether to show the network status in the status bar
+	/* Network speed indicator
+         * 0 = disabled
+         * 1 = show bits per second
+         * 2 = show Bytes per second
          * @hide
          */
-        public static final String STATUS_BAR_NETWORK_STATS = "status_bar_network_stats";
-
-        /**
-         * Frequency at which stats are updated, in milliseconds
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL = "status_bar_network_stats_update_frequency";
-
-        /**
-         * Network stats Color style
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_COLOR = "status_bar_network_usage_color";
-
-        /**
-         * Network stats hide if there's no traffic
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_HIDE = "status_bar_network_hide"; 
+        public static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
 	
         /**
          * Whether or not to show circle battery around the lockscreen ring
