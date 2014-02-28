@@ -166,5 +166,21 @@
     <string name="chamber_int_message">Introduzca valores.Separe cada valor con una coma.Los ajustes de color aceptan valores hexadecimales como #FF00aacc o valores básicos de colores como el rojo,verde y amarillo.</string>
     <string name="chamber_name_title">Nombre de acceso directo</string>
     <string name="chamber_name_message">Dé un nombre al acceso directo para mostrar con el icono.</string>
-    <string name="chamber_name_toast">Usar nombre por defecto</string>    
+    <string name="chamber_name_toast">Usar nombre por defecto</string>
+
+    <!-- Battery saver mode -->
+    <string name="battery_saver_start">Ahorro de batería activado</string>
+    <string name="battery_saver_stop">Ahorro de batería desactivado</string>
+    <string name="battery_saver_change">Ahorro de batería en cambio de red</string>
+    <string name="battery_saver_network">Red restaurada</string>
+    <string name="battery_saver_wifi">Wifi restaurado</string>
+    <string name="battery_saver_all">Todas las configuraciones restauradas</string>
+    <!-- Battery Saver -->
+    <string name="network_4G">4G/LTE</string>
+    <string name="network_3G_only">3G Sólo</string>
+    <string name="network_3G_auto">2G/3G Auto</string>
+    <string name="network_3G">2G/3G Pref</string>
+    <string name="network_2G">2G Sólo</string>
+    <string name="quick_settings_network_unknown">Desconocido</string>
+
 </resources>
