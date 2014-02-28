@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2013, Mahdi-Rom project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Power menu -->
+    <string name="global_action_reboot">Reiniciar</string>
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Reiniciar tablet</string>
+    <string name="reboot_system" product="default">Reiniciar teléfono</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Reiniciar</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Bootloader</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Bootmenu</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Fastboot</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Download</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Reiniciando\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">La tablet se reiniciará.</string>
+    <string name="reboot_confirm" product="default">El teléfono se reiniciará.</string>
+
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Captura de pantalla</string>
+
+    <!-- label for screen record item in phone options dialog -->
+    <string name="global_action_screen_record">Grabador de pantalla</string>
+
+    <!-- label for item that toggles global immersive mode -->
+    <string name="global_actions_toggle_global_immersive_mode">Modo inmersivo</string>
+    <!-- status message in phone options dialog for when expand desktop mode is on -->
+    <string name="global_actions_global_immersive_mode_on_status">Activado</string>
+    <!-- status message in phone options dialog for when expand desktop mode is off -->
+    <string name="global_actions_global_immersive_mode_off_status">Desactivado</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Perfiles</string>
+
+    <!-- The title of the profile picker dialog. -->
+    <string name="profile_picker_title">Perfiles</string>
+
+    <!-- The item label for the no profile selection item. -->
+    <string name="profile_none">Niguno</string>
+
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">Por defecto</string>
+    <string name="profileNameWork">Trabajo</string>
+    <string name="profileNameHome">Casa</string>
+    <string name="profileNameSilent">Silencio</string>
+    <string name="profileNameNight">Noche</string>
+    <string name="profileNameAutomobile">Coche</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Teléfono</string>
+    <string name="profileGroupCalendar">Calendario</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">SMS</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Otros</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Rotación de desblqoueo</string>
+    <string name="toast_rotation_locked">Rotación de bloqueo</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_cancelNotifications">cancelar las notificaciones de la aplicación</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_cancelNotifications">Permite a la aplicación cancelar las notificaciones creadas por otras aplicaciones.</string>
+
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">activar o desactivar privacy guard</string>
+    <string name="permdesc_changePrivacyGuardState">Permite que la aplicación determine si otra aplicación se ejecuta con Privacy Guard. Cuando una aplicación se está ejecutando con Privacy Guard, no tendrá acceso a los datos personales, como contactos, registros de llamadas o mensajes.</string>
+    <string name="privacy_guard_notification">Privacy Guard activo</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no será capaz de acceder a datos personales</string>
+
+    <!-- kill app long press back -->
+    <string name="app_killed_message">Aplicación matada.¿Contento?</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_recordScreen">Contenido de grabacion que se muestra</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_recordScreen">Permitir que la aplicación grabe la pantalla de los usuarios.</string>
+
+    <string name="permlab_interceptSmsSent">interceptar SMS salientes</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Permite que la aplicación 
+         intercepte un SMS salientes. 
+         Las aplicaciones malintencionadas deben usar esto para evitar mensajes SMS salientes.</string>
+
+    <string name="immersive_mode_confirmation_bottom">Desliza hacia arriba desde abajo para salir de la pantalla completa.</string>
+
+    <!-- Lock screen always show battery -->
+    <string name="lockscreen_discharging">Descargando, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
+    <!-- Animation Strings -->
+    <string name="animation_default">Por defecto</string>
+    <string name="animation_fade">Fundido</string>
+    <string name="animation_slide_right">Desliza derecha</string>
+    <string name="animation_slide_left">Desliza izquierda</string>
+    <string name="animation_slide_right_no_fade">Desliza. dere.(sin desvanecer)</string>
+    <string name="animation_slide_left_no_fade">Desliza. izqui.(sin desvanecer)</string>
+    <string name="animation_slide_up">Deslizamiento abajo</string>
+    <string name="animation_slide_down">Deslizamiento arriba</string>
+    <string name="animation_translucent">Translúcido</string>
+    <string name="animation_grow_shrink">Crecer (Arriba)</string>
+    <string name="animation_grow_shrink_center">Crecer (Centro)</string>
+    <string name="animation_grow_shrink_bottom">Crecer (Abajo)</string>
+    <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
+    <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
+    <string name="animation_random">Aleatorio</string>
+</resources>
