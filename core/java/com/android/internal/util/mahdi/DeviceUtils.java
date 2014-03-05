@@ -137,7 +137,10 @@ public class DeviceUtils {
     }
 
     private static boolean isSupportedFeature(Context context, String action) {
-        if (action.equals(ButtonsConstants.ACTION_TORCH) && !deviceSupportsTorch(context)) {
+        if (action.equals(ButtonsConstants.ACTION_TORCH) 
+                        && !deviceSupportsTorch(context)
+                || action.equals(ButtonsConstants.ACTION_SMART_PULLDOWN)
+                        && isTablet(context)) {
             return false;
         }
         return true;

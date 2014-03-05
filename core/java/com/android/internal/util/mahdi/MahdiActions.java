@@ -86,7 +86,9 @@ public class MahdiActions {
             if (collapseShade) {
                 if (!action.equals(ButtonsConstants.ACTION_QS)
                         && !action.equals(ButtonsConstants.ACTION_NOTIFICATIONS)
-                        && !action.equals(ButtonsConstants.ACTION_THEME_SWITCH)) {
+                        && !action.equals(ButtonsConstants.ACTION_THEME_SWITCH)
+                        && !action.equals(ButtonsConstants.ACTION_SMART_PULLDOWN)) {
+
                     try {
                         barService.collapsePanels();
                     } catch (RemoteException ex) {
@@ -239,6 +241,15 @@ public class MahdiActions {
                 }
                 try {
                     barService.toggleQSShade();
+                } catch (RemoteException e) {
+                }
+                return;
+            } else if (action.equals(ButtonsConstants.ACTION_SMART_PULLDOWN)) {
+                if (isKeyguardShowing && isKeyguardSecure) {
+                    return;
+                }
+                try {
+                    barService.toggleSmartPulldown();
                 } catch (RemoteException e) {
                 }
                 return;

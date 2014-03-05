@@ -106,6 +106,10 @@ public class TvStatusBar extends BaseStatusBar {
     public void setAutoRotate(boolean enabled) {
     }
 
+    @Override // CommandQueue
+    public void toggleSmartPulldown() {
+    }
+
     @Override
     protected void createAndAddWindows() {
     }
