@@ -289,6 +289,16 @@ public class ResourcesManager {
                 boolean isDefaultDisplay = (displayId == Display.DEFAULT_DISPLAY);
                 DisplayMetrics dm = defaultDisplayMetrics;
                 final boolean hasOverrideConfiguration = key.hasOverrideConfiguration();
+                boolean themeChangedCM = (changes & ActivityInfo.CONFIG_THEME_RESOURCE) != 0;
+                if (themeChangedCM) {
+                    AssetManager am = r.getAssets();
+                    if (am.hasThemeSupport()) {
+                        detachThemeAssets(am);
+                        if (!TextUtils.isEmpty(config.customTheme.getThemePackageName())) {
+                            attachThemeAssets(am, config.customTheme);
+                        }
+                    }
+                }
                 final boolean themeChanged = (changes & ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
                 if ((!isDefaultDisplay || hasOverrideConfiguration)) {
                     if (tmpConfig == null) {
@@ -306,9 +316,11 @@ public class ResourcesManager {
                 } else {
                     r.updateConfiguration(config, dm, compat);
                 }
-                if (themeChanged) {
+                if (themeChangedCM) {
                     r.updateStringCache();
-                }
+                } else if (themeChanged) {
+                    r.updateStringCache();
+                } 
                 //Slog.i(TAG, "Updated app resources " + v.getKey()
                 //        + " " + r + ": " + r.getConfiguration());
             } else {
