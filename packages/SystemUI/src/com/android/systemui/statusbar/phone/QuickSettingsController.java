@@ -52,7 +52,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_WIFI;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIMAX;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NAVBAR;
-import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKSPEED;
+import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKTRAFFIC;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -109,7 +109,7 @@ import com.android.systemui.quicksettings.RemoteDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.quicksettings.NavBarTile;
-import com.android.systemui.quicksettings.NetworkSpeedTile;
+import com.android.systemui.quicksettings.NetworkTrafficTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -282,8 +282,8 @@ public class QuickSettingsController {
                 qs = new VolumeTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_NAVBAR)) {
                     qs = new NavBarTile(mContext, this, mHandler);
-            } else if (tile.equals(TILE_NETWORKSPEED)) {
-                qs = new NetworkSpeedTile(mContext, this, mHandler);
+            } else if (tile.equals(TILE_NETWORKTRAFFIC)) {
+                qs = new NetworkTrafficTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_THEME)) {
                 qs = new ThemeTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKADB)) {
