@@ -392,7 +392,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 });
         }
 
-	// next: screenrecord
+        // next: screenrecord
         // only shown if enabled, disabled by default
         boolean showScreenrecord = Settings.System.getIntForUser(cr,
                 Settings.System.POWER_MENU_SCREENRECORD_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
@@ -411,6 +411,33 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         return true;
                     }
                 });
+        }
+
+        // next: On-The-Go, if enabled
+        boolean showOnTheGo = Settings.System.getBoolean(cr,
+                Settings.System.POWER_MENU_ONTHEGO_ENABLED, false);
+        if (showOnTheGo) {
+            mItems.add(
+                    new SinglePressAction(R.drawable.ic_lock_onthego,
+                            R.string.global_action_onthego) {
+
+                        public void onPress() {
+                            startOnTheGo();
+                        }
+
+                        public boolean onLongPress() {
+                            return false;
+                        }
+
+                        public boolean showDuringKeyguard() {
+                            return true;
+                        }
+
+                        public boolean showBeforeProvisioning() {
+                            return true;
+                        }
+                    }
+            );
         }
 
         // next: global immersive mode toggle
@@ -688,6 +715,15 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private void toggleScreenRecord() {
         final Intent recordIntent = new Intent("org.chameleonos.action.NOTIFY_RECORD_SERVICE");
         mContext.sendBroadcast(recordIntent, Manifest.permission.RECORD_SCREEN);
+    }
+
+    private void startOnTheGo() {
+        final ComponentName cn = new ComponentName("com.android.systemui",
+                "com.android.systemui.nameless.onthego.OnTheGoService");
+        final Intent startIntent = new Intent();
+        startIntent.setComponent(cn);
+        startIntent.setAction("start");
+        mContext.startService(startIntent);
     }
 
     private void prepareDialog() {
