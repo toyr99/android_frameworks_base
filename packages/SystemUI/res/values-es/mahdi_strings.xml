@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (C) 2012-2014 The Mahdi-Rom Project
+ * Copyright (C) 2013-2014 The Mahdi-Rom Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -16,8 +16,7 @@
  * limitations under the License.
  */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">    
     <!-- QuickSettings: Profile [CHAR LIMIT=NONE] -->
     <string name="quick_settings_profile_label">Perfil</string>
 
@@ -80,16 +79,36 @@
     <string name="quick_settings_navbar_on">Navbar on</string>
     <string name="quick_settings_navbar_off">Navbar off</string>
 
-    <!-- Network Speed Tile -->
-    <string name="quick_settings_network_speed_on">Velocidad de red on</string>
-    <string name="quick_settings_network_speed_off">Velocidad de red off</string>
+    <!-- Network Traffic Tile -->
+    <string name="quick_settings_network_traffic_on">Tráfico on</string>
+    <string name="quick_settings_network_traffic_off">Tráfico off</string>
+    <string name="quick_settings_network_traffic_up">Tráfico arriba</string>
+    <string name="quick_settings_network_traffic_down">Tráfico abajo</string>
+
+    <!-- Theme Tile -->
+    <string name="quick_settings_theme_switch_dark">Tema Dark</string>
+    <string name="quick_settings_theme_switch_light">Tema Light</string>
 
     <!-- Camera tile toasts -->
     <string name="quick_settings_camera_error_connect">No se puede conectar a la cámara</string>
 
+    <!-- Notification reminders -->
+    <string name="quick_settings_reminder">Recordatorio</string>
+    <string name="quick_settings_reminder_title">Título:</string>
+    <string name="quick_settings_reminder_message">Mensaje:</string>
+    <string name="quick_settings_reminder_time">Tiempo de recordatorio</string>
+    <string name="quick_settings_reminder_set">Selecciona tiempo</string>
+    <string name="quick_settings_reminder_update">Actualiza tiempo</string>
+    <string name="quick_settings_reminder_no_expire">Sin notificación</string>
+    <string name="quick_settings_reminder_dismiss">Borrar recordatorio</string>
+    <string name="quick_settings_reminder_dismiss_message">¿Borrar recordatorio actual?</string>
+    <string name="quick_settings_reminder_help_title">Toca</string>
+    <string name="quick_settings_reminder_noti_dismiss">Descarta</string>
+    <string name="quick_settings_reminder_help_message">Toque aquí para establecer un recordatorio. Mantenga presionada para borrar el recordatorio actual.</string>
+	
     <!--ScreenShot Trash-->
     <string name="trash">Basura</string>
-
+	
     <!-- Kill app toast -->
     <string name="app_killed_message">App Killed</string>
 
@@ -99,30 +118,6 @@
     <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_DC">DCHSPAP</string>
 
-    <!-- HALO Content description of the halo button in the notification panel for accessibility (not sho
-         wn on the screen). [CHAR LIMIT=NONE] -->        
-    <string name="accessibility_halo">Crear notificación halo.</string>        
-                                
-    <string name="halo_dismiss">Descartar notificación</string>        
-    <string name="halo_hide">Ocultar</string>        
-    <string name="halo_clear_all">Descartar todas las notificaciones</string>        
-    <string name="halo_silence">Ocultar y silenciar hasta el encendido</string>        
-    <string name="halo_tutorial1">Esto es HALO</string>        
-    <string name="halo_tutorial2">Muéveme: 2 pulsaciones; y arrastra</string>        
-    <string name="halo_tutorial3">Examine tareas: arrastre horizontalmente</string>        
-    <string name="halo_battery_plugged">CARGA</string>        
-    <string name="halo_battery_unplugged">RESTANTE</string>        
-    <string name="halo_battery_full">COMPLETO</string>        
-    <string name="halo_aeroplane1">AVIÓN</string>        
-    <string name="halo_aeroplane2">MODO</string>        
-    <string name="halo_wifi_on">WI-FI ON</string>        
-    <string name="halo_wifi_off">WI-FI OFF</string>        
-    <string name="halo_signal_bars_4">COMPLETO</string>        
-    <string name="halo_signal_bars_3">TRES BARRAS</string>        
-    <string name="halo_signal_bars_2">DOS BARRASS</string>        
-    <string name="halo_signal_bars_1">UNA BARRA</string>        
-    <string name="halo_signal_bars_none">SIN BARRAS</string>
-
     <!-- Development shortcut -->
     <string name="advanced_dev_option_wipe_app">Limpie los datos de aplicaciones</string>
     <string name="advanced_dev_option_force_stop">Forzar detención</string>
@@ -130,7 +125,7 @@
     <!-- Hide notification icons -->
     <string name="status_bar_notification_hide_icon_packages">Ocultar icono de notificación de aplicaciones</string>
 	
-	<!-- Dialog Cancel/OK -->
+    <!-- Dialog Cancel/OK -->
     <string name="cancel">Cancelar</string>
     <string name="dlg_ok">Ok</string>
     <string name="yes">Si</string>
@@ -167,14 +162,21 @@
     <string name="chamber_name_title">Nombre de acceso directo</string>
     <string name="chamber_name_message">Dé un nombre al acceso directo para mostrar con el icono.</string>
     <string name="chamber_name_toast">Usar nombre por defecto</string>
-
-    <!-- Battery saver mode -->
+	
+    <!-- battery saver mode -->
     <string name="battery_saver_start">Ahorro de batería activado</string>
     <string name="battery_saver_stop">Ahorro de batería desactivado</string>
     <string name="battery_saver_change">Ahorro de batería en cambio de red</string>
     <string name="battery_saver_network">Red restaurada</string>
-    <string name="battery_saver_wifi">Wifi restaurado</string>
+    <string name="battery_saver_data">Datos móvil restaurados</string>
+    <string name="battery_saver_wifi">Wi-Fi restaurado</string>
     <string name="battery_saver_all">Todas las configuraciones restauradas</string>
+    <string name="battery_saver_no_changes">Ninguna configuración restaurada</string>
+    <string name="battery_saver_enable_ticker">Modo ahorro de batería funcionando...</string>
+    <string name="battery_saver_enable_title">Modo ahorro de batería</string>
+    <string name="battery_saver_airplane_ticker">Modo avión activado por ahorro de batería</string>
+    <string name="battery_saver_airplane_text">Modo avión activado por ahorro de batería, ya que no hay ninguna señal después de 5 minutos</string>
+    <string name="battery_saver_disable">Desactivado</string>
     <!-- Battery Saver -->
     <string name="network_4G">4G/LTE</string>
     <string name="network_3G_only">3G Sólo</string>
@@ -182,5 +184,9 @@
     <string name="network_3G">2G/3G Pref</string>
     <string name="network_2G">2G Sólo</string>
     <string name="quick_settings_network_unknown">Desconocido</string>
-
+	
+    <!-- Title shown in recents popup for locking an app from being cleared -->
+    <string name="status_bar_recent_lock_item_title">Bloqueo</string>
+    <!-- Title shown in recents popup for unlocking an app from being cleared -->
+    <string name="status_bar_recent_unlock_item_title">Desbloqueo</string>    
 </resources>
