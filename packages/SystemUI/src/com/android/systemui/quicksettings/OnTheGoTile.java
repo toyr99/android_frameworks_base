@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 
 import com.android.internal.util.nameless.NamelessActions;
+import com.android.internal.util.mahdi.DeviceUtils;
 import com.android.systemui.R;
 import com.android.systemui.nameless.onthego.OnTheGoDialog;
 import com.android.systemui.nameless.onthego.OnTheGoService;
@@ -76,13 +77,13 @@ public class OnTheGoTile extends QuickSettingsTile {
         final ContentResolver resolver = mContext.getContentResolver();
         final int camera = Settings.System.getInt(resolver,
                 Settings.System.ON_THE_GO_CAMERA,
-                0);
+                CAMERA_BACK);
 
         int newValue;
-        if (camera == 0) {
-            newValue = 1;
+        if (camera == CAMERA_BACK) {
+            newValue = CAMERA_FRONT;
         } else {
-            newValue = 0;
+            newValue = CAMERA_BACK;
         }
 
         Settings.System.putInt(resolver,
@@ -111,9 +112,15 @@ public class OnTheGoTile extends QuickSettingsTile {
     }
 
     private synchronized void updateTile() {
-        final int cameraMode = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.ON_THE_GO_CAMERA,
-                0);
+        int cameraMode;
+
+        if (DeviceUtils.hasFrontCamera(mContext)) {
+            cameraMode = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.ON_THE_GO_CAMERA,
+                    CAMERA_BACK);
+        } else {
+            cameraMode = CAMERA_BACK;
+        }
 
         switch (cameraMode) {
             default:
