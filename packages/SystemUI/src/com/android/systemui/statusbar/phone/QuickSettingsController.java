@@ -36,6 +36,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_MUSIC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NFC;
+import static com.android.internal.util.mahdi.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.mahdi.QSConstants.TILE_PROFILE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_QUICKRECORD;
 import static com.android.internal.util.mahdi.QSConstants.TILE_QUIETHOURS;
@@ -90,6 +91,7 @@ import com.android.systemui.quicksettings.MobileNetworkTypeTile;
 import com.android.systemui.quicksettings.MusicTile;
 import com.android.systemui.quicksettings.NetworkAdbTile;
 import com.android.systemui.quicksettings.NfcTile;
+import com.android.systemui.quicksettings.OnTheGoTile;
 import com.android.systemui.quicksettings.PreferencesTile;
 import com.android.systemui.quicksettings.ProfileTile;
 import com.android.systemui.quicksettings.QuickRecordTile;
@@ -117,7 +119,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class QuickSettingsController {
-    private static String TAG = "QuickSettingsController";
+    private static final String TAG = "QuickSettingsController";
 
     // Stores the broadcast receivers and content observers
     // quick tiles register for.
@@ -296,6 +298,8 @@ public class QuickSettingsController {
                 if (QSUtils.globalImmersiveModeEnabled(resolver)) {
                     qs = new ImmersiveModeTile(mContext, this, mHandler);
                 }
+            } else if (tile.equals(TILE_ONTHEGO)) {
+                qs = new OnTheGoTile(mContext, this);
             }
 
             if (qs != null) {
@@ -457,7 +461,7 @@ public class QuickSettingsController {
                 }
             }
         }
-    };
+    }
 
     void setBar(PanelBar bar) {
         mBar = bar;
