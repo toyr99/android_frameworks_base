@@ -27,12 +27,14 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
+import com.android.internal.util.mahdi.DeviceUtils;
 import com.android.systemui.R;
 
 public class OnTheGoDialog extends Dialog {
@@ -99,36 +101,40 @@ public class OnTheGoDialog extends Dialog {
             }
         });
 
-        final Switch mServiceToggle = (Switch) findViewById(R.id.onthego_service_toggle);
-        final boolean restartService = Settings.System.getBoolean(resolver,
-                Settings.System.ON_THE_GO_SERVICE_RESTART,
-                false);
-        mServiceToggle.setChecked(restartService);
-        mServiceToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Settings.System.putBoolean(resolver,
-                        Settings.System.ON_THE_GO_SERVICE_RESTART,
-                        b);
-                dismissOnTheGoDialog(mOnTheGoDialogShortTimeout);
-            }
-        });
+        if (!DeviceUtils.hasFrontCamera(getContext())) {
+            findViewById(R.id.onthego_category_1).setVisibility(View.GONE);
+        } else {
+            final Switch mServiceToggle = (Switch) findViewById(R.id.onthego_service_toggle);
+            final boolean restartService = Settings.System.getBoolean(resolver,
+                    Settings.System.ON_THE_GO_SERVICE_RESTART,
+                    false);
+            mServiceToggle.setChecked(restartService);
+            mServiceToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    Settings.System.putBoolean(resolver,
+                            Settings.System.ON_THE_GO_SERVICE_RESTART,
+                            b);
+                    dismissOnTheGoDialog(mOnTheGoDialogShortTimeout);
+                }
+            });
 
-        final Switch mCamSwitch = (Switch) findViewById(R.id.onthego_camera_toggle);
-        final boolean useFrontCam = (Settings.System.getInt(resolver,
-                Settings.System.ON_THE_GO_CAMERA,
-                0) == 1);
-        mCamSwitch.setChecked(useFrontCam);
-        mCamSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Settings.System.putInt(resolver,
-                        Settings.System.ON_THE_GO_CAMERA,
-                        (b ? 1 : 0));
-                sendCameraBroadcast();
-                dismissOnTheGoDialog(mOnTheGoDialogShortTimeout);
-            }
-        });
+            final Switch mCamSwitch = (Switch) findViewById(R.id.onthego_camera_toggle);
+            final boolean useFrontCam = (Settings.System.getInt(resolver,
+                    Settings.System.ON_THE_GO_CAMERA,
+                    0) == 1);
+            mCamSwitch.setChecked(useFrontCam);
+            mCamSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    Settings.System.putInt(resolver,
+                            Settings.System.ON_THE_GO_CAMERA,
+                            (b ? 1 : 0));
+                    sendCameraBroadcast();
+                    dismissOnTheGoDialog(mOnTheGoDialogShortTimeout);
+                }
+            });
+        }
     }
 
     @Override

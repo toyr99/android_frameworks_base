@@ -91,6 +91,28 @@ public class DeviceUtils {
         return resId > 0 && settingsResources.getBoolean(resId);
     }
 
+    /**
+     * Check if system has a camera.
+     *
+     * @param context
+     * @return
+     */
+    public static boolean hasCamera(final Context context) {
+        final PackageManager pm = context.getPackageManager();
+        return pm != null && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+    }
+
+    /**
+     * Check if system has a front camera.
+     *
+     * @param context
+     * @return
+     */
+    public static boolean hasFrontCamera(final Context context) {
+        final PackageManager pm = context.getPackageManager();
+        return pm != null && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);
+    }
+
     public static FilteredDeviceFeaturesArray filterUnsupportedDeviceFeatures(Context context,
             String[] valuesArray, String[] entriesArray) {
         if (valuesArray == null || entriesArray == null || context == null) {
