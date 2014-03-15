@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2014 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="accessibility_data_connection_DC">DCHSPAP</string>
+    <string name="quick_settings_profile_label">Profil</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS fra</string>
+    <string name="quick_settings_power">Gå i dvale</string>
+    <string name="quick_settings_ringer_on">Lyd til</string>
+    <string name="quick_settings_ringer_off">Lyd fra</string>
+    <string name="quick_settings_vibration_on">Vibration til</string>
+    <string name="quick_settings_vibration_off">Vibration fra</string>
+    <string name="quick_settings_label_enabled">Til</string>
+    <string name="quick_settings_label_disabled">Fra</string>
+    <string name="quick_settings_ringer_normal">Lyd</string>
+    <string name="quick_settings_lockscreen">Skærmlås</string>
+    <string name="quick_settings_network_type">Netværkstilstand</string>
+    <string name="quick_settings_report_bug">Rapportér fejl</string>
+    <string name="quick_settings_sync">Synkr.</string>
+    <string name="quick_settings_sync_off">Synkr. fra</string>
+    <string name="quick_settings_torch">Lommelygte</string>
+    <string name="quick_settings_torch_off">Lommelygte fra</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC fra</string>
+    <string name="quick_settings_screen_timeout">Timeout</string>
+    <string name="quick_settings_usb_tether_off_label">Afbrudt</string>
+    <string name="quick_settings_usb_tether_connected_label">Tethering fra</string>
+    <string name="quick_settings_usb_tether_on_label">Tethering</string>
+    <string name="quick_settings_wifiap">Wi-Fi AP</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi AP fra</string>
+    <string name="quick_settings_quiethours">Stille timer</string>
+    <string name="quick_settings_quiethours_off">Stille timer fra</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE fra</string>
+    <string name="quick_settings_volume">Lydstyrke</string>
+    <string name="quick_settings_camera_label">Kamera</string>
+    <string name="quick_settings_network_adb_disabled_label">Deaktiveret</string>
+    <string name="quick_settings_network_adb_enabled_label">Aktiveret</string>
+    <string name="quick_settings_immersive_mode">Udvidet</string>
+    <string name="quick_settings_immersive_mode_off">Normal</string>
+    <string name="quick_settings_camera_error_connect">Kan ikke forbinde til kameraet</string>
+    <string name="advanced_dev_option_wipe_app">Ryd appdata</string>
+    <string name="advanced_dev_option_force_stop">Gennemtving stop</string>
+</resources>
