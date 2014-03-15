@@ -3268,6 +3268,12 @@ public final class Settings {
         public static final String TILE_CONTACT_ACTIONS = "tile_contact_actions";
 
         /**
+         * Add smart phone caller
+         * @hide
+         */
+        public static final String SMART_PHONE_CALLER = "smart_phone_caller";
+
+        /**
          * Quick Settings Panel Dynamic Tiles
          *
          * @hide
