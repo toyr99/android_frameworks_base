@@ -303,9 +303,9 @@ public abstract class BaseStatusBar extends SystemUI implements
         mCustomRecent = Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.CUSTOM_RECENT, false);
 
-        if(mCustomRecent){
-            cRecents = new RecentController(mContext);
-        }else{
+        if (mCustomRecent) {
+            cRecents = new RecentController(mContext, mLayoutDirection);
+        } else {
             mRecents = getComponent(RecentsComponent.class);
         }
 
