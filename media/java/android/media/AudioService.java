@@ -527,6 +527,9 @@ public class AudioService extends IAudioService.Stub {
         mUseFixedVolume = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_useFixedVolume);
 
+        mLinkNotificationWithVolume = Settings.System.getIntForUser(mContentResolver,
+                Settings.System.VOLUME_LINK_NOTIFICATION, 1, UserHandle.USER_CURRENT) == 1;
+
         // must be called before readPersistedSettings() which needs a valid mStreamVolumeAlias[]
         // array initialized by updateStreamVolumeAlias()
         updateStreamVolumeAlias(false /*updateVolumes*/);
@@ -752,9 +755,6 @@ public class AudioService extends IAudioService.Stub {
             readDockAudioSettings(cr);
             mSafeVolumeEnabled = new Boolean(safeVolumeEnabled(cr));
         }
-
-        mLinkNotificationWithVolume = Settings.System.getIntForUser(cr,
-                Settings.System.VOLUME_LINK_NOTIFICATION, 1, UserHandle.USER_CURRENT) == 1;
 
         mVolumeKeysDefault = Settings.System.getInt(cr,
                 Settings.System.VOLUME_KEYS_DEFAULT, 1);
