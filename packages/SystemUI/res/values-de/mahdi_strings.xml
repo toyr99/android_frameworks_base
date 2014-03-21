@@ -82,8 +82,8 @@
     <!-- Network Traffic Tile -->
     <string name="quick_settings_network_traffic_on">Traffic an</string>
     <string name="quick_settings_network_traffic_off">Traffic aus</string>
-    <string name="quick_settings_network_traffic_up">Upload</string>
-    <string name="quick_settings_network_traffic_down">Download</string>
+    <string name="quick_settings_network_traffic_up">Traffic Upload</string>
+    <string name="quick_settings_network_traffic_down">Traffic Download</string>
 
     <!-- Theme Tile -->
     <string name="quick_settings_theme_switch_dark">Dunkles Design</string>
@@ -102,8 +102,9 @@
     <string name="quick_settings_reminder_no_expire">Keine Benachrichtigung</string>
     <string name="quick_settings_reminder_dismiss">Erinnerung löschen</string>
     <string name="quick_settings_reminder_dismiss_message">Aktuelle Erinnerung löschen?</string>
-    <string name="quick_settings_reminder_help_title">Tippen</string>
-    <string name="quick_settings_reminder_noti_dismiss">Verwerfen</string>
+    <string name="quick_settings_reminder_help_title">Hinweis</string>
+    <string name="quick_settings_reminder_noti_dismiss">Löschen</string>
+    <string name="quick_settings_reminder_noti_later">Zeit aktualisieren</string>
     <string name="quick_settings_reminder_help_message">Hier Tippen um eine Erinnerung zu erstellen. Lange Drücken um die aktuelle Erinnerung zu löschen.</string>
 
     <!--ScreenShot Trash-->
@@ -163,7 +164,7 @@
     <string name="chamber_name_message">Geben Sie der Verknüpfung einen Namen. Wird zusammen mit dem Symbol angezeigt wird.</string>
     <string name="chamber_name_toast">Standard verwenden</string>
    
-    <!-- Battery saver mode -->
+    <!-- battery saver mode -->
     <string name="battery_saver_start">Energiesparmodus aktiviert</string>
     <string name="battery_saver_stop">Energiesparmodus deaktiviert</string>
     <string name="battery_saver_change">Netzwerk geändert: </string>
@@ -189,4 +190,18 @@
     <string name="status_bar_recent_lock_item_title">Gesperrt</string>
     <!-- Title shown in recents popup for unlocking an app from being cleared -->
     <string name="status_bar_recent_unlock_item_title">Entsperrt</string>
+
+    <!-- On the go -->
+    <string name="onthego_notif_ticker">On-The-Go aktiviert</string>
+    <string name="onthego_notif_title">On-The-Go ist aktiv</string>
+    <string name="onthego_notif_stop">Stoppen</string>
+    <string name="onthego_notif_options">Optionen</string>
+    <string name="onthego_notif_error">On-The-Go kann nicht gestartet werden</string>
+    <string name="onthego_notif_restart">On-The-Go neustarten</string>
+    <string name="onthego_notif_camera_changed">Kamera-Modus geändert</string>
+    <string name="onthego_transparency">Transparenz</string>
+    <string name="onthego_front_camera">Frontseitige Kamera benutzen</string>
+    <string name="onthego_service_toggle">Service automatisch neu Starten</string>
+    <string name="quick_settings_onthego_back">Rückseitige Kamera</string>
+    <string name="quick_settings_onthego_front">Frontseitige Kamera</string>
 </resources>
