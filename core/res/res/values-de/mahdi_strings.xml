@@ -59,6 +59,9 @@
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Profile</string>
 
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go-Modus</string>
+
     <!-- The title of the profile picker dialog. -->
     <string name="profile_picker_title">Profile</string>
 
@@ -112,7 +115,7 @@
     <!-- Lock screen always show battery -->
     <string name="lockscreen_discharging">Entladen, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
 
-	<!-- Animation Strings -->
+    <!-- Animation Strings -->
     <string name="animation_default">Standard</string>
     <string name="animation_fade">Ausblenden</string>
     <string name="animation_slide_right">Slide in (Rechts)</string>
@@ -144,4 +147,7 @@
 
     <string name="privacy_guard_dialog_title">Datenschutz</string>
     <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> möchte <xliff:g id="op">%2$s</xliff:g>.</string>
+
+    <!-- In WiFi notification -->
+    <string name="notify_turn_wifi_off_title">WLAN ausschalten</string>
 </resources>
