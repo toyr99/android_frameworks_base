@@ -59,6 +59,9 @@
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Perfiles</string>
 
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go Mode</string>
+	
     <!-- The title of the profile picker dialog. -->
     <string name="profile_picker_title">Perfiles</string>
 
@@ -131,7 +134,7 @@
     <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
     <string name="animation_random">Aleatorio</string>
 	
-	<!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+    <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
     <string name="permlab_revokePermissions">Permite ver y editar los permisos revocados. No para uso de aplicaciones normales.</string>
     <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
     <string name="permdesc_revokePermissions">Permite leer y escribir para los permisos revocados. No para uso de aplicaciones normales.</string>
@@ -141,9 +144,12 @@
     <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
     <string name="permdesc_accessThemeService">Permite a una aplicación establecer/reestablecer temas. No para uso de aplicaciones normales.</string>
 	
-	<!-- Error description on theme switch with ligtsensor mode enabled -->
+    <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Modo de cambio automático de la condición de luz está activada. Conmutación manual no es posible.</string>
 
     <string name="privacy_guard_dialog_title">Privacy Guard</string>
-    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g>  le gustaría <xliff:g id="op">%2$s</xliff:g>.</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> le gustaría <xliff:g id="op">%2$s</xliff:g>.</string>
+	
+    <!-- In WiFi notification -->
+    <string name="notify_turn_wifi_off_title">Encender Wi-Fi off</string>
 </resources>
