@@ -4129,30 +4129,6 @@ public final class Settings {
         public static final String LOCKSCREEN_SEE_THROUGH = "lockscreen_see_through";
 
         /**
-         * Allows blurring the lockscreen background
-         * @hide
-         */
-        public static final String LOCKSCREEN_BLUR_BEHIND = "lockscreen_blur_behind";
-
-        /**
-         * Amount of blurring on the lockscreen background
-         * @hide
-         */
-        public static final String LOCKSCREEN_BLUR_RADIUS = "lockscreen_blur_radius";
-
-        /**
-         * Sets the lockscreen background style
-         * @hide
-         */
-        public static final String LOCKSCREEN_BACKGROUND_STYLE = "lockscreen_background_style";
-
-        /**
-         * Color for lockscreen background when set to color fill
-         * @hide
-         */
-        public static final String LOCKSCREEN_BACKGROUND_COLOR = "lockscreen_background_color";
-
-        /**
          * Show the pending notification counts as overlays on the status bar
          * @hide
          */
