@@ -41,7 +41,6 @@ enum {
     LIGHT_INDEX_ATTENTION = 5,
     LIGHT_INDEX_BLUETOOTH = 6,
     LIGHT_INDEX_WIFI = 7,
-    LIGHT_INDEX_MUSIC = 8,
     LIGHT_COUNT
 };
 
@@ -87,8 +86,6 @@ static jint init_native(JNIEnv *env, jobject clazz)
                 = get_device(module, LIGHT_ID_BLUETOOTH);
         devices->lights[LIGHT_INDEX_WIFI]
                 = get_device(module, LIGHT_ID_WIFI);
-        devices->lights[LIGHT_INDEX_MUSIC]
-                = get_device(module, LIGHT_ID_MUSIC);
     } else {
         memset(devices, 0, sizeof(Devices));
     }
