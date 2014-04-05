@@ -751,8 +751,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.setClassName("org.omnirom.omnigears",
-                                "org.omnirom.omnigears.brightness.AutoBrightnessDialog");
+                        intent.setClassName("com.android.settings",
+                                "com.android.settings.mahdi.AutoBrightnessSetup");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                                 | Intent.FLAG_ACTIVITY_SINGLE_TOP
                                 | Intent.FLAG_ACTIVITY_CLEAR_TOP
