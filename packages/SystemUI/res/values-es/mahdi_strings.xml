@@ -204,4 +204,11 @@
     <string name="onthego_service_toggle">Reiniciar automáticamente el servicio</string>
     <string name="quick_settings_onthego_back">Cámara trasera</string>
     <string name="quick_settings_onthego_front">Cámara frontal</string>
+
+    <!-- Recents Ram Bar -->
+    <string name="memory">RAM</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> libre</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> usada</string>
 </resources>
