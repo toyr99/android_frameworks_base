@@ -109,9 +109,24 @@
     <string name="permlab_interceptSmsSent">Abfangen ausgehender SMS</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_interceptSmsSent">Erlaubt der App das Abfangen einer ausgehenden SMS. Bösartige Apps verwenden dies um ausgehnde SMS zu blockieren.</string>
+	
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_security">Sicherheit</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_security">Berechtigungen im Zusammenhang mit Gerätesicherheits-Informationen .</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readPhoneBlacklist">Lesen der Sperrliste</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readPhoneBlacklist">Ermöglicht einer App Informationen über Telefonnummern, die für eingehende Anrufe oder Nachrichten blockiert werden, zu lesen.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_changePhoneBlacklist">Ändern der Sperrliste</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_changePhoneBlacklist">Ermöglicht einer App Telefonnummern, die für eingehende Anrufe oder Nachrichten blockiert werden, zu ändern.</string>
 
     <string name="immersive_mode_confirmation_bottom">Von der Unterseite nach oben wischen um den erweiterterten Desktop zu beenden.</string>
-
+		
     <!-- Lock screen always show battery -->
     <string name="lockscreen_discharging">Entladen, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
 
@@ -133,21 +148,75 @@
     <string name="animation_random">Zufällig</string>	
 
     <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
-    <string name="permlab_revokePermissions">Ermöglicht Anzeigen und Bearbeiten von widerrufenen Berechtigungen. Nicht für normale Anwendungen.</string>
+    <string name="permlab_revokePermissions">Ermöglicht das Anzeigen und Bearbeiten von widerrufenen Berechtigungen. Nicht für normale Anwendungen.</string>
     <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
-    <string name="permdesc_revokePermissions">Ermöglicht Lesen und Schreiben von widerrufenen Berechtigungen. Nicht für normale Anwendungen.</string>
+    <string name="permdesc_revokePermissions">Ermöglicht das Lesen und Schreiben von widerrufenen Berechtigungen. Nicht für normale Anwendungen.</string>
 
     <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
     <string name="permlab_accessThemeService">Ermöglicht den Zugriff auf den Theme-Manager-Service. Nicht für normale Anwendungen.</string>
     <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
-    <string name="permdesc_accessThemeService">Ermöglicht einer Anwendung das Setzen und Rücksetzen von Themen. Nicht für normale Anwendungen.</string>
+    <string name="permdesc_accessThemeService">Ermöglicht das Setzen und Rücksetzen von Themen. Nicht für normale Anwendungen.</string>
 
     <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Automatischer Änderungsmodus durch Lichtverhältnisse aktiviert. Manuelles Umschalten nicht möglich.</string>
 
+	<!-- App ops requests -->
+    <string name="app_ops_access_camera">Auf die Kamera zugreifen</string>
+    <string name="app_ops_access_location">Auf den Standort zugreifen</string>
+    <string name="app_ops_access_notifications">Benachrichtigungen lesen</string>
+    <string name="app_ops_alarm_wakeup">Ruhezustand ändern</string>
+    <string name="app_ops_draw_on_top">An oberste Position ziehen</string>
+    <string name="app_ops_keep_device_awake">Aktiv lassen</string>
+    <string name="app_ops_make_phone_call">Anrufe tätigen</string>
+    <string name="app_ops_modify_calendar">Kalender ändern</string>
+    <string name="app_ops_modify_call_log">Anrufliste ändern</string>
+    <string name="app_ops_modify_clipboard">Zwischenablage ändern</string>
+    <string name="app_ops_modify_contacts">Kontakte ändern</string>
+    <string name="app_ops_modify_settings">Systemeinstellungen ändern</string>
+    <string name="app_ops_play_audio">Audio abspielen</string>
+    <string name="app_ops_post_notification">Benachrichtigungen erzeugen</string>
+    <string name="app_ops_read_calendar">Kalender lesen</string>
+    <string name="app_ops_read_call_log">Anrufliste lesen</string>
+    <string name="app_ops_read_clipboard">Zwischenablage lesen</string>
+    <string name="app_ops_read_contacts">Kontakte lesen</string>
+    <string name="app_ops_read_mms">MMS lesen</string>
+    <string name="app_ops_read_sms">SMS lesen</string>
+    <string name="app_ops_receive_sms">SMS empfangen</string>
+    <string name="app_ops_record_audio">Audio aufnehmen</string>
+    <string name="app_ops_send_mms">MMS senden</string>
+    <string name="app_ops_send_sms">SMS senden</string>
+    <string name="app_ops_start_at_bootup">Automatisch starten</string>
+    <string name="app_ops_toggle_bluetooth">Bluetooth ändern</string>
+    <string name="app_ops_toggle_mobile_data">Mobile Daten ändern</string>
+    <string name="app_ops_toggle_wifi">WLAN ändern</string>
+    <string name="app_ops_use_alarm_volume">Weckerlautstärke ändern</string>
+    <string name="app_ops_use_audio_focus">Audio-Fokus ändern</string>
+    <string name="app_ops_use_bluetooth_volume">Bluetoothlautstärke ändern</string>
+    <string name="app_ops_use_master_volume">Gesamtlautstärke ändern</string>
+    <string name="app_ops_use_media_buttons">Medienschaltflächen benutzen</string>
+    <string name="app_ops_use_media_volume">Medienlautstärke ändern</string>
+    <string name="app_ops_use_notification_volume">Benachrichtigungslautstärke ändern</string>
+    <string name="app_ops_use_ring_volume">Klingeltonlautstärke ändern</string>
+    <string name="app_ops_use_vibrate">Haptisches Feedback ändern</string>
+    <string name="app_ops_use_voice_volume">Sprachlautstärke ändern</string>
+    <string name="app_ops_write_mms">MMS schreiben</string>
+    <string name="app_ops_write_sms">SMS schreiben</string>
+
     <string name="privacy_guard_dialog_title">Datenschutz</string>
     <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> möchte <xliff:g id="op">%2$s</xliff:g>.</string>
 
-    <!-- In WiFi notification -->
-    <string name="notify_turn_wifi_off_title">WLAN ausschalten</string>
+    <string name="permission_remember_choice">Auswahl merken</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">Pie ist aktiviert</string>
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">Pie ist deaktiviert</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Die Pie Steuerung kann nicht deaktiviert werden. Bitte zuerst die Navigationsleiste aktivieren.</string>
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Navigationsleiste ist aktiviert</string>
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist deaktiviert</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktiviert werden. Bitte zuerst die Pie Steuerung aktivieren.</string>
 </resources>
