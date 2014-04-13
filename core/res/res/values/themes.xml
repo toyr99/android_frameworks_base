@@ -1520,7 +1520,7 @@ please see themes_device_defaults.xml.
         <!-- DatePicker style -->
         <item name="datePickerStyle">@style/Widget.Holo.Light.DatePicker</item>
 
-        <item name="fastScrollThumbDrawable">@android:drawable/fastscroll_thumb_holo</item>
+        <item name="fastScrollThumbDrawable">@android:drawable/fastscroll_thumb_holo_light</item>
         <item name="fastScrollPreviewBackgroundLeft">@android:drawable/fastscroll_label_left_holo_light</item>
         <item name="fastScrollPreviewBackgroundRight">@android:drawable/fastscroll_label_right_holo_light</item>
         <item name="fastScrollTrackDrawable">@android:drawable/fastscroll_track_holo_light</item>
