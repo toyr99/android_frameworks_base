@@ -4909,9 +4909,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 if (isScreenOn || !mVolumeWakeScreen) {
                     break;
-                } else if (keyguardActive) {
-                    keyCode = KeyEvent.KEYCODE_POWER;
-                    mPowerManager.wakeUp(SystemClock.uptimeMillis());
                 } else {
                     result |= ACTION_WAKE_UP;
                     break;
@@ -4919,8 +4916,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             case KeyEvent.KEYCODE_POWER: {
-                if ((mTopFullscreenOpaqueWindowState.getAttrs().flags
-                        & WindowManager.LayoutParams.PREVENT_POWER_KEY) != 0){
+                if ((mTopFullscreenOpaqueWindowState != null &&
+                        (mTopFullscreenOpaqueWindowState.getAttrs().flags
+                        & WindowManager.LayoutParams.PREVENT_POWER_KEY) != 0)) {
                     return result;
                 }
                 result &= ~ACTION_PASS_TO_USER;
