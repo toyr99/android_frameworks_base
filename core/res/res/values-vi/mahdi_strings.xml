@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2013, Mahdi-Rom project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Power menu -->
+    <string name="global_action_reboot">Khởi động lại</string>
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Khởi động lại tablet</string>
+    <string name="reboot_system" product="default">Khởi động lại điện thoại</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Khời động lại</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Vào Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Vào Bootloader</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Mục khởi động</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Vào Fastboot</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Vào Download</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Đang khởi động lại\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">Tablet đang khởi động lại</string>
+    <string name="reboot_confirm" product="default">Điện thoại đang khởi động lại</string>
+
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Chụp màn hình</string>
+
+    <!-- label for screen record item in phone options dialog -->
+    <string name="global_action_screen_record">Quay màn hình</string>
+
+    <!-- label for item that toggles global immersive mode -->
+    <string name="global_actions_toggle_global_immersive_mode">Kiểu Immersive</string>
+    <!-- status message in phone options dialog for when expand desktop mode is on -->
+    <string name="global_actions_global_immersive_mode_on_status">Bật</string>
+    <!-- status message in phone options dialog for when expand desktop mode is off -->
+    <string name="global_actions_global_immersive_mode_off_status">Tắt</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Chế độ</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">Chế độ On-The-Go</string>
+
+    <!-- The title of the profile picker dialog. -->
+    <string name="profile_picker_title">Chế độ</string>
+
+    <!-- The item label for the no profile selection item. -->
+    <string name="profile_none">Không</string>
+
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">Mặc định</string>
+    <string name="profileNameWork">Làm việc</string>
+    <string name="profileNameHome">Nhà</string>
+    <string name="profileNameSilent">Im lặng</string>
+    <string name="profileNameNight">Đêm</string>
+    <string name="profileNameAutomobile">Tự động</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Điện thoại</string>
+    <string name="profileGroupCalendar">Lịch</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">SMS</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Khác</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Mở xoay màn hình</string>
+    <string name="toast_rotation_locked">Khóa xoay màn hình</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_cancelNotifications">Hủy thông báo ứng dụng</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_cancelNotifications">Cho phép ứng dụng hủy thông báo tạo bởi ứng dụng khác</string>
+
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">Bật/Tắt bảo mật cá nhân</string>
+    <string name="permdesc_changePrivacyGuardState">Cho phép ứng dụng thay đổi khi ứng dụng khác đang chạy với bảo mật cá nhân. Khi ứng dụng chạy với bảo mật cá nhân, nó sẽ không truy cập vào dữ liệu cá nhân: danh bạ, nhật ký cuộc gọi, tin nhắn.</string>
+    <string name="privacy_guard_notification">Kích hoạt bảo mật cá nhân</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> không thể truy cập dữ liệu cá nhân</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_recordScreen">Ghi lại nội dung được hiển thị</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_recordScreen">Cho phép ứng dụng khác quay màn hình.</string>
+
+    <string name="permlab_interceptSmsSent">Chạn tin nh</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Cho phép ứng dụng
+        chặn tin nhắn ra
+        Ứng dụng độc hại có thể chặn gửi tin nhắn ra</string>
+
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_security">Bảo mật</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_security">Quyền liên quan đến thông tin bảo mật thiết bị.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readPhoneBlacklist">đọc danh sách chặn</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readPhoneBlacklist">Cho phép ứng dụng đọc thông tin về số điện thoại bị chặn.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_changePhoneBlacklist">thay đổi danh sách chặn</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_changePhoneBlacklist">Cho phép ứng dụng thay đổi số bị chặn.</string>
+
+    <string name="immersive_mode_confirmation_bottom">Vuốt lên từ dưới màn hình để thoát toàn màn hình.</string>
+
+    <!-- Lock screen always show battery -->
+    <string name="lockscreen_discharging">Không sạc, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
+    <!-- Animation Strings -->
+    <string name="animation_default">Mặc định</string>
+    <string name="animation_fade">Phai</string>
+    <string name="animation_slide_right">Trược phải</string>
+    <string name="animation_slide_left">Trượt trái</string>
+    <string name="animation_slide_right_no_fade">Trượt phải (Không phai)</string>
+    <string name="animation_slide_left_no_fade">Trượt trái (Không phai)</string>
+    <string name="animation_slide_up">Trượt dưới</string>
+    <string name="animation_slide_down">Trượt trên</string>
+    <string name="animation_translucent">Mờ</string>
+    <string name="animation_grow_shrink">Nổi lên (Trên)</string>
+    <string name="animation_grow_shrink_center">Nổi lên (Giữa)</string>
+    <string name="animation_grow_shrink_bottom">Nổi lên (Dưới)</string>
+    <string name="animation_grow_shrink_left">Nổi lên (Trái)</string>
+    <string name="animation_grow_shrink_right">Nổi lên (Phải)</string>
+    <string name="animation_random">Ngẫu nhiên</string>
+
+    <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+    <string name="permlab_revokePermissions">Cho phép hiển thị và chỉnh sửa quyền đã thu hồi. Không dùng cho ứng dụng thường.</string>
+    <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
+    <string name="permdesc_revokePermissions">Cho phép đọc và ghi quyền đã thu hồi. Không dùng cho ứng dụng thường.</string>
+
+    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
+    <string name="permlab_accessThemeService">Cho phép truy cập quản lý giao diện. Không dùng cho ứng dụng thường.</string>
+    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
+    <string name="permdesc_accessThemeService">Cho phép ứng dụng chọn/khởi tạo giao diện. Không dùng cho ứng dụng thường.</string>
+	
+	<!-- Error description on theme switch with ligtsensor mode enabled -->
+    <string name="theme_auto_switch_mode_error">Tự động thay đổi độ sáng màn hình. Không dùng cho ứng dụng thường.</string>
+
+    <!-- App ops requests -->
+    <string name="app_ops_access_camera">truy cập máy ảnh</string>
+    <string name="app_ops_access_location">truy cập vị trí</string>
+    <string name="app_ops_access_notifications">đọc thông báo</string>
+    <string name="app_ops_alarm_wakeup">bật máy</string>
+    <string name="app_ops_draw_on_top">vẽ phía trên</string>
+    <string name="app_ops_keep_device_awake">giữ máy bật</string>
+    <string name="app_ops_make_phone_call">tạo cuộc gọi</string>
+    <string name="app_ops_modify_calendar">cập nhật lịch</string>
+    <string name="app_ops_modify_call_log">cập nhật nhật kí cuộc gọi</string>
+    <string name="app_ops_modify_clipboard">chỉnh sửa sao chép văn bản</string>
+    <string name="app_ops_modify_contacts">cập nhật danh bạ</string>
+    <string name="app_ops_modify_settings">cập nhật cài đặt hệ thống</string>
+    <string name="app_ops_play_audio">âm thanh</string>
+    <string name="app_ops_post_notification">thông báo</string>
+    <string name="app_ops_read_calendar">đọc lịch</string>
+    <string name="app_ops_read_call_log">đọc nhật kí cuộc gọi</string>
+    <string name="app_ops_read_clipboard">đọc sao chép văn bản</string>
+    <string name="app_ops_read_contacts">đọc danh bạ</string>
+    <string name="app_ops_read_mms">đọc MMS</string>
+    <string name="app_ops_read_sms">đọc SMS</string>
+    <string name="app_ops_receive_sms">nhận SMS</string>
+    <string name="app_ops_record_audio">ghi âm</string>
+    <string name="app_ops_send_mms">gửi MMS</string>
+    <string name="app_ops_send_sms">gửi SMS</string>
+    <string name="app_ops_start_at_bootup">tự chạy khi bật máy</string>
+    <string name="app_ops_toggle_bluetooth">phím tắt Bluetooth</string>
+    <string name="app_ops_toggle_mobile_data">phím tắt dữ liệu mạng</string>
+    <string name="app_ops_toggle_wifi">phím tắt WiFi</string>
+    <string name="app_ops_use_alarm_volume">điểu chỉnh âm lượng báo thức</string>
+    <string name="app_ops_use_audio_focus">điểu chỉnh âm thanh tập trung</string>
+    <string name="app_ops_use_bluetooth_volume">điều chỉnh âm thanh Bluetooth</string>
+    <string name="app_ops_use_master_volume">điều chỉnh âm thanh</string>
+    <string name="app_ops_use_media_buttons">dùng phím media</string>
+    <string name="app_ops_use_media_volume">điều chỉnh âm lượng media</string>
+    <string name="app_ops_use_notification_volume">điểu chỉnh âm lượng thông báo</string>
+    <string name="app_ops_use_ring_volume">điểu chỉnh âm lượng chuông</string>
+    <string name="app_ops_use_vibrate">dùng phản hồi haptic</string>
+    <string name="app_ops_use_voice_volume">điều chỉnh âm lượng cuộc gọi</string>
+    <string name="app_ops_write_mms">viết MMS</string>
+    <string name="app_ops_write_sms">viết SMS</string>
+
+    <string name="privacy_guard_dialog_title">Bảo mật cá nhân</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> muốn <xliff:g id="op">%2$s</xliff:g>.</string>
+
+    <string name="permission_remember_choice">Ghi nhớ lựa chọn</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie bật</string>
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie tắt</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Không thể tắt PIE. Không có điều hướng khác. Bật thanh điều hướng để tắt PIE.</string>
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Thanh điều hướng bật</string>
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Thanh điều hướng tắt</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Không thể tắt thanh điều hướng. Không có điều hướng khác. Bật PIE để tắt thanh điều hướng.</string>
+</resources>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (C) 2012-2013 The Mahdi-Rom Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- QuickSettings: Profile [CHAR LIMIT=NONE] -->
+    <string name="quick_settings_profile_label">Chế độ</string>
+
+    <!-- Quick Settings -->
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE off</string>
+    <string name="quick_settings_volume">Âm lượng</string>
+    <string name="quick_settings_camera_label">Máy ảnh</string>
+    <string name="quick_settings_network_adb_disabled_label">Tắt</string>
+    <string name="quick_settings_network_adb_enabled_label">Bật</string>
+    <string name="quick_settings_gps">Định vị</string>
+    <string name="quick_settings_gps_off">Đã tắt định vị</string>
+    <string name="quick_settings_power">Nguồn</string>
+    <string name="quick_settings_ringer_on">Chuông</string>
+    <string name="quick_settings_ringer_off">Im Lặng</string>
+    <string name="quick_settings_vibration_on">Rung</string>
+    <string name="quick_settings_vibration_off">Tắt rung</string>
+    <string name="quick_settings_label_enabled">Bật</string>
+    <string name="quick_settings_label_disabled">Tắt</string>
+    <string name="quick_settings_ringer_normal">Đổ chuông</string>
+    <string name="quick_settings_lockscreen">Khóa màn hình</string>
+    <string name="quick_settings_music_play">Chạy</string>
+    <string name="quick_settings_music_pause">Tạm dừng</string>
+    <string name="quick_settings_music_schedule_title">Hẹn giờ tắt</string>
+    <string name="quick_settings_music_schedule_in_progress">Hẹn giờ đang hoạt động</string>
+    <string name="quick_settings_music_schedule_start">Kích hoạt hẹn giờ</string>
+    <string name="quick_settings_music_schedule_cancel">Xóa hẹn giờ</string>
+    <string name="quick_settings_music_schedule_update">Cập nhật hẹn giờ</string>
+    <string name="quick_settings_network_type">Chế độ mạng</string>
+    <string name="quick_settings_report_bug">Báo lỗi</string>
+    <string name="quick_settings_sync">Đồng bộ</string>
+    <string name="quick_settings_sync_off">Tắt đồng bộ</string>
+    <string name="quick_settings_torch">Đèn pin</string>
+    <string name="quick_settings_torch_off">Tắt đèn pin</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC off</string>
+    <string name="quick_settings_screen_timeout">Thời gian chờ</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_screen_timeout_summary_never">Không bao giờ</string>
+    <string name="quick_settings_usb_tether_off_label">Ngắt kết nối</string>
+    <string name="quick_settings_usb_tether_connected_label">Tethering off</string>
+    <string name="quick_settings_usb_tether_on_label">Tethering</string>
+    <string name="quick_settings_wifiap">Wi-Fi AP</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi AP off</string>
+    <string name="quick_settings_quiethours">Giờ yên tĩnh</string>
+    <string name="quick_settings_quiethours_off">Giờ yên tĩnh đã tắt</string>
+    <string name="quick_settings_quick_record_nofile">Giữ</string>
+    <string name="quick_settings_quick_record_def">Ghi âm nhanh</string>
+    <string name="quick_settings_quick_record_rec">Đang ghi âm...</string>
+    <string name="quick_settings_quick_record_save">Đã lưu</string>
+    <string name="quick_settings_quick_record_play">Đang chạy...</string>
+    <string name="quick_settings_custom_toggle">Tùy chỉnh</string>
+    <string name="quick_settings_contact_toggle">Danh bạ</string>
+    <string name="quick_settings_battery_saver_label">Đang bật tiết kiệm pin</string>
+    <string name="quick_settings_battery_saver_off_label">Đã tắt </string>
+    <string name="quick_settings_network_type">Thông tin mạng</string>
+    <string name="quick_settings_network_unknown">Unknown</string>
+    <string name="quick_settings_network_disable">Không kết nối</string>
+	
+    <!-- Network Strings for battery saver mode -->
+    <string name="network_4G">4G/LTE</string>
+    <string name="network_3G_only">3G Only</string>
+    <string name="network_3G_auto">2G/3G Auto</string>
+    <string name="network_3G">2G/3G Pref</string>
+    <string name="network_2G">2G Only</string>
+
+    <!-- battery saver mode -->
+    <string name="battery_saver_start">Tiết kiệm pin bật</string>
+    <string name="battery_saver_stop">Tiết kiệm pin tắt</string>
+    <string name="battery_saver_change">Tiết kiệm pin thay đổi sóng thành</string>
+    <string name="battery_saver_network">Phục hồi sóng</string>
+    <string name="battery_saver_data">Phục hồi mạng</string>
+    <string name="battery_saver_brightness">Phục hồi độ sáng màn hình</string>
+    <string name="battery_saver_bluetooth">Phục hồi Bluetooth</string>
+    <string name="battery_saver_location">Phục hồi GPS</string>
+    <string name="battery_saver_wifi">Phục hồi Wi-Fi </string>
+    <string name="battery_saver_cpu">Phục hồi CPU</string>
+    <string name="battery_saver_cpu_change">Tiết kiệm pin thay đổi CPU freq thành</string>
+    <string name="battery_saver_sync">Phục hồi Đồng bộ</string>
+    <string name="battery_saver_led">Phục hồi LED </string>
+    <string name="battery_saver_vibrate">Phục hồi rung</string>
+    <string name="battery_saver_no_changes">Khong thay đổi</string>
+    <string name="battery_saver_all">Phục hồi tất cả cài đặt</string>
+    <string name="battery_saver_enable_ticker">Tiết kiệm pin đang chạy...</string>
+    <string name="battery_saver_enable_title">Chế độ tiết kiệm pin</string>
+    <string name="battery_saver_airplane_ticker">Chế độ máy bay được bật bời tiết kiệm pin</string>
+    <string name="battery_saver_airplane_text">Chế độ máy bay được bật bời tiết kiệm pin bời vì không có sóng trong 5 phút</string>
+    <string name="battery_saver_disable">Tắt</string>
+
+    <!-- Immersive mode strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
+    <string name="quick_settings_immersive_mode">Mở rộng</string>
+    <string name="quick_settings_immersive_mode_off">Bình thường</string>
+
+    <!-- Navigation Bar Tile -->
+    <string name="quick_settings_navbar_on">Navbar on</string>
+    <string name="quick_settings_navbar_off">Navbar off</string>
+
+    <!-- Network Traffic Tile -->
+    <string name="quick_settings_network_traffic_on">Traffic on</string>
+    <string name="quick_settings_network_traffic_off">Traffic off</string>
+    <string name="quick_settings_network_traffic_up">Traffic up</string>
+    <string name="quick_settings_network_traffic_down">Traffic down</string>
+
+    <!-- Theme Tile -->
+    <string name="quick_settings_theme_switch_dark">Tối</string>
+    <string name="quick_settings_theme_switch_light">Sáng</string>
+
+    <!-- Camera tile toasts -->
+    <string name="quick_settings_camera_error_connect">Không thể kết nối camera</string>
+
+    <!-- Notification reminders -->
+    <string name="quick_settings_reminder">Nhắc nhỏ</string>
+    <string name="quick_settings_reminder_title">Tiêu đề:</string>
+    <string name="quick_settings_reminder_message">Nội dung:</string>
+    <string name="quick_settings_reminder_time">Thời gian nhắc nhở</string>
+    <string name="quick_settings_reminder_set">Đặt giờ</string>
+    <string name="quick_settings_reminder_update">Sửa giờ</string>
+    <string name="quick_settings_reminder_no_expire">Không có thông báo</string>
+    <string name="quick_settings_reminder_dismiss">Xóa nhắc nhở</string>
+    <string name="quick_settings_reminder_dismiss_message">Xóa nhắc nhở hiện tại?</string>
+    <string name="quick_settings_reminder_help_title">Chạm</string>
+    <string name="quick_settings_reminder_noti_dismiss">Hủy </string>
+    <string name="quick_settings_reminder_noti_later">Sửa giờ</string>
+    <string name="quick_settings_reminder_help_message">Chạm vào khoảng trống ở trên để thay đổi nhắc nhở, nhấn và giữ để xóa.</string>
+
+    <!--ScreenShot Trash-->
+    <string name="trash">Thùng rác</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Ứng dụng đã tắt</string>
+
+    <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+
+    <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_DC">DCHSPAP</string>
+
+    <!-- Development shortcut -->
+    <string name="advanced_dev_option_wipe_app">Xóa dữ liệu ứng dụng</string>
+    <string name="advanced_dev_option_force_stop">Buộc dừng</string>
+
+    <!-- Hide notification icons -->
+    <string name="status_bar_notification_hide_icon_packages">Tắt thông báo ứng dụng</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Hủy</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Tắt</string>
+    <string name="on">Bật</string>
+    <string name="toggle">Toggle</string>
+
+    <!-- Custom Shortcut Actions -->
+    <string name="shortcut_picker">Lối tắt riêng</string>
+    <string name="shortcut_immersive">Immersive Mode</string>
+    <string name="shortcut_quiethours">Chế độ im lặng</string>
+    <string name="shortcut_rotation">Xoay</string>
+    <string name="shortcut_torch">Bật tắt đèn pin</string>
+    <string name="shortcut_reboot">Khởi động lại</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_last_app">Ứng dụng cuối</string>
+    <string name="shortcut_screenshot">Chụp ảnh màn hình</string>
+    <string name="shortcut_volume">Âm lượng</string>
+    <string name="shortcut_toggle_title">Hành động sẽ thực hiện</string>
+    <string name="shortcut_chamber">Chamber of Secrets</string>
+    <string name="chamber_disabled">Chamber of secrets is closed</string>
+    <string name="chamber_title">Nhập chuỗi Settings</string>
+    <string name="chamber_message">Nhập chuỗi Settings là chức năng bật hoặc tắt(checkbox) . Ví dụ, quiet_hours_ringer hoặc tương tự. Settings có thể tìm thấy trong Settings.java file. WARNING: This process is dangerous!</string>
+    <string name="chamber_invalid">This is an invalid input. Be careful.</string>
+    <string name="chamber_invalid_setting">Thử bật tăt cài đặt bằng tay để chắc chắn tồn tại dữ liệu cho hành động này.</string>
+    <string name="chamber_checkbox">Checkbox</string>
+    <string name="chamber_chk_message">Cài đặt này có phải là checkbox?</string>
+    <string name="chamber_int">Giá trị nhập vào</string>
+    <string name="chamber_int_message">Input the values you\'d like the setting to toggle between. Separate each value with a comma. Color settings accept hex-values such as #FF00aacc or basic color values like red, green, and yellow.</string>
+    <string name="chamber_name_title">Tên lối tắt</string>
+    <string name="chamber_name_message">Đặt tên cho lối tắt để hiển thị cùng với icon.</string>
+    <string name="chamber_name_toast">Dùng tên mặc định</string>
+
+    <!-- Title shown in recents popup for locking an app from being cleared -->
+    <string name="status_bar_recent_lock_item_title">Khóa</string>
+    <!-- Title shown in recents popup for unlocking an app from being cleared -->
+    <string name="status_bar_recent_unlock_item_title">Mở khóa</string>
+
+    <!-- On the go -->
+    <string name="onthego_notif_ticker">On-The-Go đã kích hoạt</string>
+    <string name="onthego_notif_title">On-The-Go kích hoạt</string>
+    <string name="onthego_notif_stop">Dừng</string>
+    <string name="onthego_notif_options">Tùy chọn</string>
+    <string name="onthego_notif_error">Không thể chạy On-The-Go</string>
+    <string name="onthego_notif_restart">Khởi động lại On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Chế độ Camera thay đổi</string>
+    <string name="onthego_transparency">Trong suốt</string>
+    <string name="onthego_front_camera">Dùng camera trước</string>
+    <string name="onthego_service_toggle">Tự động khởi động lại dịch vụ</string>
+    <string name="quick_settings_onthego_back">Camera sau</string>
+    <string name="quick_settings_onthego_front">Camera trước</string>
+
+    <!-- Recents Ram Bar -->
+    <string name="memory">RAM</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> trống</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> đã dùng</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Đang sạc (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Đã sạc</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% còn lại</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Không có dịch vụ</string>
+    <string name="pie_phone_status_airplane_mode">Chế độ máy bay bật</string>
+    <string name="pie_phone_status_emergency_only">Gọi khẩn cấp</string>
+</resources>
