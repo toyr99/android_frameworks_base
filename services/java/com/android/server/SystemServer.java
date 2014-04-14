@@ -866,13 +866,6 @@ class ServerThread {
             }
 
             try {
-                Slog.i(TAG, "AssetRedirectionManager Service");
-                ServiceManager.addService("assetredirection", new AssetRedirectionManagerService(context));
-            } catch (Throwable e) {
-                Slog.e(TAG, "Failure starting AssetRedirectionManager Service", e);
-            }
-
-            try {
                 Slog.i(TAG, "Theme Service");
                 themeService = new ThemeService(context);
                 ServiceManager.addService(Context.THEME_SERVICE, themeService);
