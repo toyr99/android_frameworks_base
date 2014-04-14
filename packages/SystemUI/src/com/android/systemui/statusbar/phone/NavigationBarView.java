@@ -67,7 +67,6 @@ import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.DelegateViewHelper;
 import com.android.systemui.statusbar.policy.KeyButtonView;
 import com.android.systemui.statusbar.policy.DeadZone;
-import com.android.systemui.statusbar.policy.KeyButtonView;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -378,33 +377,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private void getIcons(Resources res) {
         mRecentAltIcon = res.getDrawable(R.drawable.ic_sysbar_recent_clear);
         mRecentAltLandIcon = res.getDrawable(R.drawable.ic_sysbar_recent_clear_land);
-    }
-
-    public void updateResources() {
-        getIcons(mContext.getResources());
-        for (int i = 0; i < mRotatedViews.length; i++) {
-            ViewGroup container = (ViewGroup) mRotatedViews[i];
-            if (container != null) {
-                updateKeyButtonViewResources(container);
-            }
-        }
-    }
-
-    private void updateKeyButtonViewResources(ViewGroup container) {
-        ViewGroup midNavButtons = (ViewGroup) container.findViewById(R.id.mid_nav_buttons);
-        if (midNavButtons != null) {
-            final int nChildern = midNavButtons.getChildCount();
-            for (int i = 0; i < nChildern; i++) {
-                final View child = midNavButtons.getChildAt(i);
-                if (child instanceof KeyButtonView) {
-                    ((KeyButtonView) child).updateResources();
-                }
-            }
-        }
-        KeyButtonView kbv = (KeyButtonView) findViewById(R.id.six);
-        if (kbv != null) {
-            kbv.updateResources();
-        }
     }
 
     @Override
