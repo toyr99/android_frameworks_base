@@ -60,7 +60,7 @@
     <string name="global_action_choose_profile">Profile</string>
 
     <!-- label for item that takes On-The-Go in the phone options dialog -->
-    <string name="global_action_onthego">On-The-Go Mode</string>
+    <string name="global_action_onthego">On-The-Go mode</string>
 
     <!-- The title of the profile picker dialog. -->
     <string name="profile_picker_title">Profiles</string>
