@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2013, Mahdi-Rom project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Power menu -->
+    <string name="global_action_reboot">Перезагрузка</string>
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Перезагрузка планшета</string>
+    <string name="reboot_system" product="default">Перезагрузка телефона</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Перезагрузка</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Загрузчик</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Загрузочное меню</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Режим обновления ПО</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Перезагрузка\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">Ваш планшет будет перезагружен.</string>
+    <string name="reboot_confirm" product="default">Ваш телефон будет перезагружен.</string>
+
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Снимок экрана</string>
+
+    <!-- label for screen record item in phone options dialog -->
+    <string name="global_action_screen_record">Запись с экрана</string>
+
+    <!-- label for item that toggles global immersive mode -->
+    <string name="global_actions_toggle_global_immersive_mode">Расширенный рабочий стол</string>
+    <!-- status message in phone options dialog for when expand desktop mode is on -->
+    <string name="global_actions_global_immersive_mode_on_status">Включен</string>
+    <!-- status message in phone options dialog for when expand desktop mode is off -->
+    <string name="global_actions_global_immersive_mode_off_status">Выключен</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Профиль</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
+
+    <!-- The title of the profile picker dialog. -->
+    <string name="profile_picker_title">Профили</string>
+
+    <!-- The item label for the no profile selection item. -->
+    <string name="profile_none">Не выбран</string>
+
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">Стандартный</string>
+    <string name="profileNameWork">Работа</string>
+    <string name="profileNameHome">Дом</string>
+    <string name="profileNameSilent">Без звука</string>
+    <string name="profileNameNight">Ночь</string>
+    <string name="profileNameAutomobile">Автомобиль</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Телефон</string>
+    <string name="profileGroupCalendar">Календарь</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Почта</string>
+    <string name="profileGroupSMS">Сообщения</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Другой</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Поворот экрана разблокирован</string>
+    <string name="toast_rotation_locked">Поворот экрана заблокирован</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_cancelNotifications">Отменить уведомления приложения</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_cancelNotifications">Приложение сможет отменить уведомления, созданные в других приложениях.</string>
+
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">Включить/выключить защиту личных данных</string>
+    <string name="permdesc_changePrivacyGuardState">Разрешает запуск приложения под защитой личных данных. Такое приложение не будет иметь доступа к личным данным, вроде контактов, журналов звонков или сообщений.</string>
+    <string name="privacy_guard_notification">Защита личных данных включена</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_recordScreen">Записывать контент, отображаемый на экране</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_recordScreen">Разрешить приложению производить запись пользовательского экрана</string>
+
+    <string name="permlab_interceptSmsSent">Перехват исходящих SMS</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Разрешить приложению перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение, чтобы препятствовать отправке SMS-сообщений.</string>
+
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_security">Безопасность</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_security">Разрешения, относящиеся к безопасности данных на устройстве.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readPhoneBlacklist">Просмотр чёрного списка</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readPhoneBlacklist">Приложение сможет считывать информацию о списке абонентов, от которых заблокированы входящие звонки или сообщения.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_changePhoneBlacklist">Изменение чёрного списка</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_changePhoneBlacklist">Приложение сможет изменять список абонентов, от которых заблокированы входящие звонки или сообщения.</string>
+
+    <string name="immersive_mode_confirmation_bottom">Чтобы вернуться в обычный режим, проведите пальцем вверх.</string>
+
+    <!-- Lock screen always show battery -->
+    <string name="lockscreen_discharging">Разряжается, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
+    <!-- Animation Strings -->
+    <string name="animation_default">По умолчанию</string>
+    <string name="animation_fade">Затухание</string>
+    <string name="animation_slide_right">Слайд справа</string>
+    <string name="animation_slide_left">Слайд слева</string>
+    <string name="animation_slide_right_no_fade">Слайд справа (Без затухания)</string>
+    <string name="animation_slide_left_no_fade">Слайд слева (Без затухания)</string>
+    <string name="animation_slide_up">Слайд снизу</string>
+    <string name="animation_slide_down">Слайд сверху</string>
+    <string name="animation_translucent">Полупрозрачный переход</string>
+    <string name="animation_grow_shrink">Приближение (Верх)</string>
+    <string name="animation_grow_shrink_center">Приближение (Центр)</string>
+    <string name="animation_grow_shrink_bottom">Приближение (Низ)</string>
+    <string name="animation_grow_shrink_left">Приближение (Лево)</string>
+    <string name="animation_grow_shrink_right">Приближение (Право)</string>
+    <string name="animation_random">Случайный</string>
+
+    <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+    <string name="permlab_revokePermissions">Просмотр и редактирование отозванных разрешений. Не для использования обычными приложениями.</string>
+    <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
+    <string name="permdesc_revokePermissions">Чтение и запись для отозванных разрешений. Не для использования обычными приложениями.</string>
+
+    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
+    <string name="permlab_accessThemeService">Доступ к службе тем.</string>
+    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
+    <string name="permdesc_accessThemeService">Приложение сможет получать доступ к службе тем. Это разрешение не используется обычными приложениями.</string>
+	
+	<!-- Error description on theme switch with ligtsensor mode enabled -->
+    <string name="theme_auto_switch_mode_error">Автоматические переключение в зависимости от освещения включено. Ручное переключение невозможно.</string>
+
+    <!-- App ops requests -->
+  <string name="app_ops_access_camera">получить доступ к камере</string>
+  <string name="app_ops_access_location">получить доступ к местоположению устройства</string>
+  <string name="app_ops_access_notifications">получить доступ к уведомлениям</string>
+  <string name="app_ops_alarm_wakeup">запланировать пробуждение устройства</string>
+  <string name="app_ops_draw_on_top">отображение поверх других элементов</string>
+  <string name="app_ops_keep_device_awake">запретить устройству переход в спящий режим</string>
+  <string name="app_ops_make_phone_call">выполнить телефонный звонок</string>
+  <string name="app_ops_modify_calendar">изменить данные календаря</string>
+  <string name="app_ops_modify_call_log">изменить данные списка вызовов</string>
+  <string name="app_ops_modify_clipboard">изменить содержимое буфера обмена</string>
+  <string name="app_ops_modify_contacts">изменить данные контактов</string>
+  <string name="app_ops_modify_settings">изменить системные параметры</string>
+  <string name="app_ops_play_audio">воспроизведение аудио</string>
+  <string name="app_ops_post_notification">вывести уведомление</string>
+  <string name="app_ops_read_calendar">считать данные календаря</string>
+  <string name="app_ops_read_call_log">считать данные списка вызовов</string>
+  <string name="app_ops_read_clipboard">считать содержимое буфера обмена</string>
+  <string name="app_ops_read_contacts">считать данные контактов</string>
+  <string name="app_ops_read_mms">считать MMS-сообщения</string>
+  <string name="app_ops_read_sms">считать SMS-сообщения</string>
+  <string name="app_ops_receive_sms">получить SMS-сообщение</string>
+  <string name="app_ops_record_audio">запись аудио</string>
+  <string name="app_ops_send_mms">отправить MMS-сообщение</string>
+  <string name="app_ops_send_sms">отправить SMS-сообщение</string>
+  <string name="app_ops_start_at_bootup">назначить запуск при включении устройства</string>
+  <string name="app_ops_toggle_bluetooth">переключить состояние Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">переключить состояние Мобильного интернета</string>
+  <string name="app_ops_toggle_wifi">переключить состояние Wi-Fi</string>
+  <string name="app_ops_use_alarm_volume">получить управление громкостью будильника</string>
+  <string name="app_ops_use_audio_focus">получить управление аудиофокусом</string>
+  <string name="app_ops_use_bluetooth_volume">получить управление громкостью Bluetooth-устройств</string>
+  <string name="app_ops_use_master_volume">получить управление общей громкостью</string>
+  <string name="app_ops_use_media_buttons">использовать кнопки мультимедиа</string>
+  <string name="app_ops_use_media_volume">получить управление громкостью мультимедиа</string>
+  <string name="app_ops_use_notification_volume">получить управление громкостью уведомлений</string>
+  <string name="app_ops_use_ring_volume">получить управление громкостью звонка</string>
+  <string name="app_ops_use_vibrate">использовать виброотклик</string>
+  <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
+  <string name="app_ops_write_mms">создать MMS-сообщение</string>
+  <string name="app_ops_write_sms">создать SMS-сообщение</string>
+
+    <string name="privacy_guard_dialog_title">Защищённый режим</string>
+    <string name="privacy_guard_dialog_summary">Приложение «<xliff:g id="app">%1$s</xliff:g>» пытается <xliff:g id="op">%2$s</xliff:g>.</string>
+
+    <string name="permission_remember_choice">Запомнить выбор</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie включен</string>
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie отключен</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Панель навигации включена</string>
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+</resources>
