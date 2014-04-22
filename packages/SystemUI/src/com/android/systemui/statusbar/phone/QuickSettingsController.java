@@ -20,6 +20,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILES_DEFAULT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_AIRPLANE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_AUTOROTATE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BATTERY;
+import static com.android.internal.util.mahdi.QSConstants.TILE_BATTERYSAVER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BLUETOOTH;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BRIGHTNESS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CAMERA;
@@ -76,6 +77,7 @@ import com.android.systemui.quicksettings.AirplaneModeTile;
 import com.android.systemui.quicksettings.AlarmTile;
 import com.android.systemui.quicksettings.AutoRotateTile;
 import com.android.systemui.quicksettings.BatteryTile;
+import com.android.systemui.quicksettings.BatterySaverTile;
 import com.android.systemui.quicksettings.BluetoothTile;
 import com.android.systemui.quicksettings.BrightnessTile;
 import com.android.systemui.quicksettings.BugReportTile;
@@ -89,6 +91,8 @@ import com.android.systemui.quicksettings.LteTile;
 import com.android.systemui.quicksettings.MobileNetworkTile;
 import com.android.systemui.quicksettings.MobileNetworkTypeTile;
 import com.android.systemui.quicksettings.MusicTile;
+import com.android.systemui.quicksettings.NavBarTile;
+import com.android.systemui.quicksettings.NetworkTrafficTile;
 import com.android.systemui.quicksettings.NetworkAdbTile;
 import com.android.systemui.quicksettings.NfcTile;
 import com.android.systemui.quicksettings.OnTheGoTile;
@@ -110,8 +114,6 @@ import com.android.systemui.quicksettings.VolumeTile;
 import com.android.systemui.quicksettings.RemoteDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
-import com.android.systemui.quicksettings.NavBarTile;
-import com.android.systemui.quicksettings.NetworkTrafficTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -300,6 +302,8 @@ public class QuickSettingsController {
                 }
             } else if (tile.equals(TILE_ONTHEGO)) {
                 qs = new OnTheGoTile(mContext, this);
+            } else if (tile.equals(TILE_BATTERYSAVER)) {
+                qs = new BatterySaverTile(mContext, this);
             }
 
             if (qs != null) {
