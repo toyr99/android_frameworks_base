@@ -538,6 +538,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_KEY_CURSOR_CONTROL), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -631,6 +634,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.PIE_CONTROLS))) {
                 attachPieContainer(isPieEnabled());
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.VOLUME_KEY_CURSOR_CONTROL))) {
+                if (mNavigationBarView != null) {
+                    mNavigationBarView.setNavigationBarDisableIMECursor(
+                            Settings.System.getIntForUser(mContext.getContentResolver(),
+                                    Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0,
+                                    UserHandle.USER_CURRENT) > 0);
+                }
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE))) {
                 mNavigationBarOverlay.setIsExpanded(isExpanded());        
