@@ -4978,22 +4978,15 @@ public final class Settings {
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_MODE_CHANGE_DELAY);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BATTERY_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BATTERY_LEVEL);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BLUETOOTH_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_LOCATION_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_WIFI_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_DATA_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_SHOW_TOAST);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_NETWORK_INTERVAL_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_NOSIGNAL_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_SYNC_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_KILLALL_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_LED_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_LED_DISABLE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_VIBRATE_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_VIBRATE_DISABLE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_CPU_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_CPU_FREQ);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_CPU_FREQ_DEFAULT);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BRIGHTNESS_LEVEL);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_START);
@@ -8246,18 +8239,6 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String BATTERY_SAVER_BLUETOOTH_MODE =
-                "battery_saver_bluetooth_mode";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_LOCATION_MODE =
-                "battery_saver_location_mode";
-
-        /**
-         * @hide
-         */
         public static final String BATTERY_SAVER_WIFI_MODE =
                 "battery_saver_wifi_mode";
 
@@ -8282,20 +8263,8 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String BATTERY_SAVER_SYNC_MODE =
-                "battery_saver_sync_mode";
-
-        /**
-         * @hide
-         */
         public static final String BATTERY_SAVER_SHOW_TOAST =
                 "battery_saver_show_toast";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_KILLALL_MODE =
-                "battery_saver_killall_mode";
 
         /**
          * @hide
@@ -8320,24 +8289,6 @@ public final class Settings {
          */
         public static final String BATTERY_SAVER_VIBRATE_DISABLE =
                 "battery_saver_vibrate_disable";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_CPU_MODE =
-                "battery_saver_cpu_mode";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_CPU_FREQ =
-                "battery_saver_cpu_freq";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_CPU_FREQ_DEFAULT =
-                "battery_saver_cpu_freq_default";
 
         /**
          * @hide

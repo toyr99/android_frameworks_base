@@ -89,12 +89,7 @@
     <string name="battery_saver_network">Сеть восстановлена</string>
     <string name="battery_saver_data">Передача данных восстановлена</string>
     <string name="battery_saver_brightness">Яркость восстановлена</string>
-    <string name="battery_saver_bluetooth">Bluetooth восстановлен</string>
-    <string name="battery_saver_location">Gps восстановлен</string>
     <string name="battery_saver_wifi">Wi-Fi восстановлен</string>
-    <string name="battery_saver_cpu">Процессор восстановлен</string>
-    <string name="battery_saver_cpu_change">Режим \"Энергосбережения\" сменил частоту процессора на </string>
-    <string name="battery_saver_sync">Синхронизация восстановлена</string>
     <string name="battery_saver_led">LED восстановлен</string>
     <string name="battery_saver_vibrate">Вибрация восстановлена</string>
     <string name="battery_saver_no_changes">Никакие настройки не были восстановлены</string>

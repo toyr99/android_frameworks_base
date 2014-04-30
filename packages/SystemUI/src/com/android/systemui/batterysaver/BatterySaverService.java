@@ -43,17 +43,13 @@ import android.widget.Toast;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChangeCallback;
-import com.android.systemui.statusbar.policy.BluetoothController;
-import com.android.systemui.statusbar.policy.BluetoothController.BluetoothConnectionChangeCallback;
-import com.android.systemui.statusbar.policy.LocationController;
-import com.android.systemui.statusbar.policy.LocationController.LocationSettingsChangeCallback;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
 import com.android.systemui.BatteryMeterView.BatteryMeterMode;
 import com.android.internal.widget.LockPatternUtils;
 
-public class BatterySaverService extends Service implements BluetoothConnectionChangeCallback,
-           NetworkSignalChangedCallback, BatteryStateChangeCallback, LocationSettingsChangeCallback {
+public class BatterySaverService extends Service implements NetworkSignalChangedCallback, 
+                BatteryStateChangeCallback {
 
     public static final String TAG = "BatterySaverService";
 
@@ -72,15 +68,10 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
     // changing engine
     private InCallChangeMode mInCallChangeMode;
     private BrightnessModeChanger mBrightnessModeChanger;
-    private BluetoothModeChanger mBluetoothModeChanger;
-    private CpuModeChanger mCpuModeChanger;
-    private LocationModeChanger mLocationModeChanger;
     private MobileDataModeChanger mMobileDataModeChanger;
     private NetworkModeChanger mNetworkModeChanger;
-    private WifiModeChanger mWifiModeChanger;
-    private SyncModeChanger mSyncModeChanger;
-    private KillAllModeChanger mKillAllModeChanger;
     private LedModeChanger mLedModeChanger;
+    private WifiModeChanger mWifiModeChanger;
     private VibrateModeChanger mVibrateModeChanger;
 
     // user configuration
@@ -111,9 +102,7 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
     private final long mIntervalCheck = 300000; //5minutes
 
     // controller
-    private BluetoothController mBluetoothController;
     private BatteryController mBatteryController;
-    private LocationController mLocationController;
     private NetworkController mNetworkController;
 
     // For filtering ACTION_POWER_DISCONNECTED on boot
@@ -135,32 +124,21 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
 
         // register controller
         mBatteryController = new BatteryController(this);
-        mBluetoothController = new BluetoothController(this);
-        mLocationController = new LocationController(this);
         mNetworkController = new NetworkController(this);
 
         // register changing engine
         mBrightnessModeChanger = new BrightnessModeChanger(this);
-        mBluetoothModeChanger = new BluetoothModeChanger(this);
-        mBluetoothModeChanger.setController(mBluetoothController);
-        mCpuModeChanger = new CpuModeChanger(this);
-        mLocationModeChanger = new LocationModeChanger(this);
-        mLocationModeChanger.setController(mLocationController);
         mMobileDataModeChanger = new MobileDataModeChanger(this);
         mMobileDataModeChanger.setServices(mCM);
         mNetworkModeChanger = new NetworkModeChanger(this);
         mNetworkModeChanger.setServices(mCM, mTM);
         mWifiModeChanger = new WifiModeChanger(this);
         mWifiModeChanger.setServices(mCM);
-        mSyncModeChanger = new SyncModeChanger(this);
-        mKillAllModeChanger = new KillAllModeChanger(this);
         mLedModeChanger = new LedModeChanger(this);
         mVibrateModeChanger = new VibrateModeChanger(this);
 
         // register callback
         mBatteryController.addStateChangedCallback(this);
-        mBluetoothController.addConnectionStateChangedCallback(this);
-        mLocationController.addSettingsChangedCallback(this);
         mNetworkController.addNetworkSignalChangedCallback(this);
 
         // initializing user configuration for battery saver mode
@@ -228,31 +206,19 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_BATTERY_LEVEL), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_BLUETOOTH_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_LOCATION_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_DATA_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_WIFI_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_CPU_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_NETWORK_INTERVAL_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_NOSIGNAL_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_SYNC_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_KILLALL_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_LED_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_VIBRATE_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_SHOW_TOAST), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_CPU_FREQ), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
@@ -309,22 +275,10 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
                         com.android.internal.R.integer.config_lowBatteryWarningLevel);
                 mLowBatteryLevel = Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_BATTERY_LEVEL, lowBatteryLevels);
-                mBluetoothModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_BLUETOOTH_MODE, 0) != 0);
-                mCpuModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_CPU_MODE, 0) != 0);
-                mCpuModeChanger.setCpuValue(Settings.Global.getString(resolver,
-                        Settings.Global.BATTERY_SAVER_CPU_FREQ));
-                mLocationModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_LOCATION_MODE, 0) != 0);
                 mMobileDataModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_DATA_MODE, 1) != 0);
                 mWifiModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_WIFI_MODE, 0) != 0);
-                mSyncModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_SYNC_MODE, 0) != 0);
-                mKillAllModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_KILLALL_MODE, 0) != 0);
                 mLedModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_LED_MODE, 0) != 0);
                 mVibrateModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
@@ -368,22 +322,10 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
                         com.android.internal.R.integer.config_lowBatteryWarningLevel);
         mLowBatteryLevel = Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_BATTERY_LEVEL, lowBatteryLevels);
-        mBluetoothModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_BLUETOOTH_MODE, 0) != 0);
-        mCpuModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_CPU_MODE, 0) != 0);
-        mCpuModeChanger.setCpuValue(Settings.Global.getString(resolver,
-                        Settings.Global.BATTERY_SAVER_CPU_FREQ));
-        mLocationModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_LOCATION_MODE, 0) != 0);
         mMobileDataModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_DATA_MODE, 1) != 0);
         mWifiModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_WIFI_MODE, 0) != 0);
-        mSyncModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_SYNC_MODE, 0) != 0);
-        mKillAllModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_KILLALL_MODE, 0) != 0);
         mLedModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_LED_MODE, 0) != 0);
         mVibrateModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
@@ -399,28 +341,18 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
     private void setShowToast(boolean enabled) {
         mShowToast = enabled;
         mBrightnessModeChanger.setShowToast(enabled);
-        mBluetoothModeChanger.setShowToast(enabled);
-        mCpuModeChanger.setShowToast(enabled);
-        mLocationModeChanger.setShowToast(enabled);
         mMobileDataModeChanger.setShowToast(enabled);
-        mNetworkModeChanger.setShowToast(enabled);
         mWifiModeChanger.setShowToast(enabled);
-        mSyncModeChanger.setShowToast(enabled);
-        mKillAllModeChanger.setShowToast(enabled);
+        mNetworkModeChanger.setShowToast(enabled);
         mLedModeChanger.setShowToast(enabled);
         mVibrateModeChanger.setShowToast(enabled);
     }
 
     private void updateDelayed(int delay) {
         mBrightnessModeChanger.setDelayed(delay);
-        mBluetoothModeChanger.setDelayed(delay);
-        mCpuModeChanger.setDelayed(delay);
-        mLocationModeChanger.setDelayed(delay);
         mMobileDataModeChanger.setDelayed(delay);
-        mNetworkModeChanger.setDelayed(delay);
         mWifiModeChanger.setDelayed(delay);
-        mSyncModeChanger.setDelayed(delay);
-        mKillAllModeChanger.setDelayed(delay);
+        mNetworkModeChanger.setDelayed(delay);
         mLedModeChanger.setDelayed(delay);
         mVibrateModeChanger.setDelayed(delay);
     }
@@ -538,41 +470,6 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
     }
 
     @Override
-    public void onBluetoothConnectionChange(boolean on, boolean connected) {
-        if (!mBatterySaverEnabled) return;
-        if (!mBluetoothModeChanger.isSupported()) {
-            // return default value
-            if (mBluetoothModeChanger.isEnabledByUser()) {
-                mBluetoothModeChanger.setEnabledByUser(false);
-            }
-            return;
-        }
-        // detect bluetooth connected into paired devices
-        mBluetoothModeChanger.setConnected(connected);
-        // detect user interacting while power saving running
-        if (mBluetoothModeChanger.isEnabledByUser() != on) {
-            mBluetoothModeChanger.setEnabledByUser(on);
-        }
-    }
-
-    @Override
-    public void onLocationSettingsChanged(boolean locationEnabled, int locationMode) {
-        if (!mBatterySaverEnabled) return;
-        if (!mLocationModeChanger.isSupported()) {
-            // return default value
-            if (mLocationModeChanger.isEnabledByUser()) {
-                mLocationModeChanger.setEnabledByUser(false);
-            }
-            return;
-        }
-        // detect user interacting while power saving running
-        if (mLocationModeChanger.isEnabledByUser() != locationEnabled) {
-            mLocationModeChanger.setEnabledByUser(locationEnabled);
-        }
-        mLocationModeChanger.setLocationModeByUser(locationMode);
-    }
-
-    @Override
     public void onMobileDataSignalChanged(
             boolean enabled, int mobileSignalIconId, String signalContentDescription,
             int dataTypeIconId, boolean activityIn, boolean activityOut,
@@ -589,7 +486,6 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
         if (!mWifiModeChanger.isWifiConnected()) {
             mMobileDataModeChanger.onActivity((enabled && activityIn), (enabled && activityOut));
             mNetworkModeChanger.onActivity((enabled && activityIn), (enabled && activityOut));
-            mSyncModeChanger.onActivity((enabled && activityIn), (enabled && activityOut));
         }
         // detect user interacting while power saving running
         if (mMobileDataModeChanger.isEnabledByUser() != mMobileDataModeChanger.isStateEnabled()) {
@@ -715,23 +611,10 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
     private void restoreAllState() {
         boolean mobiledata = false;
         boolean network = false;
-        boolean bluetooth = false;
-        boolean location = false;
         boolean wifi = false;
         boolean brightness = false;
-        boolean cpufreq = false;
-        boolean syncs = false;
         boolean leds = false;
         boolean vibes = false;
-        if (mBluetoothModeChanger.restoreState()) {
-            bluetooth = true;
-            showToast(2);
-        }
-        if (mLocationModeChanger.restoreState()) {
-            mLocationModeChanger.setLocationMode();
-            location = true;
-            showToast(3);
-        }
         if (!isTethered()) {
             if (mMobileDataModeChanger.restoreState()) {
                 mobiledata = true;
@@ -750,14 +633,6 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
             brightness = true;
             showToast(5);
         }
-        if (mCpuModeChanger.restoreState()) {
-            cpufreq = true;
-            showToast(6);
-        }
-        if (mSyncModeChanger.restoreState()) {
-            syncs = true;
-            showToast(9);
-        }
         if (mLedModeChanger.restoreState()) {
             leds = true;
             showToast(10);
@@ -766,13 +641,9 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
             vibes = true;
             showToast(11);
         }
-        if (mobiledata && network && bluetooth
-            && location && wifi && brightness && cpufreq
-            && syncs && leds && vibes) {
+        if (mobiledata && network && wifi && brightness && leds && vibes) {
             showToast(7);
-        } else if (!mobiledata && !network && !bluetooth
-            && !location && !wifi && !brightness && !cpufreq
-            && !syncs && !leds && !vibes) {
+        } else if (!mobiledata && !network && !wifi && !brightness && !leds && !vibes) {
             showToast(8);
         }
     }
@@ -787,12 +658,12 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
         return utils.isLockScreenDisabled();
     }
 
-    private boolean deviceSupportsTether() {
-        return (mCM != null) ? mCM.isTetheringSupported() : false;
-    }
-
     private boolean isOnCall() {
         return mTM.getCallState() != TelephonyManager.CALL_STATE_IDLE;
+    }
+
+    private boolean deviceSupportsTether() {
+        return (mCM != null) ? mCM.isTetheringSupported() : false;
     }
 
     private boolean isTethered() {
@@ -864,28 +735,12 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
         mCurrentState = newState;
         updateCurrentState(newState);
         if ((!mWifiEvent && !checks) || (force && !checks)) {
-            if (mBrightnessModeChanger.isSupported()) {
-                mBrightnessModeChanger.changeMode(false, normalize);
-            }
-            if (mBluetoothModeChanger.isSupported()) {
-                mBluetoothModeChanger.changeMode(false, normalize);
-            }
-            if (mCpuModeChanger.isSupported()) {
-                mCpuModeChanger.changeMode(false, normalize);
-            }
-            if (mLocationModeChanger.isSupported()) {
-                mLocationModeChanger.changeMode(false, normalize);
-            }
             if (mWifiModeChanger.isSupported()) {
                 mWifiModeChanger.updateTraffic();
                 mWifiModeChanger.changeMode(false, normalize);
             }
-            if (mSyncModeChanger.isSupported()) {
-                mSyncModeChanger.updateTraffic();
-                mSyncModeChanger.changeMode(false, normalize);
-            }
-            if (mKillAllModeChanger.isSupported() && !mBatteryLowEvent) {
-                mKillAllModeChanger.changeMode(false, normalize);
+            if (mBrightnessModeChanger.isSupported()) {
+                mBrightnessModeChanger.changeMode(false, normalize);
             }
             if (mLedModeChanger.isSupported()) {
                 mLedModeChanger.changeMode(false, normalize);
@@ -906,14 +761,9 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
 
     private void updateCurrentState(State newState) {
         mBrightnessModeChanger.setState(newState);
-        mBluetoothModeChanger.setState(newState);
-        mCpuModeChanger.setState(newState);
-        mLocationModeChanger.setState(newState);
         mMobileDataModeChanger.setState(newState);
         mNetworkModeChanger.setState(newState);
         mWifiModeChanger.setState(newState);
-        mSyncModeChanger.setState(newState);
-        mKillAllModeChanger.setState(newState);
         mLedModeChanger.setState(newState);
         mVibrateModeChanger.setState(newState);
     }
@@ -944,33 +794,21 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
                     what = mResources.getString(R.string.battery_saver_network);
                     break;
                 case 2:
-                    what = mResources.getString(R.string.battery_saver_bluetooth);
-                    break;
-                case 3:
-                    what = mResources.getString(R.string.battery_saver_location);
-                    break;
-                case 4:
                     what = mResources.getString(R.string.battery_saver_wifi);
                     break;
-                case 5:
+                case 3:
                     what = mResources.getString(R.string.battery_saver_brightness);
                     break;
-                case 6:
-                    what = mResources.getString(R.string.battery_saver_cpu);
-                    break;
-                case 7:
+                case 4:
                     what = mResources.getString(R.string.battery_saver_all);
                     break;
-                case 8:
+                case 5:
                     what = mResources.getString(R.string.battery_saver_no_changes);
                     break;
-                case 9:
-                    what = mResources.getString(R.string.battery_saver_sync);
-                    break;
-                case 10:
+                case 6:
                     what = mResources.getString(R.string.battery_saver_led);
                     break;
-                case 11:
+                case 7:
                     what = mResources.getString(R.string.battery_saver_vibrate);
                     break;
         }
@@ -1005,14 +843,6 @@ public class BatterySaverService extends Service implements BluetoothConnectionC
         if (mBatteryController != null) {
             mBatteryController.unregisterController(mContext);
             mBatteryController.removeStateChangedCallback(this);
-        }
-        if (mBluetoothController != null) {
-            mBluetoothController.unregisterController(mContext);
-            mBluetoothController.removeConnectionStateChangedCallback(this);
-        }
-        if (mLocationController != null) {
-            mLocationController.unregisterController(mContext);
-            mLocationController.removeSettingsChangedCallback(this);
         }
         if (mNetworkController != null) {
             mNetworkController.unregisterController(mContext);
