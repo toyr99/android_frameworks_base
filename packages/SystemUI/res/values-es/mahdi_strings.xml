@@ -90,12 +90,7 @@
     <string name="battery_saver_network">Red restaurada</string>
     <string name="battery_saver_data">Datos móvil restaurados</string>
     <string name="battery_saver_brightness">Brillo de pantalla restaurada</string>
-    <string name="battery_saver_bluetooth">Bluetooth restaurado</string>
-    <string name="battery_saver_location">Gps restaurado</string>
     <string name="battery_saver_wifi">Wi-Fi restaurado</string>
-    <string name="battery_saver_cpu">CPU restaurado</string>
-    <string name="battery_saver_cpu_change">Ahorro de batería cambio frecuencia CPU a</string>
-    <string name="battery_saver_sync">Sync restaurado</string>
     <string name="battery_saver_led">LED restaurado</string>
     <string name="battery_saver_vibrate">Vibración restaurada</string>
     <string name="battery_saver_no_changes">Sin configuración restaurada</string>

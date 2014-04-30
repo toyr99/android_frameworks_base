@@ -90,12 +90,7 @@
     <string name="battery_saver_network">Netzwerk wieder hergestellt</string>
     <string name="battery_saver_data">Mobile Datenverbindung wieder hergestellt</string>
     <string name="battery_saver_brightness">Bildschirmhelligkeit wieder hergestellt</string>
-    <string name="battery_saver_bluetooth">Bluetooth wieder hergestellt</string>
-    <string name="battery_saver_location">GPS wieder hergestellt</string>
     <string name="battery_saver_wifi">WLAN wieder hergestellt</string>
-    <string name="battery_saver_cpu">CPU wieder hergestellt</string>
-    <string name="battery_saver_cpu_change">Neue CPU-Frequenz</string>
-    <string name="battery_saver_sync">Syncronisation wieder hergestellt</string>
     <string name="battery_saver_led">LED-Benachrichtigung wieder hergestellt</string>
     <string name="battery_saver_vibrate">Vibration wieder hergestellt</string>
     <string name="battery_saver_all">Konfigurationen wieder hergestellt</string>
