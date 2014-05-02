@@ -3348,6 +3348,13 @@ public final class Settings {
         public static final String QS_DYNAMIC_BUGREPORT = "qs_dyanmic_bugreport";
 
         /**
+         * Quick Settings Panel Equalizer Tiles
+         *
+         * @hide
+         */
+        public static final String QS_DYNAMIC_EQUALIZER = "qs_dynamic_equalizer";
+
+        /**
          * Quick Settings Panel Dynamic Tiles
          *
          * @hide
