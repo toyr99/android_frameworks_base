@@ -111,8 +111,8 @@
     <string name="quick_settings_immersive_mode_off">Normale</string>
 
     <!-- Navigation Bar Tile -->
-    <string name="quick_settings_navbar_on">Navigation Bar accesa</string>
-    <string name="quick_settings_navbar_off">Navigation Bar spenta</string>
+    <string name="quick_settings_navbar_on">Navigation Bar ON</string>
+    <string name="quick_settings_navbar_off">Navigation Bar OFF</string>
 
     <!-- Network Traffic Tile -->
     <string name="quick_settings_network_traffic_on">Traffico acceso</string>
@@ -143,7 +143,7 @@
     <string name="quick_settings_reminder_help_message">Tocca lo spazio vuoto sopra per mettere o cambiare il reminder. Tieni premuto per cancellare il reminder attuale</string>
 
     <!--ScreenShot Trash-->
-    <string name="trash">Spazzatura</string>
+    <string name="trash">Elimina</string>
 
     <!-- Kill app toast -->
     <string name="app_killed_message">Applicazioni Chiuse</string>
@@ -168,9 +168,9 @@
     <string name="no">No</string>
 
     <!-- Off/On/Toggle -->
-    <string name="off">Spento</string>
-    <string name="on">Acceso</string>
-    <string name="toggle">Accendi/Spegni</string>
+    <string name="off">ON</string>
+    <string name="on">OFF</string>
+    <string name="toggle">ON/OFF</string>
 
     <!-- Custom Shortcut Actions -->
     <string name="shortcut_picker">Scorciatoia Personalizzata</string>
