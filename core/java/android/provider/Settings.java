@@ -3519,6 +3519,12 @@ public final class Settings {
         public static final String QUIET_HOURS_MUTE = "quiet_hours_mute";
 
         /**
+         * Whether to remove the system sounds during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_SYSTEM = "quiet_hours_system";
+
+        /**
          * Whether to disable haptic feedback during quiet hours.
          * @hide
          */
@@ -4588,7 +4594,8 @@ public final class Settings {
             QUIET_HOURS_END,
             QUIET_HOURS_MUTE,
             QUIET_HOURS_STILL,
-            QUIET_HOURS_DIM,	    	    
+            QUIET_HOURS_DIM,
+            QUIET_HOURS_SYSTEM	    	    
         };
 
         // Settings moved to Settings.Secure
