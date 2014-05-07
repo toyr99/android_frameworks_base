@@ -34,8 +34,10 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_LOCKSCREEN;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LTE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_MOBILEDATA;
 import static com.android.internal.util.mahdi.QSConstants.TILE_MUSIC;
+import static com.android.internal.util.mahdi.QSConstants.TILE_NAVBAR;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKMODE;
+import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKTRAFFIC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_NFC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.mahdi.QSConstants.TILE_PROFILE;
@@ -44,6 +46,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_QUIETHOURS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_RINGER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SCREENTIMEOUT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SETTINGS;
+import static com.android.internal.util.mahdi.QSConstants.TILE_SHAKE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SLEEP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_SYNC;
 import static com.android.internal.util.mahdi.QSConstants.TILE_THEME;
@@ -53,8 +56,6 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFI;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_WIMAX;
-import static com.android.internal.util.mahdi.QSConstants.TILE_NAVBAR;
-import static com.android.internal.util.mahdi.QSConstants.TILE_NETWORKTRAFFIC;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -104,6 +105,7 @@ import com.android.systemui.quicksettings.QuietHoursTile;
 import com.android.systemui.quicksettings.RingerModeTile;
 import com.android.systemui.quicksettings.ScreenTimeoutTile;
 import com.android.systemui.quicksettings.SleepScreenTile;
+import com.android.systemui.quicksettings.ShakeEventTile;
 import com.android.systemui.quicksettings.SyncTile;
 import com.android.systemui.quicksettings.ThemeTile;
 import com.android.systemui.quicksettings.ToggleLockscreenTile;
@@ -304,6 +306,8 @@ public class QuickSettingsController {
                 qs = new OnTheGoTile(mContext, this);
             } else if (tile.equals(TILE_BATTERYSAVER)) {
                 qs = new BatterySaverTile(mContext, this);
+            } else if (tile.equals(TILE_SHAKE)) {
+                qs = new ShakeEventTile(mContext, this);
             }
 
             if (qs != null) {
