@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (C) 2012-2014 The Mahdi-Rom Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- QuickSettings: Profile [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_profile_label">Προφιλ</string>
+  <!-- Quick Settings -->
+  <string name="quick_settings_lte">LTE</string>
+  <string name="quick_settings_lte_off">LTE ανενεργό</string>
+  <string name="quick_settings_volume">Ήχος</string>
+  <string name="quick_settings_camera_label">Κάμερα</string>
+  <string name="quick_settings_network_adb_disabled_label">Ανενεργό</string>
+  <string name="quick_settings_network_adb_enabled_label">Ενεργό</string>
+  <string name="quick_settings_gps">GPS</string>
+  <string name="quick_settings_gps_off">GPS ανενεργο</string>
+  <string name="quick_settings_power">Ισχύς</string>
+  <string name="quick_settings_ringer_on">Ήχος ενεργός</string>
+  <string name="quick_settings_ringer_off">Ηχος ανενεργός</string>
+  <string name="quick_settings_vibration_on">Δόνηση ενεργή</string>
+  <string name="quick_settings_vibration_off">Δόνηση ανενεργή</string>
+  <string name="quick_settings_label_enabled">Ενεργό</string>
+  <string name="quick_settings_label_disabled">Ανενεργό</string>
+  <string name="quick_settings_ringer_normal">Ήχος</string>
+  <string name="quick_settings_lockscreen">Οθόνη κλειδώματος</string>
+  <string name="quick_settings_music_play">Αναπαραγωγή</string>
+  <string name="quick_settings_music_pause">Παύση</string>
+  <string name="quick_settings_music_schedule_title">Χρονοδιακόπτης ύπνου</string>
+  <string name="quick_settings_music_schedule_in_progress">Χρονόμετρο σε εξέλιξη</string>
+  <string name="quick_settings_music_schedule_start">Εκκίνηση χρονομέτρου</string>
+  <string name="quick_settings_music_schedule_cancel">Καθαρισμός χρονομέτρου</string>
+  <string name="quick_settings_music_schedule_update">Ενημέρωση χρονομέτρου</string>
+  <string name="quick_settings_network_type">Δίκτυο</string>
+  <string name="quick_settings_report_bug">Αναφορά σφάλματος</string>
+  <string name="quick_settings_sync">Συγχρονισμός</string>
+  <string name="quick_settings_sync_off">Συγχρονισμός ανενεργός</string>
+  <string name="quick_settings_torch">Φακός</string>
+  <string name="quick_settings_torch_off">Φακός ανενεργος</string>
+  <string name="quick_settings_nfc">NFC</string>
+  <string name="quick_settings_nfc_off">NFC ανενεργό</string>
+  <string name="quick_settings_screen_timeout">Xρονικό όριο</string>
+  <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+  <string name="quick_settings_screen_timeout_summary_never">Ποτέ</string>
+  <string name="quick_settings_usb_tether_off_label">Ανενεργό</string>
+  <string name="quick_settings_usb_tether_connected_label">Tethering ανενεργό</string>
+  <string name="quick_settings_usb_tether_on_label">Tethering</string>
+  <string name="quick_settings_wifiap">Wi-Fi AP</string>
+  <string name="quick_settings_wifiap_off">Wi-Fi AP ανενεργο</string>
+  <string name="quick_settings_quiethours">Ώρες ησυχίας</string>
+  <string name="quick_settings_quiethours_off">Ώρες ησυχίας ανενεργο</string>
+  <string name="quick_settings_quick_record_nofile">Συνεχές πάτημα</string>
+  <string name="quick_settings_quick_record_def">Γρήγορη ηχογράφηση</string>
+  <string name="quick_settings_quick_record_rec">Ηχογράφηση...</string>
+  <string name="quick_settings_quick_record_save">Σώθηκε</string>
+  <string name="quick_settings_quick_record_play">Αναπαραγωγή...</string>
+  <string name="quick_settings_custom_toggle">Προσαρμοσμένο</string>
+  <string name="quick_settings_contact_toggle">Επαφή</string>
+  <string name="quick_settings_battery_saver_label">Εξοικονόμηση μπαταριας ενεργό</string>
+  <string name="quick_settings_battery_saver_off_label">Εξοικονόμηση μπαταριας ανενεργό</string>
+  <string name="quick_settings_network_unknown">Αγνωστο</string>
+  <string name="quick_settings_network_disable">Χωρίς Δίκτυο</string>
+  <string name="quick_settings_bluetooth_multi_label">%1$d συνδέθηκε</string>
+  <!-- Network Strings for battery saver mode -->
+  <string name="network_4G">4G/LTE</string>
+  <string name="network_3G_only">3G μόνο</string>
+  <string name="network_3G_auto">2G/3G αυτόματο</string>
+  <string name="network_3G">2G/3G επιλογή</string>
+  <string name="network_2G">2G μόνο</string>
+  <!-- battery saver mode -->
+  <string name="battery_saver_start">Εξοικονόμηση μπαταριας ενεργό</string>
+  <string name="battery_saver_stop">Εξοικονόμηση μπαταριας ανενεργό</string>
+  <string name="battery_saver_change">Εξοικονόμηση μπαταριας αλλαγή δικτύου σε</string>
+  <string name="battery_saver_network">Δίκτυο αποκαταστάθηκε</string>
+  <string name="battery_saver_data">Δεδομένα κινητής αποκαταστάθηκαν</string>
+  <string name="battery_saver_brightness">Φωτεινότητα οθόνης αποκαταστάθηκε</string>
+  <string name="battery_saver_wifi">Wi-Fi αποκαταστάθηκε</string>
+  <string name="battery_saver_led">LED αποκαταστάθηκε</string>
+  <string name="battery_saver_vibrate">Δόνηση αποκαταστάθηκε</string>
+  <string name="battery_saver_no_changes">Καμία διαμόρφωση αποκαταστάθηκε</string>
+  <string name="battery_saver_all">Όλες οι διαμορφώσεις αποκαταστάθηκαν</string>
+  <string name="battery_saver_enable_ticker">Λειτουργία εξοικονόμησης μπαταριας τρέχει...</string>
+  <string name="battery_saver_enable_title">Λειτουργία εξοικονόμησης μπαταριας </string>
+  <string name="battery_saver_airplane_ticker">Λειτουργία πτήσης ενεργοποιήθηκε απο την εξοικονόμησης μπαταριας</string>
+  <string name="battery_saver_airplane_text">Λειτουργία πτήσης ενεργοποιήθηκε απο την εξοικονόμησης μπαταριας επειδή δεν υπάρχει σήμα για 5 λεπτά</string>
+  <string name="battery_saver_disable">Ανενεργό</string>
+  <!-- Immersive mode strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
+  <string name="quick_settings_immersive_mode">Επεκτάθηκε</string>
+  <string name="quick_settings_immersive_mode_off">Φυσιολογικό</string>
+  <!-- Navigation Bar Tile -->
+  <string name="quick_settings_navbar_on">Μπάρα πλοήγησης ενεργή</string>
+  <string name="quick_settings_navbar_off">Μπάρα πλοήγησης ανενεργή</string>
+  <!-- Network Traffic Tile -->
+  <string name="quick_settings_network_traffic_on">Κίνηση δικτύου ενεργή</string>
+  <string name="quick_settings_network_traffic_off">Κίνηση δικτύου ανενεργή</string>
+  <string name="quick_settings_network_traffic_up">Κίνηση ανεβάσματος</string>
+  <string name="quick_settings_network_traffic_down">Κίνηση κατεβάσματος</string>
+  <!-- Theme Tile -->
+  <string name="quick_settings_theme_switch_dark">Σκοτεινό θέμα</string>
+  <string name="quick_settings_theme_switch_light">Φωτεινό θέμα</string>
+  <!-- Camera tile toasts -->
+  <string name="quick_settings_camera_error_connect">Δεν μπορει να συνδεθεί με την κάμερα</string>
+  <!-- Notification reminders -->
+  <string name="quick_settings_reminder">Υπενθύμιση</string>
+  <string name="quick_settings_reminder_title">Τίτλος:</string>
+  <string name="quick_settings_reminder_message">Μήνυμα:</string>
+  <string name="quick_settings_reminder_time">Ώρα υπενθύμισης</string>
+  <string name="quick_settings_reminder_set">Ορισμός ώρας</string>
+  <string name="quick_settings_reminder_update">Ενημέρωση ώρας</string>
+  <string name="quick_settings_reminder_no_expire">Χωρίς ειδοποιήσεις</string>
+  <string name="quick_settings_reminder_dismiss">Καθαρισμός υπενθύμισεων</string>
+  <string name="quick_settings_reminder_dismiss_message">Καθαρισμός τρέχουσας υπενθύμισης?</string>
+  <string name="quick_settings_reminder_help_title">Αγγίξτε</string>
+  <string name="quick_settings_reminder_noti_dismiss">Απόρριψη</string>
+  <string name="quick_settings_reminder_noti_later">Ενημέρωση ώρας</string>
+  <string name="quick_settings_reminder_help_message">Αγγίξτε τον άδειο χώρο επάνω για να ορίσετε την υπενθύμιση. Συνεχές πάτημα για να καθαρίσετε την τρεχουσα υπενθύμιση.</string>
+  <!--ScreenShot Trash-->
+  <string name="trash">Απορρίμματα</string>
+  <!-- Kill app toast -->
+  <string name="app_killed_message">Εφαρμογή έκλεισε οριστκά</string>
+  <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_data_connection_HP">HSPA+</string>
+  <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_data_connection_DC">DCHSPAP</string>
+  <!-- Development shortcut -->
+  <string name="advanced_dev_option_wipe_app">Διαγραφή δεδομένων εφαρμογών</string>
+  <string name="advanced_dev_option_force_stop">Αναγκαστική παύση</string>
+  <!-- Hide notification icons -->
+  <string name="status_bar_notification_hide_icon_packages">Απόκρυψη εικονιδιων ειδοποιήσεων εφαρμογών </string>
+  <!-- Dialog Cancel/OK -->
+  <string name="cancel">Aκύρωση</string>
+  <string name="dlg_ok">Εντάξυ</string>
+  <string name="yes">Nαι</string>
+  <string name="no">Oχι</string>
+  <!-- Off/On/Toggle -->
+  <string name="off">Aνενεργο</string>
+  <string name="on">Eνεργό</string>
+  <string name="toggle">Διακόπτης</string>
+  <!-- Custom Shortcut Actions -->
+  <string name="shortcut_picker">Προσαρμοσμένες συντομεύσεις</string>
+  <string name="shortcut_immersive">Επέκταση επιφάνειας</string>
+  <string name="shortcut_quiethours">Ωρες ησυχίας</string>
+  <string name="shortcut_rotation">Περιστροφή</string>
+  <string name="shortcut_torch">Φακος</string>
+  <string name="shortcut_reboot">Επανεκκίνηση</string>
+  <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_last_app">Τελευταία εφαρμογή</string>
+  <string name="shortcut_screenshot">Στιγμιότυπο οθόνης</string>
+  <string name="shortcut_volume">Ήχος</string>
+  <string name="shortcut_toggle_title">Ενέργεια για εκτέλεση</string>
+  <string name="shortcut_chamber">Θάλαμος με τα μυστικά</string>
+  <string name="chamber_disabled">Ο θάλαμος με τα μυστικά είναι κλειστός</string>
+  <string name="chamber_title">Εισαγωγής ρύθμισης σε σειρά</string>
+  <string name="chamber_message">Εισαγωγή μιας ρύθμισης που είναι είτε "ενεργο" ή "ανενεργο" ή είναι μια λίστα απο προτιμήσεις. Για παράδειγμα, ωρες_ησυχίας_ήχος ή παρόμοιο.Οι ρυθμίσεις μπορούν να βρεθούν στο αρχείο settings.java. ΠΡΟΣΟΧΗ! επικίνδυνη διαδικασία.</string>
+  <string name="chamber_invalid">Αυτή η εισαγωγή είναι δεν είναι έγκυρη. Προσοχή!</string>
+  <string name="chamber_invalid_setting">Προσπαθήστε να ανοιγοκλείσετε την ρύθμιση χειροκίνητα για να σιγουρευτείτε ότι υπάρχει βάση δεδομένων για αυτή την ενέργεια.</string>
+  <string name="chamber_checkbox">Κουτακι ενεργοποίησης</string>
+  <string name="chamber_chk_message">Είναι αυτη μια ρύθμιση με κουτάκι ενεργοποίησης;</string>
+  <string name="chamber_int">Ειααγωγή ρυθμίσεων</string>
+  <string name="chamber_int_message">Εισάγεται μία τιμή που θα θέλατε οι ρυθμίσεις να εναλλάσονται μεταξύ τους.Ξεχωρήστε τις με κόμματα. Για ρυθμίσεις χρωμάτων γίνονται δεκτές μόνο τιμές όπως #FF00aacc ή βασικές τιμές χρώματος όπως κόκκινο, πράσινο και κίτρινο.</string>
+  <string name="chamber_name_title">Όνομα συντόμευσης</string>
+  <string name="chamber_name_message">Δώστε στην συντόμευση ένα όνομα του θα εμφανίζεται με το εικονίδιο.</string>
+  <string name="chamber_name_toast">Χρησιμοποιόντας προεπιλεγμένο όνομα.</string>
+  <!-- Title shown in recents popup for locking an app from being cleared -->
+  <string name="status_bar_recent_lock_item_title">Κλειδωμένο</string>
+  <!-- Title shown in recents popup for unlocking an app from being cleared -->
+  <string name="status_bar_recent_unlock_item_title">Ξεκλείδωτο</string>
+  <!-- On the go -->
+  <string name="onthego_notif_ticker">On-The-Go ενεργό</string>
+  <string name="onthego_notif_title">On-The-Go ανενεργό</string>
+  <string name="onthego_notif_stop">Παύση</string>
+  <string name="onthego_notif_options">Ρυθμίσεις</string>
+  <string name="onthego_notif_error">Αποτυχία εκκίνησης On-The-Go</string>
+  <string name="onthego_notif_restart">Επανεκκίνηση On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Η λειτουργία της κάμερας άλλαξε</string>
+  <string name="onthego_transparency">Διαφάνεια</string>
+  <string name="onthego_front_camera">Χρήση μπροστινής κάμερας</string>
+  <string name="onthego_service_toggle">Αυτόματη επανεκκίνηση υπηρεσίας</string>
+  <string name="quick_settings_onthego_back">Πίσω κάμερα</string>
+  <string name="quick_settings_onthego_front">Μπροστά κάμερα</string>
+  <!-- Recents Ram Bar -->
+  <string name="memory">RAM</string>
+  <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+  <string name="service_free_mem">
+    <xliff:g id="memory">%1$s</xliff:g>Ελεύθερη</string>
+  <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+  <string name="service_used_mem">
+    <xliff:g id="memory">%1$s</xliff:g>Χρησιμοποιούμενη</string>
+  <!-- Battery status in pie controls -->
+  <string name="pie_battery_status_charging">Φόρτιση (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Φορτισμένο πλήρως</string>
+  <string name="pie_battery_status_discharging">
+    <xliff:g id="percent">%d</xliff:g>%% υπόλοιπο</string>
+  <!-- Phone status in pie controls -->
+  <string name="pie_phone_status_no_service">Δεν υπάρχει σήμα</string>
+  <string name="pie_phone_status_airplane_mode">Λειτουργία πτήσης ενεργή</string>
+  <string name="pie_phone_status_emergency_only">Κλήσεις έκτακτης ανάγκης μόνο</string>
+  <!-- Smart PullDown Warning -->
+  <string name="smart_pulldown_disabled">Έξυπνο τράβηγμα προς τα κάτω ανενεργό</string>
+  <!-- Navigation bar IME navigation -->
+  <string name="accessibility_ime_navigation_left">Δρομέας αριστερά</string>
+  <string name="accessibility_ime_navigation_right">Δρομέας δεξιά</string>
+</resources>

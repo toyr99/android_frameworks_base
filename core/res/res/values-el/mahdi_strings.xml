@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2014, Mahdi-Rom project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Power menu -->
+  <string name="global_action_reboot">Επανεκκίνηση</string>
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Επανεκκίνηση tablet</string>
+  <string name="reboot_system" product="default">Επανεκκίνηση τηλεφώνου</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Επανεκκίνηση</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+  <string name="reboot_bootmenu">Bootmenu</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+  <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Λήψη</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Γίνεται επανεκκίνηση\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+  <string name="reboot_confirm" product="tablet">Το tablet σας θα κάνει επανεκκίνηση</string>
+  <string name="reboot_confirm" product="default">Το τηλέφωνο σας θα κάνει επανεκκίνηση</string>
+  <!-- label for item that screenshots in phone options dialog -->
+  <string name="global_action_screenshot">Στιγμιότυπο οθόνης</string>
+  <!-- label for screen record item in phone options dialog -->
+  <string name="global_action_screen_record">Καταγραφή οθόνης</string>
+  <!-- label for item that toggles global immersive mode -->
+  <string name="global_actions_toggle_global_immersive_mode">Επέκταση οθόνης</string>
+  <!-- status message in phone options dialog for when expand desktop mode is on -->
+  <string name="global_actions_global_immersive_mode_on_status">Ενεργό</string>
+  <!-- status message in phone options dialog for when expand desktop mode is off -->
+  <string name="global_actions_global_immersive_mode_off_status">Ανενεργό</string>
+  <!-- label for item that opens the profile choosing dialog -->
+  <string name="global_action_choose_profile">Προφίλ</string>
+  <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">Λειτουργία On-The-Go </string>
+  <!-- The title of the profile picker dialog. -->
+  <string name="profile_picker_title">Προφίλ</string>
+  <!-- The item label for the no profile selection item. -->
+  <string name="profile_none">Κανένα</string>
+  <!-- Names of default profiles. -->
+  <string name="profileNameDefault">Προεπιλογή</string>
+  <string name="profileNameWork">Εργασία</string>
+  <string name="profileNameHome">Σπίτι</string>
+  <string name="profileNameSilent">Σίγανση</string>
+  <string name="profileNameNight">Νύχτα</string>
+  <string name="profileNameAutomobile">Αυτοκίνητο</string>
+  <!-- Names of application groups. -->
+  <string name="profileGroupPhone">Τηλέφωνο</string>
+  <string name="profileGroupCalendar">Ημερολόγιο</string>
+  <string name="profileGroupGmail">Gmail</string>
+  <string name="profileGroupEmail">Email</string>
+  <string name="profileGroupSMS">SMS</string>
+  <!-- Name of wildcard profile. -->
+  <string name="wildcardProfile">Άλλα</string>
+  <!-- Hardware Rotation lock string -->
+  <string name="toast_rotation_unlocked">Περιστροφή οθόνης αυτόματη</string>
+  <string name="toast_rotation_locked">Περιστροφή οθόνης κλειδωμένη</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_cancelNotifications">Ακύρωση ειδοποιήσεων εφαρμογών</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_cancelNotifications">Επιτρέπει την εφαρμογή να ακυρώσει της ειδοποιήσεις που δημιουργουνται απο άλλες εφαρμογές.</string>
+  <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Ενεργοποίηση ή απενεργοποίηση της προστασίας της ιδιωτικότητας</string>
+  <string name="permdesc_changePrivacyGuardState">Επιτρέπει την εφαρμογή τρέξει με προστασία της ιδιωτικότητας. Οταν μια εφαρμογή τρέχει με προστασία ιδιω/τας, δεν θα έχει πρόσβαση στα προσωπικά δεδομένα όπως οι επαφές, κλήσεις ή μηνύματα.</string>
+  <string name="privacy_guard_notification">Προστασίας της ιδιωτικότητας ενεργή</string>
+  <string name="privacy_guard_notification_detail">
+    <xliff:g id="app">%1$s</xliff:g>Δεν θα έχει πρόσβαση στα προσωπικά δεδομένα</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_recordScreen">Εμφάνιση της εγγραφής περιεχομένου</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_recordScreen">Επιτρέπει την εφαρμογή να καταγράφει την οθόνη του χρήστη.</string>
+  <string name="permlab_interceptSmsSent">Παρεμπόδιση εξερχομένων SMS</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_interceptSmsSent">Επιτρέπει την εφαρμογή να 
+        Παρεμπόδιζει εξερχομένα SMS.
+        Κακόβουλες εφαρμογές μπορόυν να αποτρέψουν την αποστολή εξερχόμενων μηνυματων.</string>
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permgrouplab_security">Ασφάλεια</string>
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permgroupdesc_security">Άδειες που σχετίζονται με πληροφορίες για την ασφάλεια της συσκευής.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_readPhoneBlacklist">Ανάγνωση της μαύρης λίστα της συσκευής</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_readPhoneBlacklist">Επιτρέπει την εφαρμογή να διαβάσει πληροφορίες σχετικά με τηλεφωνικούς αριθμούς που έχουν φραγή σε εισερχόμενες κλήσεις και μηνύματα.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_changePhoneBlacklist">Αλλάγη της μαύρης λίστας της συσκευής</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_changePhoneBlacklist">Επιτρέπει την εφαρμογή να αλλάξει τους τηλεφωνικούς αριθμούς που έχουν φραγή σε εισερχόμενες κλήσεις και μηνύματα.</string>
+  <string name="immersive_mode_confirmation_bottom">Σύρτε απο το κατω μέρος της οθόνης προς τα πάνω για να βγείτε απο την πλήρη οθόνη.</string>
+  <!-- Lock screen always show battery -->
+  <string name="lockscreen_discharging">Αποφόρτιση <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+  <!-- Animation Strings -->
+  <string name="animation_default">Προεπιλογή</string>
+  <string name="animation_fade">ξεθώρισμα</string>
+  <string name="animation_slide_right">Ολίσθηση (δεξιά)</string>
+  <string name="animation_slide_left">Ολίσθηση (αριστερά)</string>
+  <string name="animation_slide_right_no_fade">Ολίσθηση (δεξιά) (όχι ξεθώριασμα) </string>
+  <string name="animation_slide_left_no_fade">Ολίσθηση (αριστερά) (όχι ξεθώριασμα)</string>
+  <string name="animation_slide_up">Ολίσθηση (κάτω)</string>
+  <string name="animation_slide_down">Ολίσθηση (επάνω)</string>
+  <string name="animation_translucent">Ημιδιαφάνεια
+</string>
+  <string name="animation_grow_shrink">Διόγκωση (επάνω)</string>
+  <string name="animation_grow_shrink_center">Διόγκωση (κεντρο)</string>
+  <string name="animation_grow_shrink_bottom">Διόγκωση (κάτω)</string>
+  <string name="animation_grow_shrink_left">Διογκωση (αριστερά)</string>
+  <string name="animation_grow_shrink_right">Διόγκωση (δεξιά)</string>
+  <string name="animation_random">Τυχαίο</string>
+  <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+  <string name="permlab_revokePermissions">Επιτρέπει την προβολή και επεξεργασία των ανακαλεσμένων αδειών.Όχι για χρήση απο φυσιολογικές εφαρμογές.</string>
+  <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
+  <string name="permdesc_revokePermissions">Επιτρέπει την προβολή και επεξεργασία των ανακαλεσμένων αδειών.Όχι για χρήση απο φυσιολογικές εφαρμογές.</string>
+  <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
+  <string name="permlab_accessThemeService">Επιτρέπει την πρόσβαση στην υπηρεσία διαχειρισής θεμάτων.Όχι για χρήση απο φυσιολογικές εφαρμογές.</string>
+  <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
+  <string name="permdesc_accessThemeService">Επιτρέπει μια εφαρμογή να ρυθμίσει ή να επαναφέρει ενα θέμα.Όχι για χρήση απο φυσιολογικές εφαρμογές.</string>
+  <!-- Error description on theme switch with ligtsensor mode enabled -->
+  <string name="theme_auto_switch_mode_error">Η αυτόματη λειτουργία φωτεινότητας της οθόνης είναι ενεργή.Η χειροκίνητη αλλαγή φωτεινότητας δεν είναι εφικτή.</string>
+  <!-- App ops requests -->
+  <string name="app_ops_access_camera">Πρόσβαση στην κάμερα</string>
+  <string name="app_ops_access_location">Πρόσβαση στην τοποθεσία</string>
+  <string name="app_ops_access_notifications">ανάγνωση των ειδοποιησεων</string>
+  <string name="app_ops_alarm_wakeup">αφύπνιση της συσκευης</string>
+  <string name="app_ops_draw_on_top">σχεδίαση στην κορυφή</string>
+  <string name="app_ops_keep_device_awake">Διατήρηση της συσκευής σε ξυπνητή κατάσταση.</string>
+  <string name="app_ops_make_phone_call">Πραγματοποίηση τηλεφωνικής κλήσης</string>
+  <string name="app_ops_modify_calendar">Ενημέρωση του ημερολογίου</string>
+  <string name="app_ops_modify_call_log">Ενημέρωση του αρχείου κλήσεων</string>
+  <string name="app_ops_modify_clipboard">Τροποποίηση του προχείρου</string>
+  <string name="app_ops_modify_contacts">Ενημέρωση των επαφών</string>
+  <string name="app_ops_modify_settings">ενημερωση των ρυθμίσεων συστήματος</string>
+  <string name="app_ops_play_audio">Αναπαραγωγή ήχου</string>
+  <string name="app_ops_post_notification">Τοποθέτηση μιας ειδοποίησης</string>
+  <string name="app_ops_read_calendar">Αναγνωση του ημερολογίου σου</string>
+  <string name="app_ops_read_call_log">Ανάγνωση του αρχείου κλήσεων</string>
+  <string name="app_ops_read_clipboard">Ανάγνωση του προχείρου</string>
+  <string name="app_ops_read_contacts">Ανάγνωση των επαφών σου</string>
+  <string name="app_ops_read_mms">Ανάγνωση των MMS μηνυμάτων σου</string>
+  <string name="app_ops_read_sms">Ανάγνωση των SMS μηνυμάτων σου</string>
+  <string name="app_ops_receive_sms">Λήψη ενος SMS μηνύματος</string>
+  <string name="app_ops_record_audio">Ηχογράφηση ήχου</string>
+  <string name="app_ops_send_mms">Αποστολή ενός MMS μηνύματος</string>
+  <string name="app_ops_send_sms">Αποστολή ενός SMS μηνύματος</string>
+  <string name="app_ops_start_at_bootup">Φόρτωση κατα την εκκίνηση</string>
+  <string name="app_ops_toggle_bluetooth">Διακόπτης Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">Διακόπτης mobile data</string>
+  <string name="app_ops_toggle_wifi">Διακόπτης WiFi</string>
+  <string name="app_ops_use_alarm_volume">Έλεγχος έντασης ξυπνητηριού</string>
+  <string name="app_ops_use_audio_focus">Έλεγχος της συγκέντρωσης ήχου</string>
+  <string name="app_ops_use_bluetooth_volume">Έλεγχος της έντασης του Bluetooth</string>
+  <string name="app_ops_use_master_volume">Έλεγχος της κεντρικής έντασης ήχου</string>
+  <string name="app_ops_use_media_buttons">Χρησιμοποίηση των κουμπιών των πολυμέσων.</string>
+  <string name="app_ops_use_media_volume">Έλεγχος της έντασης των πολυμέσων</string>
+  <string name="app_ops_use_notification_volume">Έλεγχος της έντασης των ειδοποιήσεων</string>
+  <string name="app_ops_use_ring_volume">Έλεγχος της έντασης του ήχου κλήσεων</string>
+  <string name="app_ops_use_vibrate">Χρήση της απτικής ανάδρασης</string>
+  <string name="app_ops_use_voice_volume">Έλεγχος της εντασης του τηλεφωνητη</string>
+  <string name="app_ops_write_mms">Εγγραφή ενος μηνύματος MMS</string>
+  <string name="app_ops_write_sms">Εγγραφή ενός μηνύματος SMS </string>
+  <string name="privacy_guard_dialog_title">Προστασία της ιδιωτικότητας</string>
+  <string name="privacy_guard_dialog_summary">
+    <xliff:g id="app">%1$s</xliff:g> θα ήθελα να <xliff:g id="op">%2$s</xliff:g>.</string>
+  <string name="permission_remember_choice">Να θυμάτε την επιλογή μου</string>
+  <!-- status message in phone options dialog for when pie is on -->
+  <string name="global_actions_pie_mode_on_status">SlimPie είναι ενεργή</string>
+  <!-- status message in phone options dialog for when pie is off -->
+  <string name="global_actions_pie_mode_off_status">SlimPie είναι ανενεργή</string>
+  <!-- Error message if user want to try to disable all navigation options -->
+  <string name="disable_pie_navigation_error">Δεν μπορείς να απενεργοποιήσεις τον έλεγχο της SlimPie. Δεν υπάρχει άλλος τρόπος πλοήγησης ενεργός. Ενεργοποίησε πρώτα την μπάρα πλοήγησης και μετά απενεργοποίησε την SlimPie.</string>
+  <!-- status message in phone options dialog for when navigation bar is on -->
+  <string name="global_actions_nav_bar_mode_on_status">Η μπάρα πλοήγησης είναι ενεργή</string>
+  <!-- status message in phone options dialog for when navigation bar is off -->
+  <string name="global_actions_nav_bar_mode_off_status">Η μπάρα πλοήγησης είναι ανενεργή</string>
+  <!-- Error message if user want to try to disable all navigation options -->
+  <string name="disable_navigation_pie_error">Δεν μπορείς να απενεργοποιήσεις την μπάρα πλοήγησης. Δεν υπάρχει άλλος τρόπος πλοήγησης ενεργός. Ενεργοποίησε πρώτα την SlimPie και μετά απενεργοποίησε την μπάρα πλοήγησης.</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+  <string name="permlab_setKeyguardWallpaper">ορισμός κλειδώματος ταπετσαρίας</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_setKeyguardWallpaper">Επιτρέπει μια εφαρμογή να αλλάξει την ταπετσαρία της οθόνης κλειδώματος.</string>
+</resources>
