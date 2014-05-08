@@ -219,4 +219,9 @@
     <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist deaktiviert</string>
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktiviert werden. Bitte zuerst die Pie Steuerung aktivieren.</string>
-</resources>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_setKeyguardWallpaper">Ändern des Sperrbildschirmhintergrunds</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_setKeyguardWallpaper">Ermöglicht einer App das Hintergrundbild der Display-Sperre zu ändern.</string>
+    </resources>
