@@ -2808,6 +2808,18 @@ public final class Settings {
          */
         public static final String POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED = "power_menu_global_immersive_mode_enabled";
 
+        /**
+         * Whether power menu profiles switcher is enabled
+         * @hide
+         */
+        public static final String POWER_MENU_PROFILES_ENABLED = "power_menu_profiles_enabled";
+
+        /**
+         * Show MobileData in Power Menu
+         * @hide
+         */
+        public static final String POWER_MENU_MOBILE_DATA_ENABLED = "power_menu_mobile_data_enabled";
+
 	/**
          * Global immersive mode on/off state
          * @hide
@@ -2830,13 +2842,7 @@ public final class Settings {
          * Show the pending notification counts as overlays on the status bar
          * @hide
          */
-        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
-
-        /**
-         * Whether power menu profiles switcher is enabled
-         * @hide
-         */
-        public static final String POWER_MENU_PROFILES_ENABLED = "power_menu_profiles_enabled";
+        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";        
 
         /**
          * volume rocker wake
@@ -3380,6 +3386,52 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_tiles_vibrate";
 
         /**
+         * Custom Ring Mode
+         * @hide
+         */
+        public static final String EXPANDED_RING_MODE = "expanded_ring_mode";        
+
+        /**
+         * Custom Network Mode
+         * @hide
+         */
+        public static final String EXPANDED_NETWORK_MODE = "expanded_network_mode";
+
+        /**
+         * Notification Power Widget - Custom Screen Timeout
+         * @hide
+         */
+        public static final String EXPANDED_SCREENTIMEOUT_MODE = "expanded_screentimeout_mode";
+
+	/**
+         * Use the Notification Power Widget? (Who wouldn't!)
+         *
+         * @hide
+         */
+        public static final String EXPANDED_VIEW_WIDGET = "expanded_view_widget";
+
+	/**
+         * Quick Settings Quick access ribbon
+         *
+         * @hide
+         */
+        public static final String QS_QUICK_ACCESS = "qs_quick_access";
+
+        /**
+         * Quick Settings Quick access ribbon - linked layout
+         *
+         * @hide
+         */
+        public static final String QS_QUICK_ACCESS_LINKED = "qs_quick_access_linked";
+
+        /**
+         * Quick Settings Ribbon Tiles to Use
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_RIBBON_TILES = "quick_settings_ribbon_tiles";
+
+        /**
          * Reminder alert on / off
          * @hide
          */
@@ -3405,52 +3457,6 @@ public final class Settings {
          * @hide
          */
         public static final String REMINDER_ALERT_INTERVAL = "reminder_alert_interval";
-
-	/**
-        * Custom Ring Mode
-        * @hide
-        */
-        public static final String EXPANDED_RING_MODE = "expanded_ring_mode";        
-
-	/**
-        * Custom Network Mode
-        * @hide
-        */
-        public static final String EXPANDED_NETWORK_MODE = "expanded_network_mode";
-
-	/**
-        * Notification Power Widget - Custom Screen Timeout
-        * @hide
-        */
-        public static final String EXPANDED_SCREENTIMEOUT_MODE = "expanded_screentimeout_mode";
-
-	/**
-         * Use the Notification Power Widget? (Who wouldn't!)
-         *
-         * @hide
-         */
-        public static final String EXPANDED_VIEW_WIDGET = "expanded_view_widget";
-
-	/**
-         * Quick Settings Quick access ribbon
-         *
-         * @hide
-         */
-        public static final String QS_QUICK_ACCESS = "qs_quick_access";
-
-        /**
-         * Quick Settings Quick access ribbon - linked layout
-         *
-         * @hide
-         */
-        public static final String QS_QUICK_ACCESS_LINKED = "qs_quick_access_linked";
-
-       /**
-         * Quick Settings Ribbon Tiles to Use
-         *
-         * @hide
-         */
-        public static final String QUICK_SETTINGS_RIBBON_TILES = "quick_settings_ribbon_tiles";
 
 	/**
          * Hide network labels in the notification drawer
@@ -4579,8 +4585,11 @@ public final class Settings {
             POWER_MENU_SCREENSHOT_ENABLED,
             POWER_MENU_AIRPLANE_ENABLED,
             POWER_MENU_SILENT_ENABLED,
+            POWER_MENU_MOBILE_DATA_ENABLED,
+            POWER_MENU_PROFILES_ENABLED,
+            POWER_MENU_PROFILES_ENABLED,
+            POWER_MENU_ONTHEGO_ENABLED,
 	    SYSTEM_PROFILES_ENABLED,
-	    POWER_MENU_PROFILES_ENABLED,
             LOCKSCREEN_VIBRATE_ENABLED,
             LOCKSCREEN_BATTERY_VISIBILITY,
             LOCKSCREEN_MODLOCK_ENABLED,
