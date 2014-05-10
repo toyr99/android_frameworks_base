@@ -105,7 +105,7 @@ public class KeyguardViewManager {
     
     private NotificationHostView mNotificationView;
     private NotificationViewManager mNotificationViewManager;
-    private boolean mLockscreenNotifications = true;
+    private boolean mLockscreenNotifications = false;
 
     private boolean mUnlockKeyDown = false;
 
