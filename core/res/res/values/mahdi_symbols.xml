@@ -230,4 +230,7 @@
   <java-symbol type="string" name="disable_navigation_pie_error" />
 
   <java-symbol type="bool" name="config_batterySdCardAccessibility" />
+
+  <!-- WiFi turn off notification -->
+  <java-symbol type="string" name="notify_turn_wifi_off_title" />
 </resources>
