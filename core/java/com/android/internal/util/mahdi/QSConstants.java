@@ -41,6 +41,7 @@ public class QSConstants {
         public static final String TILE_ONTHEGO = "toggleOnTheGo";
         public static final String TILE_BATTERYSAVER = "toggleBatterySaver";
         public static final String TILE_SHAKE = "tileShake";
+        public static final String TILE_COMPASS = "toggleCompass";
 
         //Key for custom tile additive
         public static final String TILE_CUSTOM_KEY = " Key=";

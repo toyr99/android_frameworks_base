@@ -24,6 +24,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_BATTERYSAVER;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BLUETOOTH;
 import static com.android.internal.util.mahdi.QSConstants.TILE_BRIGHTNESS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CAMERA;
+import static com.android.internal.util.mahdi.QSConstants.TILE_COMPASS;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CONTACT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM_KEY;
@@ -83,6 +84,7 @@ import com.android.systemui.quicksettings.BluetoothTile;
 import com.android.systemui.quicksettings.BrightnessTile;
 import com.android.systemui.quicksettings.BugReportTile;
 import com.android.systemui.quicksettings.CameraTile;
+import com.android.systemui.quicksettings.CompassTile;
 import com.android.systemui.quicksettings.ContactTile;
 import com.android.systemui.quicksettings.CustomTile;
 import com.android.systemui.quicksettings.EqualizerTile;
@@ -309,6 +311,8 @@ public class QuickSettingsController {
                 qs = new BatterySaverTile(mContext, this);
             } else if (tile.equals(TILE_SHAKE)) {
                 qs = new ShakeEventTile(mContext, this);
+            } else if (tile.equals(TILE_COMPASS)) {
+                qs = new CompassTile(mContext, this);
             }
 
             if (qs != null) {
