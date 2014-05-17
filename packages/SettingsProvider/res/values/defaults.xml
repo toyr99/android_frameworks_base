@@ -188,4 +188,8 @@
     <integer name="def_battery_style">0</integer>
     <!-- Default for Settings.System.STATUS_BAR_BATTERY_SHOW_PERCENT -->
     <integer name="def_battery_show_percent">0</integer>
+
+    <!-- Default theme -->
+    <string name="def_theme_package"></string>
+    <string name="def_theme_components"></string>
 </resources>
