@@ -58,4 +58,7 @@ interface IPowerManager
 
     // blocked wakelock support
     String getSeenWakeLocks();
+
+	void setPowerProfile(String profile);
+	String getPowerProfile();
 }
