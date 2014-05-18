@@ -4549,6 +4549,20 @@ public final class Settings {
         public static final String PEEK_STATE = "peek_state";
 
         /**
+         * Whether to not showing active display when there is annoying notifications.
+         * Set the timeout of peek when pikcing up the device
+         * @hide
+         */
+        public static final String PEEK_PICKUP_TIMEOUT = "peek_pickup_timeout";
+
+        /**
+         * Time to show notification
+         * 7000ms = default
+         * @hide
+         */
+        public static final String PEEK_WAKE_TIMEOUT = "peek_wake_timeout";
+
+        /**
          * Whether to show the battery bar
          * @hide
          */
@@ -4573,13 +4587,6 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
-
-        /**
-         * Whether to not showing active display when there is annoying notifications.
-         * Set the timeout of peek when pikcing up the device
-         * @hide
-         */
-        public static final String PEEK_PICKUP_TIMEOUT = "peek_pickup_timeout";
 
          /**
          * Sensitivity of all system shake events
