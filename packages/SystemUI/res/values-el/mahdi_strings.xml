@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (C) 2012-2014 The Mahdi-Rom Project
+ * Copyright (C) 2013-2014 The Mahdi-Rom Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -69,8 +69,8 @@
   <string name="quick_settings_quick_record_play">Αναπαραγωγή...</string>
   <string name="quick_settings_custom_toggle">Προσαρμοσμένο</string>
   <string name="quick_settings_contact_toggle">Επαφή</string>
-  <string name="quick_settings_battery_saver_label">Εξοικονόμηση μπαταριας ενεργό</string>
-  <string name="quick_settings_battery_saver_off_label">Εξοικονόμηση μπαταριας ανενεργό</string>
+  <string name="quick_settings_battery_saver_label">Εξοικονόμηση ενεργή</string>
+  <string name="quick_settings_battery_saver_off_label">Εξοικονόμηση ανενεργή</string>
   <string name="quick_settings_network_unknown">Αγνωστο</string>
   <string name="quick_settings_network_disable">Χωρίς Δίκτυο</string>
   <string name="quick_settings_bluetooth_multi_label">%1$d συνδέθηκε</string>
@@ -195,15 +195,15 @@
   <string name="memory">RAM</string>
   <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
   <string name="service_free_mem">
-    <xliff:g id="memory">%1$s</xliff:g>Ελεύθερη</string>
+    <xliff:g id="memory">%1$s</xliff:g>Ελεύθερη </string>
   <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
   <string name="service_used_mem">
-    <xliff:g id="memory">%1$s</xliff:g>Χρησιμοποιούμενη</string>
+    <xliff:g id="memory">%1$s</xliff:g>Χρησιμοποιούμενη </string>
   <!-- Battery status in pie controls -->
   <string name="pie_battery_status_charging">Φόρτιση (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Φορτισμένο πλήρως</string>
   <string name="pie_battery_status_discharging">
-    <xliff:g id="percent">%d</xliff:g>%% υπόλοιπο</string>
+    <xliff:g id="percent">%d</xliff:g>%% υπόλοιπο </string>
   <!-- Phone status in pie controls -->
   <string name="pie_phone_status_no_service">Δεν υπάρχει σήμα</string>
   <string name="pie_phone_status_airplane_mode">Λειτουργία πτήσης ενεργή</string>
