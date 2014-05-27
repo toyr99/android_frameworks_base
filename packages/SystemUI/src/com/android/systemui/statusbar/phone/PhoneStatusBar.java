@@ -658,7 +658,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE))) {
-                mNavigationBarOverlay.setIsExpanded(isExpanded());        
+                mNavigationBarOverlay.setIsExpanded(isExpanded());
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHAKE_LISTENER_ENABLED))) {
+                updateShakeListener();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHAKE_SENSITIVITY))) {
+                updateShakeSensitivity();
             } else if (uri != null && uri.equals(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_BRIGHTNESS_SLIDER))) {
                 final ContentResolver resolver = mContext.getContentResolver();
@@ -669,12 +675,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     mBrightnessView.setVisibility(View.VISIBLE);
                 } else {
                     cleanupBrightnessSlider();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.SHAKE_LISTENER_ENABLED))) {
-                updateShakeListener();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.SHAKE_SENSITIVITY))) {
-                updateShakeSensitivity();
             }
         }
 	updateSettings();
@@ -2331,7 +2331,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_CURRENT);
             if (event != null && !event.equals(ButtonsConstants.ACTION_NULL)) {
                 customButtonVibrate();
-                SlimActions.processAction(mContext, event, false);
+                MahdiActions.processAction(mContext, event, false);
             }
         }
     }
