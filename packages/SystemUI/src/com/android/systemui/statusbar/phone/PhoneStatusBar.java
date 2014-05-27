@@ -579,6 +579,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 if (mQS != null) {
                     mQS.setupQuickSettings();
                 }
+                if (mSettingsContainer != null) {
+                    mQS.setupQuickSettings();
+                }
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_SHORTCUTS_CONFIG))
                 || uri.equals(Settings.System.getUriFor(
@@ -4682,6 +4685,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_CUSTOM_COLOR),
                     false, this, UserHandle.USER_ALL);
 
             cr.registerContentObserver(
