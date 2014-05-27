@@ -75,8 +75,6 @@ public class QuickRecordTile extends QuickSettingsTile {
     public QuickRecordTile(Context context, QuickSettingsController qsc) {
         super(context, qsc);
 
-        mFile = new File(mPath + File.separator
-                + "quickrecord.3gp");
         mQuickAudio = manipulateCurrentFiles(false);
         mHandler = new Handler();
 
