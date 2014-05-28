@@ -256,19 +256,11 @@ public class NetworkPolicyManager {
      */
     public static void snapToCycleDay(Time time, int cycleDay, int cycleLength) {
         if (cycleLength == CYCLE_MONTHLY) {
-            // when cycle day doesn't exist, it snaps to last second of current month
-            if (cycleDay > time.getActualMaximum(MONTH_DAY)) {
-                // cycle day isn't valid this month; snap to last second of month
-                time.month += 1;
-                time.monthDay = 1;
-                time.second = -1;
-            } else {
-                time.monthDay = cycleDay;
-            }
+            snapToCycleDay(time, cycleDay);
         } else if (cycleLength == CYCLE_WEEKLY) {
             time.monthDay += (cycleDay - time.weekDay);
+            time.normalize(true);
         }
-        time.normalize(true);
     }
 
     /**
