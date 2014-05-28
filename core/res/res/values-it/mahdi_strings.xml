@@ -219,4 +219,24 @@
     <string name="global_actions_nav_bar_mode_off_status">La Navigation bar è spenta</string>
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Non puoi disabilitare la navigation bar. Non ci sono altri modi di navigazione abilitati. Abilita prima pie control per spegnere la navigation bar.</string>
+    
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_accessThemeService">accesso al theme engine</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_accessThemeService">Permettere ad un\'app di accedere al theme engine. Non dovrebbe mai servire per una normale app.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readThemes">leggi le info del tuo tema</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readThemesDesc">Permette all\'applicazione di leggere le info del tema applicato.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_writeThemes">modifica i tuoi temi</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_writeThemesDesc">Permette all\'applicazione di applicare temi e modificare quello attuale.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_setKeyguardWallpaper">imposta sfondo</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_setKeyguardWallpaper">Permette all\'applicazione di modificare lo sfondo della lockscreen.</string>
 </resources>
