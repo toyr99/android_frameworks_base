@@ -55,6 +55,15 @@
     <string name="global_actions_global_immersive_mode_on_status">Attivato</string>
     <!-- status message in phone options dialog for when expand desktop mode is off -->
     <string name="global_actions_global_immersive_mode_off_status">Disattivato</string>
+    
+    <!-- label for item that toggle mobile data -->
+    <string name="global_actions_toggle_mobile_data">Connessione dati</string>
+
+    <!-- status message in phone options dialog for when mobile data is on -->
+    <string name="global_actions_mobile_data_on_status">Attiva</string>
+
+    <!-- status message in phone options dialog for when mobile data is off -->
+    <string name="global_actions_mobile_data_off_status">Disattiva</string>
 
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Profilo</string>
