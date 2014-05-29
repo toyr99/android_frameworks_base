@@ -160,13 +160,8 @@
     <string name="permlab_revokePermissions">Permetti all\'applicazione di vedere/modificare i permessi revocati. Non per l\'uso di normali applicazioni.</string>
     <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
     <string name="permdesc_revokePermissions">Permetti all\'applicazione di leggere/scrivere i permessi revocati. Non per l\'uso di normali applicazioni.</string>
-
-    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
-    <string name="permlab_accessThemeService">Permetti l\'accesso al Theme Manager. Non per l\'uso di normali applicazioni.</string>
-    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
-    <string name="permdesc_accessThemeService">Permetti all\'applicazione di mettere/cancellare un Tema.Non per l\'uso di normali applicazioni.</string>
 	
-	<!-- Error description on theme switch with ligtsensor mode enabled -->
+    <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Lo switch automatico in base alla condizione della luce è attivo.Lo switch manuale non è possibile.</string>
 
     <!-- App ops requests -->
