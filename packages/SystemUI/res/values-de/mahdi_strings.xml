@@ -23,6 +23,8 @@
     <!-- Quick Settings -->
     <string name="quick_settings_lte">LTE</string>
     <string name="quick_settings_lte_off">LTE aus</string>
+    <string name="quick_settings_shakeevents">Schüttelevents</string>
+    <string name="quick_settings_shakeevents_off">Schüttelevents aus</string>
     <string name="quick_settings_volume">Lautstärke</string>
     <string name="quick_settings_camera_label">Kamera</string>
     <string name="quick_settings_network_adb_disabled_label">Deaktiviert</string>
@@ -63,18 +65,21 @@
     <string name="quick_settings_wifiap_off">WLAN-AP aus</string>
     <string name="quick_settings_quiethours">Ruhige Stunden</string>
     <string name="quick_settings_quiethours_off">Ruhige Stunden aus</string>
+    <string name="quick_settings_quick_record_deleted">Gelöscht...</string>
     <string name="quick_settings_quick_record_nofile">Langer-Druck</string>
     <string name="quick_settings_quick_record_def">Sprachaufnahme</string>
     <string name="quick_settings_quick_record_rec">Aufnahme...</string>
     <string name="quick_settings_quick_record_save">Gespeichert</string>
     <string name="quick_settings_quick_record_play">Abspielen...</string>
+    <string name="quick_settings_quick_record_dialog_cancel">Schießen</string>
+    <string name="quick_settings_quick_record_dialog">Aufnahme abspielen\nLange drücken um zu löschen</string>
     <string name="quick_settings_custom_toggle">Angepasst</string>
     <string name="quick_settings_contact_toggle">Kontakt</string>
-    <string name="quick_settings_battery_saver_label">Energiesparmodus eingeschaltet</string>
-    <string name="quick_settings_battery_saver_off_label">Energiesparmodus ausgeschaltet</string>
+    <string name="quick_settings_battery_saver_label">Energiesparmodus</string>
     <string name="quick_settings_network_unknown">Unbekannt</string>
     <string name="quick_settings_network_disable">Kein Internet</string>
     <string name="quick_settings_bluetooth_multi_label">%1$d</string>
+    <string name="quick_settings_equalizer">Equalizer</string>
 	
     <!-- Network Strings for battery saver mode -->
     <string name="network_4G">4G/LTE</string>
@@ -172,6 +177,7 @@
     <string name="shortcut_immersive">Erweiterter Desktop</string>
     <string name="shortcut_quiethours">Ruhige Stunden</string>
     <string name="shortcut_rotation">Drehung</string>
+    <string name="shortcut_shakeevent">Schüttelevents</string>
     <string name="shortcut_torch">Taschenlampe</string>
     <string name="shortcut_reboot">Neustart</string>
     <string name="shortcut_recovery">Recovery</string>
