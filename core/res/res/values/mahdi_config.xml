@@ -63,14 +63,4 @@
     <!-- True if the gesture service should be started at system start -->
     <bool name="config_enableGestureService">false</bool>
 
-    <!-- Vibrator pattern to be used as for notifications while alerts
-         are disabled (e.g. during phone calls) if enabled by the user.
-     -->
-    <integer-array name="config_notificationNoAlertsVibePattern">
-        <item>0</item>
-        <item>50</item>
-        <item>100</item>
-        <item>50</item>
-    </integer-array>
-
 </resources>
