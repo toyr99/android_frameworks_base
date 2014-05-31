@@ -18,6 +18,9 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="default_string">Standard</string>
+
     <!-- Power menu -->
     <string name="global_action_reboot">Neustart</string>
     <!-- Button to reboot the phone, within the Phone Options dialog -->
@@ -56,6 +59,15 @@
     <!-- status message in phone options dialog for when expand desktop mode is off -->
     <string name="global_actions_global_immersive_mode_off_status">Deaktiviert</string>
 
+    <!-- label for item that toggle mobile data -->
+    <string name="global_actions_toggle_mobile_data">Mobile Datenverbindung</string>
+
+    <!-- status message in phone options dialog for when mobile data is on -->
+    <string name="global_actions_mobile_data_on_status">Aktiviert</string>
+
+    <!-- status message in phone options dialog for when mobile data is off -->
+    <string name="global_actions_mobile_data_off_status">Deaktiviert</string>
+
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Profile</string>
 
@@ -93,22 +105,22 @@
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_cancelNotifications">Benachrichtigungen unterdrücken</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_cancelNotifications">Erlaubt der App Benachrichtigungen anderer Apps zu unterdrücken.</string>
+    <string name="permdesc_cancelNotifications">Ermöglicht einer App Benachrichtigungen anderer Apps zu unterdrücken.</string>
 
     <!-- Privacy Guard -->
     <string name="permlab_changePrivacyGuardState">Datenschutz aktivieren oder deaktivieren</string>
-    <string name="permdesc_changePrivacyGuardState">Erlaubt der App zu ändern ob eine andere App unter Datenschutz ausgeführt wird oder nicht. Wenn eine App mit aktivem Datenschutz ausgeführt wird, hat diese keinen Zugriff auf persönliche Daten wie Kontakte, Nachrichten oder das Anrufprotokoll.</string>
+    <string name="permdesc_changePrivacyGuardState">Ermöglicht einer App zu ändern ob eine andere App unter Datenschutz ausgeführt wird oder nicht. Wenn eine App mit aktivem Datenschutz ausgeführt wird, hat diese keinen Zugriff auf persönliche Daten wie Kontakte, Nachrichten oder das Anrufprotokoll.</string>
     <string name="privacy_guard_notification">Datenschutz aktiv</string>
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> kann nun nicht mehr auf die persönlichen Daten zugreifen</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_recordScreen">Aufnahme wird wiedergegeben</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_recordScreen">Erlaubt der App den Bildschirminhalt aufzuzeichnen.</string>
+    <string name="permdesc_recordScreen">Ermöglicht einer App den Bildschirminhalt aufzuzeichnen.</string>
 
     <string name="permlab_interceptSmsSent">Abfangen ausgehender SMS</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Erlaubt der App das Abfangen einer ausgehenden SMS. Bösartige Apps verwenden dies um ausgehnde SMS zu blockieren.</string>
+    <string name="permdesc_interceptSmsSent">Ermöglicht einer App das Abfangen einer ausgehenden SMS. Bösartige Apps verwenden dies um ausgehnde SMS zu blockieren.</string>
 	
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Sicherheit</string>
@@ -126,7 +138,7 @@
     <string name="permdesc_changePhoneBlacklist">Ermöglicht einer App Telefonnummern, die für eingehende Anrufe oder Nachrichten blockiert werden, zu ändern.</string>
 
     <string name="immersive_mode_confirmation_bottom">Von der Unterseite nach oben wischen um den erweiterterten Desktop zu beenden.</string>
-		
+	
     <!-- Lock screen always show battery -->
     <string name="lockscreen_discharging">Entladen, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
 
@@ -152,15 +164,10 @@
     <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
     <string name="permdesc_revokePermissions">Ermöglicht das Lesen und Schreiben von widerrufenen Berechtigungen. Nicht für normale Anwendungen.</string>
 
-    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
-    <string name="permlab_accessThemeService">Ermöglicht den Zugriff auf den Theme-Manager-Service. Nicht für normale Anwendungen.</string>
-    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
-    <string name="permdesc_accessThemeService">Ermöglicht das Setzen und Rücksetzen von Themen. Nicht für normale Anwendungen.</string>
-
     <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Automatischer Änderungsmodus durch Lichtverhältnisse aktiviert. Manuelles Umschalten nicht möglich.</string>
 
-	<!-- App ops requests -->
+    <!-- App ops requests -->
     <string name="app_ops_access_camera">Auf die Kamera zugreifen</string>
     <string name="app_ops_access_location">Auf den Standort zugreifen</string>
     <string name="app_ops_access_notifications">Benachrichtigungen lesen</string>
@@ -220,8 +227,23 @@
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktiviert werden. Bitte zuerst die Pie Steuerung aktivieren.</string>
 
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_accessThemeService">Zugriff auf den Themendienst</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_accessThemeService">Ermöglicht einer App auf den Themendienst zugreifen. Sollte nicht für normale Anwendungen benötigt werden.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readThemes">Lesen der Themeninfo</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readThemesDesc">Ermöglicht der App installierten Themen zu lesen und festzustellen welches Thema gerade verwendet wird.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_writeThemes">Ändern der Themen</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_writeThemesDesc">Ermöglicht der App neue Themen einzufügen und verwendete Themen zu ändern.</string>
+
     <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
     <string name="permlab_setKeyguardWallpaper">Ändern des Sperrbildschirmhintergrunds</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_setKeyguardWallpaper">Ermöglicht einer App das Hintergrundbild der Display-Sperre zu ändern.</string>
-    </resources>
+    <string name="permdesc_setKeyguardWallpaper">Ermöglicht einer App das Hintergrundbild der Display-Sperre zu ändern.</string>	
+</resources>
