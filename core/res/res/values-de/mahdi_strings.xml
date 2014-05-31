@@ -235,7 +235,7 @@
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_readThemes">Lesen der Themeninfo</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_readThemesDesc">Ermöglicht der App installierten Themen zu lesen und festzustellen welches Thema gerade verwendet wird.</string>
+    <string name="permdesc_readThemesDesc">Ermöglicht der App installierte Themen zu lesen und festzustellen welches gerade verwendet wird.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_writeThemes">Ändern der Themen</string>
