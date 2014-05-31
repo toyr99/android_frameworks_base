@@ -1950,9 +1950,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     final boolean alertsDisabled =
                         (mDisabledNotifications & StatusBarManager.DISABLE_NOTIFICATION_ALERTS) != 0;
                     boolean readyForAlerts = canInterrupt && mSystemReady &&
-                        (r.getUserId() == UserHandle.USER_ALL || r.getUserId() == userId && r.getUserId() == currentUser)
-                        && !notificationIsAnnoying(pkg)
-                        && (old == null || (notification.flags & Notification.FLAG_ONLY_ALERT_ONCE) == 0);
+                        (r.getUserId() == UserHandle.USER_ALL || r.getUserId() == userId && r.getUserId() == currentUser) &&
+                        (old == null || (notification.flags & Notification.FLAG_ONLY_ALERT_ONCE) == 0);
                     boolean hasValidSound = false;
 
                     // If we're not supposed to beep, vibrate, etc. then don't.
