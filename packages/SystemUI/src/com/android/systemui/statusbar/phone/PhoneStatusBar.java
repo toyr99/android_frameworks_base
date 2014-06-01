@@ -56,7 +56,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
@@ -402,8 +401,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mRecreating = false;
     private StatusHeaderMachine mStatusHeaderMachine;
     private Runnable mStatusHeaderUpdater;
-    private ImageView mStatusHeaderImage;
-    private Drawable mHeaderOverlay;
 
     // for disabling the status bar
     int mDisabled = 0;
@@ -1015,8 +1012,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationPanelHeader = mStatusBarWindow.findViewById(R.id.header);
 
         mStatusHeaderMachine = new StatusHeaderMachine(mContext);
-        mStatusHeaderImage = (ImageView) mNotificationPanelHeader.findViewById(R.id.header_background_image);
-        mHeaderOverlay = res.getDrawable(R.drawable.bg_custom_header_overlay);
         updateCustomHeaderStatus();
 
         mReminderHeader = mStatusBarWindow.findViewById(R.id.reminder_header);
@@ -1391,26 +1386,27 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private void setNotificationPanelHeaderBackground(Drawable dwSrc) {
+    private void setNotificationPanelHeaderBackground(final Drawable dw) {
         Drawable[] arrayDrawable = new Drawable[2];
 
-        // Overlay a dark gradient
-        arrayDrawable[0] = dwSrc;
-        arrayDrawable[1] = mHeaderOverlay;
-        final Drawable dw = new LayerDrawable(arrayDrawable);
+        if (dw instanceof BitmapDrawable) {
+            BitmapDrawable bdw = (BitmapDrawable) dw;
+            bdw.setGravity(Gravity.TOP);
+        }
 
-        // Transition animation
-        arrayDrawable[0] = mStatusHeaderImage.getDrawable();
+        if (!(dw instanceof BitmapDrawable) &&
+             !(mNotificationPanelHeader.getBackground() instanceof BitmapDrawable) &&
+             !(mNotificationPanelHeader.getBackground() instanceof TransitionDrawable)) {
+            return;
+        }
+
+        arrayDrawable[0] = mNotificationPanelHeader.getBackground();
         arrayDrawable[1] = dw;
 
-        if (arrayDrawable[0] != null) {
-            TransitionDrawable transitionDrawable = new TransitionDrawable(arrayDrawable);
-            transitionDrawable.setCrossFadeEnabled(true);
-            mStatusHeaderImage.setImageDrawable(transitionDrawable);
-            transitionDrawable.startTransition(1000);
-        } else {
-            mStatusHeaderImage.setImageDrawable(dw);
-        }
+        TransitionDrawable transitionDrawable = new TransitionDrawable(arrayDrawable);
+        transitionDrawable.setCrossFadeEnabled(true);
+        mNotificationPanelHeader.setBackgroundDrawable(transitionDrawable);
+        transitionDrawable.startTransition(1000);
     }
 
     @Override
