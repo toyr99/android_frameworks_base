@@ -400,7 +400,7 @@ public class QuickSettingsController {
             for (QuickSettingsTile t : mQuickSettingsTiles) {
                 t.switchToRibbonMode();
             }
-        } else if (Settings.System.getInt(resolver, //ribbon custom colors aren't supported ATM
+        } if (Settings.System.getInt(resolver, //ribbon custom colors aren't supported ATM
                 Settings.System.QUICK_TILES_CUSTOM_COLOR, 0) == 1) {
             int bgColor = Settings.System.getInt(resolver,
                     Settings.System.QUICK_TILES_BG_COLOR, -2);
