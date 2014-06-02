@@ -27,6 +27,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -76,6 +77,8 @@ public class KeyButtonView extends ImageView {
     IStatusBarService mStatusBarService;
     public static boolean sPreloadedRecentApps;
 
+    private PowerManager mPm;
+
     Runnable mCheckLongPress = new Runnable() {
         public void run() {
             mIsLongpressed = true;
@@ -122,6 +125,7 @@ public class KeyButtonView extends ImageView {
 
         setClickable(true);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        mPm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
     }
 
     public void setClickAction(String action) {
@@ -262,6 +266,10 @@ public class KeyButtonView extends ImageView {
     public void setPressed(boolean pressed) {
         if (mGlowBG != null) {
             if (pressed != isPressed()) {
+
+                // A lot of stuff is about to happen. Lets get ready.
+                mPm.cpuBoost(750000);
+
                 if (mPressedAnim != null && mPressedAnim.isRunning()) {
                     mPressedAnim.cancel();
                 }
