@@ -224,9 +224,9 @@
     <!-- Recents Ram Bar -->
     <string name="memory">RAM</string>
     <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
-    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> free</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> liberi</string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
-    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> used</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> usati</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
@@ -237,4 +237,10 @@
     <string name="pie_phone_status_no_service">Nessun servizio</string>
     <string name="pie_phone_status_airplane_mode">Modalità aereo Attiva</string>
     <string name="pie_phone_status_emergency_only">Solo chiamate d\'emergenza</string>
+     <!-- Smart PullDown Warning -->
+    <string name="smart_pulldown_disabled">Quick settings intelligenti disattivati</string>
+
+    <!-- Navigation bar IME navigation -->
+    <string name="accessibility_ime_navigation_left">Cursore sinistro</string>
+    <string name="accessibility_ime_navigation_right">Cursore destro</string>
 </resources>
