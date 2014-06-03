@@ -2030,6 +2030,7 @@ public class KeyguardHostView extends KeyguardViewBase {
             KeyguardWidgetFrame frame = mAppWidgetContainer.getWidgetPageAt(i);
             frame.removeAllViews();
         }
+        mSecurityViewContainer.onPause(); // clean up any actions in progress
     }
 
     /**
