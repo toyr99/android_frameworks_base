@@ -290,11 +290,9 @@ public class WallpaperCropActivity extends Activity {
         // Get the crop
         boolean ltr = mCropView.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR;
 
-<<<<<<< HEAD
         Point minDims = new Point();
         Point maxDims = new Point();
-=======
->>>>>>> android-4.4.3_r1
+
         Display d = getWindowManager().getDefaultDisplay();
         d.getCurrentSizeRange(minDims, maxDims);
 
@@ -565,15 +563,11 @@ public class WallpaperCropActivity extends Activity {
                     mCropBounds.roundOut(roundedTrueCrop);
                     mCropBounds = new RectF(roundedTrueCrop);
 
-<<<<<<< HEAD
-                    Point bounds = getImageBounds();
-=======
                     if (bounds == null) {
                         Log.w(LOGTAG, "cannot get bounds for image");
                         failure = true;
                         return false;
                     }
->>>>>>> android-4.4.3_r1
 
                     float[] rotatedBounds = new float[] { bounds.x, bounds.y };
                     rotateMatrix.mapPoints(rotatedBounds);

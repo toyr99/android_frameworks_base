@@ -162,7 +162,7 @@ public final class ActivityThread {
     private static final int LOG_ON_PAUSE_CALLED = 30021;
     private static final int LOG_ON_RESUME_CALLED = 30022;
 
-    private ContextImpl mSystemContext;
+    static ContextImpl mSystemContext = null;
 
     static IPackageManager sPackageManager;
 
@@ -1655,7 +1655,7 @@ public final class ActivityThread {
                                 ? mBoundApplication.processName : null)
                         + ")");
                 packageInfo =
-                    new LoadedApk(this, aInfo, compatInfo, baseLoader,
+                    new LoadedApk(this, aInfo, compatInfo, this, baseLoader,
                             securityViolation, includeCode &&
                             (aInfo.flags&ApplicationInfo.FLAG_HAS_CODE) != 0);
                 if (includeCode) {
@@ -1708,15 +1708,26 @@ public final class ActivityThread {
     public ContextImpl getSystemContext() {
         synchronized (this) {
             if (mSystemContext == null) {
-                mSystemContext = ContextImpl.createSystemContext(this);
+                ContextImpl context =
+                    ContextImpl.createSystemContext(this);
+                LoadedApk info = new LoadedApk(this, "android", context, null,
+                        CompatibilityInfo.DEFAULT_COMPATIBILITY_INFO);
+                context.init(info, null, this);
+                context.getResources().updateConfiguration(mResourcesManager.getConfiguration(),
+                        mResourcesManager.getDisplayMetricsLocked(Display.DEFAULT_DISPLAY));
+                mSystemContext = context;
+                //Slog.i(TAG, "Created system resources " + context.getResources()
+                //        + ": " + context.getResources().getConfiguration());
             }
-            return mSystemContext;
         }
+        return mSystemContext;
     }
 
     public void installSystemApplicationInfo(ApplicationInfo info) {
         synchronized (this) {
-            getSystemContext().installSystemApplicationInfo(info);
+            ContextImpl context = getSystemContext();
+            context.init(new LoadedApk(this, "android", context, info,
+                    CompatibilityInfo.DEFAULT_COMPATIBILITY_INFO), null, this);
 
             // give ourselves a default profiler
             mProfiler = new Profiler();
@@ -2212,7 +2223,8 @@ public final class ActivityThread {
 
     private Context createBaseContextForActivity(ActivityClientRecord r,
             final Activity activity) {
-        ContextImpl appContext = ContextImpl.createActivityContext(this, r.packageInfo, r.token);
+        ContextImpl appContext = new ContextImpl();
+        appContext.init(r.packageInfo, r.token, this);
         appContext.setOuterContext(activity);
 
         // For debugging purposes, if the activity's package name contains the value of
@@ -2497,7 +2509,8 @@ public final class ActivityThread {
                 agent = (BackupAgent) cl.loadClass(classname).newInstance();
 
                 // set up the agent's context
-                ContextImpl context = ContextImpl.createAppContext(this, packageInfo);
+                ContextImpl context = new ContextImpl();
+                context.init(packageInfo, null, this);
                 context.setOuterContext(agent);
                 agent.attach(context);
 
@@ -2569,10 +2582,11 @@ public final class ActivityThread {
         try {
             if (localLOGV) Slog.v(TAG, "Creating service " + data.info.name);
 
-            ContextImpl context = ContextImpl.createAppContext(this, packageInfo);
-            context.setOuterContext(service);
+            ContextImpl context = new ContextImpl();
+            context.init(packageInfo, null, this);
 
             Application app = packageInfo.makeApplication(false, mInstrumentation);
+            context.setOuterContext(service);
             service.attach(context, this, data.info.name, data.token, app,
                     ActivityManagerNative.getDefault());
             service.onCreate();
@@ -4275,7 +4289,8 @@ public final class ActivityThread {
         }
         updateDefaultDensity();
 
-        final ContextImpl appContext = ContextImpl.createAppContext(this, data.info);
+        final ContextImpl appContext = new ContextImpl();
+        appContext.init(data.info, null, this);
         if (!Process.isIsolated()) {
             final File cacheDir = appContext.getCacheDir();
 
@@ -4386,7 +4401,8 @@ public final class ActivityThread {
             instrApp.nativeLibraryDir = ii.nativeLibraryDir;
             LoadedApk pi = getPackageInfo(instrApp, data.compatInfo,
                     appContext.getClassLoader(), false, true);
-            ContextImpl instrContext = ContextImpl.createAppContext(this, pi);
+            ContextImpl instrContext = new ContextImpl();
+            instrContext.init(pi, null, this);
 
             try {
                 java.lang.ClassLoader cl = instrContext.getClassLoader();
@@ -5001,8 +5017,8 @@ public final class ActivityThread {
                                                     UserHandle.myUserId());
             try {
                 mInstrumentation = new Instrumentation();
-                ContextImpl context = ContextImpl.createAppContext(
-                        this, getSystemContext().mPackageInfo);
+                ContextImpl context = new ContextImpl();
+                context.init(getSystemContext().mPackageInfo, null, this);
                 Application app = Instrumentation.newApplication(Application.class, context);
                 mAllApplications.add(app);
                 mInitialApplication = app;
