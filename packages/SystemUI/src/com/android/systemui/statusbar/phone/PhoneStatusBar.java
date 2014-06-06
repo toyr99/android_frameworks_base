@@ -4249,7 +4249,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         updateExpandedViewPos(EXPANDED_LEAVE_ALONE);
         restorePieTriggerMask();
-
+        checkBarModes();
         mRecreating = false;
     }
 
