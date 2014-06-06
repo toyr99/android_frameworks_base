@@ -2886,6 +2886,12 @@ public final class Settings {
          */
         public static final String GLOBAL_IMMERSIVE_MODE_STYLE = "global_immersive_mode_style";
 
+        /**
+         * Global immersive mode system bars visibility in locked state
+         * @hide
+         */
+        public static final String GLOBAL_IMMERSIVE_MODE_SYSTEM_BARS_VISIBILITY = "global_immersive_mode_system_bars_visibility";
+
 	/**
          * Show the pending notification counts as overlays on the status bar
          * @hide
