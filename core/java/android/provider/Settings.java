@@ -3921,33 +3921,6 @@ public final class Settings {
         public static final String HOME_UNLOCK_SCREEN = "home_unlock_screen";
 
         /**
-         * Whether the lockscreen vibrate should be enabled.
-         * @hide
-         */
-        public static final String LOCKSCREEN_VIBRATE_ENABLED = "lockscreen.vibrate_enabled";
-
-        /**
-         * Whether to use a separate delay for "slide to unlock" and security
-         * lock
-         * @hide
-         */
-        public static final String SCREEN_LOCK_SLIDE_DELAY_TOGGLE = "screen_lock_slide_delay_toggle";
-
-        /**
-         * How many ms to delay before enabling the "slide to unlock" screen
-         * lock when the screen goes off due to timeout
-         * @hide
-         */
-        public static final String SCREEN_LOCK_SLIDE_TIMEOUT_DELAY = "screen_lock_slide_timeout_delay";
-
-        /**
-         * How many ms to delay before enabling the "slide to unlock" screen
-         * lock when the screen is turned off by the user
-         * @hide
-         */
-        public static final String SCREEN_LOCK_SLIDE_SCREENOFF_DELAY = "screen_lock_slide_screenoff_delay";
-
-        /**
          * Electronic beam animation mode
          * 0 = off,
          * 1 = always horizontal,
@@ -4744,7 +4717,6 @@ public final class Settings {
             POWER_MENU_PROFILES_ENABLED,
             POWER_MENU_ONTHEGO_ENABLED,
 	    SYSTEM_PROFILES_ENABLED,
-            LOCKSCREEN_VIBRATE_ENABLED,
             LOCKSCREEN_BATTERY_VISIBILITY,
             LOCKSCREEN_MODLOCK_ENABLED,
 	    PHONE_BLACKLIST_ENABLED,
