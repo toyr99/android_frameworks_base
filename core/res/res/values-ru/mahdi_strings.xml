@@ -18,6 +18,9 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="default_string">По умолчанию</string>
+
     <!-- Power menu -->
     <string name="global_action_reboot">Перезагрузка</string>
     <!-- Button to reboot the phone, within the Phone Options dialog -->
@@ -26,10 +29,14 @@
 
     <!-- Button to reboot the phone, within the Reboot Options dialog -->
     <string name="reboot_reboot">Перезагрузка</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
     <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
     <string name="reboot_bootloader">Загрузчик</string>
     <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
     <string name="reboot_bootmenu">Загрузочное меню</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
     <string name="reboot_download">Режим обновления ПО</string>
 
@@ -51,6 +58,15 @@
     <string name="global_actions_global_immersive_mode_on_status">Включен</string>
     <!-- status message in phone options dialog for when expand desktop mode is off -->
     <string name="global_actions_global_immersive_mode_off_status">Выключен</string>
+
+    <!-- label for item that toggle mobile data -->
+    <string name="global_actions_toggle_mobile_data">Передача данных</string>
+
+    <!-- status message in phone options dialog for when mobile data is on -->
+    <string name="global_actions_mobile_data_on_status">Передача данных ВКЛ</string>
+
+    <!-- status message in phone options dialog for when mobile data is off -->
+    <string name="global_actions_mobile_data_off_status">Передача данных ВЫКЛ</string>
 
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Профиль</string>
@@ -148,55 +164,50 @@
     <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
     <string name="permdesc_revokePermissions">Чтение и запись для отозванных разрешений. Не для использования обычными приложениями.</string>
 
-    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
-    <string name="permlab_accessThemeService">Доступ к службе тем.</string>
-    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
-    <string name="permdesc_accessThemeService">Приложение сможет получать доступ к службе тем. Это разрешение не используется обычными приложениями.</string>
-	
-	<!-- Error description on theme switch with ligtsensor mode enabled -->
+    <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Автоматические переключение в зависимости от освещения включено. Ручное переключение невозможно.</string>
 
     <!-- App ops requests -->
-  <string name="app_ops_access_camera">получить доступ к камере</string>
-  <string name="app_ops_access_location">получить доступ к местоположению устройства</string>
-  <string name="app_ops_access_notifications">получить доступ к уведомлениям</string>
-  <string name="app_ops_alarm_wakeup">запланировать пробуждение устройства</string>
-  <string name="app_ops_draw_on_top">отображение поверх других элементов</string>
-  <string name="app_ops_keep_device_awake">запретить устройству переход в спящий режим</string>
-  <string name="app_ops_make_phone_call">выполнить телефонный звонок</string>
-  <string name="app_ops_modify_calendar">изменить данные календаря</string>
-  <string name="app_ops_modify_call_log">изменить данные списка вызовов</string>
-  <string name="app_ops_modify_clipboard">изменить содержимое буфера обмена</string>
-  <string name="app_ops_modify_contacts">изменить данные контактов</string>
-  <string name="app_ops_modify_settings">изменить системные параметры</string>
-  <string name="app_ops_play_audio">воспроизведение аудио</string>
-  <string name="app_ops_post_notification">вывести уведомление</string>
-  <string name="app_ops_read_calendar">считать данные календаря</string>
-  <string name="app_ops_read_call_log">считать данные списка вызовов</string>
-  <string name="app_ops_read_clipboard">считать содержимое буфера обмена</string>
-  <string name="app_ops_read_contacts">считать данные контактов</string>
-  <string name="app_ops_read_mms">считать MMS-сообщения</string>
-  <string name="app_ops_read_sms">считать SMS-сообщения</string>
-  <string name="app_ops_receive_sms">получить SMS-сообщение</string>
-  <string name="app_ops_record_audio">запись аудио</string>
-  <string name="app_ops_send_mms">отправить MMS-сообщение</string>
-  <string name="app_ops_send_sms">отправить SMS-сообщение</string>
-  <string name="app_ops_start_at_bootup">назначить запуск при включении устройства</string>
-  <string name="app_ops_toggle_bluetooth">переключить состояние Bluetooth</string>
-  <string name="app_ops_toggle_mobile_data">переключить состояние Мобильного интернета</string>
-  <string name="app_ops_toggle_wifi">переключить состояние Wi-Fi</string>
-  <string name="app_ops_use_alarm_volume">получить управление громкостью будильника</string>
-  <string name="app_ops_use_audio_focus">получить управление аудиофокусом</string>
-  <string name="app_ops_use_bluetooth_volume">получить управление громкостью Bluetooth-устройств</string>
-  <string name="app_ops_use_master_volume">получить управление общей громкостью</string>
-  <string name="app_ops_use_media_buttons">использовать кнопки мультимедиа</string>
-  <string name="app_ops_use_media_volume">получить управление громкостью мультимедиа</string>
-  <string name="app_ops_use_notification_volume">получить управление громкостью уведомлений</string>
-  <string name="app_ops_use_ring_volume">получить управление громкостью звонка</string>
-  <string name="app_ops_use_vibrate">использовать виброотклик</string>
-  <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
-  <string name="app_ops_write_mms">создать MMS-сообщение</string>
-  <string name="app_ops_write_sms">создать SMS-сообщение</string>
+    <string name="app_ops_access_camera">получить доступ к камере</string>
+    <string name="app_ops_access_location">получить доступ к местоположению устройства</string>
+    <string name="app_ops_access_notifications">получить доступ к уведомлениям</string>
+    <string name="app_ops_alarm_wakeup">запланировать пробуждение устройства</string>
+    <string name="app_ops_draw_on_top">отображение поверх других элементов</string>
+    <string name="app_ops_keep_device_awake">запретить устройству переход в спящий режим</string>
+    <string name="app_ops_make_phone_call">выполнить телефонный звонок</string>
+    <string name="app_ops_modify_calendar">изменить данные календаря</string>
+    <string name="app_ops_modify_call_log">изменить данные списка вызовов</string>
+    <string name="app_ops_modify_clipboard">изменить содержимое буфера обмена</string>
+    <string name="app_ops_modify_contacts">изменить данные контактов</string>
+    <string name="app_ops_modify_settings">изменить системные параметры</string>
+    <string name="app_ops_play_audio">воспроизведение аудио</string>
+    <string name="app_ops_post_notification">вывести уведомление</string>
+    <string name="app_ops_read_calendar">считать данные календаря</string>
+    <string name="app_ops_read_call_log">считать данные списка вызовов</string>
+    <string name="app_ops_read_clipboard">считать содержимое буфера обмена</string>
+    <string name="app_ops_read_contacts">считать данные контактов</string>
+    <string name="app_ops_read_mms">считать MMS-сообщения</string>
+    <string name="app_ops_read_sms">считать SMS-сообщения</string>
+    <string name="app_ops_receive_sms">получить SMS-сообщение</string>
+    <string name="app_ops_record_audio">запись аудио</string>
+    <string name="app_ops_send_mms">отправить MMS-сообщение</string>
+    <string name="app_ops_send_sms">отправить SMS-сообщение</string>
+    <string name="app_ops_start_at_bootup">назначить запуск при включении устройства</string>
+    <string name="app_ops_toggle_bluetooth">переключить состояние Bluetooth</string>
+    <string name="app_ops_toggle_mobile_data">переключить состояние Мобильного интернета</string>
+    <string name="app_ops_toggle_wifi">переключить состояние Wi-Fi</string>
+    <string name="app_ops_use_alarm_volume">получить управление громкостью будильника</string>
+    <string name="app_ops_use_audio_focus">получить управление аудиофокусом</string>
+    <string name="app_ops_use_bluetooth_volume">получить управление громкостью Bluetooth-устройств</string>
+    <string name="app_ops_use_master_volume">получить управление общей громкостью</string>
+    <string name="app_ops_use_media_buttons">использовать кнопки мультимедиа</string>
+    <string name="app_ops_use_media_volume">получить управление громкостью мультимедиа</string>
+    <string name="app_ops_use_notification_volume">получить управление громкостью уведомлений</string>
+    <string name="app_ops_use_ring_volume">получить управление громкостью звонка</string>
+    <string name="app_ops_use_vibrate">использовать виброотклик</string>
+    <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
+    <string name="app_ops_write_mms">создать MMS-сообщение</string>
+    <string name="app_ops_write_sms">создать SMS-сообщение</string>
 
     <string name="privacy_guard_dialog_title">Защищённый режим</string>
     <string name="privacy_guard_dialog_summary">Приложение «<xliff:g id="app">%1$s</xliff:g>» пытается <xliff:g id="op">%2$s</xliff:g>.</string>
@@ -215,4 +226,24 @@
     <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+    
+    <!-- Title of an application permission that lets an application access the ThemeManagerService. -->
+    <string name="permlab_accessThemeService">Доступ к службе тем.</string>
+    <!-- Description of an application permission that lets lets an application access the ThemeManagerService -->
+    <string name="permdesc_accessThemeService">Приложение сможет получать доступ к службе тем. Это разрешение не используется обычными приложениями.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readThemes">Чтение информации о теме</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readThemesDesc">Приложение сможет считывать темы оформления и определять, какая тема сейчас применена.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_writeThemes">Изменение тем</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_writeThemesDesc">Приложение сможет осуществлять установку новых тем оформления и изменять текущую тему.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_setKeyguardWallpaper">Установка обоев экрана блокировки</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_setKeyguardWallpaper">Приложение сможет изменять обои экрана блокировки устройства.</string>
 </resources>
