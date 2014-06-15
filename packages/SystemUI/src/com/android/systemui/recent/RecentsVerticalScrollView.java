@@ -54,6 +54,7 @@ public class RecentsVerticalScrollView extends ScrollView
     private HashSet<View> mRecycledViews;
     private int mNumItemsInOneScreenful;
     private Runnable mOnScrollListener;
+    private Handler mHandler;
 
     public RecentsVerticalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
@@ -63,6 +64,7 @@ public class RecentsVerticalScrollView extends ScrollView
 
         mFadedEdgeDrawHelper = FadedEdgeDrawHelper.create(context, attrs, this, true);
         mRecycledViews = new HashSet<View>();
+        mHandler = new Handler();
     }
 
     public void setMinSwipeAlpha(float minAlpha) {
@@ -188,20 +190,35 @@ public class RecentsVerticalScrollView extends ScrollView
 
     @Override
     public void removeAllViewsInLayout() {
-        int count = mLinearLayout.getChildCount();
-        int scrollY = getScrollY();
-        for (int i = 0, delayCounter = 0; i < count; i++) {
-            final View child = mLinearLayout.getChildAt(i);
-            if (child.getBottom() > scrollY) {
-                delayCounter++;
-            }
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    dismissChild(child);
+        smoothScrollTo(0, 0);
+        Thread clearAll = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int count = mLinearLayout.getChildCount();
+                // if we have more than one app, don't kill the current one
+                if(count > 1) count--;
+                View[] refView = new View[count];
+                for (int i = 0; i < count; i++) {
+                    refView[i] = mLinearLayout.getChildAt(i);
                 }
-            }, delayCounter * 150);
-        }
+                for (int i = 0; i < count; i++) {
+                    final View child = refView[i];
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            dismissChild(child);
+                        }
+                    });
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException e) {
+                        // User will see the app fading instantly after the previous
+                        // one. This will probably never happen
+                    }
+                }
+            }
+        });
+        clearAll.start();
     }
 
     public boolean onInterceptTouchEvent(MotionEvent ev) {
