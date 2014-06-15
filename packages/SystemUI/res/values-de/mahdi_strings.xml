@@ -81,6 +81,8 @@
     <string name="quick_settings_bluetooth_multi_label">%1$d</string>
     <string name="quick_settings_equalizer">Equalizer</string>
     <string name="quick_settings_compass_off">Kompass aus</string>
+    <string name="quick_settings_compass_init">Initialisierung\u2026</string>
+
 	
     <!-- Network Strings for battery saver mode -->
     <string name="network_4G">4G/LTE</string>
@@ -242,4 +244,19 @@
     <!-- Navigation bar IME navigation -->
     <string name="accessibility_ime_navigation_left">Cursor links</string>
     <string name="accessibility_ime_navigation_right">Cursor rechts</string>
+	
+    <!-- Title shown in notification popup for launching notification in floating mode -->
+    <string name="status_bar_notification_floating_item_title">Überlagerungsmodus</string>
+    
+    <!-- Title shown in recents popup for showing app in floating mode -->
+    <string name="status_bar_recent_floating_item_title">Überlagerungsmodus</string>
+
+    <!-- Blacklisted app for floating mode -->
+    <string name="floating_mode_blacklisted_app">Die App wurde auf schwarze Liste gesetzt, da sie im Überlagerungsmodus möglicherweise nicht wie erwartet funktioniert </string>
+
+    <!-- First time run hover -->
+    <string name="hover_cling_text">Hover wurde aktiviert.\n\nNeue Meldungen werden Überlagert dargestellt und können dadurch ohne die momentane App dazu verlassen zu müssen bearbeitet werden.</string>
+
+    <!-- Title shown when app provides no interface -->
+    <string name="status_bar_floating_no_interface">Die App stellt keine Schnittstelle bereit</string>
 </resources>
