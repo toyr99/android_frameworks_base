@@ -22,31 +22,33 @@
 
     <!-- Quick Settings -->
     <string name="quick_settings_lte">LTE</string>
-    <string name="quick_settings_lte_off">Spegni LTE</string>
+    <string name="quick_settings_lte_off">LTE spento</string>
+    <string name="quick_settings_shakeevents">Opzioni scuotimento</string>
+    <string name="quick_settings_shakeevents_off">Opzioni scuotimento spente</string>
     <string name="quick_settings_volume">Volume</string>
     <string name="quick_settings_camera_label">Camera</string>
-    <string name="quick_settings_network_adb_disabled_label">Disattivato </string>
+    <string name="quick_settings_network_adb_disabled_label">Disattivato</string>
     <string name="quick_settings_network_adb_enabled_label">Attivato</string>
     <string name="quick_settings_gps">GPS</string>
     <string name="quick_settings_gps_off">Spegni GPS</string>
     <string name="quick_settings_power">Power</string>
     <string name="quick_settings_ringer_on">Suono acceso</string>
     <string name="quick_settings_ringer_off">Suono spento</string>
-    <string name="quick_settings_vibration_on">Vibrazione On</string>
-    <string name="quick_settings_vibration_off">Vibrazione Off</string>
+    <string name="quick_settings_vibration_on">Vibrazione on</string>
+    <string name="quick_settings_vibration_off">Vibrazione off</string>
     <string name="quick_settings_label_enabled">On</string>
     <string name="quick_settings_label_disabled">Off</string>
     <string name="quick_settings_ringer_normal">Suono</string>
     <string name="quick_settings_lockscreen">Blocca schermo</string>
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pausa</string>
-    <string name="quick_settings_music_schedule_title">Timer Spegnimento</string>
+    <string name="quick_settings_music_schedule_title">Timer spegnimento</string>
     <string name="quick_settings_music_schedule_in_progress">Timer in progresso</string>
-    <string name="quick_settings_music_schedule_start">Start Timer</string>
-    <string name="quick_settings_music_schedule_cancel">Pulisci Timer</string>
+    <string name="quick_settings_music_schedule_start">Start timer</string>
+    <string name="quick_settings_music_schedule_cancel">Pulisci timer</string>
     <string name="quick_settings_music_schedule_update">Aggiorna timer</string>
-    <string name="quick_settings_network_type">Modalità Rete</string>
-    <string name="quick_settings_report_bug">Riporta Bug</string>
+    <string name="quick_settings_network_type">Modalità rete</string>
+    <string name="quick_settings_report_bug">Riporta bug</string>
     <string name="quick_settings_sync">Sincronizzazione</string>
     <string name="quick_settings_sync_off">Sincronizzazione spenta</string>
     <string name="quick_settings_torch">Torcia</string>
@@ -59,10 +61,11 @@
     <string name="quick_settings_usb_tether_off_label">Disconnesso</string>
     <string name="quick_settings_usb_tether_connected_label">Tethering spento</string>
     <string name="quick_settings_usb_tether_on_label">Tethering</string>
-    <string name="quick_settings_wifiap">Hotspot WiFi</string>
-    <string name="quick_settings_wifiap_off">Hotspot WiFi spento</string>
+    <string name="quick_settings_wifiap">Hotspot Wi-Fi</string>
+    <string name="quick_settings_wifiap_off">Hotspot Wi-Fi spento</string>
     <string name="quick_settings_quiethours">Ore di quiete</string>
     <string name="quick_settings_quiethours_off">Ore di quiete spente</string>
+    <string name="quick_settings_quick_record_deleted">Eliminato...</string>
     <string name="quick_settings_quick_record_nofile">Tieni premuto</string>
     <string name="quick_settings_quick_record_def">Registrazione veloce</string>
     <string name="quick_settings_quick_record_rec">Registrazione...</string>
@@ -74,9 +77,12 @@
     <string name="quick_settings_battery_saver_off_label">Salva batteria spento</string>
     <string name="quick_settings_network_type">Stato di rete</string>
     <string name="quick_settings_network_unknown">Sconosciuto</string>
-    <string name="quick_settings_network_disable">No internet</string>
+    <string name="quick_settings_network_disable">Nessuna connessione</string>
     <string name="quick_settings_bluetooth_multi_label">%1$d connesso</string>
     <string name="quick_settings_equalizer">Equalizzatore</string>
+    <string name="quick_settings_compass_off">Bussola spenta</string>
+    <string name="quick_settings_compass_init">Inizializzazione\u2026</string>
+    <string name="quick_settings_compass_value" translatable="false"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
 	
     <!-- Network Strings for battery saver mode -->
     <string name="network_4G">4G/LTE</string>
@@ -86,22 +92,17 @@
     <string name="network_2G">Solo 2G</string>
 
     <!-- battery saver mode -->
-    <string name="battery_saver_start">Salva Batteria attivato</string>
-    <string name="battery_saver_stop">Salva Batteria disattivato</string>
-    <string name="battery_saver_change">Salva Batteria cambia la rete</string>
-    <string name="battery_saver_network">Rete riabilitata</string>
+    <string name="battery_saver_start">Salva batteria attivata</string>
+    <string name="battery_saver_stop">Salva batteria disattivata</string>
+    <string name="battery_saver_change">Modalità di rete cambiata in</string>
+    <string name="battery_saver_network">Rete ripristinata</string>
     <string name="battery_saver_data">Dati mobili riabilitati</string>
-    <string name="battery_saver_brightness">Luminosità schermo riabilitata</string>
-    <string name="battery_saver_bluetooth">Bluetooth riabilitato</string>
-    <string name="battery_saver_location">Gps riabilitato</string>
+    <string name="battery_saver_brightness">Luminosità schermo ripristinata</string>
     <string name="battery_saver_wifi">WiFi riabilitato</string>
-    <string name="battery_saver_cpu">CPU riabilitata</string>
-    <string name="battery_saver_cpu_change">Salva batteria ha cambiato la frequenza CPU a </string>
-    <string name="battery_saver_sync">Sincronizzazione riabilitata</string>
     <string name="battery_saver_led">LED riabilitato</string>
-    <string name="battery_saver_vibrate">Vibrazione riabilitata </string>
-    <string name="battery_saver_no_changes">Nessuna configurazione riabilitata</string>
-    <string name="battery_saver_all">Tutta la configurazione è stata riabilitata</string>
+    <string name="battery_saver_vibrate">Vibrazione ripristinata</string>
+    <string name="battery_saver_no_changes">Nessuna configurazione ripristinata</string>
+    <string name="battery_saver_all">Tutta la configurazione è stata ripristinata</string>
     <string name="battery_saver_enable_ticker">Modalità salva batteria in funzione...</string>
     <string name="battery_saver_enable_title">Modalità salva batteria</string>
     <string name="battery_saver_airplane_ticker">Modalità aereo attivata da salva batteria</string>
@@ -113,8 +114,8 @@
     <string name="quick_settings_immersive_mode_off">Normale</string>
 
     <!-- Navigation Bar Tile -->
-    <string name="quick_settings_navbar_on">Navigation Bar ON</string>
-    <string name="quick_settings_navbar_off">Navigation Bar OFF</string>
+    <string name="quick_settings_navbar_on">Navigation bar ON</string>
+    <string name="quick_settings_navbar_off">Navigation bar OFF</string>
 
     <!-- Network Traffic Tile -->
     <string name="quick_settings_network_traffic_on">Traffico acceso</string>
@@ -123,8 +124,8 @@
     <string name="quick_settings_network_traffic_down">Traffico in download</string>
 
     <!-- Theme Tile -->
-    <string name="quick_settings_theme_switch_dark">Tema Dark</string>
-    <string name="quick_settings_theme_switch_light">Tema Light</string>
+    <string name="quick_settings_theme_switch_dark">Tema dark</string>
+    <string name="quick_settings_theme_switch_light">Tema light</string>
 
     <!-- Camera tile toasts -->
     <string name="quick_settings_camera_error_connect">Impossibile collegarsi alla fotocamera</string>
@@ -133,7 +134,7 @@
     <string name="quick_settings_reminder">Reminder</string>
     <string name="quick_settings_reminder_title">Titolo:</string>
     <string name="quick_settings_reminder_message">Messaggio:</string>
-    <string name="quick_settings_reminder_time">Reminder Time</string>
+    <string name="quick_settings_reminder_time">Timeout reminder</string>
     <string name="quick_settings_reminder_set">Imposta ora</string>
     <string name="quick_settings_reminder_update">Aggiorna ora</string>
     <string name="quick_settings_reminder_no_expire">Non ci sono notifiche</string>
@@ -141,14 +142,14 @@
     <string name="quick_settings_reminder_dismiss_message">Pulire l\'attuale reminder?</string>
     <string name="quick_settings_reminder_help_title">Tocca</string>
     <string name="quick_settings_reminder_noti_dismiss">Cancella</string>
-    <string name="quick_settings_reminder_noti_later">Aggiorna Ora</string>
+    <string name="quick_settings_reminder_noti_later">Aggiorna ora</string>
     <string name="quick_settings_reminder_help_message">Tocca lo spazio vuoto sopra per mettere o cambiare il reminder. Tieni premuto per cancellare il reminder attuale</string>
 
     <!--ScreenShot Trash-->
-    <string name="trash">Elimina</string>
+    <string name="trash">Cancella</string>
 
     <!-- Kill app toast -->
-    <string name="app_killed_message">Applicazioni Chiuse</string>
+    <string name="app_killed_message">Applicazioni chiuse</string>
 
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_HP">HSPA+</string>
@@ -175,20 +176,19 @@
     <string name="toggle">ON/OFF</string>
 
     <!-- Custom Shortcut Actions -->
-    <string name="shortcut_picker">Scorciatoia Personalizzata</string>
-    <string name="shortcut_immersive">Immersive Mode</string>
+    <string name="shortcut_picker">Scorciatoie personalizzate</string>
+    <string name="shortcut_immersive">Immersive mode</string>
     <string name="shortcut_quiethours">Ore di quiete</string>
     <string name="shortcut_rotation">Rotazione</string>
     <string name="shortcut_torch">Accendi/Spegni Torcia</string>
     <string name="shortcut_reboot">Riavvia</string>
     <string name="shortcut_recovery">Recovery</string>
-    <string name="shortcut_last_app">Ultima App</string>
-    <string name="shortcut_power_menu">Power Menu</string>
+    <string name="shortcut_last_app">Ultima app</string>
+    <string name="shortcut_power_menu">Power menu</string>
     <string name="shortcut_screenshot">Screenshot</string>
-    <string name="shortcut_screensleep">Spegni Schermo</string>
     <string name="shortcut_volume">Volume</string>
     <string name="shortcut_toggle_title">Azione</string>
-    <string name="shortcut_chamber">Camera dei Segreti</string>
+    <string name="shortcut_chamber">Camera dei segreti</string>
     <string name="chamber_disabled">La camera dei segreti è chiusa</string>
     <string name="chamber_title">Metti una stringa impostazioni</string>
     <string name="chamber_message">Mettere una stringa o possibilmente una lista di preferenze. Per esempio, quiet_hours_ringer o simile. Le impostazioni possono essere trovate in Settings.java. ATTENZIONE: Questo processo è pericoloso!</string>
@@ -198,14 +198,9 @@
     <string name="chamber_chk_message">Questo è un box di verifica?</string>
     <string name="chamber_int">Imposta valori</string>
     <string name="chamber_int_message">Imposta i valori che vorresti nel toggle. Separa ogni valore con una virgola. Le impostazioni dei colori accettano il codice hex come #FF00aacc o colori base come rosso, blu, verde e giallo.</string>
-    <string name="chamber_name_title">Nome Scorciatoia</string>
+    <string name="chamber_name_title">Nome scorciatoia</string>
     <string name="chamber_name_message">Dai un nome alla scorciatoia.</string>
     <string name="chamber_name_toast">Usa nome predefinito</string>
-
-    <!-- Title shown in recents popup for locking an app from being cleared -->
-    <string name="status_bar_recent_lock_item_title">Blocca</string>
-    <!-- Title shown in recents popup for unlocking an app from being cleared -->
-    <string name="status_bar_recent_unlock_item_title">Sblocca</string>
 
     <!-- On the go -->
     <string name="onthego_notif_ticker">Attiva On-The-Go</string>
@@ -231,16 +226,32 @@
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
     <string name="pie_battery_status_full">Carica</string>
-    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% rimanente</string>
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Nessun servizio</string>
-    <string name="pie_phone_status_airplane_mode">Modalità aereo Attiva</string>
+    <string name="pie_phone_status_airplane_mode">Modalità aereo attiva</string>
     <string name="pie_phone_status_emergency_only">Solo chiamate d\'emergenza</string>
-     <!-- Smart PullDown Warning -->
+     
+    <!-- Smart PullDown Warning -->
     <string name="smart_pulldown_disabled">Quick settings intelligenti disattivati</string>
 
     <!-- Navigation bar IME navigation -->
     <string name="accessibility_ime_navigation_left">Cursore sinistro</string>
     <string name="accessibility_ime_navigation_right">Cursore destro</string>
+    
+    <!-- Title shown in notification popup for launching notification in floating mode -->
+    <string name="status_bar_notification_floating_item_title">Modalità floating</string>
+    
+    <!-- Title shown in recents popup for showing app in floating mode -->
+    <string name="status_bar_recent_floating_item_title">Modalità floating</string>
+
+    <!-- Blacklisted app for floating mode -->
+    <string name="floating_mode_blacklisted_app">L'app selezionata è stata aggiunta alla blacklist in quanto potrebbe non funzionare correttamente in modalità floating</string>
+
+    <!-- First time run hover -->
+    <string name="hover_cling_text">Hover è ora attivo.\n\nAll'arrivo di una nuova notifica, una finestra a tendina ti permetterà di rispondere senza abbandonare l'app corrente.</string>
+
+    <!-- Title shown when app provides no interface -->
+    <string name="status_bar_floating_no_interface">L\'app non fornisce alcuna interfaccia</string>
 </resources>
