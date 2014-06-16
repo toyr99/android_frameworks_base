@@ -35,7 +35,6 @@ import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.util.Pair;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -179,12 +178,9 @@ public class ContactTile extends QuickSettingsTile {
     void updateQuickSettings() {
         ImageView iv = (ImageView) mTile.findViewById(R.id.user_imageview);
         TextView tv = (TextView) mTile.findViewById(R.id.user_textview);
-        if (tv != null) {
-            tv.setText(mLabel);
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
-            if (mTileTextColor != -2) {
-                tv.setTextColor(mTileTextColor);
-            }
+        tv.setText(mLabel);
+        if (mTileTextColor != -2) {
+            tv.setTextColor(mTileTextColor);
         }
         iv.setImageDrawable(mContactIcon);
     }

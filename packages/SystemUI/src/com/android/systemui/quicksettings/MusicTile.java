@@ -151,18 +151,6 @@ public class MusicTile extends QuickSettingsTile {
         mMusicTileMode = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.MUSIC_TILE_MODE, 3,
                 UserHandle.USER_CURRENT);
-        final ImageView background =
-                (ImageView) mTile.findViewById(R.id.background);
-        if (background != null) {
-            if (mMetadata.bitmap != null && (mMusicTileMode == 1 || mMusicTileMode == 3)) {
-                background.setImageDrawable(new BitmapDrawable(mMetadata.bitmap));
-                background.setColorFilter(
-                    Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-            } else {
-                background.setImageDrawable(null);
-                background.setColorFilter(null);
-            }
-        }
         if (mActive) {
             mDrawable = R.drawable.ic_qs_media_pause;
             mLabel = mMetadata.trackTitle != null && mMusicTileMode > 1

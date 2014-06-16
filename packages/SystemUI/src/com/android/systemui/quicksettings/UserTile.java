@@ -44,7 +44,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Profile;
 import android.util.Log;
 import android.util.Pair;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManagerGlobal;
@@ -118,12 +117,9 @@ public class UserTile extends QuickSettingsTile {
     void updateQuickSettings() {
         ImageView iv = (ImageView) mTile.findViewById(R.id.user_imageview);
         TextView tv = (TextView) mTile.findViewById(R.id.user_textview);
-        if (tv != null) {
-            tv.setText(mLabel);
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
-            if (mTileTextColor != -2) {
-                tv.setTextColor(mTileTextColor);
-            }
+        tv.setText(mLabel);
+        if (mTileTextColor != -2) {
+            tv.setTextColor(mTileTextColor);
         }
         iv.setImageDrawable(userAvatar);
     }

@@ -555,10 +555,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_SETTINGS_TILES))
                 || uri.equals(Settings.System.getUriFor(
-                    Settings.System.QUICK_TILES_PER_ROW))
-                || uri.equals(Settings.System.getUriFor(
-                    Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE))
-                || uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_TILES_TEXT_COLOR))
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_TILES_BG_COLOR))
@@ -4695,14 +4691,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             final ContentResolver cr = mContext.getContentResolver();
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_SETTINGS_TILES),
-                    false, this, UserHandle.USER_ALL);
-
-            cr.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW),
-                    false, this, UserHandle.USER_ALL);
-
-            cr.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
 
             cr.registerContentObserver(
