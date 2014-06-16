@@ -18,11 +18,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    
+    <string name="default_string">Predefinito</string>
+    
     <!-- Power menu -->
     <string name="global_action_reboot">Riavvia</string>
     <!-- Button to reboot the phone, within the Phone Options dialog -->
-    <string name="reboot_system" product="tablet">Riavvio Tablet</string>
-    <string name="reboot_system" product="default">Riavvia Telefono</string>
+    <string name="reboot_system" product="tablet">Riavvio tablet</string>
+    <string name="reboot_system" product="default">Riavvia telefono</string>
 
     <!-- Button to reboot the phone, within the Reboot Options dialog -->
     <string name="reboot_reboot">Riavvia</string>
@@ -31,7 +34,7 @@
     <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
     <string name="reboot_bootloader">Bootloader</string>
     <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
-    <string name="reboot_bootmenu">Menù di Boot</string>
+    <string name="reboot_bootmenu">Menù di boot</string>
     <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
     <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
@@ -117,7 +120,9 @@
 
     <string name="permlab_interceptSmsSent">intercetta SMS in uscita</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Permetti all\'applicazione di intercettare SMS in uscita. App cattive potrebbero usarlo per prevenire l\'invio di SMS.</string>
+    <string name="permdesc_interceptSmsSent">Permetti all\'applicazione di 
+    intercettare SMS in uscita. 
+    App non sicure potrebbero usarlo per prevenire l\'invio di SMS.</string>
 
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Sicurezza</string>
@@ -144,8 +149,8 @@
     <string name="animation_fade">Fade</string>
     <string name="animation_slide_right">Slide da destra</string>
     <string name="animation_slide_left">Slide da sinistra</string>
-    <string name="animation_slide_right_no_fade">Slide da destra(No fade)</string>
-    <string name="animation_slide_left_no_fade">Slide da sinistra(No fade)</string>
+    <string name="animation_slide_right_no_fade">Slide da destra(No dissolvenza)</string>
+    <string name="animation_slide_left_no_fade">Slide da sinistra(No dissolvenza)</string>
     <string name="animation_slide_up">Slide dal basso</string>
     <string name="animation_slide_down">Slide dall\'alto</string>
     <string name="animation_translucent">Trasparente</string>
@@ -232,15 +237,22 @@
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_readThemes">leggi le info del tuo tema</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_readThemesDesc">Permette all\'applicazione di leggere le info del tema applicato.</string>
+    <string name="permdesc_readThemesDesc">Permette all\'applicazione di leggere le info del tema applicato e
+    determinare quale tema hai applicato.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_writeThemes">modifica i tuoi temi</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_writeThemesDesc">Permette all\'applicazione di applicare temi e modificare quello attuale.</string>
+    <string name="permdesc_writeThemesDesc">Permette all\'applicazione di applicare temi e 
+    modificare quello attuale.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
     <string name="permlab_setKeyguardWallpaper">imposta sfondo</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_setKeyguardWallpaper">Permette all\'applicazione di modificare lo sfondo della lockscreen.</string>
+    
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_resetBatteryStats">ripristina statistiche batteria</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_resetBatteryStats">Permette all\'applicazione di ripristinare i dati sull\'uso della batteria.</string>
 </resources>
