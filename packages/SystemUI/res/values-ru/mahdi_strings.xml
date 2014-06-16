@@ -201,11 +201,6 @@
     <string name="chamber_name_message">Установить имя для отображения на ярлыке рядом со значком.</string>
     <string name="chamber_name_toast">Используется стандартное имя</string>
 
-    <!-- Title shown in recents popup for locking an app from being cleared -->
-    <string name="status_bar_recent_lock_item_title">Заблокировать</string>
-    <!-- Title shown in recents popup for unlocking an app from being cleared -->
-    <string name="status_bar_recent_unlock_item_title">Разблокировать</string>
-
     <!-- On the go -->
     <string name="onthego_notif_ticker">Режим \"На ходу\" активирован</string>
     <string name="onthego_notif_title">Режим \"На ходу\" активен</string>
@@ -243,4 +238,20 @@
     <!-- Navigation bar IME navigation -->
     <string name="accessibility_ime_navigation_left">Курсор влево</string>
     <string name="accessibility_ime_navigation_right">Курсор вправо</string>
+    
+    <!-- Title shown in notification popup for launching notification in floating mode -->
+    <string name="status_bar_notification_floating_item_title">Плавающий режим</string>
+    
+    <!-- Title shown in recents popup for showing app in floating mode -->
+    <string name="status_bar_recent_floating_item_title">Плавающий режим</string>
+
+    <!-- Blacklisted app for floating mode -->
+    <string name="floating_mode_blacklisted_app">Текущее приложение занесено в чёрный список, так как оно не может работать должным образом в \"Плавающем режиме\"</string>
+
+    <!-- First time run hover -->
+    <string name="hover_cling_text">Hover теперь включен.\n\nПри поступлении нового уведомления, всплывающее окно позволяет ответить на него, не выходя из текущего приложения.</string>
+
+    <!-- Title shown when app provides no interface -->
+    <string name="status_bar_floating_no_interface">Приложение не предоставляет интерфейс</string>
+    
 </resources>
