@@ -25,7 +25,7 @@
 
     <!-- quick settings background -->
     <color name="qs_background_color">#FF212121</color>
-    <color name="qs_background_pressed_color">#FF161616</color>
+    <color name="qs_background_pressed_color">#ff555555</color>
 
     <!-- Notification Shortcuts -->
     <drawable name="notification_shortcut_background_color">#00000000</drawable>
