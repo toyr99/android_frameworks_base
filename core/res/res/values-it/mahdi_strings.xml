@@ -197,7 +197,7 @@
     <string name="app_ops_start_at_bootup">partenza all\'accensione</string>
     <string name="app_ops_toggle_bluetooth">accendi/spegni bluetooth</string>
     <string name="app_ops_toggle_mobile_data">accendi/spegni dati mobili</string>
-    <string name="app_ops_toggle_wifi">accendi/spegni WiFi</string>
+    <string name="app_ops_toggle_wifi">accendi/spegni Wi-Fi</string>
     <string name="app_ops_use_alarm_volume">controlla il volume degli allarmi</string>
     <string name="app_ops_use_audio_focus">controlla il focus audio</string>
     <string name="app_ops_use_bluetooth_volume">controlla il volume del bluetooth</string>
