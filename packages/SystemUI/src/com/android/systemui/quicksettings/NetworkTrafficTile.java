@@ -45,33 +45,15 @@ public class NetworkTrafficTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Settings.System.putIntForUser(mContext.getContentResolver(), Settings.System.NETWORK_TRAFFIC_STATE,
-                        mTrafficDown ? 0 : 2, UserHandle.USER_CURRENT);
+                if (mTraffic == 0) {
+                    mTraffic = 3;
+                } else {
+                    mTraffic -= 1;
+                }
+                saveChanges();
             }
         };
         qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.NETWORK_TRAFFIC_STATE), this);
-    }
-
-    @Override
-    public void onFlingRight() {
-        if (mTraffic == 0) {
-            mTraffic = 3;
-        } else {
-            mTraffic -= 1;
-        }
-        saveChanges();
-        super.onFlingRight();
-    }
-
-    @Override
-    public void onFlingLeft() {
-        if (mTraffic == 0) {
-            mTraffic = 3;
-        } else {
-            mTraffic -= 1;
-        }
-        saveChanges();
-        super.onFlingLeft();
     }
 
     private void saveChanges() {
