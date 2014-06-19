@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
- 
 package com.android.server.power;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -65,11 +64,11 @@ public final class ShutdownThread extends Thread {
 
     // length of vibration before shutting down
     private static final int SHUTDOWN_VIBRATE_MS = 500;
-    
+
     // state tracking
     private static Object sIsStartedGuard = new Object();
     private static boolean sIsStarted = false;
-    
+
     private static boolean mReboot;
     private static boolean mRebootSafeMode;
     private static String mRebootReason;
@@ -94,10 +93,16 @@ public final class ShutdownThread extends Thread {
     private Handler mHandler;
 
     private static AlertDialog sConfirmDialog;
-    
+
     private ShutdownThread() {
     }
- 
+
+    public static boolean isStarted() {
+        synchronized (sIsStartedGuard) {
+            return sIsStarted;
+        }
+    }
+
     /**
      * Request a clean shutdown, waiting for subsystems to clean up their
      * state etc.  Must be called from a Looper thread in which its UI
@@ -358,14 +363,13 @@ public final class ShutdownThread extends Thread {
         // Shutdown radios.
         shutdownRadios(MAX_RADIO_WAIT_TIME);
         Log.i(TAG, "Sending shutdown broadcast...");
-        
+
         // First send the high-level shut down broadcast.
         Intent intent = new Intent(Intent.ACTION_SHUTDOWN);
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
         mContext.sendBroadcastAsUser(intent, UserHandle.ALL);
-
         Log.i(TAG, "Shutting down activity manager...");
-        
+
         final IActivityManager am =
             ActivityManagerNative.asInterface(ServiceManager.checkService("activity"));
         if (am != null) {
