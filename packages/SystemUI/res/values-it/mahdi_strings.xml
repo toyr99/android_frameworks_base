@@ -38,7 +38,7 @@
     <string name="quick_settings_vibration_off">Vibrazione off</string>
     <string name="quick_settings_label_enabled">On</string>
     <string name="quick_settings_label_disabled">Off</string>
-    <string name="quick_settings_ringer_normal">Suono</string>
+    <string name="quick_settings_ringer_normal">Suoneria</string>
     <string name="quick_settings_lockscreen">Blocca schermo</string>
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pausa</string>
