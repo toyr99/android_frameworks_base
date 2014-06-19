@@ -106,7 +106,7 @@
     <string name="battery_saver_enable_ticker">Modalità salva batteria in funzione...</string>
     <string name="battery_saver_enable_title">Modalità salva batteria</string>
     <string name="battery_saver_airplane_ticker">Modalità aereo attivata da salva batteria</string>
-    <string name="battery_saver_airplane_text">La modalità aereo è stata attivata da Salva batteria perché non c\'è stato segnale per 5 minuti</string>
+    <string name="battery_saver_airplane_text">La modalità aereo è stata attivata da salva batteria perché non c\'è stato segnale per 5 minuti</string>
     <string name="battery_saver_disable">Disattiva</string>
 
     <!-- Immersive mode strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
@@ -180,7 +180,7 @@
     <string name="shortcut_immersive">Immersive mode</string>
     <string name="shortcut_quiethours">Ore di quiete</string>
     <string name="shortcut_rotation">Rotazione</string>
-    <string name="shortcut_torch">Accendi/Spegni Torcia</string>
+    <string name="shortcut_torch">Accendi/Spegni torcia</string>
     <string name="shortcut_reboot">Riavvia</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_last_app">Ultima app</string>
@@ -213,8 +213,8 @@
     <string name="onthego_transparency">Transparenza</string>
     <string name="onthego_front_camera">Usa camera anteriore</string>
     <string name="onthego_service_toggle">Riavvia servizio automaticamente</string>
-    <string name="quick_settings_onthego_back">Fotocamera Posteriore</string>
-    <string name="quick_settings_onthego_front">Fotocamera Anteriore</string>
+    <string name="quick_settings_onthego_back">Fotocamera posteriore</string>
+    <string name="quick_settings_onthego_front">Fotocamera anteriore</string>
 
     <!-- Recents Ram Bar -->
     <string name="memory">RAM</string>
