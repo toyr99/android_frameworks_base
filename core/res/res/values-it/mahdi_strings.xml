@@ -18,11 +18,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    
+    <string name="default_string">Predefinito</string>
+    
     <!-- Power menu -->
     <string name="global_action_reboot">Riavvia</string>
     <!-- Button to reboot the phone, within the Phone Options dialog -->
-    <string name="reboot_system" product="tablet">Riavvio Tablet</string>
-    <string name="reboot_system" product="default">Riavvia Telefono</string>
+    <string name="reboot_system" product="tablet">Riavvio tablet</string>
+    <string name="reboot_system" product="default">Riavvia telefono</string>
 
     <!-- Button to reboot the phone, within the Reboot Options dialog -->
     <string name="reboot_reboot">Riavvia</string>
@@ -31,7 +34,7 @@
     <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
     <string name="reboot_bootloader">Bootloader</string>
     <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
-    <string name="reboot_bootmenu">Menù di Boot</string>
+    <string name="reboot_bootmenu">Menu di boot</string>
     <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
     <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
@@ -105,9 +108,9 @@
     <string name="permdesc_cancelNotifications">Acconsenti all\'applicazione di eliminare notifiche di altre applicazioni</string>
 
     <!-- Privacy Guard -->
-    <string name="permlab_changePrivacyGuardState">Attiva o disattiva Privacy Guard</string>
+    <string name="permlab_changePrivacyGuardState">Attiva o disattiva privacy guard</string>
     <string name="permdesc_changePrivacyGuardState">Quando un\'app è avviata con privacy guard, non avrà accesso a dati personali come contatti, chiamate e messaggi.</string>
-    <string name="privacy_guard_notification">Privacy Guard attivo</string>
+    <string name="privacy_guard_notification">Privacy guard attivo</string>
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> Non sarà abilitata ad accedere ad alcun dato personale.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
@@ -117,7 +120,9 @@
 
     <string name="permlab_interceptSmsSent">intercetta SMS in uscita</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Permetti all\'applicazione di intercettare SMS in uscita. App cattive potrebbero usarlo per prevenire l\'invio di SMS.</string>
+    <string name="permdesc_interceptSmsSent">Permetti all\'applicazione di 
+    intercettare SMS in uscita. 
+    App non sicure potrebbero usarlo per prevenire l\'invio di SMS.</string>
 
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Sicurezza</string>
@@ -125,12 +130,12 @@
     <string name="permgroupdesc_security">Permessi relativi al telefono</string>
 
     <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_readPhoneBlacklist">Leggi la Black List del telefono</string>
+    <string name="permlab_readPhoneBlacklist">Leggi la blacklist del telefono</string>
     <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_readPhoneBlacklist">Permetti all\'applicazione di leggere informazioni sui numeri di telefono che sono bloccati.</string>
 
     <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_changePhoneBlacklist">Cambia la Black List del telefono</string>
+    <string name="permlab_changePhoneBlacklist">Cambia la blacklist del telefono</string>
     <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_changePhoneBlacklist">Permetti all\'applicazione di cambiare i numeri di telefono bloccati.</string>
 
@@ -144,8 +149,8 @@
     <string name="animation_fade">Fade</string>
     <string name="animation_slide_right">Slide da destra</string>
     <string name="animation_slide_left">Slide da sinistra</string>
-    <string name="animation_slide_right_no_fade">Slide da destra(No fade)</string>
-    <string name="animation_slide_left_no_fade">Slide da sinistra(No fade)</string>
+    <string name="animation_slide_right_no_fade">Slide da destra(No dissolvenza)</string>
+    <string name="animation_slide_left_no_fade">Slide da sinistra(No dissolvenza)</string>
     <string name="animation_slide_up">Slide dal basso</string>
     <string name="animation_slide_down">Slide dall\'alto</string>
     <string name="animation_translucent">Trasparente</string>
@@ -192,7 +197,7 @@
     <string name="app_ops_start_at_bootup">partenza all\'accensione</string>
     <string name="app_ops_toggle_bluetooth">accendi/spegni bluetooth</string>
     <string name="app_ops_toggle_mobile_data">accendi/spegni dati mobili</string>
-    <string name="app_ops_toggle_wifi">accendi/spegni WiFi</string>
+    <string name="app_ops_toggle_wifi">accendi/spegni Wi-Fi</string>
     <string name="app_ops_use_alarm_volume">controlla il volume degli allarmi</string>
     <string name="app_ops_use_audio_focus">controlla il focus audio</string>
     <string name="app_ops_use_bluetooth_volume">controlla il volume del bluetooth</string>
@@ -206,8 +211,8 @@
     <string name="app_ops_write_mms">scrivi un MMS</string>
     <string name="app_ops_write_sms">scrivi un SMS</string>
 
-    <string name="privacy_guard_dialog_title">Privacy Guard</string>
-    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> would like to <xliff:g id="op">%2$s</xliff:g>.</string>
+    <string name="privacy_guard_dialog_title">Privacy guard</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> vorrebbe <xliff:g id="op">%2$s</xliff:g>.</string>
 
     <string name="permission_remember_choice">Ricorda la mia scelta</string>
 
@@ -218,9 +223,9 @@
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_pie_navigation_error">Non puoi disattivare pie control. Non ci sono altri modi di navigazione abilitati. Prima abilita la navigation bar per spegnere pie control.</string>
     <!-- status message in phone options dialog for when navigation bar is on -->
-    <string name="global_actions_nav_bar_mode_on_status">La Navigation bar è accesa</string>
+    <string name="global_actions_nav_bar_mode_on_status">La navigation bar è accesa</string>
     <!-- status message in phone options dialog for when navigation bar is off -->
-    <string name="global_actions_nav_bar_mode_off_status">La Navigation bar è spenta</string>
+    <string name="global_actions_nav_bar_mode_off_status">La navigation bar è spenta</string>
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Non puoi disabilitare la navigation bar. Non ci sono altri modi di navigazione abilitati. Abilita prima pie control per spegnere la navigation bar.</string>
     
@@ -232,15 +237,22 @@
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_readThemes">leggi le info del tuo tema</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_readThemesDesc">Permette all\'applicazione di leggere le info del tema applicato.</string>
+    <string name="permdesc_readThemesDesc">Permette all\'applicazione di leggere le info del tema applicato e
+    determinare quale tema hai applicato.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_writeThemes">modifica i tuoi temi</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_writeThemesDesc">Permette all\'applicazione di applicare temi e modificare quello attuale.</string>
+    <string name="permdesc_writeThemesDesc">Permette all\'applicazione di applicare temi e 
+    modificare quello attuale.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
     <string name="permlab_setKeyguardWallpaper">imposta sfondo</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_setKeyguardWallpaper">Permette all\'applicazione di modificare lo sfondo della lockscreen.</string>
+    
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_resetBatteryStats">ripristina statistiche batteria</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_resetBatteryStats">Permette all\'applicazione di ripristinare i dati sull\'uso della batteria.</string>
 </resources>
