@@ -194,7 +194,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     };
 
-
     /**
      * An interface for navigation key bars to allow status bars to signal which keys are
      * currently of interest to the user.<br>
@@ -269,6 +268,10 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     public NotificationData getNotifications() {
         return mNotificationData;
+    }
+
+    public RemoteViews.OnClickHandler getNotificationClickHandler() {
+        return mOnClickHandler;
     }
 
     private ContentObserver mProvisioningObserver = new ContentObserver(new Handler()) {
@@ -1468,7 +1471,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                     } else {
                         if (DEBUG) Log.d(TAG, "updating the current heads up:" + notification);
                         mInterruptingNotificationEntry.notification = notification;
-                        updateNotificationViews(mInterruptingNotificationEntry, notification);
+                        updateNotificationViews(mInterruptingNotificationEntry, notification, true);
                     }
                 }
 
@@ -1526,6 +1529,11 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private void updateNotificationViews(NotificationData.Entry entry,
             StatusBarNotification notification) {
+        updateNotificationViews(entry, notification, false);
+    }
+
+    private void updateNotificationViews(NotificationData.Entry entry,
+            StatusBarNotification notification, boolean headsUp) {
         final RemoteViews contentView = notification.getNotification().contentView;
         final RemoteViews bigContentView = notification.getNotification().bigContentView;
         // Reapply the RemoteViews
@@ -1536,8 +1544,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         // update the contentIntent
         final PendingIntent contentIntent = notification.getNotification().contentIntent;
         if (contentIntent != null) {
-            final View.OnClickListener listener = makeClicker(contentIntent,
-                    notification.getPackageName(), notification.getTag(), notification.getId());
+            final View.OnClickListener listener =
+                    mNotificationHelper.getNotificationClickListener(entry, headsUp);
             entry.content.setOnClickListener(listener);
         } else {
             entry.content.setOnClickListener(null);
