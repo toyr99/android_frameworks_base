@@ -2924,9 +2924,7 @@ public final class Settings {
         public static final String PHONE_BLACKLIST_ENABLED = "phone_blacklist_enabled";
 
         /**
-<<<<<<< HEAD
          * Whether a notification should be shown when a call/message is blocked
-=======
          * Heads Up Notifications
          *
          * @hide
@@ -2943,7 +2941,6 @@ public final class Settings {
         /**
          * Quick Settings Panel Dynamic Tiles
          *
->>>>>>> 6c65b35... SystemUI: Expose heads up.
          * @hide
          */
         public static final String PHONE_BLACKLIST_NOTIFY_ENABLED = "phone_blacklist_notify_enabled";
