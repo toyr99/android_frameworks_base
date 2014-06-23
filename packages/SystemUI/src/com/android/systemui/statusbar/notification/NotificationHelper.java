@@ -38,6 +38,7 @@ import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -177,7 +178,8 @@ public class NotificationHelper {
                     entry.notification.getId());
             boolean makeFloating = floating
                     // if the notification is from the foreground app, don't open in floating mode
-                    && !entry.notification.getPackageName().equals(getForegroundPackageName());
+                    && !entry.notification.getPackageName().equals(getForegroundPackageName())
+                    && openInFloatingMode();
 
             intent.makeFloating(makeFloating);
         }
@@ -275,5 +277,10 @@ public class NotificationHelper {
         return state == TelephonyManager.SIM_STATE_PIN_REQUIRED
                 | state == TelephonyManager.SIM_STATE_PUK_REQUIRED
                 | state == TelephonyManager.SIM_STATE_NETWORK_LOCKED;
+    }
+
+    public boolean openInFloatingMode() {
+        return Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_FLOATING_WINDOW, true);
     }
 }
