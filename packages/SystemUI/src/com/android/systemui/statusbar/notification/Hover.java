@@ -77,6 +77,7 @@ public class Hover {
     private boolean mShowing;
     private boolean mUserLocked;
     private int mHoverHeight;
+    private int mHoverTabletWidth; // same as notification panel
     private BaseStatusBar mStatusBar;
     private Context mContext;
     private DecelerateInterpolator mAnimInterpolator;
@@ -108,6 +109,7 @@ public class Hover {
         mHoverLayout = (HoverLayout) mInflater.inflate(R.layout.hover_container, null);
         mHoverLayout.setHoverContainer(this);
         mHoverHeight = mContext.getResources().getDimensionPixelSize(R.dimen.default_notification_min_height);
+        mHoverTabletWidth = mContext.getResources().getDimensionPixelSize(R.dimen.hover_tablet_width);
         mNotificationList = new ArrayList<HoverNotification>();
         mStatusBarNotifications = new ArrayList<StatusBarNotification>();
 
@@ -231,8 +233,9 @@ public class Hover {
     }
 
     private WindowManager.LayoutParams getHoverLayoutParams() {
+        int width = isPhone() ? WindowManager.LayoutParams.MATCH_PARENT : mHoverTabletWidth;
         WindowManager.LayoutParams lp = getLayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
+                width,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 Gravity.CENTER_HORIZONTAL | Gravity.TOP);
         return lp;
@@ -374,6 +377,10 @@ public class Hover {
 
     public boolean isClickable() {
         return getCurrentNotification().getLayout().hasOnClickListeners();
+    }
+
+    public boolean isPhone() {
+        return mContext.getResources().getBoolean(R.bool.config_hasFlipSettingsPanel);
     }
 
     public void dismissHover(boolean instant, boolean quit) {
