@@ -341,25 +341,20 @@ public class KeyguardViewManager {
                 }
                 d.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_OVER);
                 computeCustomBackgroundBounds(d);
+                Bitmap b = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas c = new Canvas(b);
+                drawToCanvas(c, d);
 
-                if (isLaidOut()) {
-                    Bitmap b = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas c = new Canvas(b);
-                    drawToCanvas(c, d);
+                Drawable dd = new BitmapDrawable(mContext.getResources(), b);
 
-                    Drawable dd = new BitmapDrawable(mContext.getResources(), b);
+                mTransitionBackground = new TransitionDrawable(new Drawable[] {old, dd});
+                mTransitionBackground.setCrossFadeEnabled(true);
+                setBackground(mTransitionBackground);
 
-                    mTransitionBackground = new TransitionDrawable(new Drawable[] {old, dd});
-                    mTransitionBackground.setCrossFadeEnabled(true);
-                    setBackground(mTransitionBackground);
+                mTransitionBackground.startTransition(200);
 
-                    mTransitionBackground.startTransition(200);
+                mCustomBackground = newIsNull ? null : dd;
 
-                    mCustomBackground = newIsNull ? null : dd;
-                } else {
-                    setBackground(d);
-                    mCustomBackground = newIsNull ? null : d;
-                }
             }
             invalidate();
         }
