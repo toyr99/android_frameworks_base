@@ -253,5 +253,7 @@
 
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">Приложение не предоставляет интерфейс</string>
-    
+
+    <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
+    <string name="accessibility_desc_add_quick_settings">Добавить Быстрые настройки.</string>
 </resources>
