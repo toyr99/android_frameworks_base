@@ -264,6 +264,9 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private int mGlobalImmersiveModeStyle = 0;
 
+    private ArrayList<String> mDndList;
+    private ArrayList<String> mBlacklist;
+
     public INotificationManager getNotificationManager() {
         return mNotificationManager;
     }
@@ -303,6 +306,12 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_CUSTOM_VALUES),
+                    false, this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_BLACKLIST_VALUES),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -329,6 +338,12 @@ public abstract class BaseStatusBar extends SystemUI implements
                 mGlobalImmersiveModeStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, 0, UserHandle.USER_CURRENT);
             }
+            final String dndString = Settings.System.getString(mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_CUSTOM_VALUES);
+            final String blackString = Settings.System.getString(mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES);
+            splitAndAddToArrayList(mDndList, dndString, "\\|");
+            splitAndAddToArrayList(mBlacklist, blackString, "\\|");
         }
     };
 
@@ -397,6 +412,9 @@ public abstract class BaseStatusBar extends SystemUI implements
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+
+        mDndList = new ArrayList<String>();
+        mBlacklist = new ArrayList<String>();
 
         mProvisioningObserver.onChange(false); // set up
         mContext.getContentResolver().registerContentObserver(
@@ -1637,6 +1655,11 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected boolean shouldInterrupt(StatusBarNotification sbn) {
         Notification notification = sbn.getNotification();
 
+        // check if notification from the package is blacklisted first
+        if (isPackageBlacklisted(sbn.getPackageName())) {
+            return false;
+        }
+
         // some predicates to make the boolean logic legible
         boolean isNoisy = (notification.defaults & Notification.DEFAULT_SOUND) != 0
                 || (notification.defaults & Notification.DEFAULT_VIBRATE) != 0
@@ -1693,22 +1716,23 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     private boolean isPackageInDnd(String packageName) {
-        final String baseString = Settings.System.getString(mContext.getContentResolver(),
-                Settings.System.HEADS_UP_CUSTOM_VALUES);
+        return mDndList.contains(packageName);
+    }
 
+    private boolean isPackageBlacklisted(String packageName) {
+        return mBlacklist.contains(packageName);
+    }
+
+    private void splitAndAddToArrayList(ArrayList<String> arrayList,
+                                        String baseString, String separator) {
+        // clear first
+        arrayList.clear();
         if (baseString != null) {
-            final String[] array = TextUtils.split(baseString, "\\|");
+            final String[] array = TextUtils.split(baseString, separator);
             for (String item : array) {
-                if (TextUtils.isEmpty(item)) {
-                    continue;
-                }
-                if (TextUtils.equals(item, packageName)) {
-                    return true;
-                }
+                arrayList.add(item.trim());
             }
         }
-
-        return false;
     }
 
     // Q: What kinds of notifications should show during setup?
