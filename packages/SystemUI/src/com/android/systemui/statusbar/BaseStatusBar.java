@@ -262,7 +262,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private boolean mCustomRecent = false;
 
-    private int mGlobalImmersiveModeStyle = 0;
+    protected int mGlobalImmersiveModeStyle = 0;
 
     private ArrayList<String> mDndList;
     private ArrayList<String> mBlacklist;
