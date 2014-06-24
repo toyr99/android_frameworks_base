@@ -20,9 +20,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Description of the Random button in a KeyboardView. [CHAR LIMIT=NONE] -->
-    <string name="keyboardview_keycode_random">Reload random buttons</string>
+    <string name="keyboardview_keycode_random">Обновить случайные кнопки</string>
 
-    <string name="keyguard_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="keyguard_discharging">Разряжается, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
 
     <!-- On the unlock gesture screen, shown at the top of the unlock screen to tell the user what to do. Below this text is the place for the user to draw the gesture. -->
     <string name="lockscreen_gesture_instructions">Нарисуйте жест для разблокировки</string>
@@ -46,6 +46,6 @@
     </string>
 
     <!-- Description of accessibility direction for targets [CHAR LIMIT=NONE] -->
-    <string name="accessibility_target_direction">Swipe to activate a target</string>
+    <string name="accessibility_target_direction">Проведите для активации цели</string>
 
 </resources>
