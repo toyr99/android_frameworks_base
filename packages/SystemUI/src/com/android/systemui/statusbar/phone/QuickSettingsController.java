@@ -29,6 +29,7 @@ import static com.android.internal.util.mahdi.QSConstants.TILE_CONTACT;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM;
 import static com.android.internal.util.mahdi.QSConstants.TILE_CUSTOM_KEY;
 import static com.android.internal.util.mahdi.QSConstants.TILE_DELIMITER;
+import static com.android.internal.util.mahdi.QSConstants.TILE_HEADS_UP;
 import static com.android.internal.util.mahdi.QSConstants.TILE_IMMERSIVEMODE;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LOCATION;
 import static com.android.internal.util.mahdi.QSConstants.TILE_LOCKSCREEN;
@@ -88,6 +89,7 @@ import com.android.systemui.quicksettings.CompassTile;
 import com.android.systemui.quicksettings.ContactTile;
 import com.android.systemui.quicksettings.CustomTile;
 import com.android.systemui.quicksettings.EqualizerTile;
+import com.android.systemui.quicksettings.HeadsUpTile;
 import com.android.systemui.quicksettings.ImmersiveModeTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 import com.android.systemui.quicksettings.LocationTile;
@@ -313,6 +315,8 @@ public class QuickSettingsController {
                 qs = new ShakeEventTile(mContext, this);
             } else if (tile.equals(TILE_COMPASS)) {
                 qs = new CompassTile(mContext, this);
+            } else if (tile.equals(TILE_HEADS_UP)) {
+                qs = new HeadsUpTile(mContext, this);
             }
 
             if (qs != null) {
