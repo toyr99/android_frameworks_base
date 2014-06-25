@@ -68,6 +68,7 @@ public class QuickSettingsTile implements OnClickListener {
         
         mContext = context;
         mDrawable = R.drawable.ic_notifications;
+        mRealDrawable = null;
         mLabel = mContext.getString(R.string.quick_settings_label_enabled);
         mStatusbarService = qsc.mStatusBarService;
         mQsc = qsc;
@@ -157,7 +158,11 @@ public class QuickSettingsTile implements OnClickListener {
         }
         View image = getImageView();
         if (image != null && image instanceof ImageView) {
-            ((ImageView) image).setImageResource(mDrawable);
+            if (mRealDrawable == null) {
+                ((ImageView) image).setImageResource(mDrawable);
+            } else {
+                ((ImageView) image).setImageDrawable(mRealDrawable);
+            }
         }
     }
 
