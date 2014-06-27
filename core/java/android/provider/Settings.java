@@ -4219,6 +4219,21 @@ public final class Settings {
         public static final String RECENT_PANEL_FAVORITES = "recent_panel_favorites";
 
         /**
+         * Recent panel: Show topmost task
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
+
+        /**
+         * Recent panel expanded mode (auto = 0, always = 1, never = 2).
+         * default = 0.
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
+
+        /**
          * If On-The-Go should be displayed at the power menu.
          *
          * @hide
@@ -4464,14 +4479,6 @@ public final class Settings {
         public static final String SMART_PHONE_CALLER = "smart_phone_caller";
 
         /**
-         * Recent panel expanded mode (auto = 0, always = 1, never = 2).
-         * default = 0.
-         *
-         * @hide
-         */
-        public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
-
-        /**
          * Whether to enable the modlock keyguard
          * @hide
          */
@@ -4692,13 +4699,6 @@ public final class Settings {
         public static final int STATUS_BAR_COLLAPSE_IF_EMPTIED = 1;
         /** @hide */
         public static final int STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE = 2;
-
-        /**
-         * Recent panel: Show topmost task
-         *
-         * @hide
-         */
-        public static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
