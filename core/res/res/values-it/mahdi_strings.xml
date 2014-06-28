@@ -255,4 +255,7 @@
     <string name="permlab_resetBatteryStats">ripristina statistiche batteria</string>
     <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_resetBatteryStats">Permette all\'applicazione di ripristinare i dati sull\'uso della batteria.</string>
+    
+    <!-- WiFi turn off notification -->
+    <string name="notify_turn_wifi_off_title">Spegni Wi-Fi</string>
 </resources>
