@@ -200,7 +200,7 @@
     <string name="chamber_name_title">Nome scorciatoia</string>
     <string name="chamber_name_message">Dai un nome alla scorciatoia.</string>
     <string name="chamber_name_toast">Usa nome predefinito</string>
-
+    
     <!-- On the go -->
     <string name="onthego_notif_ticker">Attiva On-The-Go</string>
     <string name="onthego_notif_title">On-The-Go è attivo</string>
@@ -253,4 +253,7 @@
 
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">L\'app non fornisce alcuna interfaccia</string>
+    
+    <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
+    <string name="accessibility_desc_add_quick_settings">Aggiungi quick settings.</string>
 </resources>
