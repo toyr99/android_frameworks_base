@@ -256,4 +256,7 @@
 
     <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
     <string name="accessibility_desc_add_quick_settings">Add Quick settings.</string>
+
+    <!-- Heads up -->
+    <string name="heads_up_snooze_message">Heads up is disabled for <xliff:g id="number">%d</xliff:g> minutes.</string>
 </resources>
