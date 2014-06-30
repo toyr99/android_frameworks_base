@@ -4262,6 +4262,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationData.clear();
 
         makeStatusBarView();
+        addHeadsUpView();
 
         if (mNavigationBarView != null && recreateNavigationBar) {
             // recreate and reposition navigationbar
