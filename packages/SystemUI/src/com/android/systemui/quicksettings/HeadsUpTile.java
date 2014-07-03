@@ -18,9 +18,11 @@ package com.android.systemui.quicksettings;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.View;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -34,6 +36,16 @@ public class HeadsUpTile extends QuickSettingsTile {
                 Settings.System.putInt(mContext.getContentResolver(),
                         Settings.System.HEADS_UP_NOTIFICATION, !getEnabled() ? 1 : 0);
                 updateTile();
+            }
+        };
+        mOnLongClick = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("com.android.settings",
+                    "com.android.settings.Settings$HeadsUpSettingsActivity");
+                startSettingsActivity(intent);
+                return true;
             }
         };
 

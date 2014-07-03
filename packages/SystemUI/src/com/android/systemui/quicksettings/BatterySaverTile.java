@@ -55,7 +55,7 @@ public class BatterySaverTile extends QuickSettingsTile {
             public boolean onLongClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.setClassName("com.android.settings",
-                    "com.android.settings.Settings$BatterySaverSettingsConfigActivity");
+                    "com.android.settings.Settings$BatterySaverSettingsActivity");
                 startSettingsActivity(intent);
                 return true;
             }
