@@ -252,9 +252,6 @@
     <!-- Blacklisted app for floating mode -->
     <string name="floating_mode_blacklisted_app">Η τρέχουσα εφαρμογή είναι στην μαύρη λίστα και δεν θα λειτουργεί σωστά σαν πλωτό παράθυρο</string>
 
-    <!-- First time run hover -->
-    <string name="hover_cling_text">Το Hover είναι ενεργό.\n\n¨Οταν θα λαμβάνετε νέα ειδοποίηση, θα εμφανίζεται μια επικάλυψη που θα σας επιτρέπει να αλληλοεπιδράσετε χωρίς να κλείσετε την τρέχουσα εφαρμογή.</string>
-
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">Η εφαρμογή δεν μπορεί να εμφανιστεί</string>
 

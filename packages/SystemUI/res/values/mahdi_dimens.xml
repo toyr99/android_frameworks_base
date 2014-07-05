@@ -70,10 +70,5 @@
     <dimen name="clock_padding">10dp</dimen>
     <dimen name="clock_size">15dp</dimen>
 
-    <!-- Hover dimens -->
-    <dimen name="hover_height">64dp</dimen>
-    <dimen name="hover_cling_width">-1px</dimen>
-    <dimen name="hover_tablet_width">478dp</dimen>
-
     <dimen name="wifi_combo_margin_end">-6dp</dimen>
 </resources>

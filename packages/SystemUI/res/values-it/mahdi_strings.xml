@@ -248,9 +248,6 @@
     <!-- Blacklisted app for floating mode -->
     <string name="floating_mode_blacklisted_app">L\'app selezionata è stata aggiunta alla blacklist in quanto potrebbe non funzionare correttamente in modalità floating</string>
 
-    <!-- First time run hover -->
-    <string name="hover_cling_text">Hover è ora attivo.\n\nAll\'arrivo di una nuova notifica, una finestra a tendina ti permetterà di rispondere senza abbandonare l\'app corrente.</string>
-
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">L\'app non fornisce alcuna interfaccia</string>
     

@@ -248,9 +248,6 @@
     <!-- Blacklisted app for floating mode -->
     <string name="floating_mode_blacklisted_app">Текущее приложение занесено в чёрный список, так как оно не может работать должным образом в \"Плавающем режиме\"</string>
 
-    <!-- First time run hover -->
-    <string name="hover_cling_text">Hover теперь включен.\n\nПри поступлении нового уведомления, всплывающее окно позволяет ответить на него, не выходя из текущего приложения.</string>
-
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">Приложение не предоставляет интерфейс</string>
 
