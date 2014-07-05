@@ -121,6 +121,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private int mNavigationIconHints = 0;
 
     private Drawable mBackIcon, mBackAltIcon;
+    private Drawable mRecentIcon, mRecentLandIcon;
     private Drawable mRecentAltIcon, mRecentAltLandIcon;
     private Drawable mHomeIcon, mHomeLandIcon;
 
@@ -405,6 +406,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     private void getIcons(Resources res) {
         mBackIcon = res.getDrawable(R.drawable.ic_sysbar_back);
+        mRecentIcon = res.getDrawable(R.drawable.ic_sysbar_recent);
+        mRecentLandIcon = res.getDrawable(R.drawable.ic_sysbar_recent_land);
         mRecentAltIcon = res.getDrawable(R.drawable.ic_sysbar_recent_clear);
         mRecentAltLandIcon = res.getDrawable(R.drawable.ic_sysbar_recent_clear_land);
         mHomeIcon = res.getDrawable(R.drawable.ic_sysbar_home);
@@ -424,21 +427,21 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     }
 
     private void updateKeyButtonViewResources(ViewGroup container) {
-        ViewGroup midNavButtons = (ViewGroup) container.findViewById(R.id.nav_buttons);
-        if (midNavButtons != null) {
-            final int nChildren = midNavButtons.getChildCount();
+        ViewGroup navButtons = (ViewGroup) container.findViewById(R.id.nav_buttons);
+        if (navButtons != null) {
+            final int nChildren = navButtons.getChildCount();
             for (int i = 0; i < nChildren; i++) {
-                final View child = midNavButtons.getChildAt(i);
+                final View child = navButtons.getChildAt(i);
                 if (child instanceof KeyButtonView) {
                     ((KeyButtonView) child).updateResources(mThemedResources);
                 }
             }
         }
-        KeyButtonView kbv = (KeyButtonView) findViewById(R.id.home);
+        KeyButtonView kbv = (KeyButtonView) findViewById(R.id.search_light);
         if (kbv != null) {
             kbv.updateResources(mThemedResources);
         }
-        kbv = (KeyButtonView) findViewById(R.id.back);
+        kbv = (KeyButtonView) findViewById(R.id.camera_button);
         if (kbv != null) {
             kbv.updateResources(mThemedResources);
         }
@@ -798,10 +801,12 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mNavigationIconHints = hints;
 
         final View back = getBackButton();
-         if (back != null) {
+
+        if (back != null) {
              ((ImageView) back).setImageDrawable(backAlt
                      ? mBackAltIcon : mBackIcon);
         }
+
         handleIMENavigation(backAlt, false);
 
         setDisabledFlags(mDisabledFlags, true);
@@ -1264,7 +1269,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
 
         mNavBarButtonColorMode = Settings.System.getIntForUser(resolver,
-                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, -1, UserHandle.USER_CURRENT);
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 4, UserHandle.USER_CURRENT);
 
         mButtonsConfig = ButtonsHelper.getNavBarConfigWithDescription(
                 mContext, "shortcut_action_values", "shortcut_action_entries");
