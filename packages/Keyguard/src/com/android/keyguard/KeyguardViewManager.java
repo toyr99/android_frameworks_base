@@ -124,7 +124,6 @@ public class KeyguardViewManager {
             if (bmp != null) mBlurredImage = null;
             mIsCoverflow = true;
             setCustomBackground(bmp);
-            updateShowWallpaper(mKeyguardHost.shouldShowWallpaper());
         }
     };
 
