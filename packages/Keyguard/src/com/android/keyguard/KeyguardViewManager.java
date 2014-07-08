@@ -27,9 +27,6 @@ import android.graphics.drawable.TransitionDrawable;
 import com.android.internal.policy.IKeyguardShowCallback;
 import com.android.internal.widget.LockPatternUtils;
 
-import com.android.internal.policy.IKeyguardShowCallback;
-import com.android.internal.widget.LockPatternUtils;
-
 import android.app.PendingIntent;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -506,14 +503,8 @@ public class KeyguardViewManager {
         if (event.isLongPress()) {
             String action = null;
             switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    action = Settings.System.LOCKSCREEN_LONG_BACK_ACTION;
-                    break;
                 case KeyEvent.KEYCODE_HOME:
                     action = Settings.System.LOCKSCREEN_LONG_HOME_ACTION;
-                    break;
-                case KeyEvent.KEYCODE_MENU:
-                    action = Settings.System.LOCKSCREEN_LONG_MENU_ACTION;
                     break;
             }
 
@@ -541,18 +532,8 @@ public class KeyguardViewManager {
         if (mUnlockKeyDown) {
             mUnlockKeyDown = false;
             switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (mKeyguardView.handleBackKey()) {
-                        return true;
-                    }
-                    break;
                 case KeyEvent.KEYCODE_HOME:
                     if (mKeyguardView.handleHomeKey()) {
-                        return true;
-                    }
-                    break;
-                case KeyEvent.KEYCODE_MENU:
-                    if (mKeyguardView.handleMenuKey()) {
                         return true;
                     }
                     break;
