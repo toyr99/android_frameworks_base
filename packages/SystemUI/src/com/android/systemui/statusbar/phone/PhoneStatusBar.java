@@ -1827,7 +1827,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // With current aosp code we can only do it with
         // dirty workarounds. Lets see to integrate a native implementation
         // which allows transition anymations on y or x changes on layoutparams.
-        if (mHeadsUpNotificationView != null) {
+        if (mUseHeadsUp && mHeadsUpNotificationView != null) {
             WindowManager.LayoutParams lp = (WindowManager.LayoutParams)
                     mHeadsUpNotificationView.getLayoutParams();
             lp.y = statusBarShows ? getStatusBarHeight() : 0;
