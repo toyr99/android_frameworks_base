@@ -98,8 +98,8 @@
   <!-- Name of wildcard profile. -->
   <string name="wildcardProfile">Άλλα</string>
 
-  <!-- Performance profiles. -->
-  <string name="perf_profile_pwrsv">Εξοικονόμηση ενέργειας</string>
+  <!-- Performance profile modes -->
+  <string name="perf_profile_pwrsv">Εξοικονόμιση ενέργειας</string>
   <string name="perf_profile_bal">Ισορροπημένο</string>
   <string name="perf_profile_perf">Επιδόσεις</string>
   
@@ -119,7 +119,7 @@
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g>Δεν θα έχει πρόσβαση στα προσωπικά δεδομένα</string>
   
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_recordScreen">Εμφάνιση της εγγραφής περιεχομένου</string>
+  <string name="permlab_recordScreen">Εμφάνιση εγγεγραμμένου περιεχομένου</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_recordScreen">Επιτρέπει την εφαρμογή να καταγράφει την οθόνη του χρήστη.</string>
   
