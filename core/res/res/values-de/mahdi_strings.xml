@@ -99,9 +99,9 @@
     <string name="wildcardProfile">Andere</string>
 
     <!-- Performance profiles. -->
-    <string name="perf_profile_pwrsv">Energie sparen</string>
-    <string name="perf_profile_bal">Ausgeglichen</string>
-    <string name="perf_profile_perf">Mehr Leistung</string>
+    <string name="perf_profile_pwrsv">Energiesparmodus</string>
+    <string name="perf_profile_bal">Ausbalanziert</string>
+    <string name="perf_profile_perf">Leistung</string>
 
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">Bildschirmdrehung entsperrt</string>
