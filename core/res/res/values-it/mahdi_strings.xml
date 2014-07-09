@@ -144,7 +144,7 @@
     <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_changePhoneBlacklist">Permetti all\'applicazione di cambiare i numeri di telefono bloccati.</string>
 
-    <string name="immersive_mode_confirmation_bottom">Swipe dal basso verso l\'alto per uscire dalla modalità Schermo Intero.</string>
+    <string name="immersive_mode_confirmation_bottom">Swipe dal basso verso l\'alto per uscire dalla modalità schermo intero.</string>
 
     <!-- Lock screen always show battery -->
     <string name="lockscreen_discharging">Non in carica, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
