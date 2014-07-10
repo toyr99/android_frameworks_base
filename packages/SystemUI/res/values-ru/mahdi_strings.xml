@@ -119,8 +119,8 @@
     <!-- Network Traffic Tile -->
     <string name="quick_settings_network_traffic_on">Трафик</string>
     <string name="quick_settings_network_traffic_off">Трафик выкл</string>
-    <string name="quick_settings_network_traffic_up">Трафик вход.</string>
-    <string name="quick_settings_network_traffic_down">Трафик исход.</string>
+    <string name="quick_settings_network_traffic_up">Трафик исход.</string>
+    <string name="quick_settings_network_traffic_down">Трафик вход.</string>
 
     <!-- Theme Tile -->
     <string name="quick_settings_theme_switch_dark">Тёмная тема</string>
@@ -253,4 +253,7 @@
 
     <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
     <string name="accessibility_desc_add_quick_settings">Добавить Быстрые настройки.</string>
+
+    <!-- Heads up -->
+    <string name="heads_up_snooze_message">\"Всплывающие уведомления\" отключены на <xliff:g id="number">%d</xliff:g> мин.</string>
 </resources>
