@@ -1703,10 +1703,8 @@ final class ActivityStack {
 
         boolean privacy = mService.mAppOpsService.getPrivacyGuardSettingForPackage(
                 next.app.uid, next.packageName);
-        boolean privacyNotification = (Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.PRIVACY_GUARD_NOTIFICATION, 1) == 1);
-        //boolean privacyNotificationIcon = (Settings.Secure.getInt(mContext.getContentResolver(),
-          //      Settings.Secure.PRIVACY_GUARD_NOTIFICATION_ICON, 1) == 1);
+        boolean privacyNotification = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PRIVACY_GUARD_NOTIFICATION, 1) == 1);
 
         if (privacyGuardPackageName != null && !privacy) {
             Message msg = mService.mHandler.obtainMessage(
