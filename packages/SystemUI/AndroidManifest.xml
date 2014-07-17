@@ -98,6 +98,9 @@
     <!-- Record Audio QuickRecord -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <!-- WallpaperManager -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
     <application
         android:persistent="true"
         android:allowClearUserData="false"
