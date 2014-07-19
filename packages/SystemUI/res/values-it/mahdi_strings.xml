@@ -156,7 +156,7 @@
     <string name="accessibility_data_connection_HP">HSPA+</string>
 
     <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_data_connection_DC">DCHSPAP</string>
+    <string name="accessibility_data_connection_DC">DC-HSPA+</string>
 
     <!-- Development shortcut -->
     <string name="advanced_dev_option_wipe_app">Cancella dati app</string>
@@ -257,5 +257,5 @@
     <string name="accessibility_desc_add_quick_settings">Aggiungi quick settings.</string>
     
     <!-- Heads up -->
-    <string name="heads_up_snooze_message">Heads up è disattivato per <xliff:g id="number">%d</xliff:g> minuti.</string>
+    <string name="heads_up_snooze_message">Heads up sarà disattivato per <xliff:g id="number">%d</xliff:g> minuti</string>
 </resources>
