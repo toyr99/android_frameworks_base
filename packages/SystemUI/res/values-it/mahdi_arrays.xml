@@ -23,8 +23,8 @@
         <item>E</item>  <!-- East -->
         <item>SE</item> <!-- South east -->
         <item>S</item>  <!-- South -->
-        <item>SW</item> <!-- South west -->
-        <item>W</item>  <!-- West -->
-        <item>NW</item> <!-- North west -->
+        <item>SO</item> <!-- South west -->
+        <item>O</item>  <!-- West -->
+        <item>NO</item> <!-- North west -->
     </string-array>
 </resources>
