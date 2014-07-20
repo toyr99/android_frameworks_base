@@ -4711,6 +4711,18 @@ public final class Settings {
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
         /**
+         * The style of the incoming call screen.
+         * Default is {@link INCOMING_CALL_STYLE_FULLSCREEN_PHOTO}.
+         * @hide
+         */
+        public static final String INCOMING_CALL_STYLE = "incoming_call_style";
+
+        /** @hide */
+        public static final int INCOMING_CALL_STYLE_CLASSIC = 0;
+        /** @hide */
+        public static final int INCOMING_CALL_STYLE_FULLSCREEN_PHOTO = 1;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4805,7 +4817,8 @@ public final class Settings {
             QUIET_HOURS_MUTE,
             QUIET_HOURS_STILL,
             QUIET_HOURS_DIM,
-            QUIET_HOURS_SYSTEM	    	    
+            QUIET_HOURS_SYSTEM,
+            INCOMING_CALL_STYLE,	    	    
         };
 
         // Settings moved to Settings.Secure
