@@ -36,9 +36,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+
+import android.database.ContentObserver;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.FileObserver;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -63,6 +66,7 @@ import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.util.mahdi.QuietHoursHelper;
 import com.android.internal.widget.LockPatternUtils;
 
+import org.cyanogenmod.hardware.SmartCoverHW;
 
 /**
  * Mediates requests related to the keyguard.  This includes queries about the
@@ -263,6 +267,7 @@ public class KeyguardViewMediator {
 
     private ProfileManager mProfileManager;
 
+    private FileObserver mSmartCoverObserver;
     private int mLidState = WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
 
     /**
@@ -502,6 +507,36 @@ public class KeyguardViewMediator {
         }
     };
 
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            final ContentResolver cr = mContext.getContentResolver();
+            observeSmartWindow();
+        }
+    }
+
+    private void observeSmartWindow() {
+        if (SmartCoverHW.isSupported() && mSmartCoverObserver == null) {
+            if (DEBUG) Log.d(TAG, String.format("SmartCoverHW is supported, observing: %s",
+                    SmartCoverHW.getPath()));
+            mSmartCoverObserver = new FileObserver(SmartCoverHW.getPath(), FileObserver.MODIFY) {
+                @Override public void onEvent(final int event, final String s) {
+                    if (FileObserver.MODIFY != event) return;
+                    final int state = SmartCoverHW.isOpen() ? 1 : 0;
+                    final Intent intent = new Intent();
+                    intent.setAction(WindowManagerPolicy.ACTION_LID_STATE_CHANGED);
+                    intent.putExtra(WindowManagerPolicy.EXTRA_LID_STATE, state);
+                    mContext.sendBroadcast(intent);
+                    if (DEBUG) Log.d(TAG, String.format("SmartCoverHAL, state: %s", state));
+                }
+            };
+            mSmartCoverObserver.startWatching();
+        }
+    }
+
     private void userActivity() {
         userActivity(AWAKE_INTERVAL_DEFAULT_MS);
     }
@@ -531,7 +566,6 @@ public class KeyguardViewMediator {
         mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(DISMISS_KEYGUARD_SECURELY_ACTION),
                 android.Manifest.permission.CONTROL_KEYGUARD, null);
 
-        IntentFilter filter = new IntentFilter();
         filter.addAction(SHAKE_SECURE_TIMER);
         filter.addAction(DELAYED_KEYGUARD_ACTION);
         mContext.registerReceiver(mBroadcastReceiver, filter);
@@ -578,6 +612,9 @@ public class KeyguardViewMediator {
         int lockSoundDefaultAttenuation = context.getResources().getInteger(
                 com.android.internal.R.integer.config_lockSoundVolumeDb);
         mLockSoundVolume = (float)Math.pow(10, (float)lockSoundDefaultAttenuation/20);
+
+        final SettingsObserver observer = new SettingsObserver(new Handler());
+        observer.observe();
     }
 
     public void setBackgroundBitmap(Bitmap bmp) {
