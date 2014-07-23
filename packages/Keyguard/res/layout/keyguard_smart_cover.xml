@@ -100,7 +100,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <TextClock
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/clock_white"
                 android:singleLine="true"
-                android:textSize="58sp" />
+                android:textSize="62sp" />
 
             <TextView
                 android:id="@+id/am_pm_text"

@@ -318,7 +318,8 @@ public class KeyguardSmartCoverView extends LinearLayout {
         if (mMissedCalls == 1) {
             mLine1.setText(missedCallText[0]);
             mLine2.setText(missedCallText[1]);
-        } else if (mUnreadMessages == 1) {
+        } 
+        if (mUnreadMessages == 1) {
             mLine1.setText(unreadMessagesText[0]);
             mLine2.setText(unreadMessagesText[1]);
         } else {
