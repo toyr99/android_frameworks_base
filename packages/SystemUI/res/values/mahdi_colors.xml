@@ -61,6 +61,12 @@
     <color name="pie_background_color">#ff000000</color>
     <color name="pie_selected_color">#ff5c5c5c</color>
     <color name="pie_long_pressed_color">#ff8c8c8c</color>
-    <color name="pie_outline_color">#ff5c5c5c</color>    
+    <color name="pie_outline_color">#ff5c5c5c</color>
+
+    <!-- Colors for the system bars -->
+    <color name="status_bar_background_opaque">@color/system_bar_background_opaque</color>
+    <color name="status_bar_background_semi_transparent">@color/system_bar_background_semi_transparent</color>
+    <color name="navigation_bar_background_opaque">@color/system_bar_background_opaque</color>
+    <color name="navigation_bar_background_semi_transparent">@color/system_bar_background_semi_transparent</color>
 
 </resources>
