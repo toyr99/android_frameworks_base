@@ -17,7 +17,7 @@
 ** limitations under the License.
 */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">	
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   
   <string name="default_string">Προεπιλογή</string>
   
@@ -30,11 +30,11 @@
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Επανεκκίνηση</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
-  <string name="reboot_recovery">Recovery</string> 
+  <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">Bootloader</string> 
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
-  <string name="reboot_bootmenu">Bootmenu</string> 
+  <string name="reboot_bootmenu">Μενού boot</string>
   <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
@@ -55,9 +55,9 @@
   <!-- label for item that toggles global immersive mode -->
   <string name="global_actions_toggle_global_immersive_mode">Επέκταση επιφάνειας</string>
   <!-- status message in phone options dialog for when expand desktop mode is on -->
-  <string name="global_actions_global_immersive_mode_on_status">Ενεργό</string>
+  <string name="global_actions_global_immersive_mode_on_status">Ενεργή</string>
   <!-- status message in phone options dialog for when expand desktop mode is off -->
-  <string name="global_actions_global_immersive_mode_off_status">Ανενεργό</string> 
+  <string name="global_actions_global_immersive_mode_off_status">Ανενεργή</string> 
   
   <!-- label for item that toggle mobile data -->
   <string name="global_actions_toggle_mobile_data">Δεδομένα κινητής</string>
@@ -105,7 +105,7 @@
   
   <!-- Hardware Rotation lock string -->
   <string name="toast_rotation_unlocked">Αυτόματη περιστροφή οθόνης</string>
-  <string name="toast_rotation_locked">Περιστροφή οθόνης ανενεργή</string>
+  <string name="toast_rotation_locked">Ανενεργή περιστροφή οθόνης</string>
   
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_cancelNotifications">Ακύρωση ειδοποιήσεων εφαρμογών</string>

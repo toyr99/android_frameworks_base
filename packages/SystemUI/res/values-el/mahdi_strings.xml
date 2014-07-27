@@ -93,8 +93,8 @@
   <string name="network_2G">2G μόνο</string>
   
   <!-- battery saver mode -->
-  <string name="battery_saver_start">Εξοικονόμηση μπαταριας ενεργό</string>
-  <string name="battery_saver_stop">Εξοικονόμηση μπαταριας ανενεργό</string>
+  <string name="battery_saver_start">Εξοικονόμηση μπαταριας ενεργή</string>
+  <string name="battery_saver_stop">Εξοικονόμηση μπαταριας ανενεργή</string>
   <string name="battery_saver_change">Εξοικονόμηση μπαταριας αλλαγή δικτύου σε</string>
   <string name="battery_saver_network">Δίκτυο αποκαταστάθηκε</string>
   <string name="battery_saver_data">Δεδομένα κινητής αποκαταστάθηκαν</string>
@@ -150,7 +150,7 @@
   <string name="trash">Απορρίμματα</string>
   
   <!-- Kill app toast -->
-  <string name="app_killed_message">Εφαρμογή έκλεισε οριστκά</string>
+  <string name="app_killed_message">Η εφαρμογή έκλεισε οριστικά</string>
   
   <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_data_connection_HP">HSPA+</string>
@@ -255,4 +255,7 @@
 
   <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
   <string name="accessibility_desc_add_quick_settings">Προσθήκη γρήγορων ρυθμίσεων.</string>
+
+  <!-- Heads up -->
+  <string name="heads_up_snooze_message">Οι αναδυόμενες ειδοποιήσεις θα είναι ανενεργές για  <xliff:g id="number">%d</xliff:g> λεπτά.</string>
 </resources>
