@@ -1654,9 +1654,15 @@ public abstract class BaseStatusBar extends SystemUI implements
         // Possibly a heads up from an app with native support.
         boolean interrupt = (isFullscreen || (isHighPriority && isNoisy) || isRequested)
                 && isAllowed
-                && keyguardNotVisible
                 && !isOngoing
+                && keyguardNotVisible
                 && mPowerManager.isScreenOn();
+
+        // Possibly a heads up package set from the user.
+        interrupt = interrupt
+                || (isRequested
+                && mPowerManager.isScreenOn()
+                && (keyguardNotVisible));
 
         try {
             interrupt = interrupt && !mDreamManager.isDreaming();
@@ -1666,7 +1672,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         // its below our threshold priority, we might want to always display
         // notifications from certain apps
-        if (!isHighPriority && keyguardNotVisible && !isOngoing &&!isRequested) {
+        if (!isHighPriority && keyguardNotVisible && !isOngoing) {
             // However, we don't want to interrupt if we're in an application that is
             // in Do Not Disturb
             if (!isPackageInDnd(getTopLevelPackage())) {
