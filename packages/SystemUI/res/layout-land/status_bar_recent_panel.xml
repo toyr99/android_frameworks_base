@@ -27,12 +27,11 @@
     android:foreground="@drawable/bg_protect"
     systemui:recentItemLayout="@layout/status_bar_recent_item"
     >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/status_bar_recents_background"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <view class="com.android.systemui.recent.LinearColorBar"
                 android:id="@+id/ram_usage_bar"
@@ -81,14 +80,11 @@
             </view>
 
             <FrameLayout
-               android:id="@+id/recents_bg_protect"
-               android:background="@drawable/status_bar_recents_background"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_alignParentBottom="true"
-               android:clipToPadding="false"
-               android:clipChildren="false">
-
+                android:id="@+id/recents_bg_protect"
+                android:background="@drawable/status_bar_recents_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true">
 
                 <com.android.systemui.recent.RecentsHorizontalScrollView android:id="@+id/recents_container"
                     android:layout_width="wrap_content"
@@ -111,11 +107,14 @@
 
                 <ImageView
                     android:id="@+id/recents_clear_all"
-                    android:clickable="true"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:scaleType="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_gravity="bottom|left"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_recents_clear" />
 
                 <include layout="@layout/status_bar_no_recent_apps"
