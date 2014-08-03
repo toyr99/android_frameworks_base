@@ -297,8 +297,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mButtonIdList = new ArrayList<Integer>();
 
         mIMECursorDisabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0,
-                UserHandle.USER_CURRENT) > 0;
+                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0,
+                UserHandle.USER_CURRENT) == 1;
 
         mObserver = new SettingsObserver(new Handler());
     }

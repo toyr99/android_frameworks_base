@@ -530,6 +530,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.REMINDER_ALERT_ENABLED), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -545,9 +548,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.VOLUME_KEY_CURSOR_CONTROL), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SHAKE_LISTENER_ENABLED), false, this,
@@ -663,12 +663,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.PIE_CONTROLS))) {
                 attachPieContainer(isPieEnabled());
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.VOLUME_KEY_CURSOR_CONTROL))) {
-                if (mNavigationBarView != null) {
-                    mNavigationBarView.setNavigationBarDisableIMECursor(
+                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS))) {
+                    if (mNavigationBarView != null) {
+                        mNavigationBarView.setNavigationBarDisableIMECursor(
                             Settings.System.getIntForUser(mContext.getContentResolver(),
-                                    Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0,
-                                    UserHandle.USER_CURRENT) > 0);
+                                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0,
+                                UserHandle.USER_CURRENT) == 1);
                 }
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE))) {

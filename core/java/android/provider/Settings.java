@@ -3369,6 +3369,13 @@ public final class Settings {
         public static final String NAVBAR_LEFT_IN_LANDSCAPE = "navigation_bar_left";
 
         /**
+         * boolean value. toggles using arrow key locations on nav bar
+         * as left and right dpad keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_MENU_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
+        /**
          * Custom navring intent and action configuration
          *
          * @hide
