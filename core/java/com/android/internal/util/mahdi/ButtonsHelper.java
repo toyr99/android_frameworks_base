@@ -411,9 +411,6 @@ public class ButtonsHelper {
         } else if (clickAction.equals(ButtonsConstants.ACTION_TORCH)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_torch", null, null);
-        } else if (clickAction.equals(ButtonsConstants.ACTION_OMNISWITCH)) {
-            resId = systemUiResources.getIdentifier(
-                        SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_recent", null, null);
         } else if (clickAction.equals(ButtonsConstants.ACTION_THEME_SWITCH)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_theme_switch", null, null);
