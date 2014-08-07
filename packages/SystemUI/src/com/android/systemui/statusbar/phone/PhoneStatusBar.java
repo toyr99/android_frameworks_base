@@ -319,6 +319,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mHideLabels;
     private boolean mCarrierAndWifiViewBlocked = false;
 
+    // Status bar carrier
+    private boolean mShowStatusBarCarrier;
+
     // Notification reminder
     private View mReminderHeader;
     private ImageView mSpacer;
@@ -583,6 +586,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK_LOCKSCREEN), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CARRIER), false, this);
             updateSettings();
         }
 
@@ -4147,7 +4152,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
         }
 
-        mShowAddTileButton = Settings.System.getIntForUser(mContext.getContentResolver(),
+        mShowAddTileButton = Settings.System.getIntForUser(resolver,
                     Settings.System.QUICK_SETTINGS_ADD_TILE_BUTTON, 0, UserHandle.USER_CURRENT) != 0;
         if (mShowAddTileButton && mAddTileButton != null) {
             mAddTileButton.setOnClickListener(mAddTileButtonListener);
@@ -4156,6 +4161,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         showClockOnLockscreen = Settings.System.getIntForUser(
                 resolver, Settings.System.STATUS_BAR_CLOCK_LOCKSCREEN, 0
                 , UserHandle.USER_CURRENT) == 1;
+
+        mShowStatusBarCarrier = Settings.System.getInt(
+            resolver, Settings.System.STATUS_BAR_CARRIER, 0) == 1;
+        showStatusBarCarrierLabel(mShowStatusBarCarrier);
 
         mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
@@ -4186,6 +4195,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mCarrierAndWifiView.setVisibility(View.INVISIBLE);
             }
             updateCarrierAndWifiLabelVisibility(false);
+        }
+    }
+
+    public void showStatusBarCarrierLabel(boolean show) {
+        if (mStatusBarView == null) return;
+        ContentResolver resolver = mContext.getContentResolver();
+        View statusBarCarrierLabel = mStatusBarView.findViewById(R.id.status_bar_carrier_label);
+        if (statusBarCarrierLabel != null) {
+            statusBarCarrierLabel.setVisibility(show ? (mShowStatusBarCarrier ? View.VISIBLE : View.GONE) : View.GONE);
         }
     }
 

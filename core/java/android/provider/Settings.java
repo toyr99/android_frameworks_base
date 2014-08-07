@@ -5030,6 +5030,12 @@ public final class Settings {
         public static final String DISABLE_IME_NAVBAR = "disable_ime_navbar";
 
         /**
+         * show carrier in statusbar. The value is
+         * boolean (1 or 0).
+         */
+        public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
