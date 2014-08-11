@@ -22,6 +22,7 @@ import android.content.res.Configuration;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.FloatMath;
@@ -55,6 +56,7 @@ public class RecentsVerticalScrollView extends ScrollView
     private int mNumItemsInOneScreenful;
     private Runnable mOnScrollListener;
     private Handler mHandler;
+    private boolean mClearAllRecentApps;
 
     public RecentsVerticalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
@@ -192,26 +194,35 @@ public class RecentsVerticalScrollView extends ScrollView
     public void removeAllViewsInLayout() {
         smoothScrollTo(0, 0);
         Thread clearAll = new Thread(new Runnable() {
+
             @Override
             public void run() {
                 int count = mLinearLayout.getChildCount();
-                // if we have more than one app, don't kill the current one
-                if(count > 1) count--;
-                View[] refView = new View[count];
-                for (int i = 0; i < count; i++) {
-                    refView[i] = mLinearLayout.getChildAt(i);
+
+                mClearAllRecentApps = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.CLEAR_ALL_RECENT_APPS, 0) == 1;
+
+                if (mClearAllRecentApps) {
+                    for (int i = 0; i < count; i++) {
+                    final View child = mLinearLayout.getChildAt(i);
                 }
-                for (int i = 0; i < count; i++) {
-                    final View child = refView[i];
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            dismissChild(child);
-                        }
-                    });
-                    try {
-                        Thread.sleep(150);
-                    } catch (InterruptedException e) {
+                // if we have more than one app, don't kill the current one
+                } else if (!mClearAllRecentApps && count > 1) count--;
+                    View[] refView = new View[count];
+                    for (int i = 0; i < count; i++) {
+                        refView[i] = mLinearLayout.getChildAt(i);
+                    }
+                    for (int i = 0; i < count; i++) {
+                        final View child = refView[i];
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                dismissChild(child);
+                            }
+                        });
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
                         // User will see the app fading instantly after the previous
                         // one. This will probably never happen
                     }
