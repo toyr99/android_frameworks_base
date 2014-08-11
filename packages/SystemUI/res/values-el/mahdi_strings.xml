@@ -258,4 +258,7 @@
 
   <!-- Heads up -->
   <string name="heads_up_snooze_message">Οι αναδυόμενες ειδοποιήσεις θα είναι ανενεργές για  <xliff:g id="number">%d</xliff:g> λεπτά.</string>
+
+  <!-- Spam notifications -->
+  <string name="status_bar_notification_spam_item_title">Παρεμπόδιση μηνυμάτων όπως αυτά:</string>
 </resources>
