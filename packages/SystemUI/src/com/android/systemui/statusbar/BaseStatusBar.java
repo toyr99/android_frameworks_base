@@ -1641,9 +1641,10 @@ public abstract class BaseStatusBar extends SystemUI implements
                 || notification.vibrate != null;
         boolean isHighPriority = sbn.getScore() >= INTERRUPTION_THRESHOLD;
         boolean isFullscreen = notification.fullScreenIntent != null;
+        boolean isAllowed = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
+                Notification.HEADS_UP_ALLOWED) != Notification.HEADS_UP_NEVER;
         int asHeadsUp = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
                 Notification.HEADS_UP_NEVER);
-        boolean isAllowed = asHeadsUp != Notification.HEADS_UP_NEVER;
         boolean isRequested = asHeadsUp == Notification.HEADS_UP_REQUESTED;
         boolean isOngoing = sbn.isOngoing();
 
@@ -1661,8 +1662,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         // Possibly a heads up package set from the user.
         interrupt = interrupt
                 || (isRequested
-                && mPowerManager.isScreenOn()
-                && (keyguardNotVisible));
+                && keyguardNotVisible
+                && mPowerManager.isScreenOn());
 
         try {
             interrupt = interrupt && !mDreamManager.isDreaming();
