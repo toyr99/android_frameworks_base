@@ -194,7 +194,7 @@
     <string name="chamber_title">Saisir le string des Paramètres</string>
     <string name="chamber_message">Saisir un string des Paramètres qui est soit une fonction on ou off (cache à cocher) ou une liste de choix. Par exemple, quiet_hours_ringer ou similaire. Les paramètres peuvent se trouver dans le fichier Settings.java. ATTENTION : ce processus est dangereux !</string>
     <string name="chamber_invalid">Ceci est une saisie invalide. Faites attention.</string>
-    <string name="chamber_invalid_setting">Essayer de basculer le paramètre manuellement pour s'assurer que la base de donnée des paramètres existe pour cette fonction.</string>
+    <string name="chamber_invalid_setting">Essayer de basculer le paramètre manuellement pour s\'assurer que la base de donnée des paramètres existe pour cette fonction.</string>
     <string name="chamber_checkbox">Case à cocher</string>
     <string name="chamber_chk_message">Est-ce que ce paramètre est un paramètre à cocher ?</string>
     <string name="chamber_int">Saisir des valeurs</string>
@@ -215,7 +215,7 @@
     <string name="onthego_front_camera">Utiliser la caméra frontale</string>
     <string name="onthego_service_toggle">Redémarrer automatiquement le servive</string>
     <string name="quick_settings_onthego_back">Caméra arrière</string>
-    <string name="quick_settings_onthego_front">Caméra avant/string>
+    <string name="quick_settings_onthego_front">Caméra avant</string>
 
     <!-- Recents Ram Bar -->
     <string name="memory">RAM</string>
@@ -251,7 +251,7 @@
     <string name="floating_mode_blacklisted_app">L\'application actuelle est blacklistée alors cela peut ne pas fonctionner comme prévu en mode flottant </string>
 
     <!-- Title shown when app provides no interface -->
-    <string name="status_bar_floating_no_interface">L\'application ne fournit pas d'interface</string>
+    <string name="status_bar_floating_no_interface">L\'application ne fournit pas d\'interface</string>
 
     <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
     <string name="accessibility_desc_add_quick_settings">ajouter des paramètres rapide</string>
