@@ -129,6 +129,7 @@ public class KeyguardViewManager {
             sendToSleep(mContext);
         };
     };
+    private boolean mSmartCoverActivated;
 
     private ViewManagerHost mKeyguardHost;
     private KeyguardHostView mKeyguardView;
@@ -186,6 +187,8 @@ public class KeyguardViewManager {
                     Settings.System.LOCKSCREEN_SEE_THROUGH), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_BLUR_RADIUS), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SMART_COVER_ACTIVATED), false, this);
             updateSettings();
         }
 
@@ -211,6 +214,9 @@ public class KeyguardViewManager {
         mBlurRadius = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_BLUR_RADIUS, mBlurRadius);
         if(!mSeeThrough) mCustomImage = null;
+
+        mSmartCoverActivated = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SMART_COVER_ACTIVATED, 0) == 1;
     }
 
     /**
@@ -1087,6 +1093,11 @@ public class KeyguardViewManager {
             return;
         }
 
+        // return if smart cover is disabled by the user
+        if (!mSmartCoverActivated) {
+            return;
+        }
+
         KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
         if (!updateMonitor.isDeviceProvisioned() || !updateMonitor.hasBootCompleted()) {
             // don't start the cover if the device hasn't booted, or completed
@@ -1109,6 +1120,11 @@ public class KeyguardViewManager {
             return;
         }
 
+        // return if smart cover is disabled by the user
+        if (!mSmartCoverActivated) {
+            return;
+        }
+
         KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
         if (!updateMonitor.isDeviceProvisioned() || !updateMonitor.hasBootCompleted()) {
             return;
@@ -1128,6 +1144,9 @@ public class KeyguardViewManager {
     private void resetSmartCoverState() {
         if(DEBUG) Log.e(TAG, "resetSmartCoverState()");
         if(mSmartCoverCoords == null) return;
+
+        // return if smart cover is disabled by the user
+        if (!mSmartCoverActivated) return;
 
         if(DEBUG) Log.e(TAG, "resetCoverRunnable run()");
         mHandler.removeCallbacks(mSmartCoverTimeout);
