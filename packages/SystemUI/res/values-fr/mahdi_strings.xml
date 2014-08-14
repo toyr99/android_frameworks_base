@@ -27,7 +27,7 @@
     <string name="quick_settings_shakeevents_off">Shake events off</string>
     <string name="quick_settings_volume">Volume</string>
     <string name="quick_settings_camera_label">Appareil photo</string>
-    <string name="quick_settings_network_adb_disabled_label">désactivée</string>
+    <string name="quick_settings_network_adb_disabled_label">Désactivé</string>
     <string name="quick_settings_network_adb_enabled_label">Activé</string>
     <string name="quick_settings_gps">GPS</string>
     <string name="quick_settings_gps_off">GPS désactivé</string>
@@ -43,47 +43,47 @@
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pause</string>
     <string name="quick_settings_music_schedule_title">Sleep timer</string>
-    <string name="quick_settings_music_schedule_in_progress">Timer in progress</string>
-    <string name="quick_settings_music_schedule_start">Start timer</string>
-    <string name="quick_settings_music_schedule_cancel">Clear timer</string>
-    <string name="quick_settings_music_schedule_update">Update timer</string>
-    <string name="quick_settings_network_type">Network mode</string>
-    <string name="quick_settings_report_bug">Report bug</string>
+    <string name="quick_settings_music_schedule_in_progress">Timer en-cours</string>
+    <string name="quick_settings_music_schedule_start">Lancer le timer</string>
+    <string name="quick_settings_music_schedule_cancel">Effacer le timer</string>
+    <string name="quick_settings_music_schedule_update">Mettre à jour le timer</string>
+    <string name="quick_settings_network_type">Mode réseau</string>
+    <string name="quick_settings_report_bug">Rapport de bug</string>
     <string name="quick_settings_sync">Sync</string>
     <string name="quick_settings_sync_off">Sync off</string>
-    <string name="quick_settings_torch">Torch</string>
-    <string name="quick_settings_torch_off">Torch off</string>
+    <string name="quick_settings_torch">Torche</string>
+    <string name="quick_settings_torch_off">Torche off</string>
     <string name="quick_settings_nfc">NFC</string>
     <string name="quick_settings_nfc_off">NFC off</string>
-    <string name="quick_settings_screen_timeout">Timeout</string>
+    <string name="quick_settings_screen_timeout">Délai d\'extinction</string>
     <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
-    <string name="quick_settings_screen_timeout_summary_never">Never</string>
-    <string name="quick_settings_usb_tether_off_label">Disconnected</string>
+    <string name="quick_settings_screen_timeout_summary_never">Jamais</string>
+    <string name="quick_settings_usb_tether_off_label">Déconnecté</string>
     <string name="quick_settings_usb_tether_connected_label">Tethering off</string>
     <string name="quick_settings_usb_tether_on_label">Tethering</string>
     <string name="quick_settings_wifiap">Wi-Fi AP</string>
     <string name="quick_settings_wifiap_off">Wi-Fi AP off</string>
-    <string name="quick_settings_quiethours">Quiet hours</string>
-    <string name="quick_settings_quiethours_off">Quiet hours off</string>
-    <string name="quick_settings_quick_record_deleted">Deleted...</string>
-    <string name="quick_settings_quick_record_nofile">Long-press</string>
-    <string name="quick_settings_quick_record_def">Quick record</string>
-    <string name="quick_settings_quick_record_rec">Recording...</string>
-    <string name="quick_settings_quick_record_save">Saved</string>
-    <string name="quick_settings_quick_record_play">Playing...</string>
-    <string name="quick_settings_quick_record_dialog_cancel">Close</string>
-    <string name="quick_settings_quick_record_dialog">Play Recording\nLongpress to delete</string>
+    <string name="quick_settings_quiethours">Heures silencieuses</string>
+    <string name="quick_settings_quiethours_off">Heures silencieuses off</string>
+    <string name="quick_settings_quick_record_deleted">Supprimé...</string>
+    <string name="quick_settings_quick_record_nofile">Appui long</string>
+    <string name="quick_settings_quick_record_def">Enregistrement rapide</string>
+    <string name="quick_settings_quick_record_rec">Enregistrement en-cours...</string>
+    <string name="quick_settings_quick_record_save">Sauvegardé</string>
+    <string name="quick_settings_quick_record_play">Lecture en-cours...</string>
+    <string name="quick_settings_quick_record_dialog_cancel">Fermé</string>
+    <string name="quick_settings_quick_record_dialog">Lire l\'enregistrement\n Appui long pour supprimer</string>
     <string name="quick_settings_custom_toggle">Custom</string>
     <string name="quick_settings_contact_toggle">Contact</string>
-    <string name="quick_settings_battery_saver_label">Battery saver</string>
-    <string name="quick_settings_network_unknown">Unknown</string>
-    <string name="quick_settings_network_disable">No internet</string>
-    <string name="quick_settings_bluetooth_multi_label">%1$d connected</string>
-    <string name="quick_settings_equalizer">Equalizer</string>
-    <string name="quick_settings_compass_off">Compass off</string>
-    <string name="quick_settings_compass_init">Initializing\u2026</string>
-    <string name="quick_settings_heads_up_on">Heads up enabled</string>
-    <string name="quick_settings_heads_up_off">No interruptions</string>
+    <string name="quick_settings_battery_saver_label">Economiseur de batterie</string>
+    <string name="quick_settings_network_unknown">Iconnu</string>
+    <string name="quick_settings_network_disable">Pas internet</string>
+    <string name="quick_settings_bluetooth_multi_label">%1$d connecté</string>
+    <string name="quick_settings_equalizer">Egaliseur</string>
+    <string name="quick_settings_compass_off">Boussole off</string>
+    <string name="quick_settings_compass_init">Initialisation\u2026</string>
+    <string name="quick_settings_heads_up_on">Heads up activé</string>
+    <string name="quick_settings_heads_up_off">Aucun interruption</string>
 	
     <!-- Network Strings for battery saver mode -->
     <string name="network_4G">4G/LTE</string>
@@ -129,22 +129,22 @@
     <string name="quick_settings_theme_switch_light">Theme Light</string>
 
     <!-- Camera tile toasts -->
-    <string name="quick_settings_camera_error_connect">Ne peux pas se connecter au camera</string>
+    <string name="quick_settings_camera_error_connect">Ne peux pas se connecter à la camera</string>
 
     <!-- Notification reminders -->
     <string name="quick_settings_reminder">Rappel de notification</string>
     <string name="quick_settings_reminder_title">Titre:</string>
     <string name="quick_settings_reminder_message">Message:</string>
     <string name="quick_settings_reminder_time">Temps du rappel</string>
-    <string name="quick_settings_reminder_set">Set time</string>
-    <string name="quick_settings_reminder_update">Update time</string>
+    <string name="quick_settings_reminder_set">Définir l\'heure</string>
+    <string name="quick_settings_reminder_update">Mettre à jour l\'heure</string>
     <string name="quick_settings_reminder_no_expire">Aucune notification</string>
     <string name="quick_settings_reminder_dismiss">Vider</string>
-    <string name="quick_settings_reminder_dismiss_message">supprimer le current rappel</string>
+    <string name="quick_settings_reminder_dismiss_message">Supprimer le current rappel</string>
     <string name="quick_settings_reminder_help_title">Toucher</string>
     <string name="quick_settings_reminder_noti_dismiss">Annuler</string>
-    <string name="quick_settings_reminder_noti_later">Update time</string>
-    <string name="quick_settings_reminder_help_message">Touch the empty space above to set or change the reminder. Long-press to clear the current reminder.</string>
+    <string name="quick_settings_reminder_noti_later">Mettre à jour l`\'heure</string>
+    <string name="quick_settings_reminder_help_message">Toucher l\'espace vide ci-dessus pour définir ou changer le rappel. Appui long pour effacer le rappel actuel.</string>
 
     <!--ScreenShot Trash-->
     <string name="trash">Supprimer</string>
@@ -177,87 +177,87 @@
     <string name="toggle">Tuile</string>
 
     <!-- Custom Shortcut Actions -->
-    <string name="shortcut_picker">Custom Shortcuts</string>
-    <string name="shortcut_immersive">Immersive Mode</string>
-    <string name="shortcut_quiethours">Quiethours</string>
+    <string name="shortcut_picker">Raccourcis personnalisés</string>
+    <string name="shortcut_immersive">Mode Immersif</string>
+    <string name="shortcut_quiethours">Heures silencieuses</string>
     <string name="shortcut_rotation">Rotation</string>
     <string name="shortcut_shakeevent">Shake events</string>
     <string name="shortcut_torch">Torch</string>
-    <string name="shortcut_reboot">Reboot</string>
+    <string name="shortcut_reboot">Redémarrer</string>
     <string name="shortcut_recovery">Recovery</string>
-    <string name="shortcut_last_app">Last App</string>
-    <string name="shortcut_screenshot">Screenshot</string>
+    <string name="shortcut_last_app">Dernière application</string>
+    <string name="shortcut_screenshot">Capture d\'écran</string>
     <string name="shortcut_volume">Volume</string>
-    <string name="shortcut_toggle_title">Action to perform</string>
+    <string name="shortcut_toggle_title">Action à effectuer</string>
     <string name="shortcut_chamber">Chamber of Secrets</string>
-    <string name="chamber_disabled">Chamber of secrets is closed</string>
-    <string name="chamber_title">Input Settings string</string>
-    <string name="chamber_message">Input a Settings string that is either an on and off (checkbox) function or possibly a list-preference. For example, quiet_hours_ringer or similar. Settings can be found in the Settings.java file. WARNING: This process is dangerous!</string>
-    <string name="chamber_invalid">This is an invalid input. Be careful.</string>
-    <string name="chamber_invalid_setting">Try toggling the setting manually to ensure the settings database for this action exists.</string>
-    <string name="chamber_checkbox">Checkbox</string>
-    <string name="chamber_chk_message">Is this setting a checkbox setting?</string>
-    <string name="chamber_int">Input values</string>
-    <string name="chamber_int_message">Input the values you\'d like the setting to toggle between. Separate each value with a comma. Color settings accept hex-values such as #FF00aacc or basic color values like red, green, and yellow.</string>
-    <string name="chamber_name_title">Shortcut name</string>
-    <string name="chamber_name_message">Give the shortcut a name to display with the icon.</string>
-    <string name="chamber_name_toast">Using default name</string>
+    <string name="chamber_disabled">Chamber of secrets est fermée</string>
+    <string name="chamber_title">Saisir le string des Paramètres</string>
+    <string name="chamber_message">Saisir un string des Paramètres qui est soit une fonction on ou off (cache à cocher) ou une liste de choix. Par exemple, quiet_hours_ringer ou similaire. Les paramètres peuvent se trouver dans le fichier Settings.java. ATTENTION : ce processus est dangereux !</string>
+    <string name="chamber_invalid">Ceci est une saisie invalide. Faites attention.</string>
+    <string name="chamber_invalid_setting">Essayer de basculer le paramètre manuellement pour s'assurer que la base de donnée des paramètres existe pour cette fonction.</string>
+    <string name="chamber_checkbox">Case à cocher</string>
+    <string name="chamber_chk_message">Est-ce que ce paramètre est un paramètre à cocher ?</string>
+    <string name="chamber_int">Saisir des valeurs</string>
+    <string name="chamber_int_message">Saisir les valeurs que vous voudriez utiliser pour le toggle. Séparer chaque valeur par une virgule. Les paramètres de couleur acceptent des valeurs hex comme #FF00aacc ou des couleurs basiques comme rouge, vert et jaune.</string>
+    <string name="chamber_name_title">Nom du raccourci</string>
+    <string name="chamber_name_message">Donner un nom au raccourci à afficher avec l\'icône</string>
+    <string name="chamber_name_toast">Utiliser le nom par défaut</string>
 
     <!-- On the go -->
-    <string name="onthego_notif_ticker">On-The-Go activated</string>
-    <string name="onthego_notif_title">On-The-Go is active</string>
+    <string name="onthego_notif_ticker">On-The-Go activé</string>
+    <string name="onthego_notif_title">On-The-Go est activé</string>
     <string name="onthego_notif_stop">Stop</string>
     <string name="onthego_notif_options">Options</string>
-    <string name="onthego_notif_error">Unable to start On-The-Go</string>
-    <string name="onthego_notif_restart">Restart On-The-Go</string>
-    <string name="onthego_notif_camera_changed">Camera mode changed</string>
-    <string name="onthego_transparency">Transparency</string>
-    <string name="onthego_front_camera">Use front camera</string>
-    <string name="onthego_service_toggle">Automatically restart service</string>
-    <string name="quick_settings_onthego_back">Rear Camera</string>
-    <string name="quick_settings_onthego_front">Front Camera</string>
+    <string name="onthego_notif_error">Impossible de démarrer On-The-Go</string>
+    <string name="onthego_notif_restart">Redémarrer On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Mode Caméra modifié</string>
+    <string name="onthego_transparency">Transparence</string>
+    <string name="onthego_front_camera">Utiliser la caméra frontale</string>
+    <string name="onthego_service_toggle">Redémarrer automatiquement le servive</string>
+    <string name="quick_settings_onthego_back">Caméra arrière</string>
+    <string name="quick_settings_onthego_front">Caméra avant/string>
 
     <!-- Recents Ram Bar -->
     <string name="memory">RAM</string>
     <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
-    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> free</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> disponible</string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
-    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> used</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> utilisée</string>
 
     <!-- Battery status in pie controls -->
-    <string name="pie_battery_status_charging">Charging (<xliff:g id="percent">%d</xliff:g>%%)</string>
-    <string name="pie_battery_status_full">Charged</string>
-    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
+    <string name="pie_battery_status_charging">Chargement (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Chargée</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restant</string>
 
     <!-- Phone status in pie controls -->
-    <string name="pie_phone_status_no_service">No service</string>
-    <string name="pie_phone_status_airplane_mode">Airplane mode on</string>
-    <string name="pie_phone_status_emergency_only">Emergency calls only</string>
+    <string name="pie_phone_status_no_service">Pas de service</string>
+    <string name="pie_phone_status_airplane_mode">Mode avion on</string>
+    <string name="pie_phone_status_emergency_only">Appels d\'urgence uniquement</string>
 
     <!-- Smart PullDown Warning -->
-    <string name="smart_pulldown_disabled">Smart pulldown is disabled</string>
+    <string name="smart_pulldown_disabled">Smart pulldown est désactivé</string>
 
     <!-- Navigation bar IME navigation -->
-    <string name="accessibility_ime_navigation_left">Cursor left</string>
-    <string name="accessibility_ime_navigation_right">Cursor right</string>
+    <string name="accessibility_ime_navigation_left">Curseur de gauche</string>
+    <string name="accessibility_ime_navigation_right">Curseur de droite</string>
 
     <!-- Title shown in notification popup for launching notification in floating mode -->
-    <string name="status_bar_notification_floating_item_title">Floating mode</string>
+    <string name="status_bar_notification_floating_item_title">Mode flottant</string>
     
     <!-- Title shown in recents popup for showing app in floating mode -->
-    <string name="status_bar_recent_floating_item_title">Floating mode</string>
+    <string name="status_bar_recent_floating_item_title">Mode flottant</string>
 
     <!-- Blacklisted app for floating mode -->
-    <string name="floating_mode_blacklisted_app">The current app is blacklisted as it may not work as expected in floating mode </string>
+    <string name="floating_mode_blacklisted_app">L\'application actuelle est blacklistée alors cela peut ne pas fonctionner comme prévu en mode flottant </string>
 
     <!-- Title shown when app provides no interface -->
-    <string name="status_bar_floating_no_interface">App provides no interface</string>
+    <string name="status_bar_floating_no_interface">L\'application ne fournit pas d'interface</string>
 
     <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
     <string name="accessibility_desc_add_quick_settings">ajouter des paramètres rapide</string>
 
     <!-- Heads up -->
-    <string name="heads_up_snooze_message">Heads up est désavtivé pendant <xliff:g id="number">%d</xliff:g> minutes.</string>
+    <string name="heads_up_snooze_message">Heads up est désactivé pendant <xliff:g id="number">%d</xliff:g> minutes.</string>
 
     <!-- Spam notifications -->
     <string name="status_bar_notification_spam_item_title">Bloquer les messages comme cela</string>
