@@ -26,9 +26,6 @@
     <!-- If this value is true, we handle Samsung CDMA's message ID method -->
     <bool name="config_smsSamsungCdmaAlternateMessageIDEncoding">false</bool>
 
-    <!-- Boolean to enable stk functionality on Samsung phones -->
-    <bool name="config_samsung_stk">false</bool>
-
     <!-- LUN file to be used by legacy USB manager.
          The existence of this file will be used to determine in the
          legacy USB manager should be started. -->
