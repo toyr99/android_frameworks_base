@@ -4323,6 +4323,27 @@ public final class Settings {
         public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
 
         /**
+         * Recent panel background color
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_BG_COLOR = "recent_panel_bg_color";
+
+        /**
+         * Recent card background color
+         *
+         * @hide
+         */
+        public static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
+
+        /**
+         * Recent card text color
+         *
+         * @hide
+         */
+        public static final String RECENT_CARD_TEXT_COLOR = "recent_card_text_color";
+
+        /**
          * If On-The-Go should be displayed at the power menu.
          *
          * @hide
@@ -4808,13 +4829,6 @@ public final class Settings {
          * @hide
          */
         public static final String SMART_COVER_ACTIVATED = "smart_cover_activated";
-
-        /**
-         * Recent panel background color
-         *
-         * @hide
-         */
-        public static final String RECENT_PANEL_BG_COLOR = "recent_panel_bg_color";
 
         /**
          * Whether to display app circle sidebar
