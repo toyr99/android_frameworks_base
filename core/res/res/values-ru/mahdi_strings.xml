@@ -39,6 +39,8 @@
     <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
     <string name="reboot_download">Режим обновления ПО</string>
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_soft">Быстрая перезагрузка</string>
 
     <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
     <string name="reboot_progress">Перезагрузка\u2026</string>
