@@ -17,8 +17,6 @@
 package com.android.keyguard;
 
 import android.content.Context;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.text.method.SingleLineTransformationMethod;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -85,13 +83,6 @@ public class CarrierText extends TextView {
         mLockPatternUtils = new LockPatternUtils(mContext);
         boolean useAllCaps = mContext.getResources().getBoolean(R.bool.kg_use_all_caps);
         setTransformationMethod(new CarrierTextTransformationMethod(mContext, useAllCaps));
-        int textColor = Settings.Secure.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
-                UserHandle.USER_CURRENT);
-        if (textColor != -2) {
-            setTextColor(textColor);
-        }
     }
 
     protected void updateCarrierText(State simState, CharSequence plmn, CharSequence spn) {

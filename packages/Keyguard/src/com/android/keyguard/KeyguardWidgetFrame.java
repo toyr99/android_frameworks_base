@@ -130,9 +130,6 @@ public class KeyguardWidgetFrame extends FrameLayout {
             mBackgroundDrawable = null;
             mGradientColor = res.getColor(R.color.kg_widget_pager_gradient_disabled);
         } else {
-            mBackgroundDrawable =
-                    KeyguardSecurityViewHelper.colorizeFrame(context,
-                    res.getDrawable(R.drawable.kg_widget_bg_padded));
             mGradientColor = res.getColor(R.color.kg_widget_pager_gradient);
             mGradientPaint.setXfermode(sAddBlendMode);
         }

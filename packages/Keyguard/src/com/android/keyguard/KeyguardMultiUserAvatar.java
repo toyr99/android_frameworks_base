@@ -27,8 +27,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.UserManager;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,23 +92,11 @@ class KeyguardMultiUserAvatar extends FrameLayout {
         super(context, attrs, defStyle);
 
         Resources res = mContext.getResources();
-
-        int textColor = Settings.Secure.getIntForUser(
-                context.getContentResolver(),
-                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
-                UserHandle.USER_CURRENT);
-
-        if (textColor == -2) {
-            mTextColor = res.getColor(R.color.keyguard_avatar_nick_color);
-            mFrameColor = res.getColor(R.color.keyguard_avatar_frame_color);
-        } else {
-            mTextColor = textColor;
-            mFrameColor = textColor;
-        }
-
+        mTextColor = res.getColor(R.color.keyguard_avatar_nick_color);
         mIconSize = res.getDimension(R.dimen.keyguard_avatar_size);
         mStroke = res.getDimension(R.dimen.keyguard_avatar_frame_stroke_width);
         mShadowRadius = res.getDimension(R.dimen.keyguard_avatar_frame_shadow_radius);
+        mFrameColor = res.getColor(R.color.keyguard_avatar_frame_color);
         mFrameShadowColor = res.getColor(R.color.keyguard_avatar_frame_shadow_color);
         mHighlightColor = res.getColor(R.color.keyguard_avatar_frame_pressed_color);
         mActiveTextAlpha = ACTIVE_TEXT_ALPHA;
@@ -209,10 +195,8 @@ class KeyguardMultiUserAvatar extends FrameLayout {
                     int textAlpha = (int) ((1 - r) * initTextAlpha + r * finalTextAlpha);
                     mFramed.setScale(scale);
                     mUserImage.setAlpha(alpha);
-                    mUserName.setTextColor(Color.argb(textAlpha, 
-                            Color.red(textColor),
-                            Color.green(textColor),
-                            Color.blue(textColor)));
+                    mUserName.setTextColor(Color.argb(textAlpha, Color.red(textColor),
+                        Color.green(textColor), Color.blue(textColor)));
                     mUserImage.invalidate();
                 }
             });
@@ -229,10 +213,8 @@ class KeyguardMultiUserAvatar extends FrameLayout {
         } else {
             mFramed.setScale(finalScale);
             mUserImage.setAlpha(finalAlpha);
-            mUserName.setTextColor(Color.argb(finalTextAlpha, 
-                    Color.red(textColor),
-                    Color.green(textColor),
-                    Color.blue(textColor)));
+            mUserName.setTextColor(Color.argb(finalTextAlpha, Color.red(textColor),
+                    Color.green(textColor), Color.blue(textColor)));
             if (onComplete != null) {
                 post(onComplete);
             }

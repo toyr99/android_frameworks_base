@@ -148,13 +148,6 @@ public class KeyguardPatternView extends LinearLayout implements KeyguardSecurit
         mLockPatternView.setTactileFeedbackEnabled(mLockPatternUtils.isTactileFeedbackEnabled());
 
         mLockPatternView.setLockPatternSize(mLockPatternUtils.getLockPatternSize());
-        mLockPatternView.setLockPatternColor(Settings.Secure.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.Secure.LOCKSCREEN_TARGETS_COLOR, -2,
-                UserHandle.USER_CURRENT), Settings.Secure.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
-                UserHandle.USER_CURRENT));
 
         if (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.DOUBLE_TAP_SLEEP_PATTERN, 0) == 1) {
@@ -184,9 +177,7 @@ public class KeyguardPatternView extends LinearLayout implements KeyguardSecurit
         mEcaView = findViewById(R.id.keyguard_selector_fade_container);
         View bouncerFrameView = findViewById(R.id.keyguard_bouncer_frame);
         if (bouncerFrameView != null) {
-            mBouncerFrame =
-                    KeyguardSecurityViewHelper.colorizeFrame(mContext,
-                    bouncerFrameView.getBackground());
+            mBouncerFrame = bouncerFrameView.getBackground();
         }
     }
 
