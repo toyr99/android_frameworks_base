@@ -115,9 +115,6 @@ public class KeyguardViewMediator {
     private static final String DELAYED_KEYGUARD_ACTION =
         "com.android.internal.policy.impl.PhoneWindowManager.DELAYED_KEYGUARD";
 
-    private static final String DISMISS_KEYGUARD_SECURELY_ACTION =
-            "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
-
     private static final String SHAKE_SECURE_TIMER =
         "com.android.keyguard.SHAKE_SECURE_TIMER";
 
@@ -526,13 +523,8 @@ public class KeyguardViewMediator {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(DELAYED_KEYGUARD_ACTION);
-        filter.addAction(WindowManagerPolicy.ACTION_LID_STATE_CHANGED);
-        mContext.registerReceiver(mBroadcastReceiver, filter);
-        mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(DISMISS_KEYGUARD_SECURELY_ACTION),
-                android.Manifest.permission.CONTROL_KEYGUARD, null);
-
         filter.addAction(SHAKE_SECURE_TIMER);
-        filter.addAction(DELAYED_KEYGUARD_ACTION);
+        filter.addAction(WindowManagerPolicy.ACTION_LID_STATE_CHANGED);
         mContext.registerReceiver(mBroadcastReceiver, filter);
 
         mKeyguardDisplayManager = new KeyguardDisplayManager(context);
@@ -1082,10 +1074,6 @@ public class KeyguardViewMediator {
                             mLockPatternUtils.getCurrentUser());
                     KeyguardHostView.shakeSecureNow();
                     adjustStatusBarLocked();
-                }
-            } else if (DISMISS_KEYGUARD_SECURELY_ACTION.equals(intent.getAction())) {
-                synchronized (KeyguardViewMediator.this) {
-                    dismiss();
                 }
             } else if (WindowManagerPolicy.ACTION_LID_STATE_CHANGED.equals(intent.getAction())) {
                 final int state = intent.getIntExtra(WindowManagerPolicy.EXTRA_LID_STATE, WindowManagerFuncs.LID_ABSENT);
