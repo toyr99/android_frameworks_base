@@ -4530,12 +4530,6 @@ public final class Settings {
         public static final String SMART_PHONE_CALLER = "smart_phone_caller";
 
         /**
-         * Whether to enable the modlock keyguard
-         * @hide
-         */
-        public static final String LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
-
-        /**
          * Either if notification peek is enabled of disabled
          * 0 = disabled (default)
          * 1 = enabled
@@ -4853,10 +4847,9 @@ public final class Settings {
             POWER_MENU_PROFILES_ENABLED,
             POWER_MENU_PROFILES_ENABLED,
             POWER_MENU_ONTHEGO_ENABLED,
-	    SYSTEM_PROFILES_ENABLED,
+            SYSTEM_PROFILES_ENABLED,
             LOCKSCREEN_BATTERY_VISIBILITY,
-            LOCKSCREEN_MODLOCK_ENABLED,
-	    PHONE_BLACKLIST_ENABLED,
+            PHONE_BLACKLIST_ENABLED,
             PHONE_BLACKLIST_NOTIFY_ENABLED,
             PHONE_BLACKLIST_PRIVATE_NUMBER_MODE,
             PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE,
