@@ -521,11 +521,10 @@ public class KeyguardViewMediator {
         mShowKeyguardWakeLock = mPM.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "show keyguard");
         mShowKeyguardWakeLock.setReferenceCounted(false);
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(DELAYED_KEYGUARD_ACTION);
-        filter.addAction(SHAKE_SECURE_TIMER);
-        filter.addAction(WindowManagerPolicy.ACTION_LID_STATE_CHANGED);
-        mContext.registerReceiver(mBroadcastReceiver, filter);
+        mContext.registerReceiver(mBroadcastReceiver,
+                new IntentFilter(WindowManagerPolicy.ACTION_LID_STATE_CHANGED));
+        mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(SHAKE_SECURE_TIMER));
+        mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(DELAYED_KEYGUARD_ACTION));
 
         mKeyguardDisplayManager = new KeyguardDisplayManager(context);
 
@@ -1067,6 +1066,15 @@ public class KeyguardViewMediator {
                         doKeyguardLocked(null);
                     }
                 }
+            } else if (WindowManagerPolicy.ACTION_LID_STATE_CHANGED.equals(intent.getAction())) {
+                final int state = intent.getIntExtra(WindowManagerPolicy.EXTRA_LID_STATE,
+                        WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT);
+                synchronized (KeyguardViewMediator.this) {
+                    if(state != mLidState) {
+                        mLidState = state;
+                        mUpdateMonitor.dispatchLidStateChange(state);
+                    }
+                }
             } else if (SHAKE_SECURE_TIMER.equals(intent.getAction())) {
                 if (mLockPatternUtils.isSecure()) {
                     Settings.Secure.putIntForUser(mContext.getContentResolver(),
@@ -1074,14 +1082,6 @@ public class KeyguardViewMediator {
                             mLockPatternUtils.getCurrentUser());
                     KeyguardHostView.shakeSecureNow();
                     adjustStatusBarLocked();
-                }
-            } else if (WindowManagerPolicy.ACTION_LID_STATE_CHANGED.equals(intent.getAction())) {
-                final int state = intent.getIntExtra(WindowManagerPolicy.EXTRA_LID_STATE, WindowManagerFuncs.LID_ABSENT);
-                synchronized (KeyguardViewMediator.this) {
-                    if(state != mLidState) {
-                        mLidState = state;
-                        mUpdateMonitor.dispatchLidStateChange(state);
-                    }
                 }
             }
         }
