@@ -28,7 +28,7 @@
     <string name="profileGroupSMS">SMS</string>
     <string name="wildcardProfile">その他</string>
     <string name="global_action_screenshot">スクリーンショット</string>
-    <string name="global_actions_toggle_global_immersive_mode">拡張デスクトップ</string>
+    <string name="global_actions_toggle_global_immersive_mode">デスクトップの拡張</string>
     <string name="global_actions_global_immersive_mode_on_status">有効</string>
     <string name="global_actions_global_immersive_mode_off_status">無効</string>
     <string name="reboot_system" product="tablet">タブレットを再起動</string>
