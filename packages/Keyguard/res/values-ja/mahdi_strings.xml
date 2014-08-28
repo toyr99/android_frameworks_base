@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2013, SlimRoms Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Description of the Random button in a KeyboardView. [CHAR LIMIT=NONE] -->
+    <string name="keyboardview_keycode_random">ランダムボタンをリロード</string>
+    <string name="keyguard_discharging">放電中 <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="keyguard_battery_percent" translatable="false"><xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <plurals
+        name="missed_calls">
+        <item quantity="one">%d 不在着信</item>
+        <item quantity="other">%d 不在着信</item>
+    </plurals>
+    <plurals
+        name="unread_messages">
+        <item quantity="one">%d 未読メッセージ</item>
+        <item quantity="other">%d 未読メッセージ</item>
+    </plurals>
+    <string name="missed_call">不在着信</string>
+    <string name="message_from">メッセージ</string>
+    <string name="message_from_person">%1$sからのメッセージ</string>
+
+    <!-- On the unlock gesture screen, shown at the top of the unlock screen to tell the user what to do. Below this text is the place for the user to draw the gesture. -->
+    <string name="lockscreen_gesture_instructions">ジェスチャーでロック解除</string>
+    <!-- Shown to confirm that the user entered their lock gesture correctly. -->
+    <string name="lockscreen_gesture_correct">正解!</string>
+    <!-- On the unlock gesture screen, shown when the user enters the wrong lock gesture and must try again. -->
+    <string name="lockscreen_gesture_wrong">再試行してください</string>
+    <!-- Accessibility description of the gesture unlock. [CHAR_LIMIT=none] -->
+    <string name="keyguard_accessibility_gesture_unlock">ジェスチャーロック解除</string>
+    <!-- Accessibility description of the unlock gesture area. [CHAR_LIMIT=none] -->
+    <string name="keyguard_accessibility_gesture_area">ジェスチャーエリア</string>
+    <!-- Message shown in gesture unlock after some number of unsuccessful attempts -->
+    <string name="kg_forgot_gesture_button_text">ジェスチャーを忘れた場合</string>
+    <!-- Message shown when user enters wrong pattern -->
+    <string name="kg_wrong_gesture">間違ったジェスチャーです</string>
+    <!-- Instructions for using the gesture unlock screen -->
+    <string name="kg_gesture_instructions">ジェスチャーを描いてください</string>
+    <string name="kg_too_many_failed_gesture_attempts_dialog_message">
+        ジェスチャーを<xliff:g id="number">%d</xliff:g>回間違えました。
+        \n\nT<xliff:g id="number">%d</xliff:g>秒後に再試行してください。
+    </string>
+    <!-- Description of accessibility direction for targets [CHAR LIMIT=NONE] -->
+    <string name="accessibility_target_direction">ターゲットをアクティブにするためにスワイプ</string>
+</resources>
