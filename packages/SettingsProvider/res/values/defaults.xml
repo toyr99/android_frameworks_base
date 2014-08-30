@@ -207,4 +207,7 @@
     1. Right
     2. Left -->
     <integer name="def_qs_quick_pulldown">0</integer>
+
+    <!-- Default value of Settings.System.NOISE_SUPPRESSION -->
+    <bool name="def_noise_suppression">false</bool>
 </resources>
