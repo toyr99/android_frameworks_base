@@ -2124,6 +2124,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.QS_QUICK_PULLDOWN,
                     R.integer.def_qs_quick_pulldown);
 
+            loadIntegerSetting(stmt, Settings.System.DOUBLE_TAP_SLEEP_STATUS_BAR,
+                    R.integer.def_double_tap_sleep_gesture);
+
             loadHeadsUpSetting(stmt);
 
         } finally {
