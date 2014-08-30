@@ -1358,7 +1358,7 @@ public class NotificationManagerService extends INotificationManager.Stub
             boolean cancelNotifications = true;
 
             boolean ScreenOnNotificationLed = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREEN_ON_NOTIFICATION_LED, 1) == 1;
+                Settings.System.SCREEN_ON_NOTIFICATION_LED, 0) == 1;
             
             if (action.equals(Intent.ACTION_PACKAGE_ADDED)
                     || (queryRemove=action.equals(Intent.ACTION_PACKAGE_REMOVED))
@@ -2627,7 +2627,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private void updateLightsLocked() {
 
         boolean ScreenOnNotificationLed = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREEN_ON_NOTIFICATION_LED, 1) == 1;
+                Settings.System.SCREEN_ON_NOTIFICATION_LED, 0) == 1;
 
         // handle notification lights
         if (mLedNotification == null) {
@@ -2649,7 +2649,7 @@ public class NotificationManagerService extends INotificationManager.Stub
             enableLed = false;
         } else if (isLedNotificationForcedOn(mLedNotification)) {
             enableLed = true;
-        } else if (mBatterySaverDisableLED || mInCall || (mScreenOn && !ScreenOnNotificationLed)) {
+        } else if (mBatterySaverDisableLED || (mInCall || (mScreenOn && (!ScreenOnNotificationLed)))) {
             enableLed = false;
         } else if (QuietHoursHelper.inQuietHours(mContext, Settings.System.QUIET_HOURS_DIM)) {
             enableLed = false;
