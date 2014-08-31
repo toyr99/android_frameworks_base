@@ -70,9 +70,7 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
     private BrightnessModeChanger mBrightnessModeChanger;
     private MobileDataModeChanger mMobileDataModeChanger;
     private NetworkModeChanger mNetworkModeChanger;
-    private LedModeChanger mLedModeChanger;
     private WifiModeChanger mWifiModeChanger;
-    private VibrateModeChanger mVibrateModeChanger;
 
     // user configuration
     private int mNormalMode;
@@ -134,8 +132,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
         mNetworkModeChanger.setServices(mCM, mTM);
         mWifiModeChanger = new WifiModeChanger(this);
         mWifiModeChanger.setServices(mCM);
-        mLedModeChanger = new LedModeChanger(this);
-        mVibrateModeChanger = new VibrateModeChanger(this);
 
         // register callback
         mBatteryController.addStateChangedCallback(this);
@@ -214,10 +210,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_NOSIGNAL_MODE), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_LED_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_VIBRATE_MODE), false, this);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_SHOW_TOAST), false, this);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE), false, this);
@@ -279,10 +271,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
                         Settings.Global.BATTERY_SAVER_DATA_MODE, 1) != 0);
                 mWifiModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_WIFI_MODE, 0) != 0);
-                mLedModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_LED_MODE, 0) != 0);
-                mVibrateModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_VIBRATE_MODE, 0) != 0);
                 mBrightnessModeChanger.setModeEnabled(mSmartBatteryEnabled &&
                         (Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE, 0) != 0));
@@ -326,10 +314,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
                         Settings.Global.BATTERY_SAVER_DATA_MODE, 1) != 0);
         mWifiModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_WIFI_MODE, 0) != 0);
-        mLedModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_LED_MODE, 0) != 0);
-        mVibrateModeChanger.setModeEnabled(Settings.Global.getInt(resolver,
-                        Settings.Global.BATTERY_SAVER_VIBRATE_MODE, 0) != 0);
         mBrightnessModeChanger.setModeEnabled(mSmartBatteryEnabled && (Settings.Global.getInt(resolver,
                         Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE, 0) != 0));
         mBrightnessModeChanger.updateBrightnessValue(Settings.Global.getInt(resolver,
@@ -344,8 +328,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
         mMobileDataModeChanger.setShowToast(enabled);
         mWifiModeChanger.setShowToast(enabled);
         mNetworkModeChanger.setShowToast(enabled);
-        mLedModeChanger.setShowToast(enabled);
-        mVibrateModeChanger.setShowToast(enabled);
     }
 
     private void updateDelayed(int delay) {
@@ -353,8 +335,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
         mMobileDataModeChanger.setDelayed(delay);
         mWifiModeChanger.setDelayed(delay);
         mNetworkModeChanger.setDelayed(delay);
-        mLedModeChanger.setDelayed(delay);
-        mVibrateModeChanger.setDelayed(delay);
     }
 
     // broadcast receiver
@@ -613,8 +593,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
         boolean network = false;
         boolean wifi = false;
         boolean brightness = false;
-        boolean leds = false;
-        boolean vibes = false;
         if (!isTethered()) {
             if (mMobileDataModeChanger.restoreState()) {
                 mobiledata = true;
@@ -633,17 +611,9 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
             brightness = true;
             showToast(5);
         }
-        if (mLedModeChanger.restoreState()) {
-            leds = true;
-            showToast(10);
-        }
-        if (mVibrateModeChanger.restoreState()) {
-            vibes = true;
-            showToast(11);
-        }
-        if (mobiledata && network && wifi && brightness && leds && vibes) {
+        if (mobiledata && network && wifi && brightness) {
             showToast(7);
-        } else if (!mobiledata && !network && !wifi && !brightness && !leds && !vibes) {
+        } else if (!mobiledata && !network && !wifi && !brightness) {
             showToast(8);
         }
     }
@@ -742,12 +712,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
             if (mBrightnessModeChanger.isSupported()) {
                 mBrightnessModeChanger.changeMode(false, normalize);
             }
-            if (mLedModeChanger.isSupported()) {
-                mLedModeChanger.changeMode(false, normalize);
-            }
-            if (mVibrateModeChanger.isSupported()) {
-                mVibrateModeChanger.changeMode(false, normalize);
-            }
         }
         if (mMobileDataModeChanger.isSupported()) {
             mMobileDataModeChanger.updateTraffic();
@@ -764,8 +728,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
         mMobileDataModeChanger.setState(newState);
         mNetworkModeChanger.setState(newState);
         mWifiModeChanger.setState(newState);
-        mLedModeChanger.setState(newState);
-        mVibrateModeChanger.setState(newState);
     }
 
     private void setNewModeValue(State state, int mode) {
@@ -804,12 +766,6 @@ public class BatterySaverService extends Service implements NetworkSignalChanged
                     break;
                 case 5:
                     what = mResources.getString(R.string.battery_saver_no_changes);
-                    break;
-                case 6:
-                    what = mResources.getString(R.string.battery_saver_led);
-                    break;
-                case 7:
-                    what = mResources.getString(R.string.battery_saver_vibrate);
                     break;
         }
 

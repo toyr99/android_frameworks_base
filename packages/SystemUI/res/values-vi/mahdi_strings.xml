@@ -91,8 +91,6 @@
     <string name="battery_saver_data">Phục hồi mạng</string>
     <string name="battery_saver_brightness">Phục hồi độ sáng màn hình</string>
     <string name="battery_saver_wifi">Phục hồi Wi-Fi </string>
-    <string name="battery_saver_led">Phục hồi LED </string>
-    <string name="battery_saver_vibrate">Phục hồi rung</string>
     <string name="battery_saver_no_changes">Khong thay đổi</string>
     <string name="battery_saver_all">Phục hồi tất cả cài đặt</string>
     <string name="battery_saver_enable_ticker">Tiết kiệm pin đang chạy...</string>

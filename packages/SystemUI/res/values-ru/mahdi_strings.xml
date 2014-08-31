@@ -98,8 +98,6 @@
     <string name="battery_saver_data">Передача данных восстановлена</string>
     <string name="battery_saver_brightness">Яркость восстановлена</string>
     <string name="battery_saver_wifi">Wi-Fi восстановлен</string>
-    <string name="battery_saver_led">LED восстановлен</string>
-    <string name="battery_saver_vibrate">Вибрация восстановлена</string>
     <string name="battery_saver_no_changes">Никакие настройки не были восстановлены</string>
     <string name="battery_saver_all">Все настройки были восстановлены</string>
     <string name="battery_saver_enable_ticker">Режим \"Энергосбережения\" запущен...</string>

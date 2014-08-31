@@ -91,8 +91,6 @@
     <string name="battery_saver_data">Datos móvil restaurados</string>
     <string name="battery_saver_brightness">Brillo de pantalla restaurada</string>
     <string name="battery_saver_wifi">Wi-Fi restaurado</string>
-    <string name="battery_saver_led">LED restaurado</string>
-    <string name="battery_saver_vibrate">Vibración restaurada</string>
     <string name="battery_saver_no_changes">Sin configuración restaurada</string>
     <string name="battery_saver_all">Todas las configuraciones restauradas</string>
     <string name="battery_saver_no_changes">Ninguna configuración restaurada</string>

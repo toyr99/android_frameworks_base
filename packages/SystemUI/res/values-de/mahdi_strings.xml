@@ -101,8 +101,6 @@
     <string name="battery_saver_data">Mobile Datenverbindung wieder hergestellt</string>
     <string name="battery_saver_brightness">Bildschirmhelligkeit wieder hergestellt</string>
     <string name="battery_saver_wifi">WLAN wieder hergestellt</string>
-    <string name="battery_saver_led">LED-Benachrichtigung wieder hergestellt</string>
-    <string name="battery_saver_vibrate">Vibration wieder hergestellt</string>
     <string name="battery_saver_all">Konfigurationen wieder hergestellt</string>
     <string name="battery_saver_no_changes">Keine Konfiguration wieder hergestellt</string>
     <string name="battery_saver_enable_ticker">Energiesparmodus aktiviert...</string>

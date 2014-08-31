@@ -5260,10 +5260,6 @@ public final class Settings {
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_SHOW_TOAST);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_NETWORK_INTERVAL_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_NOSIGNAL_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_LED_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_LED_DISABLE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_VIBRATE_MODE);
-            MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_VIBRATE_DISABLE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BRIGHTNESS_MODE);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_BRIGHTNESS_LEVEL);
             MOVED_TO_GLOBAL.add(Settings.Global.BATTERY_SAVER_START);
@@ -8566,30 +8562,6 @@ public final class Settings {
          */
         public static final String BATTERY_SAVER_SHOW_TOAST =
                 "battery_saver_show_toast";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_LED_MODE =
-                "battery_saver_led_mode";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_LED_DISABLE =
-                "battery_saver_led_disable";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_VIBRATE_MODE =
-                "battery_saver_vibrate_mode";
-
-        /**
-         * @hide
-         */
-        public static final String BATTERY_SAVER_VIBRATE_DISABLE =
-                "battery_saver_vibrate_disable";
 
         /**
          * @hide

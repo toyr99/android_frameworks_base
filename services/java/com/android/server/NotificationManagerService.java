@@ -186,7 +186,6 @@ public class NotificationManagerService extends INotificationManager.Stub
     // for enabling and disabling notification pulse behavior
     private boolean mScreenOn = true;
     private boolean mInCall = false;
-    private boolean mBatterySaverDisableLED = false;
     private boolean mNotificationPulseEnabled;
     private HashMap<String, NotificationLedValues> mNotificationPulseCustomLedValues;
     private Map<String, String> mPackageNameMappings;
@@ -1505,8 +1504,6 @@ public class NotificationManagerService extends INotificationManager.Stub
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QUIET_HOURS_DIM),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Global.getUriFor(
-                    Settings.Global.BATTERY_SAVER_LED_DISABLE), false, this, UserHandle.USER_ALL);
             update(null);
         }
 
@@ -1549,9 +1546,6 @@ public class NotificationManagerService extends INotificationManager.Stub
             if (uri == null || ENABLED_NOTIFICATION_LISTENERS_URI.equals(uri)) {
                 rebindListenerServices();
             }
-
-            mBatterySaverDisableLED = Settings.Global.getInt(resolver,
-                    Settings.Global.BATTERY_SAVER_LED_DISABLE, 0) != 0;
         }
     }
 
@@ -2649,7 +2643,7 @@ public class NotificationManagerService extends INotificationManager.Stub
             enableLed = false;
         } else if (isLedNotificationForcedOn(mLedNotification)) {
             enableLed = true;
-        } else if (mBatterySaverDisableLED || (mInCall || (mScreenOn && (!ScreenOnNotificationLed)))) {
+        } else if (mInCall || (mScreenOn && (!ScreenOnNotificationLed))) {
             enableLed = false;
         } else if (QuietHoursHelper.inQuietHours(mContext, Settings.System.QUIET_HOURS_DIM)) {
             enableLed = false;

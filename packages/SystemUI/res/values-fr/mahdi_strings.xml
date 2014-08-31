@@ -100,8 +100,6 @@
     <string name="battery_saver_data">Mobile data restored</string>
     <string name="battery_saver_brightness">Screen Brightness restored</string>
     <string name="battery_saver_wifi">Wi-Fi restored</string>
-    <string name="battery_saver_led">LED restored</string>
-    <string name="battery_saver_vibrate">Vibrate restored</string>
     <string name="battery_saver_no_changes">No configuration restored</string>
     <string name="battery_saver_all">All configuration restored</string>
     <string name="battery_saver_enable_ticker">Battery saver mode running...</string>

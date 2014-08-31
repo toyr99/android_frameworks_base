@@ -100,8 +100,6 @@
     <string name="battery_saver_data">Dati mobili riabilitati</string>
     <string name="battery_saver_brightness">Luminosità schermo ripristinata</string>
     <string name="battery_saver_wifi">Wi-Fi riabilitato</string>
-    <string name="battery_saver_led">LED riabilitato</string>
-    <string name="battery_saver_vibrate">Vibrazione ripristinata</string>
     <string name="battery_saver_no_changes">Nessuna configurazione ripristinata</string>
     <string name="battery_saver_all">Tutta la configurazione è stata ripristinata</string>
     <string name="battery_saver_enable_ticker">Modalità salva batteria in funzione...</string>
