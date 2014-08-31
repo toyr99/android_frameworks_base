@@ -1765,4 +1765,5 @@
     <string name="permlab_resetBatteryStats">バッテリー統計のリセット</string>
     <string name="permdesc_resetBatteryStats">現在の低残量バッテリーの使用データのリセットをアプリに許可する</string>
     <string name="notify_turn_wifi_off_title">Wi-FiはOFFです</string>
+    <string name="usb_storage_notification_manage_message">タップして管理</string>
 </resources>
