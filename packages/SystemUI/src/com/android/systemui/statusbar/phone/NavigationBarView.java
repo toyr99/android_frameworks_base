@@ -868,17 +868,20 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
         final boolean shouldShowCamera = disableHome
             && !((disabledFlags & View.STATUS_BAR_DISABLE_SEARCH) != 0);
+
         final boolean showSearch = disableHome && !disableSearch;
+
         final boolean showNotifs = showSearch &&
-                Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.LOCKSCREEN_NOTIFICATIONS, 1) == 1 &&
-                Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0) == 0;
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_NOTIFICATIONS, 1,
+                UserHandle.USER_CURRENT) == 1 &&
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0,
+                UserHandle.USER_CURRENT) == 0;
+
         setVisibleOrGone(getSearchLight(), showSearch);
         setVisibleOrGone(getCameraButton(), shouldShowCamera && !mCameraDisabledByDpm
                     && !mCameraDisabledByUser);
-        // Just hide view if neccessary - don't show it because that interferes with Keyguard
-        // which uses setButtonDrawable to decide whether it should be shown
         setVisibleOrGone(getNotifsButton(), showNotifs && mWasNotifsButtonVisible);
 
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);

@@ -53,6 +53,7 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.renderscript.Allocation;
@@ -183,7 +184,7 @@ public class KeyguardViewManager {
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.LOCKSCREEN_NOTIFICATIONS), false, this);
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_SEE_THROUGH), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -201,8 +202,8 @@ public class KeyguardViewManager {
     }
 
     private void updateSettings() {
-        mLockscreenNotifications = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_NOTIFICATIONS, mLockscreenNotifications ? 1 : 0) == 1;
+        mLockscreenNotifications = Settings.System.getBooleanForUser(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_NOTIFICATIONS, false, UserHandle.USER_CURRENT);
         if(!mSeeThrough) mCustomImage = null;
         if (mLockscreenNotifications && mNotificationViewManager == null) {
             mNotificationViewManager = new NotificationViewManager(mContext, this);
