@@ -664,7 +664,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     if (mNavigationBarView != null) {
                         mNavigationBarView.setNavigationBarDisableIMECursor(
                             Settings.System.getIntForUser(mContext.getContentResolver(),
-                                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0,
+                                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 1,
                                 UserHandle.USER_CURRENT) == 1);
                 }
             } else if (uri.equals(Settings.System.getUriFor(
