@@ -39,12 +39,13 @@ public class QuickSettingsTile implements OnClickListener {
     protected QuickSettingsTileView mTile;
     protected OnClickListener mOnClick;
     protected OnLongClickListener mOnLongClick;
+    protected String mLabel;
     protected final int mTileLayout;
     protected int mDrawable;
-    protected String mLabel;
     protected int mTileTextSize;
     protected int mTileTextPadding;
     protected int mTileTextColor;
+    protected int animId = R.anim.flip_down;
     protected Drawable mRealDrawable;
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
@@ -53,12 +54,6 @@ public class QuickSettingsTile implements OnClickListener {
     private Handler mHandler = new Handler();
 
     protected Vibrator mVibrator;
-
-    // Flip
-    protected final static int FLIP_RIGHT = 0;
-    protected final static int FLIP_LEFT = 1;
-    protected final static int FLIP_UP = 2;
-    protected final static int FLIP_DOWN = 3;
 
     public QuickSettingsTile(Context context, QuickSettingsController qsc) {
         this(context, qsc, R.layout.quick_settings_tile_basic);
@@ -170,7 +165,7 @@ public class QuickSettingsTile implements OnClickListener {
 
     public boolean isVibrationEnabled() {
         return (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUICK_SETTINGS_TILES_VIBRATE, 1) == 1);
+                Settings.System.QUICK_SETTINGS_TILES_VIBRATE, 0) == 1);
     }
 
     public void vibrateTile(int duration) {
@@ -186,28 +181,12 @@ public class QuickSettingsTile implements OnClickListener {
 
     public boolean isFlipTilesEnabled() {
         return (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUICK_SETTINGS_TILES_FLIP, 1) == 1);
+                Settings.System.QUICK_SETTINGS_TILES_FLIP, 0) == 1);
     }
 
     public void flipTile(int delay, int flipId) {
         if (!isFlipTilesEnabled()) {
             return;
-        }
-        int animId;
-        switch (flipId) {
-            default:
-            case FLIP_RIGHT:
-                animId = R.anim.flip_right;
-                break;
-            case FLIP_LEFT:
-                animId = R.anim.flip_left;
-                break;
-            case FLIP_UP:
-                animId = R.anim.flip_up;
-                break;
-            case FLIP_DOWN:
-                animId = R.anim.flip_down;
-                break;
         }
         final AnimatorSet anim = (AnimatorSet) AnimatorInflater.loadAnimator(
                 mContext, animId);
@@ -283,8 +262,7 @@ public class QuickSettingsTile implements OnClickListener {
         if (shouldCollapse) {
             mQsc.mBar.collapseAllPanels(true);
         }
-
         vibrateTile(30);
-        flipTile(0, FLIP_DOWN);
+        flipTile(0, animId);
     }
 }

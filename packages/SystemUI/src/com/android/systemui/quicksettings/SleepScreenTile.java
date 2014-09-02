@@ -29,10 +29,10 @@ public class SleepScreenTile extends QuickSettingsTile {
             }
         };
         mOnLongClick = new OnLongClickListener() {
-
-             @Override
+            @Override
             public boolean onLongClick(View v) {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_POWER, true);
+                vibrateTile(30);
                 return true;
             }
         };

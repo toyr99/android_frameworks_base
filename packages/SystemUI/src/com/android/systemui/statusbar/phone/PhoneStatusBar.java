@@ -312,6 +312,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mCarrierAndWifiViewHeight;
     private TextView mEmergencyCallLabel;
     private int mNotificationHeaderHeight;
+    private int mHideLabels;
+    private boolean mCarrierAndWifiViewBlocked = false;
 
     // Notification reminder
     private View mReminderHeader;
@@ -327,9 +329,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private TextView mTextHolder;
     private TextView mReminderTitle;
     private SharedPreferences mShared;
-
-    private int mHideLabels;
-    private boolean mCarrierAndWifiViewBlocked = false;
 
     private BatteryMeterView mBatteryView;
 
@@ -727,7 +726,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     cleanupBrightnessSlider();
             }
         }
-	    updateSettings();
+        updateSettings();
     }
 
     @Override
@@ -1005,38 +1004,38 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
                     R.color.notification_panel_solid_background)));
         }
+
         if (ENABLE_HEADS_UP) {
             mHeadsUpNotificationView =
                     (HeadsUpNotificationView) View.inflate(context, R.layout.heads_up, null);
+            mHeadsUpNotificationView.setVisibility(View.GONE);
+            mHeadsUpNotificationView.setBar(this);
+            mHeadsUpNotificationView.setNotificationHelper(mNotificationHelper);
+            mHeadsUpNotificationDecay = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_NOTIFCATION_DECAY,
+                    res.getInteger(R.integer.heads_up_notification_decay),
+                    UserHandle.USER_CURRENT);
+            mHeadsUpExpandedByDefault = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_EXPANDED, 0,
+                    UserHandle.USER_CURRENT) == 1;
+            final int snoozeTime = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_SNOOZE_TIME,
+                    DEFAULT_TIME_HEADS_UP_SNOOZE,
+                    UserHandle.USER_CURRENT);
+            setHeadsUpSnoozeTime(snoozeTime);
+            mHeadsUpNotificationView.setSnoozeVisibility(snoozeTime != 0);
+            mShowHeadsUpUpdates = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_SHOW_UPDATE, 0,
+                    UserHandle.USER_CURRENT) == 1;
+            mHeadsUpGravityBottom = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_GRAVITY_BOTTOM, 0,
+                    UserHandle.USER_CURRENT) == 1;
         }
-        mHeadsUpNotificationView.setVisibility(View.GONE);
-        mHeadsUpNotificationView.setBar(this);
-        mHeadsUpNotificationView.setNotificationHelper(mNotificationHelper);
-        mHeadsUpNotificationDecay = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_NOTIFCATION_DECAY,
-                res.getInteger(R.integer.heads_up_notification_decay),
-                UserHandle.USER_CURRENT);
-        mHeadsUpExpandedByDefault = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_EXPANDED, 0,
-                UserHandle.USER_CURRENT) == 1;
-         final int snoozeTime = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_SNOOZE_TIME,
-                DEFAULT_TIME_HEADS_UP_SNOOZE,
-                UserHandle.USER_CURRENT);
-        setHeadsUpSnoozeTime(snoozeTime);
-        mHeadsUpNotificationView.setSnoozeVisibility(snoozeTime != 0);
-        mShowHeadsUpUpdates = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_SHOW_UPDATE, 0,
-                UserHandle.USER_CURRENT) == 1;
-        mHeadsUpGravityBottom = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_GRAVITY_BOTTOM, 0,
-                UserHandle.USER_CURRENT) == 1;
-
 
         if (MULTIUSER_DEBUG) {
             mNotificationPanelDebugText = (TextView) mNotificationPanel.findViewById(R.id.header_debug_info);
@@ -4047,12 +4046,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     private void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
-        //XXX: multi-user correct?
-        boolean autoBrightness = Settings.System.getInt(
-                resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0) ==
-                Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
-        mBrightnessControl = !autoBrightness && Settings.System.getInt(
-                resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+        int autoBrightnessSetting = Settings.System.getIntForUser(
+                resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0, mCurrentUserId);
+
+        if (autoBrightnessSetting == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
+            mBrightnessControl = false;
+        } else {
+            mBrightnessControl = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0, mCurrentUserId) == 1;
+        }
 
         int batteryStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_BATTERY, 0, mCurrentUserId);
