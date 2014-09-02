@@ -38,9 +38,6 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 
 public class QuietHoursTile extends QuickSettingsTile {
 
-    private static final String SCHEDULE_SERVICE_COMMAND =
-            "com.android.settings.mahdi.service.SCHEDULE_SERVICE_COMMAND";
-
     public static String ACTION_QUIET_HOURS = "com.mahdi.util.action_quiet_hours";
     private static int ALARM_ID = 1010101;
 
@@ -56,10 +53,6 @@ public class QuietHoursTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Settings.System.putIntForUser(mContext.getContentResolver(),
-                        Settings.System.QUIET_HOURS_ENABLED,
-                        mEnabled ? 0 : 1, UserHandle.USER_CURRENT);
-                autoSmsIntentBroadcast(mContext);
                 toggleState();
             }
         };
@@ -120,12 +113,6 @@ public class QuietHoursTile extends QuickSettingsTile {
 
         updateTile();
         super.updateResources();
-    }
-
-    private void autoSmsIntentBroadcast(Context context) {
-        Intent scheduleSms = new Intent();
-        scheduleSms.setAction(SCHEDULE_SERVICE_COMMAND);
-        context.sendBroadcast(scheduleSms);
     }
 
     private void toggleState() {

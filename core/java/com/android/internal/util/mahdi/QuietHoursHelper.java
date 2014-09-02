@@ -34,12 +34,8 @@ public class QuietHoursHelper {
         // Check if we are in timed Quiet hours mode
         boolean quietHoursEnabled = Settings.System.getInt(context.getContentResolver(),
                 Settings.System.QUIET_HOURS_ENABLED, 0) != 0;
-
-        // Check an additional option if one is provided
-        boolean quietHoursOption = true;
-        if (option != null)
-                quietHoursOption = Settings.System.getInt(context.getContentResolver(),
-                        option, 0) != 0;
+        boolean quietHoursOption = Settings.System.getInt(context.getContentResolver(),
+                option, 0) != 0;
 
         if (quietHoursEnabled && quietHoursOption) {
             int quietHoursStart = Settings.System.getInt(context.getContentResolver(),
@@ -67,5 +63,5 @@ public class QuietHoursHelper {
             }
         }
         return false;
-   }
+    }
 }
