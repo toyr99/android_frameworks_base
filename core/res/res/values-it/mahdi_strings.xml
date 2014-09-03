@@ -39,6 +39,9 @@
     <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
     <string name="reboot_download">Download</string>
+    
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_soft">Riavvio soft</string>
 
     <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
     <string name="reboot_progress">Riavvio\u2026</string>
@@ -263,4 +266,7 @@
     
     <!-- WiFi turn off notification -->
     <string name="notify_turn_wifi_off_title">Spegni Wi-Fi</string>
+    
+    <!-- USB OTG notification message -->
+    <string name="usb_storage_notification_manage_message">Clicca per gestire</string>
 </resources>
