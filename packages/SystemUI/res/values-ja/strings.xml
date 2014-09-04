@@ -286,7 +286,7 @@
     <string name="toggle">切替え</string>
     <string name="shortcut_picker">カスタムショートカット</string>
     <string name="shortcut_immersive">デスクトップの拡張</string>
-    <string name="shortcut_quiethours">サイレントタイム</string>
+    <string name="shortcut_quiethours">おやすみモード</string>
     <string name="shortcut_rotation">画面回転</string>
     <string name="shortcut_shakeevent">シェイクイベント</string>
     <string name="shortcut_torch">トーチ</string>
