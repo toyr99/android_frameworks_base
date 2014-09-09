@@ -128,6 +128,7 @@ import com.android.systemui.quicksettings.RemoteDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView.QSSize;
+import com.android.systemui.statusbar.policy.NetworkController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -140,9 +141,9 @@ public class QuickSettingsController {
     // Stores the broadcast receivers and content observers
     // quick tiles register for.
     public HashMap<String, ArrayList<QuickSettingsTile>> mReceiverMap
-        = new HashMap<String, ArrayList<QuickSettingsTile>>();
+            = new HashMap<String, ArrayList<QuickSettingsTile>>();
     public HashMap<Uri, ArrayList<QuickSettingsTile>> mObserverMap
-        = new HashMap<Uri, ArrayList<QuickSettingsTile>>();
+            = new HashMap<Uri, ArrayList<QuickSettingsTile>>();
 
     // Uris that need to be monitored for updating tile status
     private HashSet<Uri> mTileStatusUris = new HashSet<Uri>();
@@ -234,6 +235,8 @@ public class QuickSettingsController {
 
         Log.i(TAG, "Tiles list: " + tiles);
 
+        NetworkController networkController = mStatusBarService.mNetworkController;
+
         // Split out the tile names and add to the list
         for (String tile : tiles.split("\\|")) {
             QuickSettingsTile qs = null;
@@ -244,7 +247,7 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_SETTINGS)) {
                 qs = new PreferencesTile(mContext, this);
             } else if (tile.equals(TILE_WIFI)) {
-                qs = new WiFiTile(mContext, this, mStatusBarService.mNetworkController);
+                qs = new WiFiTile(mContext, this, networkController);
             } else if (tile.equals(TILE_LOCATION)) {
                 qs = new LocationTile(mContext, this);
             } else if (tile.equals(TILE_BLUETOOTH) && bluetoothSupported) {
@@ -260,13 +263,13 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_RINGER)) {
                 qs = new RingerModeTile(mContext, this);
             } else if (tile.equals(TILE_SYNC)) {
-                qs = new SyncTile(mContext, this);
+                qs = new SyncTile(mContext, this, mHandler);
             } else if (tile.equals(TILE_WIFIAP) && mobileDataSupported) {
                 qs = new WifiAPTile(mContext, this);
             } else if (tile.equals(TILE_SCREENTIMEOUT)) {
                 qs = new ScreenTimeoutTile(mContext, this);
             } else if (tile.equals(TILE_MOBILEDATA) && mobileDataSupported) {
-                qs = new MobileNetworkTile(mContext, this, mStatusBarService.mNetworkController);
+                qs = new MobileNetworkTile(mContext, this, networkController);
             } else if (tile.equals(TILE_MUSIC)) {
                 qs = new MusicTile(mContext, this);
             } else if (tile.equals(TILE_LOCKSCREEN)) {
@@ -274,17 +277,18 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_LTE)) {
                 qs = new LteTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKMODE) && mobileDataSupported) {
-                qs = new MobileNetworkTypeTile(mContext, this, mStatusBarService.mNetworkController);
+                 qs = new MobileNetworkTypeTile(mContext, this, networkController);
             } else if (tile.equals(TILE_AUTOROTATE)) {
-                qs = new AutoRotateTile(mContext, this, mHandler);
+                qs = new AutoRotateTile(mContext, this);
             } else if (tile.equals(TILE_AIRPLANE)) {
-                qs = new AirplaneModeTile(mContext, this, mStatusBarService.mNetworkController);
+                qs = new AirplaneModeTile(mContext, this, networkController);
             } else if (tile.equals(TILE_TORCH)) {
-                qs = new TorchTile(mContext, this, mHandler);
+                qs = new TorchTile(mContext, this);
             } else if (tile.equals(TILE_SLEEP)) {
                 qs = new SleepScreenTile(mContext, this);
             } else if (tile.equals(TILE_PROFILE)) {
-                mTileStatusUris.add(Settings.System.getUriFor(Settings.System.SYSTEM_PROFILES_ENABLED));
+                mTileStatusUris.add(Settings.System.getUriFor(
+                            Settings.System.SYSTEM_PROFILES_ENABLED));
                 if (QSUtils.systemProfilesEnabled(resolver)) {
                     qs = new ProfileTile(mContext, this);
                 }
@@ -301,22 +305,24 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_QUIETHOURS)) {
                 qs = new QuietHoursTile(mContext, this);
             } else if (tile.equals(TILE_VOLUME)) {
-                qs = new VolumeTile(mContext, this, mHandler);
+                qs = new VolumeTile(mContext, this);
             } else if (tile.equals(TILE_NAVBAR)) {
-                    qs = new NavBarTile(mContext, this, mHandler);
+                    qs = new NavBarTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKTRAFFIC)) {
-                qs = new NetworkTrafficTile(mContext, this, mHandler);
+                qs = new NetworkTrafficTile(mContext, this);
             } else if (tile.equals(TILE_THEME)) {
                 qs = new ThemeTile(mContext, this);
             } else if (tile.equals(TILE_NETWORKADB)) {
-                mTileStatusUris.add(Settings.Global.getUriFor(Settings.Global.ADB_ENABLED));
+                mTileStatusUris.add(Settings.Global.getUriFor(
+                            Settings.Global.ADB_ENABLED));
                 if (QSUtils.adbEnabled(resolver)) {
                     qs = new NetworkAdbTile(mContext, this);
                 }
             } else if (tile.equals(TILE_IMMERSIVEMODE)) {
-                mTileStatusUris.add(Settings.System.getUriFor(Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE));
+                mTileStatusUris.add(Settings.System.getUriFor(
+                            Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE));
                 if (QSUtils.globalImmersiveModeEnabled(resolver)) {
-                    qs = new ImmersiveModeTile(mContext, this, mHandler);
+                    qs = new ImmersiveModeTile(mContext, this);
                 }
             } else if (tile.equals(TILE_ONTHEGO)) {
                 qs = new OnTheGoTile(mContext, this);
@@ -345,7 +351,7 @@ public class QuickSettingsController {
         // only when they are needed
         if (Settings.System.getIntForUser(resolver,
                     Settings.System.QS_DYNAMIC_ALARM, 1, UserHandle.USER_CURRENT) == 1) {
-            QuickSettingsTile qs = new AlarmTile(mContext, this, mHandler);
+            QuickSettingsTile qs = new AlarmTile(mContext, this);
             qs.setupQuickSettingsTile(inflater, mContainerView);
             mQuickSettingsTiles.add(qs);
         }

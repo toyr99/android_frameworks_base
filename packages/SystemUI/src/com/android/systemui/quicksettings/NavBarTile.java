@@ -18,7 +18,7 @@ public class NavBarTile extends QuickSettingsTile {
 
     private boolean mEnabled;
 
-    public NavBarTile(Context context, QuickSettingsController qsc, Handler handler) {
+    public NavBarTile(Context context, QuickSettingsController qsc) {
         super(context, qsc);
 
         mOnClick = new View.OnClickListener() {

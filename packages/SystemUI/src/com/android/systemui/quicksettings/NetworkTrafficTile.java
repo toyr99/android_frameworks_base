@@ -39,7 +39,7 @@ public class NetworkTrafficTile extends QuickSettingsTile {
     private boolean mTrafficDown;
     private boolean mTrafficBoth;
 
-    public NetworkTrafficTile(Context context, QuickSettingsController qsc, Handler handler) {
+    public NetworkTrafficTile(Context context, QuickSettingsController qsc) {
         super(context, qsc);
 
         mOnClick = new View.OnClickListener() {

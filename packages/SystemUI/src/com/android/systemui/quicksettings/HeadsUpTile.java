@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -30,12 +29,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 public class HeadsUpTile extends QuickSettingsTile {
     public HeadsUpTile(Context context, QuickSettingsController qsc) {
         super(context, qsc);
+
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Settings.System.putInt(mContext.getContentResolver(),
-                        Settings.System.HEADS_UP_NOTIFICATION, !getEnabled() ? 1 : 0);
-                updateTile();
+                Settings.System.putIntForUser(mContext.getContentResolver(),
+                        Settings.System.HEADS_UP_NOTIFICATION,
+                        isEnabled() ? 0 : 1, UserHandle.USER_CURRENT);
             }
         };
         mOnLongClick = new View.OnLongClickListener() {
@@ -65,8 +65,8 @@ public class HeadsUpTile extends QuickSettingsTile {
         updateResources();
     }
 
-    private synchronized void updateTile() {
-        if (getEnabled()) {
+    private void updateTile() {
+        if (isEnabled()) {
             mDrawable = R.drawable.ic_qs_heads_up_on;
             mLabel = mContext.getString(R.string.quick_settings_heads_up_on);
         } else {
@@ -75,9 +75,8 @@ public class HeadsUpTile extends QuickSettingsTile {
         }
     }
 
-    private boolean getEnabled() {
-        return Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_NOTIFICATION, 0, UserHandle.USER_CURRENT) == 1;
+    private boolean isEnabled() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_NOTIFICATION, 0, UserHandle.USER_CURRENT) != 0;
     }
 }
