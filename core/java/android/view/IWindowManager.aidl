@@ -307,4 +307,7 @@ interface IWindowManager
      * @hide
      */
     int getSystemUIVisibility();
+
+    /** FLOAT VIEW **/
+    void notifyFloatActivityTouched(IBinder token, boolean force);
 }
