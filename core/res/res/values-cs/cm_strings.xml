@@ -42,15 +42,9 @@
     <string name="permdesc_changePrivacyGuardState">Umožní změnit pravidla, zda bude některá aplikace spuštěna v režimu Ochrany soukromí. Pokud je aplikace spuštěna v režimu Ochrany soukromí, tato aplikace nemá umožněn přístup k osobním datům jako jsou kontakty, historie volání nebo zprávy.</string>
     <string name="privacy_guard_notification">Ochrana soukromí aktivní</string>
     <string name="privacy_guard_notification_detail">Aplikaci <xliff:g id="app">%1$s</xliff:g> nebude umožňen přístup k osobním údajům</string>
-
     <string name="profile_picker_title">Profily</string>
     <string name="profile_none">Žádný</string>
-
-    <string name="permlab_interceptSmsSent">zachytit odchozí SMS</string>
-    <string name="permdesc_interceptSmsSent">Umožní odchytit odchozí SMS. Škodlivé aplikace mohou pomocí odchycení SMS zabránit její odeslání příjemci.</string>
-
     <string name="immersive_mode_confirmation_bottom">Tažením od spodního okraje nahoru opustíte režim celé obrazovky.</string>
-
     <string name="perf_profile_pwrsv">Úsporný</string>
     <string name="perf_profile_bal">Vyvážený</string>
     <string name="perf_profile_perf">Výkonný</string>

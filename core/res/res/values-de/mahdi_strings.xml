@@ -122,10 +122,6 @@
     <string name="permlab_recordScreen">Aufnahme wird wiedergegeben</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Ermöglicht einer App den Bildschirminhalt aufzuzeichnen.</string>
-
-    <string name="permlab_interceptSmsSent">Abfangen ausgehender SMS</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Ermöglicht einer App das Abfangen einer ausgehenden SMS. Bösartige Apps verwenden dies um ausgehnde SMS zu blockieren.</string>
 	
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Sicherheit</string>

@@ -125,10 +125,6 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Разрешить приложению производить запись пользовательского экрана</string>
 
-    <string name="permlab_interceptSmsSent">Перехват исходящих SMS</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Разрешить приложению перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение, чтобы препятствовать отправке SMS-сообщений.</string>
-
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Безопасность</string>
     <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->

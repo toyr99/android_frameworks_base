@@ -125,12 +125,6 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_recordScreen">Επιτρέπει την εφαρμογή να καταγράφει την οθόνη του χρήστη.</string>
   
-  <string name="permlab_interceptSmsSent">Παρεμπόδιση εξερχομένων SMS</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_interceptSmsSent">Επιτρέπει την εφαρμογή να 
-        Παρεμπόδιζει εξερχομένα SMS.
-        Κακόβουλες εφαρμογές μπορόυν να αποτρέψουν την αποστολή εξερχόμενων μηνυματων.</string>
-  
   <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgrouplab_security">Ασφάλεια</string>
   <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->

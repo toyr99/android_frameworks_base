@@ -106,12 +106,6 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Cho phép ứng dụng khác quay màn hình.</string>
 
-    <string name="permlab_interceptSmsSent">Chạn tin nh</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Cho phép ứng dụng
-        chặn tin nhắn ra
-        Ứng dụng độc hại có thể chặn gửi tin nhắn ra</string>
-
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Bảo mật</string>
     <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->

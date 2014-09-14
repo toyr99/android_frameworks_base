@@ -111,12 +111,6 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Permitir que la aplicación grabe la pantalla de los usuarios.</string>
 
-    <string name="permlab_interceptSmsSent">interceptar SMS salientes</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Permite que la aplicación 
-         intercepte un SMS salientes. 
-         Las aplicaciones malintencionadas deben usar esto para evitar mensajes SMS salientes.</string>
-
     <string name="immersive_mode_confirmation_bottom">Desliza hacia arriba desde abajo para salir de la pantalla completa.</string>
 
     <!-- Lock screen always show battery -->

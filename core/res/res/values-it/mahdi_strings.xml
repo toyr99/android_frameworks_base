@@ -126,12 +126,6 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Permetti all\'applicazione di ricordare l\'utente.</string>
 
-    <string name="permlab_interceptSmsSent">intercetta SMS in uscita</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Permetti all\'applicazione di 
-    intercettare SMS in uscita. 
-    App non sicure potrebbero usarlo per prevenire l\'invio di SMS.</string>
-
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Sicurezza</string>
     <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->

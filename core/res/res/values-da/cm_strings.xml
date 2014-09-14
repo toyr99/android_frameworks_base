@@ -51,7 +51,5 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> vil ikke kunne tilgå personlige data</string>
     <string name="profile_picker_title">Profiler</string>
     <string name="profile_none">Ingen</string>
-    <string name="permlab_interceptSmsSent">blokér udgående SMS\'er</string>
-    <string name="permdesc_interceptSmsSent">Tillader app\'en at blokere en udgående SMS. Ondsindede apps kan bruge dette til at forhindre udgående SMS-beskeder.</string>
     <string name="immersive_mode_confirmation_bottom">Swipe up from the bottom to exit full screen.</string>
 </resources>

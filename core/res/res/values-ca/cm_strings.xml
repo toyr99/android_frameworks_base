@@ -50,7 +50,5 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no tindrà accés a dades personals</string>
     <string name="profile_picker_title">Perfils</string>
     <string name="profile_none">Cap</string>
-    <string name="permlab_interceptSmsSent">intercepta els SMS sortints</string>
-    <string name="permdesc_interceptSmsSent">Permet a l\'app interceptar un SMS sortint. Apps malicioses podrien utilitzar això per impedir que sortissin missatges SMS.</string>
     <string name="immersive_mode_confirmation_bottom">Deslliça cap amunt des de baix per sortir de la pantalla sencera.</string>
 </resources>

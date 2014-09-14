@@ -51,7 +51,5 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> negalės naudotis asmeniniais duomenimis</string>
     <string name="profile_picker_title">Profiliai</string>
     <string name="profile_none">Nėra</string>
-    <string name="permlab_interceptSmsSent">Perimti siunčiamus SMS</string>
-    <string name="permdesc_interceptSmsSent">Leisti programai perimti siunčiamus SMS. Kenkėjiškos programos gali tuo pasinaudoti, kad būtų užkirstas kelias siunčiamiems SMS.</string>
     <string name="immersive_mode_confirmation_bottom">Braukite aukštyn iš apačios norėdami išeiti iš viso ekrano.</string>
 </resources>

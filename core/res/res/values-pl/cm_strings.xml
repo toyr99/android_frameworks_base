@@ -51,7 +51,5 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nie będzie mieć dostępu do osobistych danych</string>
     <string name="profile_picker_title">Profile</string>
     <string name="profile_none">Brak</string>
-    <string name="permlab_interceptSmsSent">przechwytywanie wiadomości wychodzących</string>
-    <string name="permdesc_interceptSmsSent">Pozwala aplikacji przechwytywać wychodzące wiadomości. Złośliwe aplikacje mogą używać tego do zablokowania wychodzących wiadomości.</string>
     <string name="immersive_mode_confirmation_bottom">Przeciągnij palcem w górę od spodu ekranu, aby wyjść z trybu maksymalizacji.</string>
 </resources>
