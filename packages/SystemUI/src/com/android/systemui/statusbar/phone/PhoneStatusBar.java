@@ -300,8 +300,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     View mClockViewExpanded;
     View mDateViewExpanded;
     View mClearButton;
-    ImageView mAddTileButton;
     ImageView mSettingsButton, mNotificationButton;
+
+    // Add tile button
+    private boolean mShowAddTileButton;
+    ImageView mAddTileButton;
 
     // carrier/wifi label
     private TextView mCarrierLabel;
@@ -566,6 +569,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_GRAVITY_BOTTOM), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QUICK_SETTINGS_ADD_TILE_BUTTON), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1175,7 +1181,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (mNotificationButton != null) {
                 mNotificationButton.setOnClickListener(mNotificationButtonListener);
             }
-            if (mAddTileButton != null) {
+            if (mShowAddTileButton && mAddTileButton != null) {
                 mAddTileButton.setOnClickListener(mAddTileButtonListener);
             }
         }
@@ -1925,7 +1931,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationButton.setImageResource(R.drawable.ic_notifications);
         }
 
-        if (mAddTileButton != null) {
+        if (mShowAddTileButton && mAddTileButton != null) {
             // Force asset reloading
             mAddTileButton.setImageDrawable(null);
             mAddTileButton.setImageResource(R.drawable.ic_menu_add);
@@ -2651,7 +2657,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mSettingsButtonAnim != null) mSettingsButtonAnim.cancel();
         if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
         if (mClearButtonAnim != null) mClearButtonAnim.cancel();
-        if (mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
+        if (mShowAddTileButton && mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
 
         final boolean halfWayDone = mScrollView.getVisibility() == View.VISIBLE;
         final int zeroOutDelays = halfWayDone ? 0 : 1;
@@ -2698,11 +2704,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 ObjectAnimator.ofFloat(mNotificationButton, View.ALPHA, 0f)
                     .setDuration(FLIP_DURATION),
                 mNotificationButton, View.INVISIBLE));
-        mAddTileButtonAnim = start(
-            setVisibilityWhenDone(
-                ObjectAnimator.ofFloat(mAddTileButton, View.ALPHA, 0f)
-                    .setDuration(FLIP_DURATION),
-                mAddTileButton, View.INVISIBLE));
+        if (mShowAddTileButton) {
+            mAddTileButtonAnim = start(
+                setVisibilityWhenDone(
+                    ObjectAnimator.ofFloat(mAddTileButton, View.ALPHA, 0f)
+                        .setDuration(FLIP_DURATION),
+                    mAddTileButton, View.INVISIBLE));
+        }
         mSettingsButton.setVisibility(View.VISIBLE);
         mSettingsButtonAnim = start(
             ObjectAnimator.ofFloat(mSettingsButton, View.ALPHA, 1f)
@@ -2768,8 +2776,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         mNotificationButton.setVisibility(View.VISIBLE);
         mNotificationButton.setAlpha(1f);
-        mAddTileButton.setVisibility(View.VISIBLE);
-        mAddTileButton.setAlpha(1f);
+        if (mShowAddTileButton) {
+            mAddTileButton.setVisibility(View.VISIBLE);
+            mAddTileButton.setAlpha(1f);
+        }
         mClearButton.setVisibility(View.GONE);
     }
 
@@ -2793,7 +2803,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mSettingsButtonAnim != null) mSettingsButtonAnim.cancel();
         if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
         if (mClearButtonAnim != null) mClearButtonAnim.cancel();
-        if (mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
+        if (mShowAddTileButton && mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
 
         percent = Math.min(Math.max(percent, -1f), 1f);
         if (percent < 0f) { // notifications side
@@ -2812,7 +2822,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mBrightnessView.setScaleX(-percent);
             }
             mNotificationButton.setVisibility(View.GONE);
-            mAddTileButton.setVisibility(View.GONE);
+            if (mShowAddTileButton) {
+                mAddTileButton.setVisibility(View.GONE);
+            }
             updateCarrierAndWifiLabelVisibility(false);
             updateNotificationShortcutsVisibility(true);
         } else { // settings side
@@ -2831,8 +2843,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             mNotificationButton.setVisibility(View.VISIBLE);
             mNotificationButton.setAlpha(percent);
-            mAddTileButton.setVisibility(View.VISIBLE);
-            mAddTileButton.setAlpha(percent);
+            if (mShowAddTileButton) {
+                mAddTileButton.setVisibility(View.VISIBLE);
+                mAddTileButton.setAlpha(percent);
+            }
             updateCarrierAndWifiLabelVisibility(true);
             updateNotificationShortcutsVisibility(false);
         }
@@ -2850,7 +2864,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mSettingsButtonAnim != null) mSettingsButtonAnim.cancel();
         if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
         if (mClearButtonAnim != null) mClearButtonAnim.cancel();
-        if (mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
+        if (mShowAddTileButton && mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
 
         final boolean halfWayDone = mFlipSettingsView.getVisibility() == View.VISIBLE;
         final int zeroOutDelays = halfWayDone ? 0 : 1;
@@ -2908,10 +2922,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationButtonAnim = start(
             ObjectAnimator.ofFloat(mNotificationButton, View.ALPHA, 1f)
                 .setDuration(FLIP_DURATION));
-        mAddTileButton.setVisibility(View.VISIBLE);
-        mAddTileButtonAnim = start(
-            ObjectAnimator.ofFloat(mAddTileButton, View.ALPHA, 1f)
-                .setDuration(FLIP_DURATION));
+        if (mShowAddTileButton) {
+            mAddTileButton.setVisibility(View.VISIBLE);
+            mAddTileButtonAnim = start(
+                ObjectAnimator.ofFloat(mAddTileButton, View.ALPHA, 1f)
+                    .setDuration(FLIP_DURATION));
+        }
         mClearButtonAnim = start(
             setVisibilityWhenDone(
                 ObjectAnimator.ofFloat(mClearButton, View.ALPHA, 0f)
@@ -2961,7 +2977,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (mSettingsButtonAnim != null) mSettingsButtonAnim.cancel();
             if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
             if (mClearButtonAnim != null) mClearButtonAnim.cancel();
-            if (mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
+            if (mShowAddTileButton && mAddTileButtonAnim != null) mAddTileButtonAnim.cancel();
 
             mScrollView.setScaleX(1f);
             mScrollView.setVisibility(View.VISIBLE);
@@ -2978,7 +2994,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationPanel.setVisibility(View.GONE);
             mFlipSettingsView.setVisibility(View.GONE);
             mNotificationButton.setVisibility(View.GONE);
-            mAddTileButton.setVisibility(View.GONE);
+            if (mShowAddTileButton) {
+                mAddTileButton.setVisibility(View.GONE);
+            }
             setAreThereNotifications(); // show the clear button
         }
 
@@ -4099,6 +4117,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
         }
 
+        mShowAddTileButton = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.QUICK_SETTINGS_ADD_TILE_BUTTON, 0, UserHandle.USER_CURRENT) != 0;
+        if (mShowAddTileButton && mAddTileButton != null) {
+            mAddTileButton.setOnClickListener(mAddTileButtonListener);
+        }
+
         mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
 
@@ -4891,7 +4915,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_SETTINGS_SMALL_ICONS),
                     false, this, UserHandle.USER_ALL);
-
         }
     }
 

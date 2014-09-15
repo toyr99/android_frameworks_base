@@ -3049,7 +3049,7 @@ public final class Settings {
         public static final String HEADS_UP_GRAVITY_BOTTOM = "heads_up_gravity_bottom";
 
         /**
-         * Quick Settings Panel Dynamic Tiles
+         * Whether the blacklisting notification is enabled
          *
          * @hide
          */
@@ -3592,6 +3592,13 @@ public final class Settings {
          * @hide
          */
         public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_tiles_vibrate";
+
+        /**
+         * Show Quick Settings add tile button
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_ADD_TILE_BUTTON = "quick_settings_add_tile_button";
 
         /**
          * Custom Ring Mode
