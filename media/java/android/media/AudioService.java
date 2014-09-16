@@ -3002,6 +3002,15 @@ public class AudioService extends IAudioService.Stub {
 
     public void setWiredDeviceConnectionState(int device, int state, String name) {
         synchronized (mConnectedDevices) {
+            if ((state == 1) && ((device & mSafeMediaVolumeDevices) != 0)) {
+                boolean restoreSafeVolume = Settings.System.getIntForUser(
+                        mContentResolver,
+                        Settings.System.SAFE_HEADSET_VOLUME_RESTORE,
+                        0, UserHandle.USER_CURRENT) != 0;
+                if (restoreSafeVolume) {
+                    enforceSafeMediaVolume();
+                }
+            }
             int delay = checkSendBecomingNoisyIntent(device, state);
             queueMsgUnderWakeLock(mAudioHandler,
                     MSG_SET_WIRED_DEVICE_CONNECTION_STATE,
@@ -4432,7 +4441,7 @@ public class AudioService extends IAudioService.Stub {
                         0,
                         null,
                         SAFE_VOLUME_CONFIGURE_TIMEOUT_MS);
-                adjustCurrentStreamVolume();
+                applyCurrentStreamVolume();
             } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
                 AudioSystem.setParameters("screen_state=on");
             } else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
@@ -4461,6 +4470,7 @@ public class AudioService extends IAudioService.Stub {
                         0,
                         mStreamStates[AudioSystem.STREAM_MUSIC], 0);
             } else if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
+                applyCurrentStreamVolume();
                 String mAppName = null;
 
                 int mPersistentId = -1;
@@ -4569,7 +4579,10 @@ public class AudioService extends IAudioService.Stub {
             }
         }
 
-        private void adjustCurrentStreamVolume() {
+        // Forces volume to update. This is needed by devices affected by a bug
+        // where the new volume is not applied when the audio device changes.
+        // See: review.cyanogenmod.org/33778
+        private void applyCurrentStreamVolume() {
             VolumeStreamState streamState;
             int device;
 
