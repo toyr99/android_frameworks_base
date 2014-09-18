@@ -273,4 +273,8 @@
        the wallpaper width suggestion by the launcher may be too large for
        the GPU to handle. -->
   <java-symbol type="integer" name="config_wallpaperMaxWidth" />
+
+  <!-- Theme install failure notification -->
+  <java-symbol type="string" name="theme_install_error_title" />
+  <java-symbol type="string" name="theme_install_error_message" />
 </resources>
