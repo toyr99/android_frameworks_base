@@ -4846,6 +4846,13 @@ public final class Settings {
         public static final String APP_CIRCLE_BAR_SHOW_TRIGGER = "app_circle_bar_show_trigger";
 
         /**
+         * Whether to disable the navigation bar when in immersive mode and IME is showing
+         *
+         * @hide
+         */
+        public static final String DISABLE_IME_NAVBAR = "disable_ime_navbar";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
