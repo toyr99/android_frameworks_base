@@ -3814,14 +3814,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void setPieTriggerMask(boolean isPortrait) {
         int newMask = EdgeGesturePosition.LEFT.FLAG;
         if (mHasNavigationBar) {
-            if (mNavigationBarOnBottom) {
+            if (mNavigationBarOnBottom && !immersiveModeHidesNavigationBar()) {
                 newMask |= EdgeGesturePosition.RIGHT.FLAG;
                 if (isPortrait && mNavigationBarHeight == 0
                         || !isPortrait && mNavigationBarHeightLandscape == 0) {
                     newMask |= EdgeGesturePosition.BOTTOM.FLAG;
                 }
             } else {
-                newMask |= EdgeGesturePosition.BOTTOM.FLAG;
+                newMask |= EdgeGesturePosition.RIGHT.FLAG
+                        | EdgeGesturePosition.BOTTOM.FLAG;
                 if (mNavigationBarWidth == 0) {
                     newMask |= EdgeGesturePosition.RIGHT.FLAG;
                 }

@@ -61,8 +61,7 @@ public class PieView extends View implements View.OnTouchListener {
     /* DEBUG */
     private long mActivateStartDebug = 0;
 
-    private static final int TIME_FADEIN = 600;
-    private static final int TIME_FADEIN_DELAY = 500;
+    private static final int TIME_FADEIN = 700;
 
     // Default size, must fit with PieStyleSettings.java in settings
     public static final float PIE_CONTROL_SIZE_DEFAULT = 0.97f;
@@ -74,9 +73,11 @@ public class PieView extends View implements View.OnTouchListener {
     private float mBackgroundFraction;
     private int mBackgroundTargetAlpha;
     private boolean mShowBackground;
+    private int mTimeFadeinDelay;
     private Paint mSnapPaint = new Paint();
     private Paint mSnapActivePaint = new Paint();
     private int mBackgroundPaintColor;
+    private static int mPieSliceGap;
 
     private float mSnapRadius;
     private float mSnapRadiusSqr;
@@ -185,7 +186,9 @@ public class PieView extends View implements View.OnTouchListener {
         /**
          * This is the padding between items within a slice.
          */
-        public final static float GAP = 3.0f;
+        public int pieSliceGap() {
+            return mPieSliceGap;
+        }
 
         /**
          * The slice will be considerer as important - {@link PieView} will try to keep
@@ -656,6 +659,13 @@ public class PieView extends View implements View.OnTouchListener {
         mShowBackground = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.PIE_SHOW_BACKGROUND, 1,
                 UserHandle.USER_CURRENT) == 1;
+
+        mTimeFadeinDelay = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_TIME_FADEIN_DELAY, 500);
+
+        mPieSliceGap = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.PIE_SLICE_GAP, 3);
+
         getDimensions();
         getColors();
 
@@ -675,7 +685,7 @@ public class PieView extends View implements View.OnTouchListener {
         }
 
         mBackgroundFraction = 0.0f;
-        mBackgroundAnimator.setStartDelay(TIME_FADEIN_DELAY);
+        mBackgroundAnimator.setStartDelay(mTimeFadeinDelay);
         mBackgroundAnimator.start();
 
         Slog.d(TAG, "activate finished within "

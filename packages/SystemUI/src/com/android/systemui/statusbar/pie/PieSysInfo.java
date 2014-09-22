@@ -110,21 +110,21 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
         int textsize = res.getDimensionPixelSize(R.dimen.pie_textsize);
 
         mInfoPaint.setTextSize(textsize * scale);
-        mClockPaint.setTextSize((mOuter - mInner) * scale);
+        mClockPaint.setTextSize(textsize * 5.0f * scale);
 
         float total = 0;
         for (int i = 0; i < mClockText.length(); i++) {
             char character = mClockText.charAt(i);
             float measure = mClockPaint.measureText("" + character);
             mClockTextDisplacements[i] =
-                    measure * (character == '1' || character == ':' ? 0.7f : 0.95f);
+                    measure * (character == '1' || character == ':' ? 0.5f : 0.85f);
             total += mClockTextDisplacements[i];
         }
-        float alpha = 268 - (float)(total * 360 / (2.0f * Math.PI * mInner * scale));
+        float alpha = 267 - (float)(total * 360 / (2.0f * Math.PI * mInner * scale));
 
         mClockPath = updatePath(mClockPath, mInner * scale, alpha, mSweep);
         for (int i = 0; i < mInfoPath.length; i++)
-            mInfoPath[i] = updatePath(mInfoPath[i], (mInner + textsize * 1.2f * i) * scale,
+            mInfoPath[i] = updatePath(mInfoPath[i], (mInner + textsize * 0.9f * i) * scale,
                     272, mStart + mSweep - 272);
     }
 

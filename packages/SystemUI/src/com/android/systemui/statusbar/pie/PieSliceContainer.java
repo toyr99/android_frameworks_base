@@ -31,13 +31,11 @@ import java.util.List;
  * A generic container for {@link PieItems}.
  */
 public class PieSliceContainer extends PieView.PieSlice {
-
     protected PieView mPieView;
     private List<PieItem> mItems = new ArrayList<PieItem>();
 
     public PieSliceContainer(PieView parent, int initialFlags) {
         mPieView = parent;
-
         flags = initialFlags | PieView.PieDrawable.VISIBLE;
     }
 
@@ -57,7 +55,7 @@ public class PieSliceContainer extends PieView.PieSlice {
                 return;
             }
 
-            float gapMinder = ((totalWidth * GAP * 2.0f) / (mOuter + mInner));
+            float gapMinder = ((totalWidth * pieSliceGap() * 2.0f) / (mOuter + mInner));
             float deltaSweep = mSweep / totalWidth;
             if (mirrorRightPie) {
                 // Check if it is top or right trigger to mirror later the items correct

@@ -4452,6 +4452,12 @@ public final class Settings {
         public static final String PIE_SHOW_BACKGROUND = "pie_show_background";
 
         /**
+         * Pie background fade in delay
+         * @hide
+         */
+        public static final String PIE_TIME_FADEIN_DELAY = "pie_time_fadein_delay";
+
+        /**
          * Locations of the pie in the screen.
          * (1<<0) = LEFT
          * (1<<1) = BOTTOM
@@ -4560,6 +4566,12 @@ public final class Settings {
          * @hide
          */
         public static final String PIE_IME_CONTROL = "pie_ime_control";
+
+        /**
+         * Pie gap between each slice
+         * @hide
+         */
+        public static final String PIE_SLICE_GAP = "pie_slice_gap";
 
         /**
          * Add smart phone caller

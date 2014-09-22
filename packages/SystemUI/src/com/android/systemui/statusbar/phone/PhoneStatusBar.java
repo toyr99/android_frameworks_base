@@ -730,14 +730,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     mBrightnessView.setVisibility(View.VISIBLE);
                 } else {
                     cleanupBrightnessSlider();
+                }
             }
+            updateSettings();
         }
-        updateSettings();
-    }
 
-    @Override
-    public void onChange(boolean selfChange) {
-        updateSettings();
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
         }
     }
 
@@ -1621,7 +1621,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         Settings.System.CUSTOM_RECENT, false);
         if (mNavigationBarView.getRecentsButton() != null) {
             mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-            if(!mCustomRecent) mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
+            if (!mCustomRecent) mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
         }
         if (mNavigationBarView.getHomeButton() != null) {
             mNavigationBarView.getHomeButton().setOnTouchListener(mHomeSearchActionListener);
