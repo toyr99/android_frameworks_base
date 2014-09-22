@@ -81,8 +81,8 @@ public class ButtonsConstants {
         + ICON_EMPTY;
 
     public static final String NAV_RING_CONFIG_DEFAULT =
-          ACTION_ASSIST + ACTION_DELIMITER
-        + ACTION_NULL   + ACTION_DELIMITER
+          ACTION_POWER        + ACTION_DELIMITER
+        + ACTION_POWER_MENU   + ACTION_DELIMITER
         + ICON_EMPTY;
 
     public static final String PIE_SECOND_LAYER_CONFIG_DEFAULT =
