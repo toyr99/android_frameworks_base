@@ -259,6 +259,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     Clock mClock;
     ClockCenter mClockCenter;
     View mCenterSpacer;
+    private boolean showClockOnLockscreen = false;
 
     // expanded notifications
     NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
@@ -578,6 +579,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QUICK_SETTINGS_ADD_TILE_BUTTON), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_LOCKSCREEN), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2307,7 +2311,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         if ((diff & StatusBarManager.DISABLE_CLOCK) != 0) {
-            boolean show = (state & StatusBarManager.DISABLE_CLOCK) == 0;
+            boolean show = ((state & StatusBarManager.DISABLE_CLOCK) == 0) || showClockOnLockscreen;
             showClock(show);
         }
         if ((diff & StatusBarManager.DISABLE_EXPAND) != 0) {
@@ -4148,6 +4152,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mShowAddTileButton && mAddTileButton != null) {
             mAddTileButton.setOnClickListener(mAddTileButtonListener);
         }
+
+        showClockOnLockscreen = Settings.System.getIntForUser(
+                resolver, Settings.System.STATUS_BAR_CLOCK_LOCKSCREEN, 0
+                , UserHandle.USER_CURRENT) == 1;
 
         mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
