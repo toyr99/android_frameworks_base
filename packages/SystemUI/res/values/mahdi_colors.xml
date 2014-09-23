@@ -52,7 +52,7 @@
     <!-- Used by selector -->
     <color name="card_pressed">#7e3c3c3c</color>
 
-    <!-- Pie controls -->
+    <!-- Slim Pie -->
     <color name="pie_overlay_color">#ff000000</color>
     <color name="pie_snap_color">#ffffffff</color>
     <color name="pie_text_color">#ffffffff</color>
@@ -61,6 +61,23 @@
     <color name="pie_selected_color">#ff5c5c5c</color>
     <color name="pie_long_pressed_color">#ff8c8c8c</color>
     <color name="pie_outline_color">#ff5c5c5c</color>
+
+    <!-- PA Pie -->
+    <color name="pie_menu_background">#C0000000</color>
+    <color name="alpha_mask">#aa000000</color>
+    <color name="opaque_mask">#ff000000</color>
+    <color name="snap_background">#ffffffff</color>
+    <color name="pie_background">#aa333333</color>
+    <color name="pie_button">#b2ffffff</color>
+    <color name="pie_select">#aa33b5e5</color>
+    <color name="pie_outlines">#ffffffff</color>
+    <color name="chevron_left">#0999cc</color>
+    <color name="chevron_right">#33b5e5</color>
+    <color name="battery_juice">#33b5e5</color>
+    <color name="battery_juice_low">#ffbb33</color>
+    <color name="battery_juice_critical">#ff4444</color>
+    <color name="battery_background">#ffffff</color>
+    <color name="status">#ffffff</color>
 
     <!-- Colors for the system bars -->
     <color name="status_bar_background_opaque">@color/system_bar_background_opaque</color>
