@@ -38,7 +38,7 @@ public class PieControl implements OnClickListener {
     public static final String BACK_BUTTON = "##back##";
     public static final String HOME_BUTTON = "##home##";
     public static final String MENU_BUTTON = "##menu##";
-    public static final String SEARCH_BUTTON = "##search##";
+    public static final String POWER_BUTTON = "##power##";
     public static final String RECENT_BUTTON = "##recent##";
 
     protected Context mContext;
@@ -49,11 +49,9 @@ public class PieControl implements OnClickListener {
     private PieItem mHome;
     private PieItem mMenu;
     private PieItem mRecent;
-    private PieItem mSearch;
+    private PieItem mPower;
     private OnNavButtonPressedListener mListener;
     private PieControlPanel mPanel;
-
-    private boolean mIsAssistantAvailable;
 
     public PieControl(Context context, PieControlPanel panel) {
         mContext = context;
@@ -96,10 +94,6 @@ public class PieControl implements OnClickListener {
         }
     }
 
-    protected void setIsAssistantAvailable(boolean isAvailable) {
-        mIsAssistantAvailable = isAvailable;
-    }
-
     public boolean onTouchEvent(MotionEvent event) {
         return mPie.onTouchEvent(event);
     }
@@ -109,21 +103,14 @@ public class PieControl implements OnClickListener {
         mHome = makeItem(R.drawable.ic_sysbar_home, 1, HOME_BUTTON, false);
         mRecent = makeItem(R.drawable.ic_sysbar_recent, 1, RECENT_BUTTON, false);
         mMenu = makeItem(R.drawable.ic_sysbar_menu, 1, MENU_BUTTON, true);
+
         mPie.addItem(mMenu);
-
-        if (mIsAssistantAvailable) {
-            mSearch = makeItem(R.drawable.ic_sysbar_search, 1, SEARCH_BUTTON, true); // TODO:
-                                                                                        // Replace
-                                                                                        // with
-                                                                                        // camera
-                                                                                        // or
-                                                                                        // something
-            mPie.addItem(mSearch);
-        }
-
         mPie.addItem(mRecent);
         mPie.addItem(mHome);
         mPie.addItem(mBack);
+ 
+        mPower = makeItem(R.drawable.ic_sysbar_power, 1, POWER_BUTTON, true);
+        mPie.addItem(mPower);
     }
 
     @Override

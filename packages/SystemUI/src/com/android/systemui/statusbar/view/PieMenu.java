@@ -198,7 +198,7 @@ public class PieMenu extends FrameLayout {
     private boolean mOpen;
     private boolean mEnableColor;
     private boolean mUseMenuAlways;
-    private boolean mUseSearch;
+    private boolean mUsePower;
     private boolean mHapticFeedback;
 
     // Animations
@@ -246,8 +246,8 @@ public class PieMenu extends FrameLayout {
         // Fetch modes
         mUseMenuAlways = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PA_PIE_MENU, 1) == 1;
-        mUseSearch = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PA_PIE_SEARCH, 1) == 1;
+        mUsePower = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PA_PIE_POWER, 1) == 1;
         mStatusMode = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PA_PIE_MODE, 2);
         mPieSize = Settings.System.getFloat(mContext.getContentResolver(),
@@ -666,7 +666,7 @@ public class PieMenu extends FrameLayout {
     private boolean canItemDisplay(PieItem item) {
         return !(item.getName().equals(PieControl.MENU_BUTTON) && !mPanel.currentAppUsesMenu() && !mUseMenuAlways)
                 &&
-                !(item.getName().equals(PieControl.SEARCH_BUTTON) && !mUseSearch);
+                !(item.getName().equals(PieControl.POWER_BUTTON) && !mUsePower);
     }
 
     private void layoutPie() {
@@ -677,7 +677,7 @@ public class PieMenu extends FrameLayout {
         int itemCount = mItems.size();
         if (!mPanel.currentAppUsesMenu() && !mUseMenuAlways)
             itemCount--;
-        if (!mUseSearch)
+        if (!mUsePower)
             itemCount--;
 
         int lesserSweepCount = 0;

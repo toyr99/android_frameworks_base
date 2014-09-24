@@ -4623,10 +4623,10 @@ public final class Settings {
         public static final String PA_PIE_CENTER = "pa_pie_center";
 
         /**
-         * Pie search, should default to 1 (yes, show)
+         * Pie power button, should default to 1 (yes, show)
          * @hide
          */
-        public static final String PA_PIE_SEARCH = "pa_pie_search";
+        public static final String PA_PIE_POWER = "pa_pie_power";
 
         /**
          * Pie gap angle, should default to 2

@@ -27,6 +27,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.hardware.input.InputManager;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -61,6 +62,7 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
     private WindowManager mWindowManager;
     private Display mDisplay;
     private KeyguardManager mKeyguardManger;
+    private PowerManager mPm;
 
     ViewGroup mContentFrame;
     Rect mContentArea = new Rect();
@@ -76,6 +78,7 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
         mContext = context;
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mKeyguardManger = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        mPm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mDisplay = mWindowManager.getDefaultDisplay();
         mPieControl = new PieControl(context, this);
         mPieControl.setOnNavButtonPressedListener(this);
@@ -235,7 +238,6 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
         super.onFinishInflate();
         mContentFrame = (ViewGroup) findViewById(R.id.content_frame);
         setWillNotDraw(false);
-        mPieControl.setIsAssistantAvailable(getAssistIntent() != null);
         mPieControl.attachToContainer(this);
         mPieControl.forceToTop(this);
         show(false);
@@ -300,28 +302,8 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
             injectKeyDelayed(KeyEvent.KEYCODE_MENU);
         } else if (buttonName.equals(PieControl.RECENT_BUTTON)) {
             mStatusBar.toggleRecentApps();
-        } else if (buttonName.equals(PieControl.SEARCH_BUTTON)) {
-            launchAssistAction();
-        }
-    }
-
-    private Intent getAssistIntent() {
-        Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
-        return intent;
-    }
-
-    private void launchAssistAction() {
-        Intent intent = getAssistIntent();
-        if (intent != null) {
-            try {
-                ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
-                        R.anim.search_launch_enter, R.anim.search_launch_exit);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivityAsUser(intent, opts.toBundle(),
-                        new UserHandle(UserHandle.USER_CURRENT));
-            } catch (ActivityNotFoundException e) {
-            }
+        } else if (buttonName.equals(PieControl.POWER_BUTTON)) {
+            mPm.goToSleep(SystemClock.uptimeMillis());
         }
     }
 
