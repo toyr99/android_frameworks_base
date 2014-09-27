@@ -199,6 +199,7 @@
   <string name="app_ops_toggle_bluetooth">Διακόπτης Bluetooth</string>
   <string name="app_ops_toggle_mobile_data">Διακόπτης δεδομένων κινητής</string>
   <string name="app_ops_toggle_wifi">Διακόπτης WiFi</string>
+  <string name="app_ops_toggle_nfc">Διακόπτης NFC</string>
   <string name="app_ops_use_alarm_volume">Έλεγχος έντασης ξυπνητηριού</string>
   <string name="app_ops_use_audio_focus">Έλεγχος της έντασης ήχου</string>
   <string name="app_ops_use_bluetooth_volume">Έλεγχος έντασης του Bluetooth</string>
@@ -259,4 +260,7 @@
 
   <!-- WiFi turn off notification -->
   <string name="notify_turn_wifi_off_title">Απενεργοποίηση Wi-Fi</string>
+
+  <!-- USB OTG notification message -->
+  <string name="usb_storage_notification_manage_message">Αγγίξτε για διαχείριση</string>
 </resources>

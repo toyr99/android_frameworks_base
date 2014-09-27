@@ -100,7 +100,7 @@
   <string name="battery_saver_data">Δεδομένα κινητής αποκαταστάθηκαν</string>
   <string name="battery_saver_brightness">Φωτεινότητα οθόνης αποκαταστάθηκε</string>
   <string name="battery_saver_wifi">Wi-Fi αποκαταστάθηκε</string>
-  <string name="battery_saver_no_changes">Καμία διαμόρφωση αποκαταστάθηκε</string>
+  <string name="battery_saver_no_changes">Δεν αποκαταστάθηκε καμία διαμόρφωση </string>
   <string name="battery_saver_all">Όλες οι διαμορφώσεις αποκαταστάθηκαν</string>
   <string name="battery_saver_enable_ticker">Λειτουργία εξοικονόμησης μπαταριας τρέχει...</string>
   <string name="battery_saver_enable_title">Λειτουργία εξοικονόμησης μπαταριας </string>
