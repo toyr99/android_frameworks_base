@@ -398,6 +398,7 @@ public class MobileDataStateTracker extends BaseNetworkStateTracker {
             networkTypeStr = "edge";
             break;
         case TelephonyManager.NETWORK_TYPE_UMTS:
+        case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
             networkTypeStr = "umts";
             break;
         case TelephonyManager.NETWORK_TYPE_HSDPA:
@@ -411,6 +412,9 @@ public class MobileDataStateTracker extends BaseNetworkStateTracker {
             break;
         case TelephonyManager.NETWORK_TYPE_HSPAP:
             networkTypeStr = "hspap";
+            break;
+        case TelephonyManager.NETWORK_TYPE_DCHSPAP:
+            networkTypeStr = "dchspap";
             break;
         case TelephonyManager.NETWORK_TYPE_CDMA:
             networkTypeStr = "cdma";
@@ -862,6 +866,7 @@ public class MobileDataStateTracker extends BaseNetworkStateTracker {
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_HSUPA,   14400,    5760, UNKNOWN),
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_HSPA,    14400,    5760, UNKNOWN),
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_HSPAP,   21000,    5760, UNKNOWN),
+            new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_DCHSPAP, 42000,    5760, UNKNOWN),
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_CDMA,  UNKNOWN, UNKNOWN, UNKNOWN),
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_1xRTT, UNKNOWN, UNKNOWN, UNKNOWN),
             new NetworkDataEntry(TelephonyManager.NETWORK_TYPE_EVDO_0,   2468,     153, UNKNOWN),
@@ -895,6 +900,7 @@ public class MobileDataStateTracker extends BaseNetworkStateTracker {
             case TelephonyManager.NETWORK_TYPE_HSUPA:
             case TelephonyManager.NETWORK_TYPE_HSPA:
             case TelephonyManager.NETWORK_TYPE_HSPAP:
+            case TelephonyManager.NETWORK_TYPE_DCHSPAP:
                 level = ss.getGsmLevel();
                 break;
             case TelephonyManager.NETWORK_TYPE_CDMA:

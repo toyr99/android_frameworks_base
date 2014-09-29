@@ -683,6 +683,7 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                         // fall through
                     }
                 case TelephonyManager.NETWORK_TYPE_UMTS:
+                case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                     mDataIconList = TelephonyIcons.DATA_3G[mInetCondition];
                     mDataTypeIconId = R.drawable.stat_sys_data_fully_connected_3g;
                     mQSDataTypeIconId = TelephonyIcons.QS_DATA_3G[mInetCondition];
@@ -712,6 +713,13 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                     mQSDataTypeIconId = TelephonyIcons.QS_DATA_HP[mInetCondition];
                     mContentDescriptionDataType = mContext.getString(
                             R.string.accessibility_data_connection_HP);
+                    break;
+                case TelephonyManager.NETWORK_TYPE_DCHSPAP:
+                    mDataIconList = TelephonyIcons.DATA_DC[mInetCondition];
+                    mDataTypeIconId = R.drawable.stat_sys_data_fully_connected_dc;
+                    mQSDataTypeIconId = TelephonyIcons.QS_DATA_DC[mInetCondition];
+                    mContentDescriptionDataType = mContext.getString(
+                            R.string.accessibility_data_connection_DC);
                     break;
                 case TelephonyManager.NETWORK_TYPE_CDMA:
                     if (!mShowAtLeastThreeGees) {
