@@ -195,6 +195,10 @@
   <java-symbol type="color" name="holo_green_dark" />
   <java-symbol type="color" name="holo_purple_dark" />
   <java-symbol type="color" name="holo_red_dark" />
+  <java-symbol type="color" name="pg_color_1" />
+  <java-symbol type="color" name="pg_color_2" />
+  <java-symbol type="color" name="pg_color_3" />
+  <java-symbol type="color" name="pg_color_4" />
 
   <!-- EdgeGesture service -->
   <java-symbol type="dimen" name="edge_gesture_trigger_distance" />
