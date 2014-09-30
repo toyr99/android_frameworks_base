@@ -63,6 +63,7 @@
     <string name="quick_settings_wifiap_off">Wi-Fi AP off</string>
     <string name="quick_settings_quiethours">Horas de silencio</string>
     <string name="quick_settings_quiethours_off">Horas de silencio off</string>
+    <string name="quick_settings_quick_record_deleted">Borrado...</string>
     <string name="quick_settings_quick_record_nofile">Pulsación larga</string>
     <string name="quick_settings_quick_record_def">Grabación rápida</string>
     <string name="quick_settings_quick_record_rec">Grabando...</string>
@@ -75,6 +76,14 @@
     <string name="quick_settings_network_type">Estado de la red</string>
     <string name="quick_settings_network_unknown">Desconocido</string>
     <string name="quick_settings_network_disable">Sin internet</string>
+    <string name="quick_settings_shakeevents">Agite eventos</string>
+    <string name="quick_settings_shakeevents_off">Agite eventos off</string>
+    <string name="quick_settings_bluetooth_multi_label">%1$d conectado</string>
+    <string name="quick_settings_equalizer">Ecualizador</string>
+    <string name="quick_settings_compass_off">Brújula off</string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="quick_settings_heads_up_on">Heads up on</string>
+    <string name="quick_settings_heads_up_off">Sin interrupciones</string>
 	
     <!-- Network Strings for battery saver mode -->
     <string name="network_4G">4G/LTE</string>
@@ -171,11 +180,13 @@
     <string name="shortcut_immersive">Modo inmersivo</string>
     <string name="shortcut_quiethours">Horas de silencio</string>
     <string name="shortcut_rotation">Rotación</string>
-    <string name="shortcut_torch">Linterna</string>
+    <string name="shortcut_torch">Toggle linterna</string>
     <string name="shortcut_reboot">Reinicio</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_last_app">Última App</string>
+    <string name="shortcut_power_menu">Menú Power</string>
     <string name="shortcut_screenshot">Captura de pantalla</string>
+    <string name="shortcut_screensleep">Dormir</string>
     <string name="shortcut_volume">Volumen</string>
     <string name="shortcut_toggle_title">Acción rendimiento</string>
     <string name="shortcut_chamber">Cámara de secretos</string>
@@ -189,12 +200,7 @@
     <string name="chamber_int_message">Introduzca valores.Separe cada valor con una coma.Los ajustes de color aceptan valores hexadecimales como #FF00aacc o valores básicos de colores como el rojo,verde y amarillo.</string>
     <string name="chamber_name_title">Nombre de acceso directo</string>
     <string name="chamber_name_message">Dé un nombre al acceso directo para mostrar con el icono.</string>
-    <string name="chamber_name_toast">Usar nombre por defecto</string>
-	
-    <!-- Title shown in recents popup for locking an app from being cleared -->
-    <string name="status_bar_recent_lock_item_title">Bloqueo</string>
-    <!-- Title shown in recents popup for unlocking an app from being cleared -->
-    <string name="status_bar_recent_unlock_item_title">Desbloqueo</string>    
+    <string name="chamber_name_toast">Usar nombre por defecto</string>  
 	
     <!-- On the go -->
     <string name="onthego_notif_ticker">Activación On-The-Go</string>
@@ -226,4 +232,44 @@
     <string name="pie_phone_status_no_service">Sin servicio</string>
     <string name="pie_phone_status_airplane_mode">Modo avión on</string>
     <string name="pie_phone_status_emergency_only">Sólo llamadas de emergencia</string>
+
+    <!-- Smart PullDown Warning -->
+    <string name="smart_pulldown_disabled">Desplegable inteligente está desactivado</string>
+
+    <!-- Navigation bar IME navigation -->
+    <string name="accessibility_ime_navigation_left">Cursor izquierdo</string>
+    <string name="accessibility_ime_navigation_right">Cursor derecho</string>
+
+    <!-- Title shown in notification popup for launching notification in floating mode -->
+    <string name="status_bar_notification_floating_item_title">Modo flotante</string>
+    
+    <!-- Title shown in recents popup for showing app in floating mode -->
+    <string name="status_bar_recent_floating_item_title">Modo flotante</string>
+
+    <!-- Blacklisted app for floating mode -->
+    <string name="floating_mode_blacklisted_app">La aplicación actual está en la lista negra, puede no funcionar como se espera en modo flotante</string>
+
+    <!-- Title shown when app provides no interface -->
+    <string name="status_bar_floating_no_interface">App no tiene ninguna interfaz</string>
+
+    <!-- Content description for the add quick settings tile button. [CHAR LIMIT=NONE] -->
+    <string name="accessibility_desc_add_quick_settings">Añadir ajuste rápido.</string>
+
+    <!-- Heads up -->
+    <string name="heads_up_snooze_message">Heads up desactivado <xliff:g id="number">%d</xliff:g> minutos.</string>
+
+    <!-- Spam notifications -->
+    <string name="status_bar_notification_spam_item_title">Bloquear mensajes como este</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_stop_item_title">Matar app</string>
+    <string name="app_float_maximize_item_title">Maximizar</string>
+    <string name="app_float_item_title">Vista flotante</string>
+    <string name="app_stop_item_title">Matar app</string>
+
+    <!-- PIE -->
+    <string name="pie_date_format">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
 </resources>

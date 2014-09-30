@@ -36,6 +36,8 @@
     <string name="reboot_fastboot">Fastboot</string>
     <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
     <string name="reboot_download">Download</string>
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_soft">Soft reboot</string>
 
     <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
     <string name="reboot_progress">Reiniciando\u2026</string>
@@ -56,14 +58,20 @@
     <!-- status message in phone options dialog for when expand desktop mode is off -->
     <string name="global_actions_global_immersive_mode_off_status">Desactivado</string>
 
-    <!-- label for item that opens the profile choosing dialog -->
-    <string name="global_action_choose_profile">Perfiles</string>
-
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">On-The-Go Mode</string>
 	
-    <!-- The title of the profile picker dialog. -->
-    <string name="profile_picker_title">Perfiles</string>
+    <!-- label for item that toggle mobile data -->
+    <string name="global_actions_toggle_mobile_data">Datos móvil</string>
+	
+    <!-- status message in phone options dialog for when mobile data is on -->
+    <string name="global_actions_mobile_data_on_status">Datos móvil ON</string>
+
+    <!-- status message in phone options dialog for when mobile data is off -->
+    <string name="global_actions_mobile_data_off_status">Datos móvil OFF</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Perfil</string>
 
     <!-- The item label for the no profile selection item. -->
     <string name="profile_none">Niguno</string>
@@ -86,10 +94,10 @@
     <!-- Name of wildcard profile. -->
     <string name="wildcardProfile">Otros</string>
 
-    <!-- Performance profiles. -->
+    <!-- Performance profile modes -->
     <string name="perf_profile_pwrsv">Ahorro de energía</string>
-    <string name="perf_profile_bal">Equilibrado</string>
-    <string name="perf_profile_perf">Alto rendimiento</string>
+    <string name="perf_profile_bal">Equilibrio</string>
+    <string name="perf_profile_perf">Rendimiento</string>
 
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">Rotación de desblqoueo</string>
@@ -105,11 +113,28 @@
     <string name="permdesc_changePrivacyGuardState">Permite que la aplicación determine si otra aplicación se ejecuta con Privacy Guard. Cuando una aplicación se está ejecutando con Privacy Guard, no tendrá acceso a los datos personales, como contactos, registros de llamadas o mensajes.</string>
     <string name="privacy_guard_notification">Privacy Guard activo</string>
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no será capaz de acceder a datos personales</string>
+    <string name="privacy_guard_dialog_title">Privacy Guard</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> le gustaría <xliff:g id="op">%2$s</xliff:g>.</string>
 
-   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_recordScreen">Contenido de grabacion que se muestra</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_recordScreen">Permitir que la aplicación grabe la pantalla de los usuarios.</string>
+
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_security">Seguridad</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_security">Permisos relacionados con la información de seguridad del dispositivo.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readPhoneBlacklist">leer lista negra de teléfono</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readPhoneBlacklist">Permite que una aplicación lea la información acerca de los números de teléfono que están bloqueados para llamadas o mensajes entrantes.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_changePhoneBlacklist">cambiar lista negra de teléfono</string>
+	<!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_changePhoneBlacklist">Permite que una aplicación cambie los números de teléfono que están bloqueados para llamadas o mensajes entrantes.</string>
 
     <string name="immersive_mode_confirmation_bottom">Desliza hacia arriba desde abajo para salir de la pantalla completa.</string>
 
@@ -146,8 +171,48 @@
     <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Modo de cambio automático de la condición de luz está activada. Conmutación manual no es posible.</string>
 
-    <string name="privacy_guard_dialog_title">Privacy Guard</string>
-    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> le gustaría <xliff:g id="op">%2$s</xliff:g>.</string>
+    <!-- App ops requests -->
+    <string name="app_ops_access_camera">acceder a la cámara</string>
+    <string name="app_ops_access_location">acceder a tu ubicación</string>
+    <string name="app_ops_access_notifications">leer sus notificaciones</string>
+    <string name="app_ops_alarm_wakeup">despertar el dispositivo</string>
+    <string name="app_ops_draw_on_top">trazar en la parte superior</string>
+    <string name="app_ops_keep_device_awake">mantener su dispositivo despierto</string>
+    <string name="app_ops_make_phone_call">hacer una llamada telefónica</string>
+    <string name="app_ops_modify_calendar">actualizar el calendario</string>
+    <string name="app_ops_modify_call_log">actualizar el registro de llamadas</string>
+    <string name="app_ops_modify_clipboard">modificar el portapapeles</string>
+    <string name="app_ops_modify_contacts">actualizar los contactos</string>
+    <string name="app_ops_modify_settings">actualizar configuración del sistema</string>
+    <string name="app_ops_play_audio">reproducir audio</string>
+    <string name="app_ops_post_notification">publicar una notificación</string>
+    <string name="app_ops_read_calendar">leer su calendario</string>
+    <string name="app_ops_read_call_log">leer el registro de llamadas</string>
+    <string name="app_ops_read_clipboard">leer el portapapeles</string>
+    <string name="app_ops_read_contacts">leer sus contactos</string>
+    <string name="app_ops_read_mms">leer tus mensajes MMS</string>
+    <string name="app_ops_read_sms">leer tus mensajes SMS</string>
+    <string name="app_ops_receive_sms">recibir un mensaje SMS</string>
+    <string name="app_ops_record_audio">grabar audio</string>
+    <string name="app_ops_send_mms">enviar un mensaje MMS</string>
+    <string name="app_ops_send_sms">enviar un mensaje SMS</string>
+    <string name="app_ops_start_at_bootup">comenzar en el encendido</string>
+    <string name="app_ops_toggle_bluetooth">toggle Bluetooth</string>
+    <string name="app_ops_toggle_mobile_data">toggle datos móvil</string>
+    <string name="app_ops_toggle_wifi">toggle WiFi</string>
+    <string name="app_ops_toggle_nfc">toggle NFC</string>
+    <string name="app_ops_use_alarm_volume">controlar volumen alarma</string>
+    <string name="app_ops_use_audio_focus">controlar audio fijo</string>
+    <string name="app_ops_use_bluetooth_volume">controlar el volumen Bluetooth</string>
+    <string name="app_ops_use_master_volume">controlar el volumen maestro</string>
+    <string name="app_ops_use_media_buttons">utilizar los botones de los medios</string>
+    <string name="app_ops_use_media_volume"> controlar el volumen de los medios</string>
+    <string name="app_ops_use_notification_volume">controlar el volumen de notificación</string>
+    <string name="app_ops_use_ring_volume">controlar el volumen del tono</string>
+    <string name="app_ops_use_vibrate">usar haptic feedback</string>
+    <string name="app_ops_use_voice_volume">controlar el volumen de llamadas</string>
+    <string name="app_ops_write_mms">escribir un mensaje MMS</string>
+    <string name="app_ops_write_sms">escribir un mensaje SMS</string>
 	
     <!-- In WiFi notification -->
     <string name="notify_turn_wifi_off_title">Encender Wi-Fi off</string>
