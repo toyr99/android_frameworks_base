@@ -2945,6 +2945,15 @@ public final class Settings {
          */
         public static final String GLOBAL_IMMERSIVE_MODE_SYSTEM_BARS_VISIBILITY = "global_immersive_mode_system_bars_visibility";
 
+        /**
+         * Whether to disable navbar or statusbar system gesture when in immersive mode
+         * 0 - both enabled (default)
+         * 1 - disable navbar gesture
+         * 2 - disable statusbar gesture
+         * @hide
+         */
+        public static final String DISABLE_SYSTEM_GESTURES = "disable_system_gestures";
+
 	/**
          * Show the pending notification counts as overlays on the status bar
          * @hide
