@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2014 The CyanogenMod Project
+     Copyright (c) 2013, The Linux Foundation. All rights reserved.
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">Predefinito</string>
+    <string name="profileNameWork">Lavoro</string>
+    <string name="profileNameHome">Casa</string>
+    <string name="profileNameSilent">Silenzioso</string>
+    <string name="profileNameNight">Notte</string>
+    <string name="profileNameAutomobile">Automobile</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Telefono</string>
+    <string name="profileGroupCalendar">Calendario</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">SMS</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Altro</string>
+
+     <!-- The item label for the no profile selection item. -->
+     <string name="profile_none">Nessuno</string>
+
+     <!-- The title of the profile picker dialog. -->
+     <string name="profile_picker_title">Profili</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Profilo</string>
+
+
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_security">Sicurezza</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_security">Permessi legati alle informazioni di sicurezza del dispositivo</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_readPhoneBlacklist">leggi blacklist telefono</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_readPhoneBlacklist">Consente all\'app di leggere informazioni sui numeri che sono stati bloccati per le chiamate in arrivo e/o i messaggi.</string>
+
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_changePhoneBlacklist">cambia blacklist telefono</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_changePhoneBlacklist">Consente all\'app di cambiare i numeri che sono stati bloccati per le chiamate in arrivo e/o i messaggi</string>
+
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">attiva o disattiva Privacy Guard</string>
+    <string name="permdesc_changePrivacyGuardState">Consente all\'app di decidere se un\'app viene usata con Privacy Guard. Quando un\'app viene usata con Privacy Guard, non avrà accesso a dati personali come contatti, registro chiamate, e messaggi</string>
+    <string name="privacy_guard_notification">Privacy Guard attivo</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> non avrà accesso a dati personali</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_useHardwareFramework">usa framework hardware</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_useHardwareFramework">Consente all\'app l\'accesso all\'hardware framework CM</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_setKeyguardWallpaper">imposta sfondo lockscreen</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_setKeyguardWallpaper">Consente all\'app di cambiare lo sfondo della lockscreen.</string>
+
+    <string name="privacy_guard_dialog_title">Privacy Guard</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> vorrebbe <xliff:g id="op">%2$s</xliff:g>.</string>
+
+    <!-- label for item that reboots the phone in phone options dialog -->
+    <string name="global_action_reboot">Riavvio</string>
+
+    <!-- Reboot menu -->
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Riavvio</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Bootloader</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Download</string>
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_soft">Riavvio veloce</string>
+
+    <!-- Title of dialog to confirm rebooting. -->
+    <string name="reboot_title">Riavvio</string>
+
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the device, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">Il tuo tablet si riavvierà.</string>
+    <string name="reboot_confirm" product="default">Il tuo telefono si riavvierà.</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Riavvio\u2026</string>
+
+    <!-- Long-press back kill application -->
+    <string name="app_killed_message">Applicazione chiuse</string>
+
+    <!-- ADB over network notification -->
+    <string name="adb_net_active_notification_title">ADB via rete attivato</string>
+    <!-- ADB over USB and network notification -->
+    <string name="adb_both_active_notification_title">ADB via USB &amp; rete attivato</string>
+    <!-- ADB notification message-->
+    <string name="adb_active_generic_notification_message">Tocca per disattivare il debug USB.</string>
+
+    <!-- App ops requests -->
+    <string name="app_ops_access_camera">accedere alla fotocamera</string>
+    <string name="app_ops_access_location">accedere alla posizione</string>
+    <string name="app_ops_access_notifications">leggere le notifiche</string>
+    <string name="app_ops_activate_vpn">attivare un accesso VPN</string>
+    <string name="app_ops_alarm_wakeup">risvegliare il dispositivo</string>
+    <string name="app_ops_auto_start">partire automaticamente</string>
+    <string name="app_ops_delete_call_log">eliminare il registro chiamate</string>
+    <string name="app_ops_delete_contacts">eliminare i contatti</string>
+    <string name="app_ops_delete_mms">eliminare i messaggi MMS</string>
+    <string name="app_ops_delete_sms">eliminare i messaggi SMS</string>
+    <string name="app_ops_draw_on_top">sovrascrivere finestra</string>
+    <string name="app_ops_get_usage_stats">ottenere statistiche uso app</string>
+    <string name="app_ops_keep_device_awake">mantenere attivo dispositivo</string>
+    <string name="app_ops_make_phone_call">fare una chiamata</string>
+    <string name="app_ops_modify_calendar">aggiornare il calendario</string>
+    <string name="app_ops_modify_call_log">aggiornare il registro chiamate</string>
+    <string name="app_ops_modify_clipboard">modificare gli appunti</string>
+    <string name="app_ops_modify_contacts">aggiornare i contatti</string>
+    <string name="app_ops_modify_settings">aggiornare impostazioni di sistema</string>
+    <string name="app_ops_mute_unmute_microphone">controllare microfono</string>
+    <string name="app_ops_play_audio">riprodurre audio</string>
+    <string name="app_ops_post_notification">mostrare una notifica</string>
+    <string name="app_ops_project_media">proiettare media</string>
+    <string name="app_ops_read_calendar">leggere il calendario</string>
+    <string name="app_ops_read_call_log">leggere il registro chiamate</string>
+    <string name="app_ops_read_clipboard">leggere gli appunti</string>
+    <string name="app_ops_read_contacts">leggere i contatti</string>
+    <string name="app_ops_read_mms">leggere i messaggi MMS</string>
+    <string name="app_ops_read_sms">leggere i messaggi SMS</string>
+    <string name="app_ops_receive_sms">ricevere un messaggio SMS</string>
+    <string name="app_ops_record_audio">registrare audio</string>
+    <string name="app_ops_send_mms">inviare un messaggio MMS</string>
+    <string name="app_ops_send_sms">inviare un messaggio SMS</string>
+    <string name="app_ops_start_at_bootup">partire all\'accensione</string>
+    <string name="app_ops_toast_window">mostrare messaggi toast</string>
+    <string name="app_ops_toggle_bluetooth">accendere/spegnere bluetooth</string>
+    <string name="app_ops_toggle_mobile_data">accendere/spegnere dati mobili</string>
+    <string name="app_ops_toggle_nfc">accendere/spegnere NFC</string>
+    <string name="app_ops_toggle_wifi">accendere/spegnere Wi-Fi</string>
+    <string name="app_ops_use_alarm_volume">controllare il volume della sveglia</string>
+    <string name="app_ops_use_audio_focus">controllare il focus audio</string>
+    <string name="app_ops_use_bluetooth_volume">controllare il volume bluetooth</string>
+    <string name="app_ops_use_master_volume">controllare il volume principale</string>
+    <string name="app_ops_use_media_buttons">usare i pulsanti media</string>
+    <string name="app_ops_use_media_volume">controllare il volume dei media</string>
+    <string name="app_ops_use_notification_volume">controllare il volume delle notifiche</string>
+    <string name="app_ops_use_ring_volume">controllare il volume della suoneria</string>
+    <string name="app_ops_use_vibrate">usare il feedback aptico</string>
+    <string name="app_ops_use_voice_volume">controllare il volume in chiamata</string>
+    <string name="app_ops_write_mms">scrivere un messaggio MMS</string>
+    <string name="app_ops_write_sms">scrivere un messaggio SMS</string>
+
+    <!-- Shown in the lock screen when there is SIM card IO error. -->
+    <string name="lockscreen_sim_error_message_short">Carta invalida.</string>
+
+    <!-- Shown in the lock screen to tell the user that phone is in airplane mode-->
+    <string name="lockscreen_airplane_mode_on">Modalità aereo</string>
+
+    <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
+    <string name="usb_charging_notification_title">Connesso in carica</string>
+
+    <!-- Shown when the device is tethered -->
+    <string name="tethered_notification_no_device_message">Nessun dispositivo connesso</string>
+    <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> dispositivo connesso</string>
+    <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> dispositivi connessi</string>
+
+    <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
+    <string name="progress_nomediapresent" product="default">Nessun media rimovibile presente\u2026</string>
+
+    <!-- Storage description for UICC storage. [CHAR LIMIT=NONE] -->
+    <string name="storage_uicc">Memoria UICC</string>
+
+    <!-- Displayed when the USSD/SS request is modified by STK CC to a
+    different request. This will be displayed in a toast. -->
+    <string name="stk_cc_ussd_to_dial">La richiesta USSD è modificata a richiesta DIAL.</string>
+    <string name="stk_cc_ussd_to_ss">La richiesta USSD è modificata a richiesta SS.</string>
+    <string name="stk_cc_ussd_to_ussd">La richiesta USSD è modificata a nuova richiesta USSD.</string>
+    <string name="stk_cc_ss_to_dial">La richiesta SS è modificata a richiesta DIAL.</string>
+    <string name="stk_cc_ss_to_ussd">La richiesta SS è modificata a richiesta USSD.</string>
+    <string name="stk_cc_ss_to_ss">La richiesta SS è modificata a nuova richiesta SS.</string>
+
+    <!-- Carrier Name -->
+    <string name="China_Mobile">China Mobile</string>
+    <string name="China_Unicom">China Unicom</string>
+    <string name="China_Telecom">China Telecom</string>
+
+    <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
+    <string name="permission_remember_choice">Ricorda</string>
+    <string name="permission">Permessi</string>
+</resources>
